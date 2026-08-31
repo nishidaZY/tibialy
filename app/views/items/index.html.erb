@@ -1,0 +1,98 @@
+<div class="mb-8">
+  <h1 class="text-3xl font-bold tibia-gold mb-1">Loot Finder</h1>
+  <p class="text-gray-400 text-sm">Encontre itens pelo maior preço de compra NPC</p>
+</div>
+
+<!-- Search & Sort -->
+<form method="get" action="/" class="mb-8 flex flex-col sm:flex-row gap-3">
+  <div class="relative flex-1">
+    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-700">🔍</span>
+    <input
+      type="text"
+      name="q"
+      value="<%= @query %>"
+      placeholder="Pesquisar item... ex: Dragon Scale Mail"
+      class="w-full bg-zinc-900 border border-yellow-900/50 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-yellow-600 focus:ring-1 focus:ring-yellow-600/30"
+    >
+  </div>
+  <select name="sort" onchange="this.form.submit()"
+    class="bg-zinc-900 border border-yellow-900/50 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-yellow-600">
+    <option value="value" <%= "selected" if @sort == "value" %>>Ordenar: Maior Preço</option>
+    <option value="name"  <%= "selected" if @sort == "name"  %>>Ordenar: Nome A-Z</option>
+  </select>
+  <button type="submit"
+    class="bg-yellow-700 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
+    Buscar
+  </button>
+</form>
+
+<!-- Stats bar -->
+<% if @items.any? %>
+  <p class="text-xs text-yellow-900 mb-4"><%= @items.count %> iten(s) encontrado(s)</p>
+<% end %>
+
+<!-- Items grid -->
+<% if @items.empty? %>
+  <div class="text-center py-24 text-gray-600">
+    <p class="text-4xl mb-4">🗡️</p>
+    <p class="text-lg">Nenhum item encontrado.</p>
+    <% if @query.present? %>
+      <p class="text-sm mt-2">Tente outro termo de busca.</p>
+    <% else %>
+      <p class="text-sm mt-2">Execute <code class="bg-zinc-800 px-1 rounded">rake tibia:import</code> para importar os dados.</p>
+    <% end %>
+  </div>
+<% else %>
+  <div class="overflow-x-auto rounded-xl border border-yellow-900/30">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-left text-yellow-700 text-xs uppercase tracking-wider border-b border-yellow-900/30" style="background:#1a0f04">
+          <th class="px-4 py-3">#</th>
+          <th class="px-4 py-3">Item</th>
+          <th class="px-4 py-3 text-right">Maior Preço NPC</th>
+          <th class="px-4 py-3">Melhor Comprador</th>
+          <th class="px-4 py-3">Local</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each_with_index do |item, i| %>
+          <tr class="border-b border-yellow-900/10 hover:bg-yellow-900/5 card-hover cursor-pointer"
+              onclick="window.location='<%= item_path(item.slug) %>'">
+            <td class="px-4 py-3 text-yellow-900 font-mono text-xs"><%= i + 1 %></td>
+            <td class="px-4 py-3">
+              <div class="flex items-center gap-3">
+                <% if item.image_url.present? %>
+                  <img src="<%= item.image_url %>" alt="<%= item.name %>" class="w-8 h-8 object-contain" style="image-rendering:pixelated">
+                <% else %>
+                  <div class="w-8 h-8 bg-zinc-800 rounded flex items-center justify-center text-xs text-gray-600">?</div>
+                <% end %>
+                <div>
+                  <a href="<%= item_path(item.slug) %>" class="font-medium text-yellow-200 hover:text-yellow-400 transition-colors">
+                    <%= item.name %>
+                  </a>
+                  <% if item.weight.present? %>
+                    <p class="text-xs text-gray-600"><%= item.weight %> oz</p>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+            <td class="px-4 py-3 text-right">
+              <% if item.highest_npc_buy_price > 0 %>
+                <span class="font-bold tibia-gold"><%= number_with_delimiter(item.highest_npc_buy_price) %></span>
+                <span class="text-yellow-900 text-xs">gp</span>
+              <% else %>
+                <span class="text-gray-600 text-xs">—</span>
+              <% end %>
+            </td>
+            <td class="px-4 py-3 text-gray-300">
+              <%= item.best_buyer&.npc_name || "—" %>
+            </td>
+            <td class="px-4 py-3 text-gray-500 text-xs">
+              <%= item.best_buyer&.npc_location || "—" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

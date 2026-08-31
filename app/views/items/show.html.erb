@@ -1,0 +1,107 @@
+<div class="mb-4">
+  <a href="/" class="text-yellow-700 hover:text-yellow-500 text-sm transition-colors">← Voltar</a>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <!-- Item card -->
+  <div class="md:col-span-1">
+    <div class="rounded-xl border border-yellow-900/40 p-6 text-center" style="background:#1a0f04">
+      <% if @item.image_url.present? %>
+        <img src="<%= @item.image_url %>" alt="<%= @item.name %>"
+          class="w-20 h-20 object-contain mx-auto mb-4" style="image-rendering:pixelated">
+      <% else %>
+        <div class="w-20 h-20 bg-zinc-800 rounded-lg mx-auto mb-4 flex items-center justify-center text-3xl">⚔️</div>
+      <% end %>
+
+      <h1 class="text-xl font-bold tibia-gold mb-1"><%= @item.name %></h1>
+      <% if @item.item_type.present? %>
+        <p class="text-xs text-yellow-800 mb-4"><%= @item.item_type %></p>
+      <% end %>
+
+      <div class="text-left text-sm space-y-2 mt-4 border-t border-yellow-900/30 pt-4">
+        <% if @item.weight.present? %>
+          <div class="flex justify-between">
+            <span class="text-gray-500">Peso</span>
+            <span class="text-gray-300"><%= @item.weight %> oz</span>
+          </div>
+        <% end %>
+        <div class="flex justify-between">
+          <span class="text-gray-500">Melhor NPC</span>
+          <span class="font-bold tibia-gold">
+            <%= @item.highest_npc_buy_price > 0 ? "#{number_with_delimiter(@item.highest_npc_buy_price)} gp" : "—" %>
+          </span>
+        </div>
+      </div>
+
+      <a href="<%= @item.wiki_url %>" target="_blank"
+        class="mt-6 block text-center text-xs text-yellow-800 hover:text-yellow-600 transition-colors underline">
+        Ver no TibiaWiki ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Prices -->
+  <div class="md:col-span-2 space-y-6">
+    <!-- NPC Buyers -->
+    <div class="rounded-xl border border-yellow-900/40 overflow-hidden" style="background:#1a0f04">
+      <div class="px-5 py-3 border-b border-yellow-900/30">
+        <h2 class="font-semibold tibia-gold text-sm uppercase tracking-wide">🪙 NPCs que compram</h2>
+        <p class="text-xs text-gray-600 mt-0.5">O que os NPCs pagam por este item</p>
+      </div>
+      <% if @buy_prices.any? %>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-xs text-yellow-900 uppercase border-b border-yellow-900/20">
+              <th class="px-5 py-2 text-left">NPC</th>
+              <th class="px-5 py-2 text-left">Local</th>
+              <th class="px-5 py-2 text-right">Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @buy_prices.each_with_index do |price, i| %>
+              <tr class="border-b border-yellow-900/10 <%= i == 0 ? 'bg-yellow-900/10' : '' %>">
+                <td class="px-5 py-3 font-medium text-gray-200">
+                  <%= i == 0 ? "⭐ " : "" %><%= price.npc_name %>
+                </td>
+                <td class="px-5 py-3 text-gray-500 text-xs"><%= price.npc_location || "—" %></td>
+                <td class="px-5 py-3 text-right font-bold <%= i == 0 ? 'tibia-gold' : 'text-gray-400' %>">
+                  <%= number_with_delimiter(price.price) %> gp
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="px-5 py-6 text-gray-600 text-sm">Nenhum NPC compra este item.</p>
+      <% end %>
+    </div>
+
+    <!-- NPC Sellers -->
+    <% if @sell_prices.any? %>
+      <div class="rounded-xl border border-zinc-700/40 overflow-hidden" style="background:#111">
+        <div class="px-5 py-3 border-b border-zinc-700/30">
+          <h2 class="font-semibold text-gray-400 text-sm uppercase tracking-wide">🏪 NPCs que vendem</h2>
+          <p class="text-xs text-gray-700 mt-0.5">Onde comprar este item de NPCs</p>
+        </div>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-xs text-gray-600 uppercase border-b border-zinc-700/20">
+              <th class="px-5 py-2 text-left">NPC</th>
+              <th class="px-5 py-2 text-left">Local</th>
+              <th class="px-5 py-2 text-right">Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sell_prices.each do |price| %>
+              <tr class="border-b border-zinc-800">
+                <td class="px-5 py-3 text-gray-300"><%= price.npc_name %></td>
+                <td class="px-5 py-3 text-gray-600 text-xs"><%= price.npc_location || "—" %></td>
+                <td class="px-5 py-3 text-right text-gray-400"><%= number_with_delimiter(price.price) %> gp</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
