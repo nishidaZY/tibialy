@@ -1,0 +1,335 @@
+<% content_for :title, "Loot Analyzer – TibiaLootFinder" %>
+
+<div class="max-w-5xl mx-auto px-4 py-8">
+  <!-- Header -->
+  <div class="mb-8 text-center">
+    <h1 class="text-3xl font-bold tibia-gold mb-2">⚔️ Loot Analyzer</h1>
+    <p class="text-amber-200/70 text-sm">
+      Paste your loot and find out: sell to an NPC or on the Market?
+    </p>
+  </div>
+
+  <!-- Input form -->
+  <div class="bg-stone-900 border border-amber-900/40 rounded-xl p-6 mb-6 shadow-lg">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+      <!-- Server selector -->
+      <div>
+        <label class="block text-amber-400 text-xs font-semibold mb-1 uppercase tracking-wider">Your Server</label>
+        <select id="server-select"
+                class="w-full bg-stone-800 border border-amber-900/50 text-amber-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500">
+          <option value="">— Select server —</option>
+          <% @servers.each do |s| %>
+            <option value="<%= s %>"><%= s %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <!-- Tip -->
+      <div class="md:col-span-2 flex items-end">
+        <p class="text-stone-400 text-xs leading-relaxed">
+          <span class="text-amber-400 font-semibold">How to get loot text:</span>
+          right-click your loot bag → <em>Copy to Clipboard</em>, or copy the battle log loot line.
+          Any format works — items will be matched automatically.
+        </p>
+      </div>
+    </div>
+
+    <!-- Paste area -->
+    <label class="block text-amber-400 text-xs font-semibold mb-1 uppercase tracking-wider">Loot Text</label>
+    <textarea id="loot-input"
+              rows="5"
+              placeholder="Paste loot here, e.g.:&#10;Loot of a demon: a platinum coin, a magic sword, a demon shield, 3 fire mushrooms&#10;&#10;or just:&#10;2 platinum coins, 1 dragon scale mail, a golden armor"
+              class="w-full bg-stone-800 border border-amber-900/50 text-amber-100 rounded-lg px-4 py-3 text-sm resize-y
+                     placeholder-stone-500 focus:outline-none focus:border-amber-500 font-mono"></textarea>
+
+    <div class="mt-4 flex gap-3">
+      <button id="analyze-btn"
+              class="bg-amber-700 hover:bg-amber-600 text-white font-bold px-6 py-2 rounded-lg transition-colors text-sm shadow">
+        Analyze Loot
+      </button>
+      <button id="clear-btn"
+              class="bg-stone-700 hover:bg-stone-600 text-stone-200 font-semibold px-4 py-2 rounded-lg transition-colors text-sm">
+        Clear
+      </button>
+    </div>
+  </div>
+
+  <!-- Status / loading -->
+  <div id="status-bar" class="hidden text-center py-4 text-amber-300 text-sm"></div>
+
+  <!-- Results summary -->
+  <div id="summary-bar" class="hidden bg-stone-900 border border-amber-900/40 rounded-xl px-6 py-4 mb-4 flex flex-wrap gap-6 text-sm shadow">
+    <div>
+      <span class="text-stone-400">Items parsed</span>
+      <span id="sum-parsed" class="ml-2 text-amber-300 font-bold">—</span>
+    </div>
+    <div>
+      <span class="text-stone-400">NPC total</span>
+      <span id="sum-npc" class="ml-2 text-green-400 font-bold">—</span>
+    </div>
+    <div>
+      <span class="text-stone-400">Market total</span>
+      <span id="sum-market" class="ml-2 text-sky-400 font-bold">—</span>
+    </div>
+    <div>
+      <span class="text-stone-400">Best option</span>
+      <span id="sum-best" class="ml-2 font-bold">—</span>
+    </div>
+  </div>
+
+  <!-- Results table -->
+  <div id="results-container" class="hidden bg-stone-900 border border-amber-900/40 rounded-xl overflow-hidden shadow-lg">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-amber-900/40 text-amber-400 text-xs uppercase tracking-wider">
+          <th class="px-4 py-3 text-left w-10"></th>
+          <th class="px-4 py-3 text-left">Item</th>
+          <th class="px-4 py-3 text-center">Qty</th>
+          <th class="px-4 py-3 text-right">NPC Price</th>
+          <th class="px-4 py-3 text-right">NPC Total</th>
+          <th class="px-4 py-3 text-right">Market Price</th>
+          <th class="px-4 py-3 text-right">Market Total</th>
+          <th class="px-4 py-3 text-center">Sell To</th>
+        </tr>
+      </thead>
+      <tbody id="results-body" class="divide-y divide-stone-800">
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Unrecognized items -->
+  <div id="unknown-container" class="hidden mt-4 bg-stone-900 border border-red-900/40 rounded-xl p-4 text-sm">
+    <p class="text-red-400 font-semibold mb-2">⚠️ Items not found in database:</p>
+    <p id="unknown-list" class="text-stone-400"></p>
+    <p class="text-stone-500 text-xs mt-2">Run <code class="bg-stone-800 px-1 rounded">rake tibia:import</code> to fetch the full item list from TibiaWiki.</p>
+  </div>
+</div>
+
+<script>
+const ANALYZE_URL  = "<%= analyze_loot_path %>";
+const MARKET_API   = "https://api.tibiamarket.top/market_values";
+const CSRF_TOKEN   = document.querySelector('meta[name="csrf-token"]')?.content;
+
+const analyzeBtn  = document.getElementById("analyze-btn");
+const clearBtn    = document.getElementById("clear-btn");
+const lootInput   = document.getElementById("loot-input");
+const serverSel   = document.getElementById("server-select");
+const statusBar   = document.getElementById("status-bar");
+const summaryBar  = document.getElementById("summary-bar");
+const resultsContainer = document.getElementById("results-container");
+const resultsBody = document.getElementById("results-body");
+const unknownContainer = document.getElementById("unknown-container");
+
+function gp(n) {
+  if (n <= 0) return '<span class="text-stone-500">—</span>';
+  return n.toLocaleString() + ' <span class="text-amber-600 text-xs">gp</span>';
+}
+
+function setStatus(msg, cls = "text-amber-300") {
+  statusBar.className = `text-center py-4 text-sm ${cls}`;
+  statusBar.innerHTML = msg;
+  statusBar.classList.remove("hidden");
+}
+
+function clearStatus() { statusBar.classList.add("hidden"); }
+
+clearBtn.addEventListener("click", () => {
+  lootInput.value = "";
+  statusBar.classList.add("hidden");
+  summaryBar.classList.add("hidden");
+  resultsContainer.classList.add("hidden");
+  unknownContainer.classList.add("hidden");
+  resultsBody.innerHTML = "";
+  lootInput.focus();
+});
+
+analyzeBtn.addEventListener("click", async () => {
+  const loot   = lootInput.value.trim();
+  const server = serverSel.value;
+
+  if (!loot) { setStatus("⚠️ Paste some loot text first.", "text-red-400"); return; }
+  if (!server) { setStatus("⚠️ Select your server first.", "text-red-400"); return; }
+
+  analyzeBtn.disabled = true;
+  analyzeBtn.textContent = "Analyzing…";
+  setStatus("🔍 Parsing loot…");
+  summaryBar.classList.add("hidden");
+  resultsContainer.classList.add("hidden");
+  unknownContainer.classList.add("hidden");
+  resultsBody.innerHTML = "";
+
+  // Step 1: Parse + get NPC prices from Rails
+  let data;
+  try {
+    const resp = await fetch(ANALYZE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": CSRF_TOKEN,
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({ loot_text: loot, server })
+    });
+    data = await resp.json();
+    if (!resp.ok) { setStatus(`❌ ${data.error || "Server error"}`, "text-red-400"); return; }
+  } catch(e) {
+    setStatus("❌ Could not reach the server.", "text-red-400");
+    return;
+  } finally {
+    analyzeBtn.disabled = false;
+    analyzeBtn.textContent = "Analyze Loot";
+  }
+
+  const { results, market_ids } = data;
+  if (!results || results.length === 0) {
+    setStatus("No recognizable items found in your loot text.", "text-stone-400");
+    return;
+  }
+
+  // Render table with NPC data (market = loading...)
+  const rowMap = {}; // market_item_id -> row element
+  const found    = results.filter(r => r.found);
+  const unfound  = results.filter(r => !r.found);
+
+  found.forEach(r => {
+    const tr = document.createElement("tr");
+    tr.className = "hover:bg-stone-800/50 transition-colors";
+    tr.innerHTML = `
+      <td class="px-4 py-3 text-center">
+        ${r.image_url
+          ? `<img src="${r.image_url}" alt="${r.matched_name}" class="w-8 h-8 object-contain mx-auto" onerror="this.style.display='none'">`
+          : '<span class="text-stone-600 text-lg">?</span>'}
+      </td>
+      <td class="px-4 py-3">
+        <div class="text-amber-100 font-medium">${r.matched_name}</div>
+        ${r.best_npc_buyer ? `<div class="text-xs text-stone-400">${r.best_npc_buyer}${r.npc_location ? ' · ' + r.npc_location : ''}</div>` : ''}
+      </td>
+      <td class="px-4 py-3 text-center text-stone-300">${r.quantity}</td>
+      <td class="px-4 py-3 text-right font-mono text-green-400">${gp(r.npc_buy_price)}</td>
+      <td class="px-4 py-3 text-right font-mono text-green-300">${gp(r.npc_total)}</td>
+      <td class="px-4 py-3 text-right font-mono market-price" data-id="${r.market_item_id || ''}">
+        <span class="text-stone-500 animate-pulse text-xs">loading…</span>
+      </td>
+      <td class="px-4 py-3 text-right font-mono market-total" data-qty="${r.quantity}" data-npc="${r.npc_total}">
+        <span class="text-stone-500">…</span>
+      </td>
+      <td class="px-4 py-3 text-center sell-verdict">
+        <span class="text-stone-500">…</span>
+      </td>
+    `;
+    resultsBody.appendChild(tr);
+    if (r.market_item_id) rowMap[r.market_item_id] = tr;
+  });
+
+  resultsContainer.classList.remove("hidden");
+  clearStatus();
+
+  if (unfound.length > 0) {
+    document.getElementById("unknown-list").textContent = unfound.map(r => `"${r.original_name}"`).join(", ");
+    unknownContainer.classList.remove("hidden");
+  }
+
+  // Step 2: Fetch market prices from TibiaMarket API
+  if (market_ids.length > 0) {
+    setStatus(`📈 Fetching market prices from TibiaMarket (server: ${server})…`);
+    try {
+      const url = `${MARKET_API}?server=${encodeURIComponent(server)}&item_ids=${market_ids.join(",")}`;
+      const mResp = await fetch(url);
+      const mData = await mResp.json();
+
+      // Build map: market_item_id -> market data
+      const marketMap = {};
+      (mData || []).forEach(m => { marketMap[m.id] = m; });
+
+      let totalNPC = 0, totalMarket = 0;
+
+      // Update each row
+      found.forEach(r => {
+        totalNPC += r.npc_total;
+        const tr = rowMap[r.market_item_id];
+        if (!tr) return;
+
+        const mRow  = r.market_item_id ? marketMap[r.market_item_id] : null;
+        const mPrice = mRow ? (mRow.buy_offer > 0 ? mRow.buy_offer : mRow.month_average_buy) : -1;
+        const mTotal = mPrice > 0 ? mPrice * r.quantity : -1;
+
+        const priceCell   = tr.querySelector(".market-price");
+        const totalCell   = tr.querySelector(".market-total");
+        const verdictCell = tr.querySelector(".sell-verdict");
+
+        if (mPrice > 0) {
+          priceCell.innerHTML = `<span class="text-sky-400">${gp(mPrice)}</span>`;
+          totalCell.innerHTML  = `<span class="text-sky-300">${gp(mTotal)}</span>`;
+          totalMarket += mTotal;
+
+          // Verdict
+          if (mTotal > r.npc_total * 1.1) {
+            verdictCell.innerHTML = '<span class="bg-sky-900/60 text-sky-300 px-2 py-0.5 rounded text-xs font-semibold">📈 Market</span>';
+            tr.classList.add("bg-sky-950/10");
+          } else if (r.npc_total > 0 && r.npc_total >= mTotal) {
+            verdictCell.innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">🏛️ NPC</span>';
+            tr.classList.add("bg-green-950/10");
+          } else {
+            verdictCell.innerHTML = '<span class="bg-stone-700/60 text-stone-300 px-2 py-0.5 rounded text-xs font-semibold">≈ Equal</span>';
+          }
+        } else {
+          priceCell.innerHTML  = '<span class="text-stone-500 text-xs">No data</span>';
+          totalCell.innerHTML  = '<span class="text-stone-500 text-xs">—</span>';
+          if (r.npc_total > 0) {
+            verdictCell.innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">🏛️ NPC</span>';
+          } else {
+            verdictCell.innerHTML = '<span class="text-stone-500 text-xs">—</span>';
+          }
+        }
+      });
+
+      // Summary bar
+      document.getElementById("sum-parsed").textContent  = results.length;
+      document.getElementById("sum-npc").innerHTML       = gp(totalNPC);
+      document.getElementById("sum-market").innerHTML    = totalMarket > 0 ? gp(totalMarket) : '<span class="text-stone-500">N/A</span>';
+
+      const bestEl = document.getElementById("sum-best");
+      if (totalMarket > totalNPC * 1.1) {
+        bestEl.innerHTML = '<span class="text-sky-400">📈 Market (+' + Math.round((totalMarket - totalNPC) / Math.max(totalNPC,1) * 100) + '%)</span>';
+      } else if (totalNPC > 0) {
+        bestEl.innerHTML = '<span class="text-green-400">🏛️ NPCs</span>';
+      } else {
+        bestEl.innerHTML = '<span class="text-stone-400">—</span>';
+      }
+      summaryBar.classList.remove("hidden");
+      clearStatus();
+
+    } catch(e) {
+      setStatus("⚠️ Could not fetch market prices (API may be down). NPC prices shown.", "text-amber-400");
+      found.forEach(r => {
+        const tr = rowMap[r.market_item_id];
+        if (!tr) return;
+        tr.querySelector(".market-price").innerHTML = '<span class="text-red-500 text-xs">API error</span>';
+        tr.querySelector(".market-total").innerHTML = '<span class="text-stone-500">—</span>';
+        if (r.npc_total > 0) {
+          tr.querySelector(".sell-verdict").innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">🏛️ NPC</span>';
+        } else {
+          tr.querySelector(".sell-verdict").innerHTML = '<span class="text-stone-500">—</span>';
+        }
+      });
+    }
+  } else {
+    // No market IDs — no market data available
+    setStatus("⚠️ No market IDs found. Run <code>rake tibia:sync_market_ids</code> to enable market comparison.", "text-amber-400");
+    found.forEach(r => {
+      const tr = rowMap[r.market_item_id];
+      if (!tr) return;
+      tr.querySelector(".market-price").innerHTML = '<span class="text-stone-500 text-xs">Run sync</span>';
+      tr.querySelector(".market-total").innerHTML = '<span class="text-stone-500">—</span>';
+      tr.querySelector(".sell-verdict").innerHTML = r.npc_total > 0
+        ? '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">🏛️ NPC</span>'
+        : '<span class="text-stone-500">—</span>';
+    });
+  }
+});
+
+// Allow Ctrl+Enter to analyze
+lootInput.addEventListener("keydown", e => {
+  if (e.ctrlKey && e.key === "Enter") analyzeBtn.click();
+});
+</script>

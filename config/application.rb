@@ -8,6 +8,6 @@ module TibiaLootFinder
     config.load_defaults 7.2
     config.autoload_lib(ignore: %w[assets tasks])
     config.time_zone = "America/Sao_Paulo"
-    config.i18n.default_locale = :pt
+    config.i18n.default_locale = :en
   end
 end

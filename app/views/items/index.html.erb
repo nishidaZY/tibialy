@@ -1,93 +1,109 @@
-<div class="mb-8">
-  <h1 class="text-3xl font-bold tibia-gold mb-1">Loot Finder</h1>
-  <p class="text-gray-400 text-sm">Encontre itens pelo maior preço de compra NPC</p>
-</div>
-
 <!-- Search & Sort -->
-<form method="get" action="/" class="mb-8 flex flex-col sm:flex-row gap-3">
+<form method="get" action="/" class="mb-6 flex flex-col sm:flex-row gap-3">
   <div class="relative flex-1">
-    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-700">🔍</span>
+    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style="color:var(--muted)">🔍</span>
     <input
       type="text"
       name="q"
       value="<%= @query %>"
-      placeholder="Pesquisar item... ex: Dragon Scale Mail"
-      class="w-full bg-zinc-900 border border-yellow-900/50 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-yellow-600 focus:ring-1 focus:ring-yellow-600/30"
+      placeholder="Search item… e.g. Dragon Scale Mail"
+      style="background:var(--cream); border:1px solid var(--border); color:var(--text);"
+      class="w-full rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2"
+      style="--tw-ring-color:var(--accent);"
     >
   </div>
   <select name="sort" onchange="this.form.submit()"
-    class="bg-zinc-900 border border-yellow-900/50 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-yellow-600">
-    <option value="value" <%= "selected" if @sort == "value" %>>Ordenar: Maior Preço</option>
-    <option value="name"  <%= "selected" if @sort == "name"  %>>Ordenar: Nome A-Z</option>
+    style="background:var(--cream); border:1px solid var(--border); color:var(--text);"
+    class="rounded-lg px-4 py-2.5 text-sm focus:outline-none">
+    <option value="value" <%= "selected" if @sort == "value" %>>Highest NPC Price</option>
+    <option value="name"  <%= "selected" if @sort == "name"  %>>Name A–Z</option>
   </select>
-  <button type="submit"
-    class="bg-yellow-700 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
-    Buscar
-  </button>
+  <% if params[:q].present? %>
+    <input type="hidden" name="sort" value="<%= @sort %>">
+  <% end %>
+  <button type="submit" class="btn-primary px-5 py-2.5 text-sm">Search</button>
 </form>
 
-<!-- Stats bar -->
-<% if @items.any? %>
-  <p class="text-xs text-yellow-900 mb-4"><%= @items.count %> iten(s) encontrado(s)</p>
-<% end %>
-
-<!-- Items grid -->
-<% if @items.empty? %>
-  <div class="text-center py-24 text-gray-600">
-    <p class="text-4xl mb-4">🗡️</p>
-    <p class="text-lg">Nenhum item encontrado.</p>
+<!-- Stats -->
+<div class="flex items-center justify-between mb-4 text-xs" style="color:var(--muted)">
+  <span>
     <% if @query.present? %>
-      <p class="text-sm mt-2">Tente outro termo de busca.</p>
+      <%= @total_count %> result<%= @total_count == 1 ? "" : "s" %> for "<%= @query %>"
     <% else %>
-      <p class="text-sm mt-2">Execute <code class="bg-zinc-800 px-1 rounded">rake tibia:import</code> para importar os dados.</p>
+      <%= @total_count %> items in database
+    <% end %>
+  </span>
+  <span>Page <%= @page %> of <%= @total_pages %></span>
+</div>
+
+<!-- Table -->
+<% if @items.empty? %>
+  <div class="text-center py-24" style="color:var(--muted)">
+    <p class="text-4xl mb-4">🗡️</p>
+    <p class="text-lg font-medium" style="color:var(--dark)">No items found.</p>
+    <% if @query.present? %>
+      <p class="text-sm mt-2">Try a different search term.</p>
+    <% else %>
+      <p class="text-sm mt-2">Run <code class="px-1 rounded" style="background:var(--border)">rake tibia:import</code> to import data.</p>
     <% end %>
   </div>
 <% else %>
-  <div class="overflow-x-auto rounded-xl border border-yellow-900/30">
+  <div class="rounded-xl overflow-hidden" style="border:1px solid var(--border)">
     <table class="w-full text-sm">
       <thead>
-        <tr class="text-left text-yellow-700 text-xs uppercase tracking-wider border-b border-yellow-900/30" style="background:#1a0f04">
-          <th class="px-4 py-3">#</th>
+        <tr class="text-left text-xs uppercase tracking-wider"
+            style="background:var(--sand); border-bottom:1px solid var(--border); color:var(--muted)">
+          <th class="px-4 py-3 w-10">#</th>
           <th class="px-4 py-3">Item</th>
-          <th class="px-4 py-3 text-right">Maior Preço NPC</th>
-          <th class="px-4 py-3">Melhor Comprador</th>
-          <th class="px-4 py-3">Local</th>
+          <th class="px-4 py-3 text-right">NPC Buy Price</th>
+          <th class="px-4 py-3 hidden sm:table-cell">Best Buyer</th>
+          <th class="px-4 py-3 hidden md:table-cell">Location</th>
         </tr>
       </thead>
       <tbody>
+        <% offset = (@page - 1) * ItemsController::PER_PAGE %>
         <% @items.each_with_index do |item, i| %>
-          <tr class="border-b border-yellow-900/10 hover:bg-yellow-900/5 card-hover cursor-pointer"
+          <tr class="card-hover cursor-pointer border-b"
+              style="background:var(--cream); border-color:var(--border);"
               onclick="window.location='<%= item_path(item.slug) %>'">
-            <td class="px-4 py-3 text-yellow-900 font-mono text-xs"><%= i + 1 %></td>
+            <td class="px-4 py-3 text-xs font-mono" style="color:var(--muted)"><%= offset + i + 1 %></td>
             <td class="px-4 py-3">
               <div class="flex items-center gap-3">
                 <% if item.image_url.present? %>
-                  <img src="<%= item.image_url %>" alt="<%= item.name %>" class="w-8 h-8 object-contain" style="image-rendering:pixelated">
+                  <img src="<%= item.image_url %>" alt="<%= item.name %>"
+                       class="w-8 h-8 object-contain flex-shrink-0" style="image-rendering:pixelated"
+                       onerror="this.style.display='none'">
                 <% else %>
-                  <div class="w-8 h-8 bg-zinc-800 rounded flex items-center justify-center text-xs text-gray-600">?</div>
+                  <div class="w-8 h-8 rounded flex items-center justify-center text-xs flex-shrink-0"
+                       style="background:var(--sand); color:var(--muted)">?</div>
                 <% end %>
                 <div>
-                  <a href="<%= item_path(item.slug) %>" class="font-medium text-yellow-200 hover:text-yellow-400 transition-colors">
+                  <a href="<%= item_path(item.slug) %>"
+                     class="font-medium hover:underline"
+                     style="color:var(--dark)">
                     <%= item.name %>
                   </a>
                   <% if item.weight.present? %>
-                    <p class="text-xs text-gray-600"><%= item.weight %> oz</p>
+                    <p class="text-xs" style="color:var(--muted)"><%= item.weight %> oz</p>
+                  <% end %>
+                  <% if item.item_type.present? %>
+                    <span class="tag"><%= item.item_type %></span>
                   <% end %>
                 </div>
               </div>
             </td>
             <td class="px-4 py-3 text-right">
-              <% if item.highest_npc_buy_price > 0 %>
+              <% if item.highest_npc_buy_price.to_i > 0 %>
                 <span class="font-bold tibia-gold"><%= number_with_delimiter(item.highest_npc_buy_price) %></span>
-                <span class="text-yellow-900 text-xs">gp</span>
+                <span class="text-xs" style="color:var(--muted)"> gp</span>
               <% else %>
-                <span class="text-gray-600 text-xs">—</span>
+                <span class="text-xs" style="color:var(--border)">—</span>
               <% end %>
             </td>
-            <td class="px-4 py-3 text-gray-300">
+            <td class="px-4 py-3 hidden sm:table-cell text-sm" style="color:var(--brown)">
               <%= item.best_buyer&.npc_name || "—" %>
             </td>
-            <td class="px-4 py-3 text-gray-500 text-xs">
+            <td class="px-4 py-3 hidden md:table-cell text-xs" style="color:var(--muted)">
               <%= item.best_buyer&.npc_location || "—" %>
             </td>
           </tr>
@@ -95,4 +111,73 @@
       </tbody>
     </table>
   </div>
+
+  <!-- Pagination -->
+  <% if @total_pages > 1 %>
+    <nav class="mt-6 flex items-center justify-center gap-1 text-sm flex-wrap">
+      <%
+        q_part   = @query.present? ? "&q=#{CGI.escape(@query)}" : ""
+        sort_part = "&sort=#{@sort}"
+
+        def page_link(page, label, current:, disabled:)
+          cls = "px-3 py-1.5 rounded-lg font-medium transition-colors "
+          if current
+            cls += "text-white" # styled below with inline
+          elsif disabled
+            cls += "opacity-30 cursor-not-allowed"
+          else
+            cls += "hover:opacity-80"
+          end
+          cls
+        end
+      %>
+
+      <!-- Prev -->
+      <% if @page > 1 %>
+        <a href="?page=<%= @page - 1 %><%= q_part %><%= sort_part %>"
+           class="px-3 py-1.5 rounded-lg font-medium transition-colors"
+           style="background:var(--cream); border:1px solid var(--border); color:var(--brown)">
+          ← Prev
+        </a>
+      <% end %>
+
+      <%
+        # Show: first, ..., window around current, ..., last
+        pages_to_show = ([@page - 2, 1].max..[@page + 2, @total_pages].min).to_a
+        pages_to_show = [1] + pages_to_show if pages_to_show.first > 1
+        pages_to_show = pages_to_show + [@total_pages] if pages_to_show.last < @total_pages
+        pages_to_show.uniq!
+      %>
+
+      <% prev_p = nil %>
+      <% pages_to_show.each do |p| %>
+        <% if prev_p && p - prev_p > 1 %>
+          <span class="px-1" style="color:var(--muted)">…</span>
+        <% end %>
+        <% if p == @page %>
+          <span class="px-3 py-1.5 rounded-lg font-semibold text-white"
+                style="background:var(--accent)"><%= p %></span>
+        <% else %>
+          <a href="?page=<%= p %><%= q_part %><%= sort_part %>"
+             class="px-3 py-1.5 rounded-lg transition-colors font-medium"
+             style="background:var(--cream); border:1px solid var(--border); color:var(--brown)">
+            <%= p %>
+          </a>
+        <% end %>
+        <% prev_p = p %>
+      <% end %>
+
+      <!-- Next -->
+      <% if @page < @total_pages %>
+        <a href="?page=<%= @page + 1 %><%= q_part %><%= sort_part %>"
+           class="px-3 py-1.5 rounded-lg font-medium transition-colors"
+           style="background:var(--cream); border:1px solid var(--border); color:var(--brown)">
+          Next →
+        </a>
+      <% end %>
+    </nav>
+    <p class="text-center text-xs mt-2" style="color:var(--muted)">
+      Showing items <%= (@page - 1) * ItemsController::PER_PAGE + 1 %>–<%= [(@page) * ItemsController::PER_PAGE, @total_count].min %> of <%= @total_count %>
+    </p>
+  <% end %>
 <% end %>
