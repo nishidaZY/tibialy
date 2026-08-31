@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_01_01_000003) do
+ActiveRecord::Schema[7.2].define(version: 2024_01_01_000004) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
@@ -21,6 +21,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_01_01_000003) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "market_item_id"
+    t.integer "avg_market_price"
+    t.datetime "market_price_updated_at"
+    t.index ["avg_market_price"], name: "index_items_on_avg_market_price"
     t.index ["highest_npc_buy_price"], name: "index_items_on_highest_npc_buy_price"
     t.index ["market_item_id"], name: "index_items_on_market_item_id"
     t.index ["name"], name: "index_items_on_name"

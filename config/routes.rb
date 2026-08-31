@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root "items#index"
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show] do
+    collection do
+      get :names
+    end
+  end
 
   get  "/loot",         to: "loot_analyzer#index",   as: :loot_analyzer
   post "/loot/analyze", to: "loot_analyzer#analyze",  as: :analyze_loot

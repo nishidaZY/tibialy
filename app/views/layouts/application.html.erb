@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>Tibia Loot Finder</title>
+    <title>Tibia Loot Analyser</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-      /* ── Desert palette ───────────────────────────────────── */
+      /* ── Pixel font for headings ─────────────────────────── */
+      .pixel { font-family: 'Press Start 2P', monospace; }
+
+      /* ── Dracula palette ─────────────────────────────────── */
       :root {
-        --sand:      #EDE0C4;
-        --cream:     #FBF5E6;
-        --tan:       #C9A96E;
-        --brown:     #5C3A1E;
-        --dark:      #2C1A08;
-        --text:      #2C1A08;
-        --muted:     #7A5C35;
-        --accent:    #C4621D;
-        --gold:      #A07808;
-        --border:    #D4B896;
-        --header-bg: #3B2410;
+        --sand:      #282A36;
+        --cream:     #21222C;
+        --tan:       #BD93F9;
+        --brown:     #F8F8F2;
+        --dark:      #F8F8F2;
+        --text:      #F8F8F2;
+        --muted:     #6272A4;
+        --accent:    #BD93F9;
+        --gold:      #FFB86C;
+        --border:    #44475A;
+        --header-bg: #191A21;
       }
 
       /* System font — same as macOS/iOS */
@@ -37,7 +42,7 @@
       .card-hover   { transition: transform 0.12s ease, box-shadow 0.12s ease; }
       .card-hover:hover {
         transform: translateY(-1px);
-        box-shadow: 0 4px 16px rgba(92,58,30,0.12);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.45);
       }
       .btn-primary  {
         background: var(--accent);
@@ -46,11 +51,11 @@
         border-radius: 8px;
         transition: background 0.15s;
       }
-      .btn-primary:hover { background: #a44f16; }
+      .btn-primary:hover { background: #a07de8; }
       .tag {
         display: inline-block;
-        background: #EDD9B5;
-        color: var(--brown);
+        background: #44475A;
+        color: #F8F8F2;
         font-size: 11px;
         padding: 2px 8px;
         border-radius: 99px;
@@ -61,19 +66,19 @@
 
   <body>
     <!-- Header -->
-    <header style="background: var(--header-bg); border-bottom: 1px solid rgba(212,184,150,0.2);">
+    <header style="background: var(--header-bg); border-bottom: 1px solid rgba(68,71,90,0.5);">
       <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <a href="/" class="flex items-center gap-3 no-underline">
-          <span class="text-2xl">⚔️</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 10" width="36" height="30" style="image-rendering:pixelated;shape-rendering:crispEdges;display:block"><style>@keyframes cf{0%{opacity:1}30%{opacity:1}33%{opacity:0.05}36%{opacity:1}68%{opacity:1}72%{opacity:0.3}76%{opacity:1}}.cw{animation:cf 1.6s steps(1) infinite}</style><rect x="0" y="0" width="1" height="1" fill="#BD93F9"/><rect x="2" y="0" width="1" height="1" fill="#BD93F9"/><rect x="3" y="0" width="1" height="1" fill="#BD93F9"/><rect x="6" y="0" width="1" height="1" fill="#BD93F9"/><rect x="7" y="0" width="1" height="1" fill="#BD93F9"/><rect x="10" y="0" width="1" height="1" fill="#BD93F9"/><rect x="0" y="1" width="1" height="1" fill="#BD93F9"/><rect x="1" y="1" width="1" height="1" fill="#BD93F9"/><rect x="2" y="1" width="1" height="1" fill="#BD93F9"/><rect x="3" y="1" width="1" height="1" fill="#BD93F9"/><rect x="4" y="1" width="1" height="1" fill="#BD93F9"/><rect x="5" y="1" width="1" height="1" fill="#BD93F9"/><rect x="6" y="1" width="1" height="1" fill="#BD93F9"/><rect x="7" y="1" width="1" height="1" fill="#BD93F9"/><rect x="8" y="1" width="1" height="1" fill="#BD93F9"/><rect x="9" y="1" width="1" height="1" fill="#BD93F9"/><rect x="10" y="1" width="1" height="1" fill="#BD93F9"/><rect x="11" y="1" width="1" height="1" fill="#BD93F9"/><rect x="0" y="2" width="1" height="1" fill="#BD93F9"/><rect x="1" y="2" width="1" height="1" fill="#BD93F9"/><rect x="4" y="2" width="1" height="1" fill="#BD93F9"/><rect x="5" y="2" width="1" height="1" fill="#BD93F9"/><rect x="6" y="2" width="1" height="1" fill="#BD93F9"/><rect x="7" y="2" width="1" height="1" fill="#BD93F9"/><rect x="10" y="2" width="1" height="1" fill="#BD93F9"/><rect x="11" y="2" width="1" height="1" fill="#BD93F9"/><rect x="0" y="3" width="1" height="1" fill="#BD93F9"/><rect x="1" y="3" width="1" height="1" fill="#BD93F9"/><rect x="2" y="3" width="1" height="1" fill="#BD93F9"/><rect x="3" y="3" width="1" height="1" fill="#BD93F9"/><rect x="4" y="3" width="1" height="1" fill="#BD93F9"/><rect x="5" y="3" width="1" height="1" fill="#BD93F9"/><rect x="6" y="3" width="1" height="1" fill="#BD93F9"/><rect x="7" y="3" width="1" height="1" fill="#BD93F9"/><rect x="8" y="3" width="1" height="1" fill="#BD93F9"/><rect x="9" y="3" width="1" height="1" fill="#BD93F9"/><rect x="10" y="3" width="1" height="1" fill="#BD93F9"/><rect x="11" y="3" width="1" height="1" fill="#BD93F9"/><rect x="1" y="4" width="1" height="1" fill="#BD93F9"/><rect x="2" y="4" width="1" height="1" fill="#BD93F9"/><rect x="3" y="4" width="1" height="1" fill="#BD93F9"/><rect x="4" y="4" width="1" height="1" fill="#BD93F9"/><rect x="5" y="4" width="1" height="1" fill="#BD93F9"/><rect x="6" y="4" width="1" height="1" fill="#BD93F9"/><rect x="7" y="4" width="1" height="1" fill="#BD93F9"/><rect x="8" y="4" width="1" height="1" fill="#BD93F9"/><rect x="9" y="4" width="1" height="1" fill="#BD93F9"/><rect x="10" y="4" width="1" height="1" fill="#BD93F9"/><rect x="1" y="5" width="1" height="1" fill="#BD93F9"/><rect x="2" y="5" width="1" height="1" fill="#BD93F9"/><rect x="4" y="5" width="1" height="1" fill="#BD93F9"/><rect x="7" y="5" width="1" height="1" fill="#BD93F9"/><rect x="9" y="5" width="1" height="1" fill="#BD93F9"/><rect x="10" y="5" width="1" height="1" fill="#BD93F9"/><rect x="1" y="6" width="1" height="1" fill="#BD93F9"/><rect x="2" y="6" width="1" height="1" fill="#BD93F9"/><rect x="4" y="6" width="1" height="1" fill="#BD93F9"/><rect x="7" y="6" width="1" height="1" fill="#BD93F9"/><rect x="9" y="6" width="1" height="1" fill="#BD93F9"/><rect x="10" y="6" width="1" height="1" fill="#BD93F9"/><rect x="1" y="7" width="1" height="1" fill="#BD93F9"/><rect x="2" y="7" width="1" height="1" fill="#BD93F9"/><rect x="3" y="7" width="1" height="1" fill="#BD93F9"/><rect x="4" y="7" width="1" height="1" fill="#BD93F9"/><rect x="5" y="7" width="1" height="1" fill="#BD93F9"/><rect x="6" y="7" width="1" height="1" fill="#BD93F9"/><rect x="7" y="7" width="1" height="1" fill="#BD93F9"/><rect x="8" y="7" width="1" height="1" fill="#BD93F9"/><rect x="9" y="7" width="1" height="1" fill="#BD93F9"/><rect x="10" y="7" width="1" height="1" fill="#BD93F9"/><rect x="1" y="8" width="1" height="1" fill="#BD93F9"/><rect x="2" y="8" width="1" height="1" fill="#BD93F9"/><rect x="3" y="8" width="1" height="1" fill="#BD93F9"/><rect x="8" y="8" width="1" height="1" fill="#BD93F9"/><rect x="9" y="8" width="1" height="1" fill="#BD93F9"/><rect x="10" y="8" width="1" height="1" fill="#BD93F9"/><rect x="0" y="9" width="1" height="1" fill="#BD93F9"/><rect x="1" y="9" width="1" height="1" fill="#BD93F9"/><rect x="2" y="9" width="1" height="1" fill="#BD93F9"/><rect x="3" y="9" width="1" height="1" fill="#BD93F9"/><rect x="4" y="9" width="1" height="1" fill="#BD93F9"/><rect x="5" y="9" width="1" height="1" fill="#BD93F9"/><rect x="6" y="9" width="1" height="1" fill="#BD93F9"/><rect x="7" y="9" width="1" height="1" fill="#BD93F9"/><rect x="8" y="9" width="1" height="1" fill="#BD93F9"/><rect x="9" y="9" width="1" height="1" fill="#BD93F9"/><rect x="10" y="9" width="1" height="1" fill="#BD93F9"/><rect x="11" y="9" width="1" height="1" fill="#BD93F9"/><rect class="cw" x="3" y="5" width="1" height="1" fill="#F1FA8C"/><rect class="cw" x="5" y="5" width="1" height="1" fill="#F1FA8C"/><rect class="cw" x="6" y="5" width="1" height="1" fill="#F1FA8C"/><rect class="cw" x="8" y="5" width="1" height="1" fill="#F1FA8C"/><rect class="cw" x="3" y="6" width="1" height="1" fill="#F1FA8C"/><rect class="cw" x="5" y="6" width="1" height="1" fill="#F1FA8C"/><rect class="cw" x="6" y="6" width="1" height="1" fill="#F1FA8C"/><rect class="cw" x="8" y="6" width="1" height="1" fill="#F1FA8C"/></svg>
           <div>
-            <span class="text-xl font-bold" style="color:var(--tan)">Tibia</span>
-            <span class="text-xl font-bold text-white"> Loot Finder</span>
-            <p class="text-xs" style="color: rgba(201,169,110,0.55)">Preços NPC · TibiaWiki.com.br</p>
+            <span class="pixel text-sm leading-tight" style="color:#BD93F9">Tibia</span>
+            <span class="pixel text-sm leading-tight text-white"> Loot</span>
+            <p class="text-xs mt-1" style="color: rgba(189,147,249,0.4); font-family: system-ui">NPC Prices · TibiaWiki</p>
           </div>
         </a>
-        <nav class="flex items-center gap-6 text-sm" style="color:rgba(201,169,110,0.7)">
-          <a href="/" class="hover:text-white transition-colors">🗡️ Itens</a>
-          <a href="/loot" class="hover:text-white transition-colors">🎒 Loot Analyzer</a>
+        <nav class="flex items-center gap-6 text-xs pixel" style="color:rgba(189,147,249,0.7)">
+          <a href="/" class="hover:text-white transition-colors flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 9" width="14" height="18" style="image-rendering:pixelated;shape-rendering:crispEdges;display:inline;vertical-align:middle"><style>@keyframes sg{0%{fill:rgba(189,147,249,0.85)}12%{fill:#F8F8F2}24%{fill:rgba(189,147,249,0.85)}100%{fill:rgba(189,147,249,0.85)}}.sg0{animation:sg 1.4s 0.0s infinite}.sg1{animation:sg 1.4s 0.3s infinite}.sg2{animation:sg 1.4s 0.6s infinite}.sg3{animation:sg 1.4s 0.9s infinite}.sg4{animation:sg 1.4s 1.2s infinite}.sg5{animation:sg 1.4s 1.5s infinite}.sg6{animation:sg 1.4s 1.8s infinite}</style><rect class="sg0" x="6" y="0" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect class="sg1" x="5" y="1" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect class="sg2" x="4" y="2" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect class="sg3" x="3" y="3" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect class="sg4" x="2" y="4" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect class="sg5" x="1" y="5" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect class="sg6" x="0" y="6" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect x="6" y="1" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect x="5" y="2" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect x="4" y="3" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect x="3" y="4" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect x="2" y="5" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect x="1" y="6" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect x="2" y="6" width="1" height="1" fill="rgba(189,147,249,0.85)"/><rect x="0" y="7" width="1" height="1" fill="rgba(189,147,249,0.85)"/></svg> Items</a>
+          <a href="/loot" class="hover:text-white transition-colors flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="22" height="22" style="image-rendering:pixelated;shape-rendering:crispEdges;display:inline;vertical-align:middle"><style>@keyframes prnv{0%{transform:translateY(0)scaleY(1)scaleX(1)}30%{transform:translateY(-5px)scaleY(1.08)scaleX(0.93)}60%{transform:translateY(0)scaleY(0.68)scaleX(1.18)}78%{transform:translateY(-2px)scaleY(1.04)scaleX(0.98)}100%{transform:translateY(0)scaleY(1)scaleX(1)}}.prnv{animation:prnv 0.65s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}</style><g class="prnv"><rect x="2" y="0" width="1" height="1" fill="#FF79C6"/><rect x="3" y="0" width="1" height="1" fill="#FF79C6"/><rect x="4" y="0" width="1" height="1" fill="#FF79C6"/><rect x="5" y="0" width="1" height="1" fill="#FF79C6"/><rect x="1" y="1" width="1" height="1" fill="#FF79C6"/><rect x="2" y="1" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FF79C6"/><rect x="4" y="1" width="1" height="1" fill="#FF79C6"/><rect x="5" y="1" width="1" height="1" fill="#FF79C6"/><rect x="6" y="1" width="1" height="1" fill="#FF79C6"/><rect x="0" y="2" width="1" height="1" fill="#FF79C6"/><rect x="1" y="2" width="1" height="1" fill="#FF79C6"/><rect x="2" y="2" width="1" height="1" fill="#FF79C6"/><rect x="3" y="2" width="1" height="1" fill="#FF79C6"/><rect x="4" y="2" width="1" height="1" fill="#FF79C6"/><rect x="5" y="2" width="1" height="1" fill="#FF79C6"/><rect x="6" y="2" width="1" height="1" fill="#FF79C6"/><rect x="7" y="2" width="1" height="1" fill="#FF79C6"/><rect x="0" y="3" width="1" height="1" fill="#FF79C6"/><rect x="1" y="3" width="1" height="1" fill="#FF79C6"/><rect x="3" y="3" width="1" height="1" fill="#FF79C6"/><rect x="4" y="3" width="1" height="1" fill="#FF79C6"/><rect x="6" y="3" width="1" height="1" fill="#FF79C6"/><rect x="7" y="3" width="1" height="1" fill="#FF79C6"/><rect x="0" y="4" width="1" height="1" fill="#FF79C6"/><rect x="1" y="4" width="1" height="1" fill="#FF79C6"/><rect x="3" y="4" width="1" height="1" fill="#FF79C6"/><rect x="4" y="4" width="1" height="1" fill="#FF79C6"/><rect x="6" y="4" width="1" height="1" fill="#FF79C6"/><rect x="7" y="4" width="1" height="1" fill="#FF79C6"/><rect x="0" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="5" width="1" height="1" fill="#FF79C6"/><rect x="2" y="5" width="1" height="1" fill="#FF79C6"/><rect x="5" y="5" width="1" height="1" fill="#FF79C6"/><rect x="6" y="5" width="1" height="1" fill="#FF79C6"/><rect x="7" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="6" width="1" height="1" fill="#FF79C6"/><rect x="3" y="6" width="1" height="1" fill="#FF79C6"/><rect x="4" y="6" width="1" height="1" fill="#FF79C6"/><rect x="5" y="6" width="1" height="1" fill="#FF79C6"/><rect x="6" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="7" width="1" height="1" fill="#FF79C6"/><rect x="4" y="7" width="1" height="1" fill="#FF79C6"/><rect x="5" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="4" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="2" y="3" width="1" height="1" fill="#191A21"/><rect x="5" y="3" width="1" height="1" fill="#191A21"/><rect x="2" y="4" width="1" height="1" fill="#191A21"/><rect x="5" y="4" width="1" height="1" fill="#191A21"/><rect x="3" y="5" width="1" height="1" fill="#191A21"/><rect x="4" y="5" width="1" height="1" fill="#191A21"/></g></svg> Loot Analyzer</a>
         </nav>
       </div>
     </header>

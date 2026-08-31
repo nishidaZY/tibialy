@@ -10,7 +10,20 @@ class Item < ApplicationRecord
 
   scope :with_npc_price, -> { where("highest_npc_buy_price > 0") }
   scope :search, ->(q) { where("name LIKE ?", "%#{q}%") if q.present? }
-  scope :by_value, -> { order(highest_npc_buy_price: :desc) }
+  scope :by_value,        -> { order(highest_npc_buy_price: :desc) }
+  scope :by_market_value, -> {
+    order(
+      Arel.sql("CASE WHEN COALESCE(avg_market_price,0) > COALESCE(highest_npc_buy_price,0) THEN 0 ELSE 1 END"),
+      Arel.sql("COALESCE(avg_market_price,0) DESC"),
+      highest_npc_buy_price: :desc
+    )
+  }
+
+  def market_premium_pct
+    return nil unless avg_market_price.to_i > 0 && highest_npc_buy_price.to_i > 0
+    pct = ((avg_market_price - highest_npc_buy_price).to_f / highest_npc_buy_price * 100).round
+    pct > 0 ? pct : nil
+  end
 
   def best_buyer
     buy_prices.first

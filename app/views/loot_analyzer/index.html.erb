@@ -3,10 +3,7 @@
 <div class="max-w-5xl mx-auto px-4 py-8">
   <!-- Header -->
   <div class="mb-8 text-center">
-    <h1 class="text-3xl font-bold tibia-gold mb-2">⚔️ Loot Analyzer</h1>
-    <p class="text-amber-200/70 text-sm">
-      Paste your loot and find out: sell to an NPC or on the Market?
-    </p>
+    <h1 class="text-3xl font-bold tibia-gold mb-2 flex items-center justify-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="40" height="40" style="image-rendering:pixelated;shape-rendering:crispEdges;display:inline;vertical-align:middle"><style>@keyframes prla{0%{transform:translateY(0)scaleY(1)scaleX(1)}30%{transform:translateY(-5px)scaleY(1.08)scaleX(0.93)}60%{transform:translateY(0)scaleY(0.68)scaleX(1.18)}78%{transform:translateY(-2px)scaleY(1.04)scaleX(0.98)}100%{transform:translateY(0)scaleY(1)scaleX(1)}}.prla{animation:prla 0.65s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}</style><g class="prla"><rect x="2" y="0" width="1" height="1" fill="#FF79C6"/><rect x="3" y="0" width="1" height="1" fill="#FF79C6"/><rect x="4" y="0" width="1" height="1" fill="#FF79C6"/><rect x="5" y="0" width="1" height="1" fill="#FF79C6"/><rect x="1" y="1" width="1" height="1" fill="#FF79C6"/><rect x="2" y="1" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FF79C6"/><rect x="4" y="1" width="1" height="1" fill="#FF79C6"/><rect x="5" y="1" width="1" height="1" fill="#FF79C6"/><rect x="6" y="1" width="1" height="1" fill="#FF79C6"/><rect x="0" y="2" width="1" height="1" fill="#FF79C6"/><rect x="1" y="2" width="1" height="1" fill="#FF79C6"/><rect x="2" y="2" width="1" height="1" fill="#FF79C6"/><rect x="3" y="2" width="1" height="1" fill="#FF79C6"/><rect x="4" y="2" width="1" height="1" fill="#FF79C6"/><rect x="5" y="2" width="1" height="1" fill="#FF79C6"/><rect x="6" y="2" width="1" height="1" fill="#FF79C6"/><rect x="7" y="2" width="1" height="1" fill="#FF79C6"/><rect x="0" y="3" width="1" height="1" fill="#FF79C6"/><rect x="1" y="3" width="1" height="1" fill="#FF79C6"/><rect x="3" y="3" width="1" height="1" fill="#FF79C6"/><rect x="4" y="3" width="1" height="1" fill="#FF79C6"/><rect x="6" y="3" width="1" height="1" fill="#FF79C6"/><rect x="7" y="3" width="1" height="1" fill="#FF79C6"/><rect x="0" y="4" width="1" height="1" fill="#FF79C6"/><rect x="1" y="4" width="1" height="1" fill="#FF79C6"/><rect x="3" y="4" width="1" height="1" fill="#FF79C6"/><rect x="4" y="4" width="1" height="1" fill="#FF79C6"/><rect x="6" y="4" width="1" height="1" fill="#FF79C6"/><rect x="7" y="4" width="1" height="1" fill="#FF79C6"/><rect x="0" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="5" width="1" height="1" fill="#FF79C6"/><rect x="2" y="5" width="1" height="1" fill="#FF79C6"/><rect x="5" y="5" width="1" height="1" fill="#FF79C6"/><rect x="6" y="5" width="1" height="1" fill="#FF79C6"/><rect x="7" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="6" width="1" height="1" fill="#FF79C6"/><rect x="3" y="6" width="1" height="1" fill="#FF79C6"/><rect x="4" y="6" width="1" height="1" fill="#FF79C6"/><rect x="5" y="6" width="1" height="1" fill="#FF79C6"/><rect x="6" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="7" width="1" height="1" fill="#FF79C6"/><rect x="4" y="7" width="1" height="1" fill="#FF79C6"/><rect x="5" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="4" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="2" y="3" width="1" height="1" fill="#191A21"/><rect x="5" y="3" width="1" height="1" fill="#191A21"/><rect x="2" y="4" width="1" height="1" fill="#191A21"/><rect x="5" y="4" width="1" height="1" fill="#191A21"/><rect x="3" y="5" width="1" height="1" fill="#191A21"/><rect x="4" y="5" width="1" height="1" fill="#191A21"/></g></svg> LOOT ANALYZER</h1>
   </div>
 
   <!-- Input form -->
@@ -25,20 +22,13 @@
       </div>
 
       <!-- Tip -->
-      <div class="md:col-span-2 flex items-end">
-        <p class="text-stone-400 text-xs leading-relaxed">
-          <span class="text-amber-400 font-semibold">How to get loot text:</span>
-          right-click your loot bag → <em>Copy to Clipboard</em>, or copy the battle log loot line.
-          Any format works — items will be matched automatically.
-        </p>
-      </div>
     </div>
 
     <!-- Paste area -->
     <label class="block text-amber-400 text-xs font-semibold mb-1 uppercase tracking-wider">Loot Text</label>
     <textarea id="loot-input"
               rows="5"
-              placeholder="Paste loot here, e.g.:&#10;Loot of a demon: a platinum coin, a magic sword, a demon shield, 3 fire mushrooms&#10;&#10;or just:&#10;2 platinum coins, 1 dragon scale mail, a golden armor"
+              placeholder="Paste Hunt Analyser :)"
               class="w-full bg-stone-800 border border-amber-900/50 text-amber-100 rounded-lg px-4 py-3 text-sm resize-y
                      placeholder-stone-500 focus:outline-none focus:border-amber-500 font-mono"></textarea>
 
@@ -58,23 +48,30 @@
   <div id="status-bar" class="hidden text-center py-4 text-amber-300 text-sm"></div>
 
   <!-- Results summary -->
-  <div id="summary-bar" class="hidden bg-stone-900 border border-amber-900/40 rounded-xl px-6 py-4 mb-4 flex flex-wrap gap-6 text-sm shadow">
-    <div>
-      <span class="text-stone-400">Items parsed</span>
-      <span id="sum-parsed" class="ml-2 text-amber-300 font-bold">—</span>
+  <div id="summary-bar" class="hidden bg-stone-900 border border-amber-900/40 rounded-xl px-6 py-5 mb-4 shadow">
+    <p class="text-stone-500 text-xs uppercase tracking-wider mb-3">
+      <span id="sum-parsed">—</span> items analyzed
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="bg-stone-800/70 rounded-xl px-5 py-4">
+        <p class="text-stone-400 text-xs uppercase tracking-wider mb-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="16" height="16" style="image-rendering:pixelated;shape-rendering:crispEdges;display:inline;vertical-align:middle;margin-right:4px"><style>@keyframes mgmb{0%{fill:#BD93F9}40%{fill:#F1FA8C}60%{fill:#F1FA8C}100%{fill:#BD93F9}}.mgmb{animation:mgmb 1.2s ease-in-out infinite}</style><rect x="3" y="0" width="1" height="1" fill="#BD93F9"/><rect x="4" y="0" width="1" height="1" fill="#BD93F9"/><rect x="2" y="1" width="1" height="1" fill="#BD93F9"/><rect x="3" y="1" width="1" height="1" fill="#BD93F9"/><rect x="4" y="1" width="1" height="1" fill="#BD93F9"/><rect x="5" y="1" width="1" height="1" fill="#BD93F9"/><rect x="1" y="2" width="1" height="1" fill="#BD93F9"/><rect x="2" y="2" width="1" height="1" fill="#BD93F9"/><rect x="3" y="2" width="1" height="1" fill="#BD93F9"/><rect x="4" y="2" width="1" height="1" fill="#BD93F9"/><rect x="5" y="2" width="1" height="1" fill="#BD93F9"/><rect x="6" y="2" width="1" height="1" fill="#BD93F9"/><rect x="0" y="3" width="1" height="1" fill="#BD93F9"/><rect x="1" y="3" width="1" height="1" fill="#BD93F9"/><rect x="2" y="3" width="1" height="1" fill="#BD93F9"/><rect x="3" y="3" width="1" height="1" fill="#BD93F9"/><rect x="4" y="3" width="1" height="1" fill="#BD93F9"/><rect x="5" y="3" width="1" height="1" fill="#BD93F9"/><rect x="6" y="3" width="1" height="1" fill="#BD93F9"/><rect x="7" y="3" width="1" height="1" fill="#BD93F9"/><rect x="0" y="4" width="1" height="1" fill="#BD93F9"/><rect x="1" y="4" width="1" height="1" fill="#BD93F9"/><rect x="2" y="4" width="1" height="1" fill="#BD93F9"/><rect class="mgmb" x="3" y="4" width="1" height="1" fill="#BD93F9"/><rect class="mgmb" x="4" y="4" width="1" height="1" fill="#BD93F9"/><rect x="5" y="4" width="1" height="1" fill="#BD93F9"/><rect x="6" y="4" width="1" height="1" fill="#BD93F9"/><rect x="7" y="4" width="1" height="1" fill="#BD93F9"/><rect x="0" y="5" width="1" height="1" fill="#BD93F9"/><rect x="1" y="5" width="1" height="1" fill="#BD93F9"/><rect x="2" y="5" width="1" height="1" fill="#BD93F9"/><rect x="3" y="5" width="1" height="1" fill="#BD93F9"/><rect x="4" y="5" width="1" height="1" fill="#BD93F9"/><rect x="5" y="5" width="1" height="1" fill="#BD93F9"/><rect x="6" y="5" width="1" height="1" fill="#BD93F9"/><rect x="7" y="5" width="1" height="1" fill="#BD93F9"/><rect x="1" y="6" width="1" height="1" fill="#BD93F9"/><rect x="2" y="6" width="1" height="1" fill="#BD93F9"/><rect x="3" y="6" width="1" height="1" fill="#BD93F9"/><rect x="4" y="6" width="1" height="1" fill="#BD93F9"/><rect x="5" y="6" width="1" height="1" fill="#BD93F9"/><rect x="6" y="6" width="1" height="1" fill="#BD93F9"/><rect x="2" y="7" width="1" height="1" fill="#BD93F9"/><rect x="3" y="7" width="1" height="1" fill="#BD93F9"/><rect x="4" y="7" width="1" height="1" fill="#BD93F9"/><rect x="5" y="7" width="1" height="1" fill="#BD93F9"/></svg>Sell all to NPC</p>
+        <p id="sum-npc" class="text-green-400 font-bold text-xl font-mono">—</p>
+      </div>
+      <div class="bg-amber-950/50 border border-amber-800/40 rounded-xl px-5 py-4">
+        <p class="text-amber-400/80 text-xs uppercase tracking-wider mb-1">⚡ Best option (Market + NPC)</p>
+        <p id="sum-best" class="text-amber-300 font-bold text-xl font-mono">—</p>
+        <p id="sum-savings" class="text-xs text-stone-400 mt-1"></p>
+      </div>
     </div>
-    <div>
-      <span class="text-stone-400">NPC total</span>
-      <span id="sum-npc" class="ml-2 text-green-400 font-bold">—</span>
-    </div>
-    <div>
-      <span class="text-stone-400">Market total</span>
-      <span id="sum-market" class="ml-2 text-sky-400 font-bold">—</span>
-    </div>
-    <div>
-      <span class="text-stone-400">Best option</span>
-      <span id="sum-best" class="ml-2 font-bold">—</span>
-    </div>
+  </div>
+
+  <!-- Filter bar (shown after analysis) -->
+  <div id="filter-bar" class="hidden mb-3 flex flex-wrap gap-2 text-xs">
+    <span class="text-stone-500 self-center mr-1">Filter:</span>
+    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-amber-700 text-white" data-verdict="all">All</button>
+    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-verdict="market">📈 Market</button>
+    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-verdict="npc">💰 NPC</button>
+    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-verdict="currency">💰 Currency</button>
   </div>
 
   <!-- Results table -->
@@ -194,34 +191,60 @@ analyzeBtn.addEventListener("click", async () => {
   found.forEach(r => {
     const tr = document.createElement("tr");
     tr.className = "hover:bg-stone-800/50 transition-colors";
-    tr.innerHTML = `
-      <td class="px-4 py-3 text-center">
-        ${r.image_url
-          ? `<img src="${r.image_url}" alt="${r.matched_name}" class="w-8 h-8 object-contain mx-auto" onerror="this.style.display='none'">`
-          : '<span class="text-stone-600 text-lg">?</span>'}
-      </td>
-      <td class="px-4 py-3">
-        <div class="text-amber-100 font-medium">${r.matched_name}</div>
-        ${r.best_npc_buyer ? `<div class="text-xs text-stone-400">${r.best_npc_buyer}${r.npc_location ? ' · ' + r.npc_location : ''}</div>` : ''}
-      </td>
-      <td class="px-4 py-3 text-center text-stone-300">${r.quantity}</td>
-      <td class="px-4 py-3 text-right font-mono text-green-400">${gp(r.npc_buy_price)}</td>
-      <td class="px-4 py-3 text-right font-mono text-green-300">${gp(r.npc_total)}</td>
-      <td class="px-4 py-3 text-right font-mono market-price" data-id="${r.market_item_id || ''}">
-        <span class="text-stone-500 animate-pulse text-xs">loading…</span>
-      </td>
-      <td class="px-4 py-3 text-right font-mono market-total" data-qty="${r.quantity}" data-npc="${r.npc_total}">
-        <span class="text-stone-500">…</span>
-      </td>
-      <td class="px-4 py-3 text-center sell-verdict">
-        <span class="text-stone-500">…</span>
-      </td>
-    `;
+    const imgCell = r.image_url
+      ? `<img src="${r.image_url}" alt="${r.matched_name}" class="w-8 h-8 object-contain mx-auto" onerror="this.style.display='none'">`
+      : '<span class="text-stone-600 text-lg">?</span>';
+
+    if (r.is_currency) {
+      tr.classList.add('verdict-currency');
+      tr.innerHTML = `
+        <td class="px-4 py-3 text-center">${imgCell}</td>
+        <td class="px-4 py-3">
+          <div class="text-amber-100 font-medium">${r.matched_name}</div>
+          <div class="text-xs text-amber-700/70">currency</div>
+        </td>
+        <td class="px-4 py-3 text-center text-stone-300">${r.quantity}</td>
+        <td class="px-4 py-3 text-right font-mono text-amber-400">${gp(r.npc_buy_price)}<span class="text-xs text-stone-500 ml-1">ea</span></td>
+        <td class="px-4 py-3 text-right font-mono text-amber-300">${gp(r.npc_total)}</td>
+        <td class="px-4 py-3 text-right text-stone-600 text-xs">—</td>
+        <td class="px-4 py-3 text-right text-stone-600 text-xs">—</td>
+        <td class="px-4 py-3 text-center">
+          <span class="bg-amber-900/50 text-amber-400 px-2 py-0.5 rounded text-xs font-semibold">💰 Currency</span>
+        </td>
+      `;
+    } else {
+      const npcWikiUrl = r.best_npc_buyer
+        ? `https://www.tibiawiki.com.br/wiki/${encodeURIComponent(r.best_npc_buyer.replace(/ /g, '_'))}`
+        : '';
+      const npcSubtext = r.best_npc_buyer
+        ? `<div class="text-xs text-stone-400"><a href="${npcWikiUrl}" target="_blank" class="hover:underline" style="color:#C4621D">${r.best_npc_buyer}</a>${r.npc_location ? ' · ' + r.npc_location : ''}</div>`
+        : '';
+      tr.innerHTML = `
+        <td class="px-4 py-3 text-center">${imgCell}</td>
+        <td class="px-4 py-3">
+          <div class="text-amber-100 font-medium">${r.matched_name}</div>
+          ${npcSubtext}
+        </td>
+        <td class="px-4 py-3 text-center text-stone-300">${r.quantity}</td>
+        <td class="px-4 py-3 text-right font-mono text-green-400">${gp(r.npc_buy_price)}</td>
+        <td class="px-4 py-3 text-right font-mono text-green-300">${gp(r.npc_total)}</td>
+        <td class="px-4 py-3 text-right font-mono market-price" data-id="${r.market_item_id || ''}">
+          <span class="text-stone-500 animate-pulse text-xs">loading…</span>
+        </td>
+        <td class="px-4 py-3 text-right font-mono market-total" data-qty="${r.quantity}" data-npc="${r.npc_total}">
+          <span class="text-stone-500">…</span>
+        </td>
+        <td class="px-4 py-3 text-center sell-verdict">
+          <span class="text-stone-500">…</span>
+        </td>
+      `;
+      if (r.market_item_id) rowMap[r.market_item_id] = tr;
+    }
     resultsBody.appendChild(tr);
-    if (r.market_item_id) rowMap[r.market_item_id] = tr;
   });
 
   resultsContainer.classList.remove("hidden");
+  document.getElementById("filter-bar").classList.remove("hidden");
   clearStatus();
 
   if (unfound.length > 0) {
@@ -241,17 +264,39 @@ analyzeBtn.addEventListener("click", async () => {
       const marketMap = {};
       (mData || []).forEach(m => { marketMap[m.id] = m; });
 
-      let totalNPC = 0, totalMarket = 0;
+      let totalNPC = 0, totalBest = 0;
 
       // Update each row
       found.forEach(r => {
         totalNPC += r.npc_total;
-        const tr = rowMap[r.market_item_id];
-        if (!tr) return;
 
-        const mRow  = r.market_item_id ? marketMap[r.market_item_id] : null;
+        // Currency rows: best = gold value, no market lookup
+        if (r.is_currency) {
+          totalBest += r.npc_total;
+          return;
+        }
+
+        const tr = rowMap[r.market_item_id];
+        if (!tr) {
+          // No market ID — NPC is the best we can do
+          totalBest += r.npc_total;
+          // Find row by matched_name and mark verdict
+          const rows = resultsBody.querySelectorAll('tr:not(.verdict-currency)');
+          rows.forEach(row => {
+            const name = row.querySelector('td:nth-child(2) .text-amber-100')?.textContent?.trim();
+            if (name === r.matched_name && !row.classList.contains('verdict-npc')) {
+              row.classList.add(r.npc_total > 0 ? 'verdict-npc' : 'verdict-nodata');
+            }
+          });
+          return;
+        }
+
+        const mRow   = r.market_item_id ? marketMap[r.market_item_id] : null;
         const mPrice = mRow ? (mRow.buy_offer > 0 ? mRow.buy_offer : mRow.month_average_buy) : -1;
         const mTotal = mPrice > 0 ? mPrice * r.quantity : -1;
+
+        // Best per item = whichever pays more
+        totalBest += mTotal > r.npc_total ? mTotal : r.npc_total;
 
         const priceCell   = tr.querySelector(".market-price");
         const totalCell   = tr.querySelector(".market-total");
@@ -260,42 +305,43 @@ analyzeBtn.addEventListener("click", async () => {
         if (mPrice > 0) {
           priceCell.innerHTML = `<span class="text-sky-400">${gp(mPrice)}</span>`;
           totalCell.innerHTML  = `<span class="text-sky-300">${gp(mTotal)}</span>`;
-          totalMarket += mTotal;
 
-          // Verdict
           if (mTotal > r.npc_total * 1.1) {
             verdictCell.innerHTML = '<span class="bg-sky-900/60 text-sky-300 px-2 py-0.5 rounded text-xs font-semibold">📈 Market</span>';
-            tr.classList.add("bg-sky-950/10");
+            tr.classList.add("bg-sky-950/10", "verdict-market");
           } else if (r.npc_total > 0 && r.npc_total >= mTotal) {
-            verdictCell.innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">🏛️ NPC</span>';
-            tr.classList.add("bg-green-950/10");
+            verdictCell.innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">💰 NPC</span>';
+            tr.classList.add("bg-green-950/10", "verdict-npc");
           } else {
             verdictCell.innerHTML = '<span class="bg-stone-700/60 text-stone-300 px-2 py-0.5 rounded text-xs font-semibold">≈ Equal</span>';
+            tr.classList.add("verdict-equal");
           }
         } else {
           priceCell.innerHTML  = '<span class="text-stone-500 text-xs">No data</span>';
           totalCell.innerHTML  = '<span class="text-stone-500 text-xs">—</span>';
           if (r.npc_total > 0) {
-            verdictCell.innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">🏛️ NPC</span>';
+            verdictCell.innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">💰 NPC</span>';
+            tr.classList.add("verdict-npc");
           } else {
             verdictCell.innerHTML = '<span class="text-stone-500 text-xs">—</span>';
+            tr.classList.add("verdict-nodata");
           }
         }
       });
 
       // Summary bar
-      document.getElementById("sum-parsed").textContent  = results.length;
-      document.getElementById("sum-npc").innerHTML       = gp(totalNPC);
-      document.getElementById("sum-market").innerHTML    = totalMarket > 0 ? gp(totalMarket) : '<span class="text-stone-500">N/A</span>';
+      document.getElementById("sum-parsed").textContent = results.length;
+      document.getElementById("sum-npc").innerHTML  = gp(totalNPC);
+      document.getElementById("sum-best").innerHTML = gp(totalBest);
 
-      const bestEl = document.getElementById("sum-best");
-      if (totalMarket > totalNPC * 1.1) {
-        bestEl.innerHTML = '<span class="text-sky-400">📈 Market (+' + Math.round((totalMarket - totalNPC) / Math.max(totalNPC,1) * 100) + '%)</span>';
-      } else if (totalNPC > 0) {
-        bestEl.innerHTML = '<span class="text-green-400">🏛️ NPCs</span>';
+      const savings = totalBest - totalNPC;
+      const savingsEl = document.getElementById("sum-savings");
+      if (savings > 100) {
+        savingsEl.innerHTML = `+${gp(savings)} vs NPC only (+${Math.round(savings / Math.max(totalNPC, 1) * 100)}%)`;
       } else {
-        bestEl.innerHTML = '<span class="text-stone-400">—</span>';
+        savingsEl.textContent = "Same as NPC prices";
       }
+
       summaryBar.classList.remove("hidden");
       clearStatus();
 
@@ -307,7 +353,7 @@ analyzeBtn.addEventListener("click", async () => {
         tr.querySelector(".market-price").innerHTML = '<span class="text-red-500 text-xs">API error</span>';
         tr.querySelector(".market-total").innerHTML = '<span class="text-stone-500">—</span>';
         if (r.npc_total > 0) {
-          tr.querySelector(".sell-verdict").innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">🏛️ NPC</span>';
+          tr.querySelector(".sell-verdict").innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">💰 NPC</span>';
         } else {
           tr.querySelector(".sell-verdict").innerHTML = '<span class="text-stone-500">—</span>';
         }
@@ -322,11 +368,40 @@ analyzeBtn.addEventListener("click", async () => {
       tr.querySelector(".market-price").innerHTML = '<span class="text-stone-500 text-xs">Run sync</span>';
       tr.querySelector(".market-total").innerHTML = '<span class="text-stone-500">—</span>';
       tr.querySelector(".sell-verdict").innerHTML = r.npc_total > 0
-        ? '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">🏛️ NPC</span>'
+        ? '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">💰 NPC</span>'
         : '<span class="text-stone-500">—</span>';
     });
   }
 });
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('bg-amber-700', 'text-white');
+      b.classList.add('bg-stone-800', 'text-stone-300');
+    });
+    btn.classList.add('bg-amber-700', 'text-white');
+    btn.classList.remove('bg-stone-800', 'text-stone-300');
+    const v = btn.dataset.verdict;
+    document.querySelectorAll('#results-body tr').forEach(row => {
+      if (v === 'all' || row.classList.contains('verdict-' + v)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Reset filters when a new analysis starts
+analyzeBtn.addEventListener('click', () => {
+  document.querySelectorAll('.filter-btn').forEach((b, i) => {
+    if (i === 0) { b.classList.add('bg-amber-700','text-white'); b.classList.remove('bg-stone-800','text-stone-300'); }
+    else { b.classList.remove('bg-amber-700','text-white'); b.classList.add('bg-stone-800','text-stone-300'); }
+  });
+  document.getElementById("filter-bar").classList.add("hidden");
+}, true);
 
 // Allow Ctrl+Enter to analyze
 lootInput.addEventListener("keydown", e => {

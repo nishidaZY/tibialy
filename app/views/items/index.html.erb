@@ -4,6 +4,7 @@
     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style="color:var(--muted)">🔍</span>
     <input
       type="text"
+      id="search-q"
       name="q"
       value="<%= @query %>"
       placeholder="Search item… e.g. Dragon Scale Mail"
@@ -15,8 +16,9 @@
   <select name="sort" onchange="this.form.submit()"
     style="background:var(--cream); border:1px solid var(--border); color:var(--text);"
     class="rounded-lg px-4 py-2.5 text-sm focus:outline-none">
-    <option value="value" <%= "selected" if @sort == "value" %>>Highest NPC Price</option>
-    <option value="name"  <%= "selected" if @sort == "name"  %>>Name A–Z</option>
+    <option value="market" <%= "selected" if @sort == "market" %>>📈 Market Value</option>
+    <option value="value"  <%= "selected" if @sort == "value"  %>>💰 NPC Price</option>
+    <option value="name"   <%= "selected" if @sort == "name"   %>>Name A–Z</option>
   </select>
   <% if params[:q].present? %>
     <input type="hidden" name="sort" value="<%= @sort %>">
@@ -24,6 +26,7 @@
   <button type="submit" class="btn-primary px-5 py-2.5 text-sm">Search</button>
 </form>
 
+<div id="items-results">
 <!-- Stats -->
 <div class="flex items-center justify-between mb-4 text-xs" style="color:var(--muted)">
   <span>
@@ -55,9 +58,10 @@
             style="background:var(--sand); border-bottom:1px solid var(--border); color:var(--muted)">
           <th class="px-4 py-3 w-10">#</th>
           <th class="px-4 py-3">Item</th>
-          <th class="px-4 py-3 text-right">NPC Buy Price</th>
-          <th class="px-4 py-3 hidden sm:table-cell">Best Buyer</th>
-          <th class="px-4 py-3 hidden md:table-cell">Location</th>
+          <th class="px-4 py-3 text-right hidden sm:table-cell">NPC Price</th>
+          <th class="px-4 py-3 text-right">Market Avg</th>
+          <th class="px-4 py-3 text-center hidden md:table-cell">vs NPC</th>
+          <th class="px-4 py-3 hidden lg:table-cell">Best Buyer</th>
         </tr>
       </thead>
       <tbody>
@@ -74,8 +78,7 @@
                        class="w-8 h-8 object-contain flex-shrink-0" style="image-rendering:pixelated"
                        onerror="this.style.display='none'">
                 <% else %>
-                  <div class="w-8 h-8 rounded flex items-center justify-center text-xs flex-shrink-0"
-                       style="background:var(--sand); color:var(--muted)">?</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="32" height="32" style="image-rendering:pixelated;shape-rendering:crispEdges;display:inline;vertical-align:middle"><style>@keyframes pridx{0%{transform:translateY(0)scaleY(1)scaleX(1)}30%{transform:translateY(-5px)scaleY(1.08)scaleX(0.93)}60%{transform:translateY(0)scaleY(0.68)scaleX(1.18)}78%{transform:translateY(-2px)scaleY(1.04)scaleX(0.98)}100%{transform:translateY(0)scaleY(1)scaleX(1)}}.pridx{animation:pridx 0.65s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}</style><g class="pridx"><rect x="2" y="0" width="1" height="1" fill="#FF79C6"/><rect x="3" y="0" width="1" height="1" fill="#FF79C6"/><rect x="4" y="0" width="1" height="1" fill="#FF79C6"/><rect x="5" y="0" width="1" height="1" fill="#FF79C6"/><rect x="1" y="1" width="1" height="1" fill="#FF79C6"/><rect x="2" y="1" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FF79C6"/><rect x="4" y="1" width="1" height="1" fill="#FF79C6"/><rect x="5" y="1" width="1" height="1" fill="#FF79C6"/><rect x="6" y="1" width="1" height="1" fill="#FF79C6"/><rect x="0" y="2" width="1" height="1" fill="#FF79C6"/><rect x="1" y="2" width="1" height="1" fill="#FF79C6"/><rect x="2" y="2" width="1" height="1" fill="#FF79C6"/><rect x="3" y="2" width="1" height="1" fill="#FF79C6"/><rect x="4" y="2" width="1" height="1" fill="#FF79C6"/><rect x="5" y="2" width="1" height="1" fill="#FF79C6"/><rect x="6" y="2" width="1" height="1" fill="#FF79C6"/><rect x="7" y="2" width="1" height="1" fill="#FF79C6"/><rect x="0" y="3" width="1" height="1" fill="#FF79C6"/><rect x="1" y="3" width="1" height="1" fill="#FF79C6"/><rect x="3" y="3" width="1" height="1" fill="#FF79C6"/><rect x="4" y="3" width="1" height="1" fill="#FF79C6"/><rect x="6" y="3" width="1" height="1" fill="#FF79C6"/><rect x="7" y="3" width="1" height="1" fill="#FF79C6"/><rect x="0" y="4" width="1" height="1" fill="#FF79C6"/><rect x="1" y="4" width="1" height="1" fill="#FF79C6"/><rect x="3" y="4" width="1" height="1" fill="#FF79C6"/><rect x="4" y="4" width="1" height="1" fill="#FF79C6"/><rect x="6" y="4" width="1" height="1" fill="#FF79C6"/><rect x="7" y="4" width="1" height="1" fill="#FF79C6"/><rect x="0" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="5" width="1" height="1" fill="#FF79C6"/><rect x="2" y="5" width="1" height="1" fill="#FF79C6"/><rect x="5" y="5" width="1" height="1" fill="#FF79C6"/><rect x="6" y="5" width="1" height="1" fill="#FF79C6"/><rect x="7" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="6" width="1" height="1" fill="#FF79C6"/><rect x="3" y="6" width="1" height="1" fill="#FF79C6"/><rect x="4" y="6" width="1" height="1" fill="#FF79C6"/><rect x="5" y="6" width="1" height="1" fill="#FF79C6"/><rect x="6" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="7" width="1" height="1" fill="#FF79C6"/><rect x="4" y="7" width="1" height="1" fill="#FF79C6"/><rect x="5" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="4" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="2" y="3" width="1" height="1" fill="#191A21"/><rect x="5" y="3" width="1" height="1" fill="#191A21"/><rect x="2" y="4" width="1" height="1" fill="#191A21"/><rect x="5" y="4" width="1" height="1" fill="#191A21"/><rect x="3" y="5" width="1" height="1" fill="#191A21"/><rect x="4" y="5" width="1" height="1" fill="#191A21"/></g></svg>
                 <% end %>
                 <div>
                   <a href="<%= item_path(item.slug) %>"
@@ -92,7 +95,7 @@
                 </div>
               </div>
             </td>
-            <td class="px-4 py-3 text-right">
+            <td class="px-4 py-3 text-right hidden sm:table-cell">
               <% if item.highest_npc_buy_price.to_i > 0 %>
                 <span class="font-bold tibia-gold"><%= number_with_delimiter(item.highest_npc_buy_price) %></span>
                 <span class="text-xs" style="color:var(--muted)"> gp</span>
@@ -100,11 +103,28 @@
                 <span class="text-xs" style="color:var(--border)">—</span>
               <% end %>
             </td>
-            <td class="px-4 py-3 hidden sm:table-cell text-sm" style="color:var(--brown)">
-              <%= item.best_buyer&.npc_name || "—" %>
+            <td class="px-4 py-3 text-right">
+              <% if item.avg_market_price.to_i > 0 %>
+                <span class="font-bold" style="color:var(--accent)"><%= number_with_delimiter(item.avg_market_price) %></span>
+                <span class="text-xs" style="color:var(--muted)"> gp</span>
+              <% else %>
+                <span class="text-xs" style="color:var(--border)">—</span>
+              <% end %>
             </td>
-            <td class="px-4 py-3 hidden md:table-cell text-xs" style="color:var(--muted)">
-              <%= item.best_buyer&.npc_location || "—" %>
+            <td class="px-4 py-3 text-center hidden md:table-cell">
+              <% pct = item.market_premium_pct %>
+              <% if pct && pct > 0 %>
+                <span class="tag" style="background:rgba(80,250,123,0.15); color:#50FA7B; font-size:10px">
+                  📈 +<%= pct %>%
+                </span>
+              <% elsif item.avg_market_price.to_i > 0 && item.highest_npc_buy_price.to_i > 0 %>
+                <span class="tag" style="font-size:10px; color:var(--muted)">≈ NPC</span>
+              <% else %>
+                <span style="color:var(--border)">—</span>
+              <% end %>
+            </td>
+            <td class="px-4 py-3 hidden lg:table-cell text-sm" style="color:var(--brown)">
+              <%= item.best_buyer&.npc_name || "—" %>
             </td>
           </tr>
         <% end %>
@@ -180,4 +200,91 @@
       Showing items <%= (@page - 1) * ItemsController::PER_PAGE + 1 %>–<%= [(@page) * ItemsController::PER_PAGE, @total_count].min %> of <%= @total_count %>
     </p>
   <% end %>
+</div>
 <% end %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
+<script>
+(function(){
+  var inp = document.getElementById("search-q");
+  if (!inp) return;
+
+  var allNames = null;
+  var fuse     = null;
+  var timer;
+
+  // Load all item names once and build Fuse index
+  fetch("/items/names")
+    .then(function(r){ return r.json(); })
+    .then(function(names){
+      allNames = names;
+      fuse = new Fuse(names, {
+        includeScore: true,
+        threshold: 0.42,
+        distance: 120,
+        minMatchCharLength: 2
+      });
+    });
+
+  function fetchResults(url) {
+    history.replaceState(null, "", url);
+    fetch(url, {headers: {"X-Requested-With": "XMLHttpRequest"}})
+      .then(function(r){ return r.text(); })
+      .then(function(html){
+        var doc   = new DOMParser().parseFromString(html, "text/html");
+        var fresh = doc.getElementById("items-results");
+        if (fresh) document.getElementById("items-results").innerHTML = fresh.innerHTML;
+      });
+  }
+
+  function fuzzySearch(q) {
+    if (!fuse) return null;  // index not ready yet, fall back to plain search
+    var words = q.trim().split(/\s+/).filter(function(w){ return w.length >= 2; });
+    if (!words.length) return [];
+
+    // For each word, get matching names as a Set
+    var sets = words.map(function(word){
+      var results = fuse.search(word);
+      var s = {};
+      results.forEach(function(r){ s[r.item] = true; });
+      return s;
+    });
+
+    // Intersect: name must match at least ceil(words.length * 0.55) words
+    var threshold = Math.ceil(words.length * 0.55);
+    return allNames.filter(function(name){
+      var hits = sets.reduce(function(count, s){ return count + (s[name] ? 1 : 0); }, 0);
+      return hits >= threshold;
+    });
+  }
+
+  inp.addEventListener("input", function(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      var q    = inp.value.trim();
+      var sort = document.querySelector("select[name=sort]").value;
+
+      if (!q) {
+        fetchResults("/?sort=" + encodeURIComponent(sort));
+        return;
+      }
+
+      var matched = fuzzySearch(q);
+      if (matched === null) {
+        // Fuse not ready — fall back to plain LIKE search
+        fetchResults("/?q=" + encodeURIComponent(q) + "&sort=" + encodeURIComponent(sort));
+        return;
+      }
+
+      if (!matched.length) {
+        // No fuzzy matches — fetch with a guaranteed-empty query so server returns 0 results
+        fetchResults("/?fuzzy[]=__none__&sort=" + encodeURIComponent(sort));
+        return;
+      }
+
+      var params = matched.map(function(n){ return "fuzzy[]=" + encodeURIComponent(n); }).join("&");
+      fetchResults("/?" + params + "&sort=" + encodeURIComponent(sort));
+    }, 280);
+  });
+})();
+</script>

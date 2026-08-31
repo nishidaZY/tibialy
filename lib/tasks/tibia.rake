@@ -118,10 +118,13 @@ namespace :tibia do
   end
 
   def extract_image(doc)
-    img = doc.at_css(".infobox-image img, .infobox img, #mw-content-text img")
+    # Only look inside the infobox — avoids picking up map/NPC/creature images
+    img = doc.at_css(".infobox-image img, .infobox img")
     return nil unless img
     src = img["src"] || img["data-src"]
     return nil unless src
+    # Skip thumbnails and tiny icons
+    return nil if src.include?("thumb") && src =~ /\d+px/
     src.start_with?("http") ? src : "https://www.tibiawiki.com.br#{src}"
   end
 
@@ -166,10 +169,10 @@ namespace :tibia do
     prices.uniq { |p| p[:npc_name] }
   end
 
-  desc "Sync market item IDs from api.tibiamarket.top (run after import)"
+  desc "Sync market IDs + NPC prices from api.tibiamarket.top (run after import)"
   task sync_market_ids: :environment do
-    puts "📈 Syncing market item IDs from TibiaMarket API..."
-    raw = `curl -sL --max-time 30 "https://api.tibiamarket.top/item_metadata" 2>/dev/null`
+    puts "📈 Fetching item metadata from TibiaMarket API..."
+    raw = `curl -sL --max-time 60 "https://api.tibiamarket.top/item_metadata" 2>/dev/null`
     if raw.empty?
       puts "❌ Could not reach api.tibiamarket.top"
       next
@@ -181,37 +184,68 @@ namespace :tibia do
       next
     end
 
-    # Build lookup: lowercase name/wiki_name -> market id
-    lookup = {}
-    metadata.each do |m|
-      id = m["id"]
-      lookup[m["name"].to_s.downcase.strip]      = id
-      lookup[m["wiki_name"].to_s.downcase.strip] = id if m["wiki_name"].present?
-    end
-    lookup.delete("")
-
-    updated = 0
-    not_found = []
+    # Build item lookup: lowercase name -> Item record
+    puts "  Building item lookup (#{Item.count} items in DB)..."
+    item_lookup = {}
     Item.find_each do |item|
-      key = item.name.downcase.strip
-      market_id = lookup[key]
-      if market_id
-        item.update_column(:market_item_id, market_id) if item.market_item_id != market_id
-        updated += 1
-      else
-        not_found << item.name
-      end
+      item_lookup[item.name.downcase.strip] = item
     end
 
-    total = Item.where.not(market_item_id: nil).count
-    puts "✅ Done! #{updated}/#{Item.count} items matched market IDs."
-    puts "⚠️  Not found (#{not_found.size}): #{not_found.first(5).join(', ')}..." if not_found.any?
+    matched = 0
+    npc_updated = 0
+    not_found = []
+
+    metadata.each do |m|
+      key  = m["name"].to_s.downcase.strip
+      key2 = m["wiki_name"].to_s.downcase.strip
+      item = item_lookup[key] || item_lookup[key2]
+
+      unless item
+        not_found << m["name"]
+        next
+      end
+
+      item.market_item_id = m["id"]
+
+      # NPC prices from the API — more reliable than TibiaWiki HTML scraping
+      api_buys  = (m["npc_buy"]  || []).select { |p| p["price"].to_i > 0 }
+      api_sells = (m["npc_sell"] || []).select { |p| p["price"].to_i > 0 }
+
+      if api_buys.any? || api_sells.any?
+        item.npc_prices.delete_all
+        api_buys.each do |p|
+          item.npc_prices.build(npc_name: p["name"], npc_location: p["location"],
+                                price: p["price"].to_i, price_type: "buy")
+        end
+        api_sells.each do |p|
+          item.npc_prices.build(npc_name: p["name"], npc_location: p["location"],
+                                price: p["price"].to_i, price_type: "sell")
+        end
+        item.highest_npc_buy_price = api_buys.map { |p| p["price"].to_i }.max || 0
+        npc_updated += 1
+      end
+
+      item.save!
+      matched += 1
+    end
+
+    puts "✅ Done!"
+    puts "   #{matched} items matched to TibiaMarket IDs"
+    puts "   #{npc_updated} items got NPC prices from API"
+    puts "   #{not_found.size} API items had no DB match"
+    puts "   #{Item.where.not(market_item_id: nil).count} total items now have market IDs"
   end
 
-  desc "Fetch missing item images via TibiaWiki MediaWiki API (batch of 50)"
+  desc "Fetch item images via TibiaWiki MediaWiki API — run with FORCE=1 to overwrite all"
   task fetch_images: :environment do
-    missing = Item.where(image_url: nil).or(Item.where(image_url: "")).to_a
-    puts "🖼️  Fetching images for #{missing.size} items (#{(missing.size / 50.0).ceil} batches)..."
+    items = if ENV["FORCE"] == "1"
+              puts "🖼️  Force mode: re-fetching images for ALL items..."
+              Item.all.to_a
+            else
+              Item.where(image_url: nil).or(Item.where(image_url: "")).to_a
+            end
+    missing = items
+    puts "🖼️  Fetching images for #{missing.size} items (#{[(missing.size / 50.0).ceil, 1].max} batches)..."
 
     updated = 0
     errors  = 0
@@ -263,4 +297,93 @@ namespace :tibia do
 
     puts "\n\n✅ Done! Updated #{updated} images. Still missing: #{missing.size - updated}."
   end
+
+  desc "Assign Special:FilePath image URLs for all items (instant — no API calls)"
+  task assign_image_urls: :environment do
+    count  = 0
+    errors = 0
+    Item.find_each do |item|
+      name_slug = item.name.gsub(" ", "_")
+      url = "https://www.tibiawiki.com.br/wiki/Special:FilePath/#{name_slug}.gif"
+      item.update_column(:image_url, url)
+      count += 1
+      print "\r  #{count} items updated..." if (count % 500).zero?
+    rescue => e
+      errors += 1
+      STDERR.puts "\n  ⚠️  #{item.name}: #{e.message}"
+    end
+    puts "\n✅ Done! Set image URLs for #{count} items (#{errors} errors)."
+  end
+  TIBIA_SERVERS = %w[
+    Antica Belobra Bona Calmera Celesta Collabra Descubra Dia Escura Esmera
+    Ferobra Firmera Gladera Harmonia Honbra Inabra Jaguna Kalimera Lobera
+    Luminera Maligna Monza Mystera Nefera Nevia Oceanis Pacera Peloria
+    Premia Quelibra Refugia Runera Secura Serdebra Solidera Talera Thyria
+    Ustebra Venebra Victoris Vunira Wildera Wintera Xyla Yara Yonabra
+    Zuna Zunera
+  ].freeze
+
+  desc "Fetch market prices across ALL servers and store average — run daily"
+  task sync_all_market_prices: :environment do
+    puts "🌍 Syncing market prices across #{TIBIA_SERVERS.size} servers..."
+
+    # All items that have a market ID
+    items      = Item.where.not(market_item_id: nil).to_a
+    id_to_item = items.each_with_object({}) { |i, h| h[i.market_item_id] = i }
+    all_ids    = items.map(&:market_item_id).join(",")
+    puts "  #{items.size} items with market IDs."
+
+    # Accumulate prices: market_item_id -> [price, price, ...]
+    prices_by_id = Hash.new { |h, k| h[k] = [] }
+    errors = 0
+
+    TIBIA_SERVERS.each_with_index do |server, idx|
+      print "\r  [#{idx + 1}/#{TIBIA_SERVERS.size}] #{server.ljust(14)}"
+
+      # Try fetching all items for the server in one shot
+      url = "https://api.tibiamarket.top/market_values?server=#{URI.encode_www_form_component(server)}&item_ids=#{all_ids}"
+      raw = curl_get(url)
+
+      if raw.nil? || raw.strip.empty?
+        errors += 1
+        next
+      end
+
+      begin
+        data = JSON.parse(raw)
+        # API may return Array of objects OR Hash keyed by item_id
+        entries = case data
+                  when Hash  then data.map { |k, v| v.is_a?(Hash) ? v.merge("id" => k.to_i) : nil }.compact
+                  when Array then data
+                  else []
+                  end
+        entries.each do |m|
+          id    = m["id"].to_i
+          price = m["buy_offer"].to_i > 0 ? m["buy_offer"].to_i : m["month_average_buy"].to_i
+          prices_by_id[id] << price if price > 0
+        end
+      rescue JSON::ParserError
+        errors += 1
+      end
+
+      sleep 0.4
+    end
+
+    puts "\n\n  Computing averages and saving..."
+    updated = 0
+    now     = Time.current
+
+    prices_by_id.each do |market_id, prices|
+      item = id_to_item[market_id]
+      next unless item && prices.any?
+
+      avg = (prices.sum.to_f / prices.size).round
+      item.update_columns(avg_market_price: avg, market_price_updated_at: now)
+      updated += 1
+    end
+
+    puts "✅ Done! #{updated} items got avg market prices. #{errors} server errors."
+    puts "   #{Item.where("avg_market_price > highest_npc_buy_price").count} items have market price > NPC price."
+  end
+
 end
