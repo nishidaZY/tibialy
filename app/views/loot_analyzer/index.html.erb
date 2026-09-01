@@ -104,7 +104,7 @@
 
 <script>
 const ANALYZE_URL  = "<%= analyze_loot_path %>";
-const MARKET_API   = "https://api.tibiamarket.top/market_values";
+const MARKET_API   = "/items/market_prices";  // Rails proxy — avoids CORS
 const CSRF_TOKEN   = document.querySelector('meta[name="csrf-token"]')?.content;
 
 const analyzeBtn  = document.getElementById("analyze-btn");

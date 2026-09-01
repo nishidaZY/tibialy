@@ -38,4 +38,24 @@ class ItemsController < ApplicationController
     items = Item.where.not(market_item_id: nil).pluck(:name)
     render json: items
   end
+
+  def market_prices
+    require 'net/http'
+    world    = (params[:world] || params[:server]).to_s.strip
+    item_ids = params[:item_ids].to_s.gsub(/[^0-9,]/, '').strip
+    return render json: [] if world.blank? || item_ids.blank?
+
+    uri = URI("https://api.tibiamarket.top/market_values?server=#{URI.encode_www_form_component(world)}&item_ids=#{item_ids}")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.open_timeout = 8
+    http.read_timeout = 10
+    req = Net::HTTP::Get.new(uri)
+    req['User-Agent'] = 'TibiaLootFinder/1.0'
+    resp = http.request(req)
+    render body: resp.body, content_type: 'application/json'
+  rescue => e
+    Rails.logger.warn "market_prices proxy error: #{e}"
+    render json: []
+  end
 end

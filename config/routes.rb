@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show] do
     collection do
       get :names
+      get :market_prices
     end
   end
 

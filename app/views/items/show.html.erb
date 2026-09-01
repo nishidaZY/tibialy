@@ -3,7 +3,7 @@
      style="color:var(--accent)">← Back to items</a>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-market-id="<%= @item.market_item_id.to_i %>">
 
   <!-- Item card -->
   <div class="md:col-span-1">
@@ -13,7 +13,7 @@
           class="w-20 h-20 object-contain mx-auto mb-4" style="image-rendering:pixelated"
           onerror="this.style.display='none'">
       <% else %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="64" height="64" style="image-rendering:pixelated;shape-rendering:crispEdges;display:block;margin:auto"><style>@keyframes prsh{0%{transform:translateY(0)scaleY(1)scaleX(1)}30%{transform:translateY(-5px)scaleY(1.08)scaleX(0.93)}60%{transform:translateY(0)scaleY(0.68)scaleX(1.18)}78%{transform:translateY(-2px)scaleY(1.04)scaleX(0.98)}100%{transform:translateY(0)scaleY(1)scaleX(1)}}.prsh{animation:prsh 0.65s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}</style><g class="prsh"><rect x="2" y="0" width="1" height="1" fill="#FF79C6"/><rect x="3" y="0" width="1" height="1" fill="#FF79C6"/><rect x="4" y="0" width="1" height="1" fill="#FF79C6"/><rect x="5" y="0" width="1" height="1" fill="#FF79C6"/><rect x="1" y="1" width="1" height="1" fill="#FF79C6"/><rect x="2" y="1" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FF79C6"/><rect x="4" y="1" width="1" height="1" fill="#FF79C6"/><rect x="5" y="1" width="1" height="1" fill="#FF79C6"/><rect x="6" y="1" width="1" height="1" fill="#FF79C6"/><rect x="0" y="2" width="1" height="1" fill="#FF79C6"/><rect x="1" y="2" width="1" height="1" fill="#FF79C6"/><rect x="2" y="2" width="1" height="1" fill="#FF79C6"/><rect x="3" y="2" width="1" height="1" fill="#FF79C6"/><rect x="4" y="2" width="1" height="1" fill="#FF79C6"/><rect x="5" y="2" width="1" height="1" fill="#FF79C6"/><rect x="6" y="2" width="1" height="1" fill="#FF79C6"/><rect x="7" y="2" width="1" height="1" fill="#FF79C6"/><rect x="0" y="3" width="1" height="1" fill="#FF79C6"/><rect x="1" y="3" width="1" height="1" fill="#FF79C6"/><rect x="3" y="3" width="1" height="1" fill="#FF79C6"/><rect x="4" y="3" width="1" height="1" fill="#FF79C6"/><rect x="6" y="3" width="1" height="1" fill="#FF79C6"/><rect x="7" y="3" width="1" height="1" fill="#FF79C6"/><rect x="0" y="4" width="1" height="1" fill="#FF79C6"/><rect x="1" y="4" width="1" height="1" fill="#FF79C6"/><rect x="3" y="4" width="1" height="1" fill="#FF79C6"/><rect x="4" y="4" width="1" height="1" fill="#FF79C6"/><rect x="6" y="4" width="1" height="1" fill="#FF79C6"/><rect x="7" y="4" width="1" height="1" fill="#FF79C6"/><rect x="0" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="5" width="1" height="1" fill="#FF79C6"/><rect x="2" y="5" width="1" height="1" fill="#FF79C6"/><rect x="5" y="5" width="1" height="1" fill="#FF79C6"/><rect x="6" y="5" width="1" height="1" fill="#FF79C6"/><rect x="7" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="6" width="1" height="1" fill="#FF79C6"/><rect x="3" y="6" width="1" height="1" fill="#FF79C6"/><rect x="4" y="6" width="1" height="1" fill="#FF79C6"/><rect x="5" y="6" width="1" height="1" fill="#FF79C6"/><rect x="6" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="7" width="1" height="1" fill="#FF79C6"/><rect x="4" y="7" width="1" height="1" fill="#FF79C6"/><rect x="5" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="4" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="2" y="3" width="1" height="1" fill="#191A21"/><rect x="5" y="3" width="1" height="1" fill="#191A21"/><rect x="2" y="4" width="1" height="1" fill="#191A21"/><rect x="5" y="4" width="1" height="1" fill="#191A21"/><rect x="3" y="5" width="1" height="1" fill="#191A21"/><rect x="4" y="5" width="1" height="1" fill="#191A21"/></g></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="64" height="64" style="image-rendering:pixelated;shape-rendering:crispEdges;display:block;margin:auto"><style>@keyframes prsh{0%{transform:translateY(0)scaleY(1)scaleX(1)}18%{transform:translateY(-7px)scaleY(1.1)scaleX(0.91)}42%{transform:translateY(-8px)scaleY(1.13)scaleX(0.9)}60%{transform:translateY(0)scaleY(0.65)scaleX(1.2)}73%{transform:translateY(-3px)scaleY(1.07)scaleX(0.95)}86%{transform:translateY(0)scaleY(0.94)scaleX(1.03)}100%{transform:translateY(0)scaleY(1)scaleX(1)}}.prsh{animation:prsh 0.85s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}@keyframes prbl_s{0%,78%{fill:#191A21}82%,90%{fill:#FF79C6}94%,100%{fill:#191A21}}.preye_s{animation:prbl_s 3.2s ease-in-out infinite}</style><g class="prsh"><rect x="2" y="0" width="1" height="1" fill="#FF79C6"/><rect x="3" y="0" width="1" height="1" fill="#FF79C6"/><rect x="4" y="0" width="1" height="1" fill="#FF79C6"/><rect x="5" y="0" width="1" height="1" fill="#FF79C6"/><rect x="1" y="1" width="1" height="1" fill="#FF79C6"/><rect x="2" y="1" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FF79C6"/><rect x="4" y="1" width="1" height="1" fill="#FF79C6"/><rect x="5" y="1" width="1" height="1" fill="#FF79C6"/><rect x="6" y="1" width="1" height="1" fill="#FF79C6"/><rect x="0" y="2" width="1" height="1" fill="#FF79C6"/><rect x="1" y="2" width="1" height="1" fill="#FF79C6"/><rect x="2" y="2" width="1" height="1" fill="#FF79C6"/><rect x="3" y="2" width="1" height="1" fill="#FF79C6"/><rect x="4" y="2" width="1" height="1" fill="#FF79C6"/><rect x="5" y="2" width="1" height="1" fill="#FF79C6"/><rect x="6" y="2" width="1" height="1" fill="#FF79C6"/><rect x="7" y="2" width="1" height="1" fill="#FF79C6"/><rect x="0" y="3" width="1" height="1" fill="#FF79C6"/><rect x="1" y="3" width="1" height="1" fill="#FF79C6"/><rect x="3" y="3" width="1" height="1" fill="#FF79C6"/><rect x="4" y="3" width="1" height="1" fill="#FF79C6"/><rect x="6" y="3" width="1" height="1" fill="#FF79C6"/><rect x="7" y="3" width="1" height="1" fill="#FF79C6"/><rect x="0" y="4" width="1" height="1" fill="#FF79C6"/><rect x="1" y="4" width="1" height="1" fill="#FF79C6"/><rect x="3" y="4" width="1" height="1" fill="#FF79C6"/><rect x="4" y="4" width="1" height="1" fill="#FF79C6"/><rect x="6" y="4" width="1" height="1" fill="#FF79C6"/><rect x="7" y="4" width="1" height="1" fill="#FF79C6"/><rect x="0" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="5" width="1" height="1" fill="#FF79C6"/><rect x="2" y="5" width="1" height="1" fill="#FF79C6"/><rect x="5" y="5" width="1" height="1" fill="#FF79C6"/><rect x="6" y="5" width="1" height="1" fill="#FF79C6"/><rect x="7" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="6" width="1" height="1" fill="#FF79C6"/><rect x="3" y="6" width="1" height="1" fill="#FF79C6"/><rect x="4" y="6" width="1" height="1" fill="#FF79C6"/><rect x="5" y="6" width="1" height="1" fill="#FF79C6"/><rect x="6" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="7" width="1" height="1" fill="#FF79C6"/><rect x="4" y="7" width="1" height="1" fill="#FF79C6"/><rect x="5" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="4" y="1" width="1" height="1" fill="#FFB8E0"/><rect class="preye_s" x="2" y="3" width="1" height="1" fill="#191A21"/><rect class="preye_s" x="5" y="3" width="1" height="1" fill="#191A21"/><rect class="preye_s" x="2" y="4" width="1" height="1" fill="#191A21"/><rect class="preye_s" x="5" y="4" width="1" height="1" fill="#191A21"/><rect x="3" y="5" width="1" height="1" fill="#191A21"/><rect x="4" y="5" width="1" height="1" fill="#191A21"/></g></svg>
       <% end %>
 
       <h1 class="text-xl font-bold mb-1" style="color:var(--dark)"><%= @item.name %></h1>
@@ -112,5 +112,66 @@
       </div>
     <% end %>
 
+    <!-- Live Market Price (world-specific) -->
+    <div id="live-price-card" class="card-bg rounded-xl overflow-hidden" style="display:none">
+      <div class="px-5 py-3" style="border-bottom:1px solid var(--border)">
+        <h2 class="font-semibold text-sm uppercase tracking-wide" style="color:var(--accent)">
+          🌍 Market on <span id="live-world-name"></span>
+        </h2>
+        <p class="text-xs mt-0.5" style="color:var(--muted)">Live data · TibiaData.com</p>
+      </div>
+      <div id="live-price-body" class="px-5 py-5 text-sm">
+        <p style="color:var(--muted)">Loading…</p>
+      </div>
+    </div>
+
   </div>
 </div>
+
+<script>
+(function(){
+  var world = localStorage.getItem('tibia_world');
+  var grid  = document.querySelector('[data-market-id]');
+  var marketId = grid ? parseInt(grid.getAttribute('data-market-id'), 10) : 0;
+  if (!world || !marketId) return;
+
+  var card      = document.getElementById('live-price-card');
+  var worldSpan = document.getElementById('live-world-name');
+  var body      = document.getElementById('live-price-body');
+
+  worldSpan.textContent = world;
+  card.style.display = '';
+
+  fetch('https://api.tibiadata.com/v4/market/' + encodeURIComponent(world) + '/item/' + marketId)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var item = data.market && data.market.item;
+      if (!item) { body.innerHTML = '<p style="color:var(--muted)">No market data for this world.</p>'; return; }
+
+      var buy  = item.buy_statistics  || item.buyed  || {};
+      var sell = item.sell_statistics || item.sold   || {};
+      var fmt  = function(n){ return (n && n > 0) ? Number(n).toLocaleString() + ' gp' : '—'; };
+      var traders = function(n){ return (n && n > 0) ? n + ' transaction' + (n === 1 ? '' : 's') : 'no trades'; };
+
+      body.innerHTML =
+        '<div class="grid grid-cols-2 gap-6">' +
+          '<div>' +
+            '<p class="text-xs uppercase mb-2" style="color:var(--muted)">Buyers paying</p>' +
+            '<p class="text-2xl font-bold tibia-gold">' + fmt(buy.last_day_value || buy.average) + '</p>' +
+            '<p class="text-xs mt-1" style="color:var(--muted)">' + traders(buy.last_day_traders || buy.total) + ' today</p>' +
+          '</div>' +
+          '<div>' +
+            '<p class="text-xs uppercase mb-2" style="color:var(--muted)">Sellers asking</p>' +
+            '<p class="text-2xl font-bold" style="color:var(--accent)">' + fmt(sell.last_day_value || sell.average) + '</p>' +
+            '<p class="text-xs mt-1" style="color:var(--muted)">' + traders(sell.last_day_traders || sell.total) + ' today</p>' +
+          '</div>' +
+        '</div>' +
+        '<p class="text-xs mt-4 pt-3" style="color:var(--muted);border-top:1px solid var(--border)">' +
+          'Last 24 hours · <a href="https://www.tibia.com/market/?currenttab=buy&itemid=' + marketId + '&world=' + encodeURIComponent(world) + '" target="_blank" style="color:var(--accent)">View on Tibia.com ↗</a>' +
+        '</p>';
+    })
+    .catch(function(){
+      body.innerHTML = '<p style="color:var(--muted)">Could not load live data.</p>';
+    });
+})();
+</script>
