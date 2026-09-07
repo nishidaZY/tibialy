@@ -61,6 +61,11 @@
         border-radius: 99px;
         font-weight: 500;
       }
+
+      /* ── Pixel sprite animations: JS-controlled, hover-only ─── */
+      svg .cfl,svg .cw,svg .sgsw,
+      svg .sg0,svg .sg1,svg .sg2,svg .sg3,svg .sg4,svg .sg5,svg .sg6,
+      svg .prnv,svg .preye,svg .prla,svg .mgmb,svg .prsh,svg .preye_s{animation:none}
     </style>
   </head>
 
@@ -94,5 +99,72 @@
         style="color:var(--accent)" class="underline">TibiaWiki.com.br</a> ·
       Fan site não oficial · Tibia é marca registrada da CipSoft GmbH
     </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const SEL = '.cfl,.cw,.sgsw,.sg0,.sg1,.sg2,.sg3,.sg4,.sg5,.sg6,.prnv,.preye,.prla,.mgmb,.prsh,.preye_s';
+    const ANIM = {
+      cfl:     'cfl 3.5s ease-in-out infinite',
+      cw:      'cf 1.6s steps(1) infinite',
+      sgsw:    'sgsw 2.4s ease-in-out infinite',
+      sg0:     'sg 1.4s 0.0s infinite',
+      sg1:     'sg 1.4s 0.3s infinite',
+      sg2:     'sg 1.4s 0.6s infinite',
+      sg3:     'sg 1.4s 0.9s infinite',
+      sg4:     'sg 1.4s 1.2s infinite',
+      sg5:     'sg 1.4s 1.5s infinite',
+      sg6:     'sg 1.4s 1.8s infinite',
+      prnv:    'prnv 0.85s ease-in-out infinite',
+      preye:   'prbl 3.2s ease-in-out infinite',
+      prla:    'prla 0.65s ease-in-out infinite',
+      mgmb:    'mgmb 1.2s ease-in-out infinite',
+      prsh:    'prsh 0.85s ease-in-out infinite',
+      preye_s: 'prbl_s 3.2s ease-in-out infinite',
+    };
+
+    function getAnim(el) {
+      for (const [cls, val] of Object.entries(ANIM))
+        if (el.classList.contains(cls)) return val;
+      return null;
+    }
+
+    const seen = new WeakSet();
+    document.querySelectorAll(SEL).forEach(sp => {
+      const parent = sp.closest('a, h1, p, div');
+      if (!parent || seen.has(parent)) return;
+      seen.add(parent);
+
+      const sprites = Array.from(parent.querySelectorAll(SEL));
+      const pending = new Map(); // sprite → iterationHandler
+
+      parent.addEventListener('mouseenter', () => {
+        // Cancel any finish-on-leave listeners
+        pending.forEach((fn, sprite) => sprite.removeEventListener('animationiteration', fn));
+        pending.clear();
+
+        // Restart all sprites from frame 0
+        sprites.forEach(el => { el.style.animation = 'none'; });
+        parent.offsetHeight; // single reflow
+        sprites.forEach(el => {
+          const a = getAnim(el);
+          if (a) el.style.animation = a;
+        });
+      });
+
+      parent.addEventListener('mouseleave', () => {
+        sprites.forEach(el => {
+          if (!getAnim(el)) return;
+          const stop = () => {
+            el.style.animation = 'none';
+            el.removeEventListener('animationiteration', stop);
+            pending.delete(el);
+          };
+          pending.set(el, stop);
+          el.addEventListener('animationiteration', stop);
+        });
+      });
+    });
+  });
+  </script>
   </body>
 </html>

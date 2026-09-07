@@ -27,6 +27,16 @@ class LootAnalyzerController < ApplicationController
       return
     end
 
+    if loot_text.length > 100_000
+      render json: { error: "Loot text is too large." }, status: :unprocessable_entity
+      return
+    end
+
+    unless TIBIA_SERVERS.include?(server)
+      render json: { error: "Unknown server." }, status: :unprocessable_entity
+      return
+    end
+
     parsed = parse_loot(loot_text)
     results = parsed.map do |entry|
       name_key      = entry[:name].downcase.strip
