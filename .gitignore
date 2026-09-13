@@ -6,3 +6,10 @@
 /public/assets
 .env
 *.pem
+
+# Native app build outputs (regenerate: python3 native-app/make_icon.py &&
+# iconutil -c icns native-app/AppIcon.iconset -o native-app/AppIcon.icns &&
+# swiftc -O -o native-app/TibiaLootFinder native-app/main.swift)
+/native-app/AppIcon.iconset/
+/native-app/TibiaLootFinder
+/TibiaLootFinder.app/
