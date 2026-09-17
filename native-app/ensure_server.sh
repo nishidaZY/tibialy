@@ -8,10 +8,12 @@ export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:$P
 APP_DIR="$HOME/Documents/tibialootfinder"
 LOG_DIR="$APP_DIR/log"
 LOG_FILE="$LOG_DIR/launcher.log"
+PID_DIR="$APP_DIR/tmp/pids"
+PID_FILE="$PID_DIR/native_app_server.pid"
 URL="http://localhost:3000"
 PORT=3000
 
-mkdir -p "$LOG_DIR"
+mkdir -p "$LOG_DIR" "$PID_DIR"
 echo "---- $(date) : launch requested ----" >> "$LOG_FILE"
 
 is_healthy() {
@@ -22,6 +24,7 @@ EXISTING_PID="$(lsof -ti tcp:$PORT -sTCP:LISTEN 2>/dev/null | head -n1)"
 if [ -n "$EXISTING_PID" ]; then
   if lsof -p "$EXISTING_PID" 2>/dev/null | grep -q "$APP_DIR"; then
     echo "already running as TibiaLootFinder (pid $EXISTING_PID)" >> "$LOG_FILE"
+    echo "$EXISTING_PID" > "$PID_FILE"
     exit 0
   else
     echo "port $PORT held by a different app (pid $EXISTING_PID) — stopping it" >> "$LOG_FILE"
@@ -36,7 +39,9 @@ fi
 cd "$APP_DIR" || exit 1
 
 nohup bin/rails server >> "$LOG_FILE" 2>&1 &
+SERVER_PID=$!
 disown
+echo "$SERVER_PID" > "$PID_FILE"
 
 for i in $(seq 1 60); do
   if is_healthy; then

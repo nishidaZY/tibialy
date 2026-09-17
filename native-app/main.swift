@@ -108,6 +108,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
         return true
     }
 
+    func applicationWillTerminate(_ notification: Notification) {
+        let scriptPath = Bundle.main.resourcePath! + "/stop_server.sh"
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/bin/bash")
+        process.arguments = [scriptPath]
+        try? process.run()
+        process.waitUntilExit()
+    }
+
     private func buildMainMenu() {
         let mainMenu = NSMenu()
 
