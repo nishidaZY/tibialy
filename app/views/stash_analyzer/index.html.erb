@@ -89,6 +89,19 @@
     </div>
   </div>
 
+  <!-- Filter + sort bar (same as the Loot Analyzer) -->
+  <div id="filter-bar" class="hidden mb-3 flex flex-wrap gap-2 text-xs items-center">
+    <span class="text-stone-500 self-center">Filter:</span>
+    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-amber-700 text-white" data-verdict="all">All</button>
+    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-verdict="market">📈 Market</button>
+    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-verdict="npc">💰 NPC</button>
+    <span class="text-stone-700 self-center px-1">│</span>
+    <span class="text-stone-500 self-center">Sort:</span>
+    <button class="sort-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-amber-700 text-white" data-sort="check">⚠️ Check first</button>
+    <button class="sort-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-sort="high">↓ Highest</button>
+    <button class="sort-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-sort="low">↑ Lowest</button>
+  </div>
+
   <!-- Results -->
   <div id="results-container" class="hidden bg-stone-900 border border-amber-900/40 rounded-xl overflow-x-auto shadow-lg">
     <table class="w-full text-sm">
@@ -156,7 +169,7 @@
     finally { URL.revokeObjectURL(url); }
     sel = null; results = null;
     $("stage-wrap").classList.remove("hidden");
-    ["summary-bar", "results-container"].forEach(id => $(id).classList.add("hidden"));
+    ["summary-bar", "filter-bar", "results-container"].forEach(id => $(id).classList.add("hidden"));
     clearStatus();
     const maxW = $("stage-wrap").clientWidth || 900;
     scale = Math.min(1, maxW / shot.width);
@@ -176,7 +189,7 @@
   });
   $("clear-btn").addEventListener("click", () => {
     shot = null; sel = null; results = null; $("file-input").value = "";
-    ["stage-wrap", "summary-bar", "results-container"].forEach(id => $(id).classList.add("hidden"));
+    ["stage-wrap", "summary-bar", "filter-bar", "results-container"].forEach(id => $(id).classList.add("hidden"));
     clearStatus();
   });
 
@@ -265,36 +278,65 @@
       <td class="px-3 py-2 text-right font-mono" data-mkt-total></td>
       <td class="px-3 py-2 text-center text-xs" data-verdict></td>`;
   }
-  // rows to check (unsure item or hard-to-read quantity) come first, the rest in stash order
+  let rows = [];                                  // slot index -> <tr>
+  let currentVerdict = "all", currentSort = "check";
   function renderTable() {
-    const body = $("results-body"); body.innerHTML = "";
-    const check = (s) => !s.edited && (!s.confident || !s.countSure);
-    const order = results.slots.map((s, i) => i).sort((a, b) => check(results.slots[b]) - check(results.slots[a]) || a - b);
-    let header = null;
-    order.forEach(i => {
-      const s = results.slots[i];
-      const kind = check(s) ? "check" : "ok";
-      if (kind !== header) {
-        header = kind;
-        const h = document.createElement("tr");
-        h.innerHTML = `<td colspan="8" class="px-3 py-2 text-xs uppercase tracking-wider ${kind === "check" ? "text-amber-400 bg-amber-950/30" : "text-stone-500 bg-stone-950/40"}">${kind === "check" ? "⚠️ Check these first — fix the item or the quantity if needed" : "✔ Recognised"}</td>`;
-        body.appendChild(h);
-      }
+    rows = results.slots.map((s, i) => {
       const tr = document.createElement("tr");
       tr.dataset.i = i; tr.className = "hover:bg-stone-800/40";
       tr.innerHTML = rowHtml(s, i);
-      body.appendChild(tr);
+      return tr;
     });
-    $("results-container").classList.remove("hidden"); $("summary-bar").classList.remove("hidden");
-    recalc();
+    ["results-container", "summary-bar", "filter-bar"].forEach(id => $(id).classList.remove("hidden"));
+    recalc(); applyView();
   }
+  // Filter by where to sell, then sort: "check first" puts the rows to check (unsure item or
+  // hard-to-read quantity) on top, the rest in stash order; highest / lowest by best total.
+  // Rows only move here (buttons, new prices), not while a quantity is being edited.
+  function applyView() {
+    const body = $("results-body"), check = s => !s.edited && (!s.confident || !s.countSure);
+    const best = i => parseFloat(rows[i].dataset.best) || 0;
+    const order = rows.map((_, i) => i).filter(i => currentVerdict === "all" || rows[i].dataset.verdict === currentVerdict);
+    if (currentSort === "check") order.sort((a, b) => check(results.slots[b]) - check(results.slots[a]) || a - b);
+    else order.sort((a, b) => (currentSort === "high" ? best(b) - best(a) : best(a) - best(b)) || a - b);
+    const out = [];
+    let header = null;
+    order.forEach(i => {
+      const kind = check(results.slots[i]) ? "check" : "ok";
+      if (currentSort === "check" && kind !== header) {
+        header = kind;
+        const h = document.createElement("tr");
+        h.innerHTML = `<td colspan="8" class="px-3 py-2 text-xs uppercase tracking-wider ${kind === "check" ? "text-amber-400 bg-amber-950/30" : "text-stone-500 bg-stone-950/40"}">${kind === "check" ? "⚠️ Check these first — fix the item or the quantity if needed" : "✔ Recognised"}</td>`;
+        out.push(h);
+      }
+      out.push(rows[i]);
+    });
+    if (!order.length) {
+      const h = document.createElement("tr");
+      h.innerHTML = '<td colspan="8" class="px-3 py-6 text-center text-stone-500">No items here.</td>';
+      out.push(h);
+    }
+    body.replaceChildren(...out);
+  }
+  function pick(cls, btn) {
+    document.querySelectorAll(cls).forEach(b => {
+      const on = b === btn;
+      b.classList.toggle("bg-amber-700", on); b.classList.toggle("text-white", on);
+      b.classList.toggle("bg-stone-800", !on); b.classList.toggle("text-stone-300", !on); b.classList.toggle("hover:bg-stone-700", !on);
+    });
+  }
+  document.querySelectorAll(".filter-btn").forEach(btn => btn.addEventListener("click", () => {
+    pick(".filter-btn", btn); currentVerdict = btn.dataset.verdict; if (results) applyView();
+  }));
+  document.querySelectorAll(".sort-btn").forEach(btn => btn.addEventListener("click", () => {
+    pick(".sort-btn", btn); currentSort = btn.dataset.sort; if (results) applyView();
+  }));
   function rerenderRow(i) {
-    const tr = $("results-body").querySelector(`tr[data-i="${i}"]`);
-    tr.innerHTML = rowHtml(results.slots[i], i); recalc(); draw();
+    rows[i].innerHTML = rowHtml(results.slots[i], i); recalc(); draw();
   }
   function focusRow(i) {
-    const tr = $("results-body").querySelector(`tr[data-i="${i}"]`);
-    if (!tr) return;
+    const tr = rows[i];
+    if (!tr || !tr.isConnected) return;
     tr.scrollIntoView({ behavior: "smooth", block: "center" });
     tr.classList.add("bg-amber-900/30"); setTimeout(() => tr.classList.remove("bg-amber-900/30"), 1200);
     draw(i);
@@ -320,7 +362,7 @@
   function recalc() {
     let npcSum = 0, bestSum = 0, unsure = 0, missing = 0, biggestUnsure = null;
     results.slots.forEach((s, i) => {
-      const tr = $("results-body").querySelector(`tr[data-i="${i}"]`), it = results.data.catalog[s.itemId] || {};
+      const tr = rows[i], it = results.data.catalog[s.itemId] || {};
       const qty = s.count ?? 1, npc = it.npc || 0, mPrice = market[it.m] ?? null;
       const npcTotal = npc * qty, mTotal = mPrice > 0 ? mPrice * qty : 0;
       tr.querySelector("[data-npc]").innerHTML = gp(npc);
@@ -333,6 +375,8 @@
       else v.innerHTML = '<span class="text-stone-600">—</span>';
       npcSum += npcTotal; bestSum += Math.max(npcTotal, mTotal);
       const best = Math.max(npcTotal, mTotal);
+      tr.dataset.best = best;
+      tr.dataset.verdict = mTotal > npcTotal ? "market" : npcTotal > 0 ? "npc" : "none";
       if (!s.countSure && (!biggestUnsure || best > biggestUnsure.v)) biggestUnsure = { v: best, name: it.n, qty };
       if (!s.confident && !s.edited) unsure++;
       if (!s.countSure) missing++;
@@ -361,6 +405,7 @@
       } catch (e) { setStatus("⚠️ Market prices are unavailable right now — showing NPC prices. Try again in a minute.", "text-amber-400"); }
     }
     recalc();
+    if (ids.length) applyView();   // new prices: re-sort (fixing a row alone does not move it)
   }
 })();
 </script>
