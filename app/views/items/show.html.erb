@@ -1,130 +1,112 @@
-<div class="mb-5">
-  <a href="/" class="text-sm font-medium transition-colors hover:underline"
-     style="color:var(--accent)">← Back to items</a>
-</div>
+<% content_for :title, "#{@item.name} – TibiaLootFinder" %>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-market-id="<%= @item.market_item_id.to_i %>">
+<a href="/" class="inline-flex items-center gap-1.5 text-[13px] text-stone-400 hover:text-white transition-colors mb-4" data-rise>← All items</a>
 
-  <!-- Item card -->
-  <div class="md:col-span-1">
-    <div class="card-bg rounded-xl p-6 text-center">
-      <% if @item.image_url.present? %>
-        <img src="<%= @item.image_url %>" alt="<%= @item.name %>"
-          class="w-20 h-20 object-contain mx-auto mb-4" style="image-rendering:pixelated"
-          onerror="this.style.display='none'">
-      <% else %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="64" height="64" style="image-rendering:pixelated;shape-rendering:crispEdges;display:block;margin:auto"><style>@keyframes prsh{0%{transform:translateY(0)scaleY(1)scaleX(1)}18%{transform:translateY(-7px)scaleY(1.1)scaleX(0.91)}42%{transform:translateY(-8px)scaleY(1.13)scaleX(0.9)}60%{transform:translateY(0)scaleY(0.65)scaleX(1.2)}73%{transform:translateY(-3px)scaleY(1.07)scaleX(0.95)}86%{transform:translateY(0)scaleY(0.94)scaleX(1.03)}100%{transform:translateY(0)scaleY(1)scaleX(1)}}.prsh{animation:prsh 0.85s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}@keyframes prbl_s{0%,78%{fill:#191A21}82%,90%{fill:#FF79C6}94%,100%{fill:#191A21}}.preye_s{animation:prbl_s 3.2s ease-in-out infinite}</style><g class="prsh"><rect x="2" y="0" width="1" height="1" fill="#FF79C6"/><rect x="3" y="0" width="1" height="1" fill="#FF79C6"/><rect x="4" y="0" width="1" height="1" fill="#FF79C6"/><rect x="5" y="0" width="1" height="1" fill="#FF79C6"/><rect x="1" y="1" width="1" height="1" fill="#FF79C6"/><rect x="2" y="1" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FF79C6"/><rect x="4" y="1" width="1" height="1" fill="#FF79C6"/><rect x="5" y="1" width="1" height="1" fill="#FF79C6"/><rect x="6" y="1" width="1" height="1" fill="#FF79C6"/><rect x="0" y="2" width="1" height="1" fill="#FF79C6"/><rect x="1" y="2" width="1" height="1" fill="#FF79C6"/><rect x="2" y="2" width="1" height="1" fill="#FF79C6"/><rect x="3" y="2" width="1" height="1" fill="#FF79C6"/><rect x="4" y="2" width="1" height="1" fill="#FF79C6"/><rect x="5" y="2" width="1" height="1" fill="#FF79C6"/><rect x="6" y="2" width="1" height="1" fill="#FF79C6"/><rect x="7" y="2" width="1" height="1" fill="#FF79C6"/><rect x="0" y="3" width="1" height="1" fill="#FF79C6"/><rect x="1" y="3" width="1" height="1" fill="#FF79C6"/><rect x="3" y="3" width="1" height="1" fill="#FF79C6"/><rect x="4" y="3" width="1" height="1" fill="#FF79C6"/><rect x="6" y="3" width="1" height="1" fill="#FF79C6"/><rect x="7" y="3" width="1" height="1" fill="#FF79C6"/><rect x="0" y="4" width="1" height="1" fill="#FF79C6"/><rect x="1" y="4" width="1" height="1" fill="#FF79C6"/><rect x="3" y="4" width="1" height="1" fill="#FF79C6"/><rect x="4" y="4" width="1" height="1" fill="#FF79C6"/><rect x="6" y="4" width="1" height="1" fill="#FF79C6"/><rect x="7" y="4" width="1" height="1" fill="#FF79C6"/><rect x="0" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="5" width="1" height="1" fill="#FF79C6"/><rect x="2" y="5" width="1" height="1" fill="#FF79C6"/><rect x="5" y="5" width="1" height="1" fill="#FF79C6"/><rect x="6" y="5" width="1" height="1" fill="#FF79C6"/><rect x="7" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="6" width="1" height="1" fill="#FF79C6"/><rect x="3" y="6" width="1" height="1" fill="#FF79C6"/><rect x="4" y="6" width="1" height="1" fill="#FF79C6"/><rect x="5" y="6" width="1" height="1" fill="#FF79C6"/><rect x="6" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="7" width="1" height="1" fill="#FF79C6"/><rect x="4" y="7" width="1" height="1" fill="#FF79C6"/><rect x="5" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="4" y="1" width="1" height="1" fill="#FFB8E0"/><rect class="preye_s" x="2" y="3" width="1" height="1" fill="#191A21"/><rect class="preye_s" x="5" y="3" width="1" height="1" fill="#191A21"/><rect class="preye_s" x="2" y="4" width="1" height="1" fill="#191A21"/><rect class="preye_s" x="5" y="4" width="1" height="1" fill="#191A21"/><rect x="3" y="5" width="1" height="1" fill="#191A21"/><rect x="4" y="5" width="1" height="1" fill="#191A21"/></g></svg>
-      <% end %>
+<div class="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-4" data-market-id="<%= @item.market_item_id.to_i %>">
 
-      <h1 class="text-xl font-bold mb-1" style="color:var(--dark)"><%= @item.name %></h1>
-      <% if @item.item_type.present? %>
-        <span class="tag"><%= @item.item_type %></span>
-      <% end %>
-
-      <div class="text-left text-sm space-y-2 mt-4 pt-4" style="border-top:1px solid var(--border)">
-        <% if @item.weight.present? %>
-          <div class="flex justify-between">
-            <span style="color:var(--muted)">Weight</span>
-            <span style="color:var(--dark)"><%= @item.weight %> oz</span>
-          </div>
-        <% end %>
-        <div class="flex justify-between">
-          <span style="color:var(--muted)">Best NPC</span>
-          <span class="font-bold tibia-gold">
-            <%= @item.highest_npc_buy_price.to_i > 0 ? "#{number_with_delimiter(@item.highest_npc_buy_price)} gp" : "—" %>
-          </span>
-        </div>
+  <!-- Item -->
+  <aside class="card p-6 self-start" data-rise style="--d:1">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <p class="label mb-2"><%= @item.item_type.presence || "Item" %></p>
+        <h1 class="serif text-[32px] leading-[1.05]"><%= @item.name %></h1>
       </div>
-
-      <a href="<%= @item.wiki_url %>" target="_blank"
-        class="mt-6 block text-center text-xs hover:underline"
-        style="color:var(--accent)">
-        View on TibiaWiki ↗
-      </a>
+      <div class="w-20 h-20 rounded-2xl bg-stone-900 border border-white/5 grid place-items-center shrink-0">
+        <% if @item.image_url.present? %>
+          <img src="<%= @item.image_url %>" alt="<%= @item.name %>" class="w-16 h-16 object-contain sprite" onerror="this.style.display='none'">
+        <% end %>
+      </div>
     </div>
-  </div>
 
-  <!-- Prices -->
-  <div class="md:col-span-2 space-y-5">
+    <% best = @buy_prices.first %>
+    <div class="mt-6">
+      <p class="label">Best NPC price</p>
+      <p class="serif text-[44px] leading-none mt-2 num">
+        <% if @item.highest_npc_buy_price.to_i > 0 %>
+          <span class="text-amber-400" data-count="<%= @item.highest_npc_buy_price.to_i %>">0</span><span class="text-lg text-stone-500 font-sans"> gp</span>
+        <% else %>
+          <span class="text-stone-600">—</span>
+        <% end %>
+      </p>
+      <% if best %><p class="text-[13px] text-stone-400 mt-2"><%= best.npc_name %><%= " · #{best.npc_location}" if best.npc_location.present? %></p><% end %>
+    </div>
 
-    <!-- NPC Buyers -->
-    <div class="card-bg rounded-xl overflow-hidden">
-      <div class="px-5 py-3" style="border-bottom:1px solid var(--border)">
-        <h2 class="font-semibold text-sm uppercase tracking-wide tibia-gold">🪙 NPCs that buy</h2>
-        <p class="text-xs mt-0.5" style="color:var(--muted)">What NPCs pay you for this item</p>
+    <dl class="mt-6 divider pt-4 space-y-2.5 text-[13.5px]">
+      <% if @item.weight.present? %>
+        <div class="flex justify-between"><dt class="text-stone-500">Weight</dt><dd class="num"><%= @item.weight %> oz</dd></div>
+      <% end %>
+      <% if @item.avg_market_price.to_i > 0 %>
+        <div class="flex justify-between"><dt class="text-stone-500">Market average</dt><dd class="num text-sky-400"><%= number_with_delimiter(@item.avg_market_price) %> gp</dd></div>
+      <% end %>
+      <div class="flex justify-between"><dt class="text-stone-500">NPCs buying</dt><dd class="num"><%= @buy_prices.size %></dd></div>
+    </dl>
+
+    <a href="<%= @item.wiki_url %>" target="_blank" rel="noopener" class="btn btn-ghost w-full mt-6">View on TibiaWiki ↗</a>
+  </aside>
+
+  <div class="flex flex-col gap-4 min-w-0">
+
+    <!-- Live market (world-specific) -->
+    <section id="live-price-card" class="card overflow-hidden" style="display:none" data-rise>
+      <div class="px-5 pt-4 pb-3 flex items-center justify-between">
+        <h2 class="text-[15px] font-medium flex items-center gap-2"><span class="live"></span> Market on <span id="live-world-name"></span></h2>
+        <span class="label">Live · TibiaData</span>
+      </div>
+      <div id="live-price-body" class="px-5 pb-5 text-sm">
+        <div class="grid grid-cols-2 gap-6"><span class="skeleton h-10">&nbsp;</span><span class="skeleton h-10">&nbsp;</span></div>
+      </div>
+    </section>
+
+    <!-- NPC buyers -->
+    <section class="card overflow-hidden" data-rise style="--d:2">
+      <div class="px-5 pt-4 pb-3 flex items-baseline justify-between gap-4">
+        <h2 class="text-[15px] font-medium">NPCs that buy</h2>
+        <span class="label">What NPCs pay you for this item</span>
       </div>
       <% if @buy_prices.any? %>
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="text-xs uppercase" style="background:var(--sand); color:var(--muted)">
-              <th class="px-5 py-2 text-left">NPC</th>
-              <th class="px-5 py-2 text-left">Location</th>
-              <th class="px-5 py-2 text-right">Price</th>
-            </tr>
-          </thead>
-          <tbody>
+        <% top = @buy_prices.first.price.to_f %>
+        <table class="table">
+          <thead><tr><th>NPC</th><th class="hidden sm:table-cell">Location</th><th class="text-right">Price</th></tr></thead>
+          <tbody class="stagger">
             <% @buy_prices.each_with_index do |price, i| %>
-              <tr style="border-bottom:1px solid var(--border); <%= i == 0 ? 'background:#3D3F50;' : 'background:var(--cream);' %>">
-                <td class="px-5 py-3 font-medium" style="color:var(--dark)">
-                  <%= i == 0 ? "⭐ " : "" %><a href="https://www.tibiawiki.com.br/wiki/<%= URI.encode_www_form_component(price.npc_name.gsub(' ', '_')) %>" target="_blank" class="hover:underline" style="color:var(--accent)"><%= price.npc_name %></a>
+              <tr>
+                <td>
+                  <a href="https://www.tibiawiki.com.br/wiki/<%= URI.encode_www_form_component(price.npc_name.gsub(' ', '_')) %>" target="_blank" rel="noopener" class="font-medium hover:text-amber-300 transition-colors"><%= price.npc_name %></a>
+                  <% if i == 0 %><span class="verdict npc ml-2">Best</span><% end %>
+                  <div class="bar mt-2 max-w-[220px]"><i style="width:<%= top > 0 ? (price.price / top * 100).round : 0 %>%; background:<%= i == 0 ? 'var(--gold)' : 'var(--line-2)' %>"></i></div>
                 </td>
-                <td class="px-5 py-3 text-xs" style="color:var(--muted)"><%= price.npc_location || "—" %></td>
-                <td class="px-5 py-3 text-right font-bold <%= i == 0 ? 'tibia-gold' : '' %>"
-                    style="<%= i > 0 ? 'color:var(--muted)' : '' %>">
-                  <%= number_with_delimiter(price.price) %> gp
-                </td>
+                <td class="hidden sm:table-cell text-stone-400 text-[13px]"><%= price.npc_location || "—" %></td>
+                <td class="text-right num font-medium <%= i == 0 ? 'text-amber-400' : 'text-stone-400' %>"><%= number_with_delimiter(price.price) %> gp</td>
               </tr>
             <% end %>
           </tbody>
         </table>
       <% else %>
-        <p class="px-5 py-6 text-sm" style="color:var(--muted)">No NPC buys this item.</p>
+        <p class="px-5 pb-6 text-sm text-stone-500">No NPC buys this item.</p>
       <% end %>
-    </div>
+    </section>
 
-    <!-- NPC Sellers -->
+    <!-- NPC sellers -->
     <% if @sell_prices.any? %>
-      <div class="card-bg rounded-xl overflow-hidden">
-        <div class="px-5 py-3" style="border-bottom:1px solid var(--border)">
-          <h2 class="font-semibold text-sm uppercase tracking-wide" style="color:var(--brown)">🏪 NPCs that sell</h2>
-          <p class="text-xs mt-0.5" style="color:var(--muted)">Where to buy this item from NPCs</p>
+      <section class="card overflow-hidden" data-rise style="--d:3">
+        <div class="px-5 pt-4 pb-3 flex items-baseline justify-between gap-4">
+          <h2 class="text-[15px] font-medium">NPCs that sell</h2>
+          <span class="label">Where to buy it from NPCs</span>
         </div>
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="text-xs uppercase" style="background:var(--sand); color:var(--muted)">
-              <th class="px-5 py-2 text-left">NPC</th>
-              <th class="px-5 py-2 text-left">Location</th>
-              <th class="px-5 py-2 text-right">Price</th>
-            </tr>
-          </thead>
-          <tbody>
+        <table class="table">
+          <thead><tr><th>NPC</th><th class="hidden sm:table-cell">Location</th><th class="text-right">Price</th></tr></thead>
+          <tbody class="stagger">
             <% @sell_prices.each do |price| %>
-              <tr style="border-bottom:1px solid var(--border); background:var(--cream)">
-                <td class="px-5 py-3"><a href="https://www.tibiawiki.com.br/wiki/<%= URI.encode_www_form_component(price.npc_name.gsub(' ', '_')) %>" target="_blank" class="hover:underline" style="color:var(--accent)"><%= price.npc_name %></a></td>
-                <td class="px-5 py-3 text-xs" style="color:var(--muted)"><%= price.npc_location || "—" %></td>
-                <td class="px-5 py-3 text-right" style="color:var(--brown)">
-                  <%= number_with_delimiter(price.price) %> gp
-                </td>
+              <tr>
+                <td><a href="https://www.tibiawiki.com.br/wiki/<%= URI.encode_www_form_component(price.npc_name.gsub(' ', '_')) %>" target="_blank" rel="noopener" class="font-medium hover:text-amber-300 transition-colors"><%= price.npc_name %></a></td>
+                <td class="hidden sm:table-cell text-stone-400 text-[13px]"><%= price.npc_location || "—" %></td>
+                <td class="text-right num text-stone-300"><%= number_with_delimiter(price.price) %> gp</td>
               </tr>
             <% end %>
           </tbody>
         </table>
-      </div>
+      </section>
     <% end %>
-
-    <!-- Live Market Price (world-specific) -->
-    <div id="live-price-card" class="card-bg rounded-xl overflow-hidden" style="display:none">
-      <div class="px-5 py-3" style="border-bottom:1px solid var(--border)">
-        <h2 class="font-semibold text-sm uppercase tracking-wide" style="color:var(--accent)">
-          🌍 Market on <span id="live-world-name"></span>
-        </h2>
-        <p class="text-xs mt-0.5" style="color:var(--muted)">Live data · TibiaData.com</p>
-      </div>
-      <div id="live-price-body" class="px-5 py-5 text-sm">
-        <p style="color:var(--muted)">Loading…</p>
-      </div>
-    </div>
-
   </div>
 </div>
 
@@ -146,7 +128,7 @@
     .then(function(r){ return r.json(); })
     .then(function(data){
       var item = data.market && data.market.item;
-      if (!item) { body.innerHTML = '<p style="color:var(--muted)">No market data for this world.</p>'; return; }
+      if (!item) { body.innerHTML = '<p class="text-stone-500">No market data for this world.</p>'; return; }
 
       var buy  = item.buy_statistics  || item.buyed  || {};
       var sell = item.sell_statistics || item.sold   || {};
@@ -156,22 +138,22 @@
       body.innerHTML =
         '<div class="grid grid-cols-2 gap-6">' +
           '<div>' +
-            '<p class="text-xs uppercase mb-2" style="color:var(--muted)">Buyers paying</p>' +
-            '<p class="text-2xl font-bold tibia-gold">' + fmt(buy.last_day_value || buy.average) + '</p>' +
-            '<p class="text-xs mt-1" style="color:var(--muted)">' + traders(buy.last_day_traders || buy.total) + ' today</p>' +
+            '<p class="label mb-2">Buyers paying</p>' +
+            '<p class="serif text-[34px] leading-none num text-amber-400">' + fmt(buy.last_day_value || buy.average) + '</p>' +
+            '<p class="text-xs text-stone-500 mt-2">' + traders(buy.last_day_traders || buy.total) + ' today</p>' +
           '</div>' +
           '<div>' +
-            '<p class="text-xs uppercase mb-2" style="color:var(--muted)">Sellers asking</p>' +
-            '<p class="text-2xl font-bold" style="color:var(--accent)">' + fmt(sell.last_day_value || sell.average) + '</p>' +
-            '<p class="text-xs mt-1" style="color:var(--muted)">' + traders(sell.last_day_traders || sell.total) + ' today</p>' +
+            '<p class="label mb-2">Sellers asking</p>' +
+            '<p class="serif text-[34px] leading-none num text-sky-400">' + fmt(sell.last_day_value || sell.average) + '</p>' +
+            '<p class="text-xs text-stone-500 mt-2">' + traders(sell.last_day_traders || sell.total) + ' today</p>' +
           '</div>' +
         '</div>' +
-        '<p class="text-xs mt-4 pt-3" style="color:var(--muted);border-top:1px solid var(--border)">' +
-          'Last 24 hours · <a href="https://www.tibia.com/market/?currenttab=buy&itemid=' + marketId + '&world=' + encodeURIComponent(world) + '" target="_blank" style="color:var(--accent)">View on Tibia.com ↗</a>' +
+        '<p class="text-xs text-stone-500 mt-5 pt-3 divider">' +
+          'Last 24 hours · <a class="text-stone-300 hover:text-white" href="https://www.tibia.com/market/?currenttab=buy&itemid=' + marketId + '&world=' + encodeURIComponent(world) + '" target="_blank" rel="noopener">View on Tibia.com ↗</a>' +
         '</p>';
     })
     .catch(function(){
-      body.innerHTML = '<p style="color:var(--muted)">Could not load live data.</p>';
+      body.innerHTML = '<p class="text-stone-500">Could not load live data.</p>';
     });
 })();
 </script>

@@ -1,220 +1,178 @@
-<!-- Page-top loading bar -->
-<style>
-#page-load-bar{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;display:none;background:rgba(189,147,249,0.12);}
-#page-load-bar::after{content:'';position:absolute;top:0;left:-60%;width:45%;height:100%;background:linear-gradient(90deg,transparent,#BD93F9,#FF79C6,#BD93F9,transparent);animation:loadbar-sweep 1.1s ease-in-out infinite;}
-@keyframes loadbar-sweep{0%{left:-60%}100%{left:110%}}
-</style>
-<div id="page-load-bar"></div>
+<% content_for :title, "Items – TibiaLootFinder" %>
 
-<!-- Search & Sort -->
-<form method="get" action="/" class="mb-6 flex flex-col sm:flex-row gap-3">
-  <div class="relative flex-1">
-    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style="color:var(--muted)">🔍</span>
-    <input
-      type="text"
-      id="search-q"
-      name="q"
-      value="<%= @query %>"
-      placeholder="Search item… e.g. Dragon Scale Mail"
-      style="background:var(--cream); border:1px solid var(--border); color:var(--text);"
-      class="w-full rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2"
-      style="--tw-ring-color:var(--accent);"
-    >
+<!-- Hero -->
+<section class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-4 mb-4">
+  <div class="card p-6 sm:p-8" data-rise style="--d:0">
+    <p class="label mb-3 flex items-center gap-2"><span class="live"></span> Item prices · updated from TibiaWiki</p>
+    <h1 class="serif text-[34px] sm:text-[44px] leading-[1.05] max-w-2xl">
+      What is your loot <span class="text-amber-400">really</span> worth?
+    </h1>
+    <p class="text-stone-400 text-[15px] mt-3 max-w-xl">Best NPC buyer and Market value for every tradeable item. Pick your world for live Market prices.</p>
+
+    <form method="get" action="/" class="mt-6 flex flex-col sm:flex-row gap-2">
+      <div class="relative flex-1">
+        <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-500" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="text" id="search-q" name="q" value="<%= @query %>" autocomplete="off"
+               placeholder="Search an item… e.g. Dragon Scale Mail" class="field pl-10 h-[44px]">
+      </div>
+      <select name="sort" onchange="this.form.submit()" class="field h-[44px] sm:w-44">
+        <option value="market" <%= "selected" if @sort == "market" %>>Market value</option>
+        <option value="value"  <%= "selected" if @sort == "value"  %>>NPC price</option>
+        <option value="name"   <%= "selected" if @sort == "name"   %>>Name A–Z</option>
+      </select>
+      <select id="world-sel" class="field h-[44px] sm:w-40"><option value="">World</option><option value="Antica">Antica</option><option value="Bona">Bona</option><option value="Calmera">Calmera</option><option value="Celesta">Celesta</option><option value="Chrona">Chrona</option><option value="Damora">Damora</option><option value="Descubra">Descubra</option><option value="Dibra">Dibra</option><option value="Duna">Duna</option><option value="Eldera">Eldera</option><option value="Epoca">Epoca</option><option value="Fera">Fera</option><option value="Firmera">Firmera</option><option value="Gladera">Gladera</option><option value="Harmonia">Harmonia</option><option value="Helera">Helera</option><option value="Honbra">Honbra</option><option value="Igobra">Igobra</option><option value="Inabra">Inabra</option><option value="Javibra">Javibra</option><option value="Kalibra">Kalibra</option><option value="Kenora">Kenora</option><option value="Laudera">Laudera</option><option value="Lobera">Lobera</option><option value="Luminera">Luminera</option><option value="Lutabra">Lutabra</option><option value="Mabera">Mabera</option><option value="Marcia">Marcia</option><option value="Menera">Menera</option><option value="Mercera">Mercera</option><option value="Mitigera">Mitigera</option><option value="Monza">Monza</option><option value="Morta">Morta</option><option value="Mundra">Mundra</option><option value="Mythera">Mythera</option><option value="Nadora">Nadora</option><option value="Nefera">Nefera</option><option value="Nobra">Nobra</option><option value="Nossobra">Nossobra</option><option value="Odera">Odera</option><option value="Ombra">Ombra</option><option value="Optionis">Optionis</option><option value="Pacembra">Pacembra</option><option value="Peloria">Peloria</option><option value="Premia">Premia</option><option value="Pythera">Pythera</option><option value="Quelibra">Quelibra</option><option value="Refugia">Refugia</option><option value="Relania">Relania</option><option value="Ribera">Ribera</option><option value="Runera">Runera</option><option value="Sabura">Sabura</option><option value="Secura">Secura</option><option value="Serdebra">Serdebra</option><option value="Silvera">Silvera</option><option value="Solidera">Solidera</option><option value="Talera">Talera</option><option value="Thyria">Thyria</option><option value="Torpera">Torpera</option><option value="Trimera">Trimera</option><option value="Umbra">Umbra</option><option value="Unebra">Unebra</option><option value="Utobra">Utobra</option><option value="Venebra">Venebra</option><option value="Victoris">Victoris</option><option value="Vunira">Vunira</option><option value="Wadalbra">Wadalbra</option><option value="Wintera">Wintera</option><option value="Wizera">Wizera</option><option value="Xandebra">Xandebra</option><option value="Yonabra">Yonabra</option><option value="Zanera">Zanera</option><option value="Zunera">Zunera</option></select>
+      <button type="submit" class="btn-primary h-[44px] px-5">Search</button>
+    </form>
   </div>
-  <select name="sort" onchange="this.form.submit()"
-    style="background:var(--cream); border:1px solid var(--border); color:var(--text);"
-    class="rounded-lg px-4 py-2.5 text-sm focus:outline-none">
-    <option value="market" <%= "selected" if @sort == "market" %>>📈 Market Value</option>
-    <option value="value"  <%= "selected" if @sort == "value"  %>>💰 NPC Price</option>
-    <option value="name"   <%= "selected" if @sort == "name"   %>>Name A–Z</option>
-  </select>
-  <% if params[:q].present? %>
-    <input type="hidden" name="sort" value="<%= @sort %>">
-  <% end %>
-  <select id="world-sel" style="background:var(--cream); border:1px solid var(--border); color:var(--text);" class="rounded-lg px-4 py-2.5 text-sm focus:outline-none"><option value="">🌍 World</option><option value="Antica">Antica</option><option value="Bona">Bona</option><option value="Calmera">Calmera</option><option value="Celesta">Celesta</option><option value="Chrona">Chrona</option><option value="Damora">Damora</option><option value="Descubra">Descubra</option><option value="Dibra">Dibra</option><option value="Duna">Duna</option><option value="Eldera">Eldera</option><option value="Epoca">Epoca</option><option value="Fera">Fera</option><option value="Firmera">Firmera</option><option value="Gladera">Gladera</option><option value="Harmonia">Harmonia</option><option value="Helera">Helera</option><option value="Honbra">Honbra</option><option value="Igobra">Igobra</option><option value="Inabra">Inabra</option><option value="Javibra">Javibra</option><option value="Kalibra">Kalibra</option><option value="Kenora">Kenora</option><option value="Laudera">Laudera</option><option value="Lobera">Lobera</option><option value="Luminera">Luminera</option><option value="Lutabra">Lutabra</option><option value="Mabera">Mabera</option><option value="Marcia">Marcia</option><option value="Menera">Menera</option><option value="Mercera">Mercera</option><option value="Mitigera">Mitigera</option><option value="Monza">Monza</option><option value="Morta">Morta</option><option value="Mundra">Mundra</option><option value="Mythera">Mythera</option><option value="Nadora">Nadora</option><option value="Nefera">Nefera</option><option value="Nobra">Nobra</option><option value="Nossobra">Nossobra</option><option value="Odera">Odera</option><option value="Ombra">Ombra</option><option value="Optionis">Optionis</option><option value="Pacembra">Pacembra</option><option value="Peloria">Peloria</option><option value="Premia">Premia</option><option value="Pythera">Pythera</option><option value="Quelibra">Quelibra</option><option value="Refugia">Refugia</option><option value="Relania">Relania</option><option value="Ribera">Ribera</option><option value="Runera">Runera</option><option value="Sabura">Sabura</option><option value="Secura">Secura</option><option value="Serdebra">Serdebra</option><option value="Silvera">Silvera</option><option value="Solidera">Solidera</option><option value="Talera">Talera</option><option value="Thyria">Thyria</option><option value="Torpera">Torpera</option><option value="Trimera">Trimera</option><option value="Umbra">Umbra</option><option value="Unebra">Unebra</option><option value="Utobra">Utobra</option><option value="Venebra">Venebra</option><option value="Victoris">Victoris</option><option value="Vunira">Vunira</option><option value="Wadalbra">Wadalbra</option><option value="Wintera">Wintera</option><option value="Wizera">Wizera</option><option value="Xandebra">Xandebra</option><option value="Yonabra">Yonabra</option><option value="Zanera">Zanera</option><option value="Zunera">Zunera</option></select>
-  <button type="submit" class="btn-primary px-5 py-2.5 text-sm">Search</button>
-</form>
 
-<div id="price-loading-status" style="display:none; text-align:center; padding:6px 0 2px; font-size:13px; color:var(--muted);">
-  <span id="price-loading-text">🌍 Loading prices…</span>
+  <div class="grid grid-cols-2 gap-4">
+    <div class="card p-5 flex flex-col justify-between" data-rise style="--d:1">
+      <p class="label">Items tracked</p>
+      <p class="serif text-[40px] leading-none num mt-4" data-count="<%= Item.where.not(market_item_id: nil).count %>">0</p>
+      <p class="text-xs text-stone-500 mt-2">with a Market id</p>
+    </div>
+    <div class="card p-5 flex flex-col justify-between" data-rise style="--d:2">
+      <p class="label">NPC buyers</p>
+      <p class="serif text-[40px] leading-none num mt-4" data-count="<%= NpcPrice.buy.count %>">0</p>
+      <p class="text-xs text-stone-500 mt-2">buy offers known</p>
+    </div>
+    <a href="/loot" class="card card-hover p-5 col-span-2 flex items-center justify-between gap-4 group" data-rise style="--d:3">
+      <div>
+        <p class="label">After a hunt</p>
+        <p class="text-[15px] mt-1">Paste your Hunt Analyser and see where to sell each item</p>
+      </div>
+      <span class="text-stone-500 group-hover:text-white group-hover:translate-x-1 transition-all text-xl">→</span>
+    </a>
+  </div>
+</section>
+
+<div id="price-loading-status" class="hidden text-center py-2 text-[13px] text-stone-400">
+  <span id="price-loading-text">Loading prices…</span>
 </div>
 
 <div id="items-results">
-<!-- Stats -->
-<div class="flex items-center justify-between mb-4 text-xs" style="color:var(--muted)">
-  <span>
-    <% if @query.present? %>
-      <%= @total_count %> result<%= @total_count == 1 ? "" : "s" %> for "<%= @query %>"
-    <% else %>
-      <%= @total_count %> items in database
-    <% end %>
-  </span>
-  <span>Page <%= @page %> of <%= @total_pages %></span>
-</div>
+<section class="card overflow-hidden" data-rise style="--d:4">
+  <div class="flex items-center justify-between px-5 pt-4 pb-3">
+    <h2 class="text-[15px] font-medium">
+      <% if @query.present? %>
+        <%= @total_count %> result<%= @total_count == 1 ? "" : "s" %> for “<%= @query %>”
+      <% else %>
+        All items
+      <% end %>
+    </h2>
+    <span class="label num">Page <%= @page %> of <%= @total_pages %></span>
+  </div>
 
-<!-- Table -->
 <% if @items.empty? %>
-  <div class="text-center py-24" style="color:var(--muted)">
-    <p class="text-4xl mb-4">🗡️</p>
-    <p class="text-lg font-medium" style="color:var(--dark)">No items found.</p>
+  <div class="text-center py-20 divider">
+    <p class="serif text-2xl">No items found.</p>
     <% if @query.present? %>
-      <p class="text-sm mt-2">Try a different search term.</p>
+      <p class="text-sm text-stone-500 mt-2">Try a different search term.</p>
     <% else %>
-      <p class="text-sm mt-2">Run <code class="px-1 rounded" style="background:var(--border)">rake tibia:import</code> to import data.</p>
+      <p class="text-sm text-stone-500 mt-2">Run <code class="kbd">rake tibia:import</code> to import data.</p>
     <% end %>
   </div>
 <% else %>
-  <div class="rounded-xl overflow-hidden" style="border:1px solid var(--border)">
-    <table class="w-full text-sm">
+  <div class="overflow-x-auto">
+    <table class="table">
       <thead>
-        <tr class="text-left text-xs uppercase tracking-wider"
-            style="background:var(--sand); border-bottom:1px solid var(--border); color:var(--muted)">
-          <th class="px-4 py-3 w-10">#</th>
-          <th class="px-4 py-3">Item</th>
-          <th class="px-4 py-3 text-right hidden sm:table-cell">NPC Price</th>
-          <th class="px-4 py-3 text-right">Market Avg</th>
-          <th class="px-4 py-3 text-center hidden md:table-cell">vs NPC</th>
-          <th class="px-4 py-3 hidden lg:table-cell">Best Buyer</th>
+        <tr>
+          <th class="w-12">#</th>
+          <th>Item</th>
+          <th class="text-right hidden sm:table-cell">NPC price</th>
+          <th class="text-right">Market</th>
+          <th class="text-center hidden md:table-cell">vs NPC</th>
+          <th class="hidden lg:table-cell">Best buyer</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="stagger">
         <% offset = (@page - 1) * ItemsController::PER_PAGE %>
         <% @items.each_with_index do |item, i| %>
-          <tr class="card-hover cursor-pointer border-b"
-              style="background:var(--cream); border-color:var(--border);"
-              onclick="window.location='<%= item_path(item.slug) %>'" data-market-id="<%= item.market_item_id.to_i %>">
-            <td class="px-4 py-3 text-xs font-mono" style="color:var(--muted)"><%= offset + i + 1 %></td>
-            <td class="px-4 py-3">
+          <tr class="cursor-pointer" onclick="window.location='<%= item_path(item.slug) %>'" data-market-id="<%= item.market_item_id.to_i %>">
+            <td class="text-xs text-stone-500 num"><%= offset + i + 1 %></td>
+            <td>
               <div class="flex items-center gap-3">
-                <% if item.image_url.present? %>
-                  <img src="<%= item.image_url %>" alt="<%= item.name %>"
-                       class="w-8 h-8 object-contain flex-shrink-0" style="image-rendering:pixelated"
-                       onerror="this.style.display='none'">
-                <% else %>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="32" height="32" style="image-rendering:pixelated;shape-rendering:crispEdges;display:inline;vertical-align:middle"><style>@keyframes pridx{0%{transform:translateY(0)scaleY(1)scaleX(1)}18%{transform:translateY(-7px)scaleY(1.1)scaleX(0.91)}42%{transform:translateY(-8px)scaleY(1.13)scaleX(0.9)}60%{transform:translateY(0)scaleY(0.65)scaleX(1.2)}73%{transform:translateY(-3px)scaleY(1.07)scaleX(0.95)}86%{transform:translateY(0)scaleY(0.94)scaleX(1.03)}100%{transform:translateY(0)scaleY(1)scaleX(1)}}.pridx{animation:pridx 0.85s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}@keyframes prbl_i{0%,78%{fill:#191A21}82%,90%{fill:#FF79C6}94%,100%{fill:#191A21}}.preye_i{animation:prbl_i 3.2s ease-in-out infinite}</style><g class="pridx"><rect x="2" y="0" width="1" height="1" fill="#FF79C6"/><rect x="3" y="0" width="1" height="1" fill="#FF79C6"/><rect x="4" y="0" width="1" height="1" fill="#FF79C6"/><rect x="5" y="0" width="1" height="1" fill="#FF79C6"/><rect x="1" y="1" width="1" height="1" fill="#FF79C6"/><rect x="2" y="1" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FF79C6"/><rect x="4" y="1" width="1" height="1" fill="#FF79C6"/><rect x="5" y="1" width="1" height="1" fill="#FF79C6"/><rect x="6" y="1" width="1" height="1" fill="#FF79C6"/><rect x="0" y="2" width="1" height="1" fill="#FF79C6"/><rect x="1" y="2" width="1" height="1" fill="#FF79C6"/><rect x="2" y="2" width="1" height="1" fill="#FF79C6"/><rect x="3" y="2" width="1" height="1" fill="#FF79C6"/><rect x="4" y="2" width="1" height="1" fill="#FF79C6"/><rect x="5" y="2" width="1" height="1" fill="#FF79C6"/><rect x="6" y="2" width="1" height="1" fill="#FF79C6"/><rect x="7" y="2" width="1" height="1" fill="#FF79C6"/><rect x="0" y="3" width="1" height="1" fill="#FF79C6"/><rect x="1" y="3" width="1" height="1" fill="#FF79C6"/><rect x="3" y="3" width="1" height="1" fill="#FF79C6"/><rect x="4" y="3" width="1" height="1" fill="#FF79C6"/><rect x="6" y="3" width="1" height="1" fill="#FF79C6"/><rect x="7" y="3" width="1" height="1" fill="#FF79C6"/><rect x="0" y="4" width="1" height="1" fill="#FF79C6"/><rect x="1" y="4" width="1" height="1" fill="#FF79C6"/><rect x="3" y="4" width="1" height="1" fill="#FF79C6"/><rect x="4" y="4" width="1" height="1" fill="#FF79C6"/><rect x="6" y="4" width="1" height="1" fill="#FF79C6"/><rect x="7" y="4" width="1" height="1" fill="#FF79C6"/><rect x="0" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="5" width="1" height="1" fill="#FF79C6"/><rect x="2" y="5" width="1" height="1" fill="#FF79C6"/><rect x="5" y="5" width="1" height="1" fill="#FF79C6"/><rect x="6" y="5" width="1" height="1" fill="#FF79C6"/><rect x="7" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="6" width="1" height="1" fill="#FF79C6"/><rect x="3" y="6" width="1" height="1" fill="#FF79C6"/><rect x="4" y="6" width="1" height="1" fill="#FF79C6"/><rect x="5" y="6" width="1" height="1" fill="#FF79C6"/><rect x="6" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="7" width="1" height="1" fill="#FF79C6"/><rect x="4" y="7" width="1" height="1" fill="#FF79C6"/><rect x="5" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="4" y="1" width="1" height="1" fill="#FFB8E0"/><rect class="preye_i" x="2" y="3" width="1" height="1" fill="#191A21"/><rect class="preye_i" x="5" y="3" width="1" height="1" fill="#191A21"/><rect class="preye_i" x="2" y="4" width="1" height="1" fill="#191A21"/><rect class="preye_i" x="5" y="4" width="1" height="1" fill="#191A21"/><rect x="3" y="5" width="1" height="1" fill="#191A21"/><rect x="4" y="5" width="1" height="1" fill="#191A21"/></g></svg>
-                <% end %>
-                <div>
-                  <a href="<%= item_path(item.slug) %>"
-                     class="font-medium hover:underline"
-                     style="color:var(--dark)">
-                    <%= item.name %>
-                  </a>
-                  <% if item.weight.present? %>
-                    <p class="text-xs" style="color:var(--muted)"><%= item.weight %> oz</p>
+                <div class="w-9 h-9 rounded-lg bg-stone-900 border border-white/5 grid place-items-center shrink-0">
+                  <% if item.image_url.present? %>
+                    <img src="<%= item.image_url %>" alt="" class="w-8 h-8 object-contain sprite" loading="lazy" onerror="this.style.display='none'">
                   <% end %>
-                  <% if item.item_type.present? %>
-                    <span class="tag"><%= item.item_type %></span>
-                  <% end %>
+                </div>
+                <div class="min-w-0">
+                  <a href="<%= item_path(item.slug) %>" class="font-medium hover:text-amber-300 transition-colors"><%= item.name %></a>
+                  <div class="flex items-center gap-2 mt-0.5">
+                    <% if item.item_type.present? %><span class="tag"><%= item.item_type %></span><% end %>
+                    <% if item.weight.present? %><span class="text-xs text-stone-500 num"><%= item.weight %> oz</span><% end %>
+                  </div>
                 </div>
               </div>
             </td>
-            <td class="px-4 py-3 text-right hidden sm:table-cell">
+            <td class="text-right hidden sm:table-cell num">
               <% if item.highest_npc_buy_price.to_i > 0 %>
-                <span class="font-bold tibia-gold"><%= number_with_delimiter(item.highest_npc_buy_price) %></span>
-                <span class="text-xs" style="color:var(--muted)"> gp</span>
+                <span class="font-medium text-amber-400"><%= number_with_delimiter(item.highest_npc_buy_price) %></span><span class="text-xs text-stone-500"> gp</span>
               <% else %>
-                <span class="text-xs" style="color:var(--border)">—</span>
+                <span class="text-stone-600">—</span>
               <% end %>
             </td>
-            <td class="px-4 py-3 text-right" data-live-price data-db-price="<%= item.avg_market_price.to_i %>">
+            <td class="text-right num" data-live-price data-db-price="<%= item.avg_market_price.to_i %>">
               <% if item.avg_market_price.to_i > 0 %>
-                <span class="font-bold" style="color:var(--accent)"><%= number_with_delimiter(item.avg_market_price) %></span>
-                <span class="text-xs" style="color:var(--muted)"> gp</span>
+                <span class="font-medium text-sky-400"><%= number_with_delimiter(item.avg_market_price) %></span><span class="text-xs text-stone-500"> gp</span>
               <% else %>
-                <span class="text-xs" style="color:var(--border)">—</span>
+                <span class="text-stone-600">—</span>
               <% end %>
             </td>
-            <td class="px-4 py-3 text-center hidden md:table-cell">
+            <td class="text-center hidden md:table-cell">
               <% pct = item.market_premium_pct %>
               <% if pct && pct > 0 %>
-                <span class="tag" style="background:rgba(80,250,123,0.15); color:#50FA7B; font-size:10px">
-                  📈 +<%= pct %>%
-                </span>
+                <span class="verdict market num">+<%= pct %>%</span>
               <% elsif item.avg_market_price.to_i > 0 && item.highest_npc_buy_price.to_i > 0 %>
-                <span class="tag" style="font-size:10px; color:var(--muted)">≈ NPC</span>
+                <span class="verdict equal">≈ NPC</span>
               <% else %>
-                <span style="color:var(--border)">—</span>
+                <span class="text-stone-600">—</span>
               <% end %>
             </td>
-            <td class="px-4 py-3 hidden lg:table-cell text-sm" style="color:var(--brown)">
-              <%= item.best_buyer&.npc_name || "—" %>
-            </td>
+            <td class="hidden lg:table-cell text-stone-300"><%= item.best_buyer&.npc_name || "—" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
+<% end %>
+</section>
 
-  <!-- Pagination -->
-  <% if @total_pages > 1 %>
-    <nav class="mt-6 flex items-center justify-center gap-1 text-sm flex-wrap">
-      <%
-        q_part   = @query.present? ? "&q=#{CGI.escape(@query)}" : ""
-        sort_part = "&sort=#{@sort}"
-
-        def page_link(page, label, current:, disabled:)
-          cls = "px-3 py-1.5 rounded-lg font-medium transition-colors "
-          if current
-            cls += "text-white" # styled below with inline
-          elsif disabled
-            cls += "opacity-30 cursor-not-allowed"
-          else
-            cls += "hover:opacity-80"
-          end
-          cls
-        end
-      %>
-
-      <!-- Prev -->
-      <% if @page > 1 %>
-        <a href="?page=<%= @page - 1 %><%= q_part %><%= sort_part %>"
-           class="px-3 py-1.5 rounded-lg font-medium transition-colors"
-           style="background:var(--cream); border:1px solid var(--border); color:var(--brown)">
-          ← Prev
-        </a>
-      <% end %>
-
-      <%
-        # Show: first, ..., window around current, ..., last
-        pages_to_show = ([@page - 2, 1].max..[@page + 2, @total_pages].min).to_a
-        pages_to_show = [1] + pages_to_show if pages_to_show.first > 1
-        pages_to_show = pages_to_show + [@total_pages] if pages_to_show.last < @total_pages
-        pages_to_show.uniq!
-      %>
-
+<% if @items.any? && @total_pages > 1 %>
+  <%
+    q_part    = @query.present? ? "&q=#{CGI.escape(@query)}" : ""
+    sort_part = "&sort=#{@sort}"
+    pages_to_show = ([@page - 2, 1].max..[@page + 2, @total_pages].min).to_a
+    pages_to_show = [1] + pages_to_show if pages_to_show.first > 1
+    pages_to_show = pages_to_show + [@total_pages] if pages_to_show.last < @total_pages
+    pages_to_show.uniq!
+  %>
+  <nav class="mt-5 flex items-center justify-center gap-3 flex-wrap">
+    <% if @page > 1 %>
+      <a href="?page=<%= @page - 1 %><%= q_part %><%= sort_part %>" class="btn btn-ghost">← Prev</a>
+    <% end %>
+    <div class="seg">
       <% prev_p = nil %>
       <% pages_to_show.each do |p| %>
-        <% if prev_p && p - prev_p > 1 %>
-          <span class="px-1" style="color:var(--muted)">…</span>
-        <% end %>
+        <% if prev_p && p - prev_p > 1 %><span class="px-1.5 self-center text-stone-600">…</span><% end %>
         <% if p == @page %>
-          <span class="px-3 py-1.5 rounded-lg font-semibold text-white"
-                style="background:var(--accent)"><%= p %></span>
+          <button type="button" aria-pressed="true" class="num"><%= p %></button>
         <% else %>
-          <a href="?page=<%= p %><%= q_part %><%= sort_part %>"
-             class="px-3 py-1.5 rounded-lg transition-colors font-medium"
-             style="background:var(--cream); border:1px solid var(--border); color:var(--brown)">
-            <%= p %>
-          </a>
+          <a href="?page=<%= p %><%= q_part %><%= sort_part %>" class="num h-[30px] px-3 rounded-[9px] text-[12.5px] font-medium text-stone-500 hover:text-white inline-flex items-center transition-colors"><%= p %></a>
         <% end %>
         <% prev_p = p %>
       <% end %>
-
-      <!-- Next -->
-      <% if @page < @total_pages %>
-        <a href="?page=<%= @page + 1 %><%= q_part %><%= sort_part %>"
-           class="px-3 py-1.5 rounded-lg font-medium transition-colors"
-           style="background:var(--cream); border:1px solid var(--border); color:var(--brown)">
-          Next →
-        </a>
-      <% end %>
-    </nav>
-    <p class="text-center text-xs mt-2" style="color:var(--muted)">
-      Showing items <%= (@page - 1) * ItemsController::PER_PAGE + 1 %>–<%= [(@page) * ItemsController::PER_PAGE, @total_count].min %> of <%= @total_count %>
-    </p>
-  <% end %>
-</div>
+    </div>
+    <% if @page < @total_pages %>
+      <a href="?page=<%= @page + 1 %><%= q_part %><%= sort_part %>" class="btn btn-ghost">Next →</a>
+    <% end %>
+  </nav>
+  <p class="text-center text-xs text-stone-500 mt-3 num">
+    Showing <%= (@page - 1) * ItemsController::PER_PAGE + 1 %>–<%= [@page * ItemsController::PER_PAGE, @total_count].min %> of <%= @total_count %>
+  </p>
 <% end %>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
 
@@ -225,15 +183,13 @@ window.TLF = (function(){
 
   function restoreDbPrices(){
     activeFetchId++; // cancel any in-flight fetch
-    var barEl    = document.getElementById('page-load-bar');
-    var statusEl = document.getElementById('price-loading-status');
-    if (barEl)    barEl.style.display    = 'none';
-    if (statusEl) statusEl.style.display = 'none';
+    TLFUI.sweep(false);
+    document.getElementById('price-loading-status').classList.add('hidden');
     document.querySelectorAll('[data-live-price]').forEach(function(cell){
       var db = parseInt(cell.getAttribute('data-db-price'), 10);
       cell.innerHTML = db > 0
-        ? '<span class="font-bold" style="color:var(--accent)">' + db.toLocaleString() + '</span><span class="text-xs" style="color:var(--muted)"> gp</span>'
-        : '<span class="text-xs" style="color:var(--border)">—</span>';
+        ? '<span class="font-medium text-sky-400">' + db.toLocaleString() + '</span><span class="text-xs text-stone-500"> gp</span>'
+        : '<span class="text-stone-600">—</span>';
     });
   }
 
@@ -245,17 +201,16 @@ window.TLF = (function(){
                    .filter(function(id){ return id && parseInt(id,10) > 0; });
     if (!ids.length) return;
 
-    var barEl    = document.getElementById('page-load-bar');
     var statusEl  = document.getElementById('price-loading-status');
     var statusTxt = document.getElementById('price-loading-text');
-    if (barEl)    barEl.style.display    = '';
-    if (statusEl)  statusEl.style.display = '';
-    if (statusTxt) statusTxt.textContent  = '🌍 Loading ' + world + ' prices…';
+    TLFUI.sweep(true);
+    if (statusEl)  statusEl.classList.remove('hidden');
+    if (statusTxt) statusTxt.textContent  = 'Loading live ' + world + ' prices…';
 
     // Set all market-avg cells to spinner
     rows.forEach(function(row){
       var cell = row.querySelector('[data-live-price]');
-      if (cell) cell.innerHTML = '<span style="color:var(--muted);font-size:11px;opacity:0.5">…</span>';
+      if (cell) cell.innerHTML = '<span class="skeleton inline-block w-16 h-4 align-middle">&nbsp;</span>';
     });
 
     // Single batch call through our Rails proxy (avoids CORS)
@@ -280,21 +235,21 @@ window.TLF = (function(){
           if (!cell) return;
           var price = priceMap[mid];
           cell.innerHTML = price
-            ? '<span class="font-bold" style="color:#FF79C6">' + Number(price).toLocaleString() + '</span><span class="text-xs" style="color:var(--muted)"> gp 🌍</span>'
-            : '<span class="text-xs" style="color:var(--border)">—</span>';
+            ? '<span class="font-medium text-sky-300">' + Number(price).toLocaleString() + '</span><span class="text-xs text-stone-500"> gp</span> <span class="live" title="Live price"></span>'
+            : '<span class="text-stone-600">—</span>';
         });
       })
       .catch(function(){
         if (fetchId !== activeFetchId) return;
         rows.forEach(function(row){
           var cell = row.querySelector('[data-live-price]');
-          if (cell) cell.innerHTML = '<span class="text-xs" style="color:var(--border)">?</span>';
+          if (cell) cell.innerHTML = '<span class="text-stone-600">?</span>';
         });
       })
       .finally(function(){
         if (fetchId === activeFetchId) {
-          if (barEl)    barEl.style.display    = 'none';
-          if (statusEl) statusEl.style.display = 'none';
+          TLFUI.sweep(false);
+          if (statusEl) statusEl.classList.add('hidden');
         }
       });
   }
@@ -309,6 +264,7 @@ window.TLF = (function(){
 (function(){
   var inp = document.getElementById("search-q");
   if (!inp) return;
+  if (new URLSearchParams(location.search).get("focus")) inp.focus();
 
   var allNames = null;
   var fuse     = null;
@@ -335,6 +291,7 @@ window.TLF = (function(){
         var fresh = doc.getElementById("items-results");
         if (fresh) {
           document.getElementById("items-results").innerHTML = fresh.innerHTML;
+          document.querySelectorAll("#items-results .stagger > tr").forEach(function(tr, i){ tr.style.setProperty("--i", i); });
           // Re-apply live prices if a world is active
           if (window.TLF && window.TLF.currentWorld) {
             window.TLF.fetchLivePrices(window.TLF.currentWorld);
@@ -409,9 +366,7 @@ window.TLF = (function(){
     else   localStorage.removeItem('tibia_world');
     if (window.TLF) window.TLF.currentWorld = w;
 
-    var pill     = document.getElementById('world-pill');
-    var pillName = document.getElementById('world-pill-name');
-    if (pill && pillName){ pillName.textContent = w; pill.style.display = w ? '' : 'none'; }
+    TLFUI.showWorld();
 
     // Fetch happens on Search (page reload); world selection just saves the preference.
   });

@@ -1,110 +1,100 @@
 <% content_for :title, "Loot Analyzer – TibiaLootFinder" %>
 
-<div class="max-w-5xl mx-auto px-4 py-8">
-  <!-- Header -->
-  <div class="mb-8 text-center">
-    <h1 class="text-3xl font-bold tibia-gold mb-2 flex items-center justify-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="40" height="40" style="image-rendering:pixelated;shape-rendering:crispEdges;display:inline;vertical-align:middle"><style>@keyframes prla{0%{transform:translateY(0)scaleY(1)scaleX(1)}30%{transform:translateY(-5px)scaleY(1.08)scaleX(0.93)}60%{transform:translateY(0)scaleY(0.68)scaleX(1.18)}78%{transform:translateY(-2px)scaleY(1.04)scaleX(0.98)}100%{transform:translateY(0)scaleY(1)scaleX(1)}}.prla{animation:prla 0.65s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}</style><g class="prla"><rect x="2" y="0" width="1" height="1" fill="#FF79C6"/><rect x="3" y="0" width="1" height="1" fill="#FF79C6"/><rect x="4" y="0" width="1" height="1" fill="#FF79C6"/><rect x="5" y="0" width="1" height="1" fill="#FF79C6"/><rect x="1" y="1" width="1" height="1" fill="#FF79C6"/><rect x="2" y="1" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FF79C6"/><rect x="4" y="1" width="1" height="1" fill="#FF79C6"/><rect x="5" y="1" width="1" height="1" fill="#FF79C6"/><rect x="6" y="1" width="1" height="1" fill="#FF79C6"/><rect x="0" y="2" width="1" height="1" fill="#FF79C6"/><rect x="1" y="2" width="1" height="1" fill="#FF79C6"/><rect x="2" y="2" width="1" height="1" fill="#FF79C6"/><rect x="3" y="2" width="1" height="1" fill="#FF79C6"/><rect x="4" y="2" width="1" height="1" fill="#FF79C6"/><rect x="5" y="2" width="1" height="1" fill="#FF79C6"/><rect x="6" y="2" width="1" height="1" fill="#FF79C6"/><rect x="7" y="2" width="1" height="1" fill="#FF79C6"/><rect x="0" y="3" width="1" height="1" fill="#FF79C6"/><rect x="1" y="3" width="1" height="1" fill="#FF79C6"/><rect x="3" y="3" width="1" height="1" fill="#FF79C6"/><rect x="4" y="3" width="1" height="1" fill="#FF79C6"/><rect x="6" y="3" width="1" height="1" fill="#FF79C6"/><rect x="7" y="3" width="1" height="1" fill="#FF79C6"/><rect x="0" y="4" width="1" height="1" fill="#FF79C6"/><rect x="1" y="4" width="1" height="1" fill="#FF79C6"/><rect x="3" y="4" width="1" height="1" fill="#FF79C6"/><rect x="4" y="4" width="1" height="1" fill="#FF79C6"/><rect x="6" y="4" width="1" height="1" fill="#FF79C6"/><rect x="7" y="4" width="1" height="1" fill="#FF79C6"/><rect x="0" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="5" width="1" height="1" fill="#FF79C6"/><rect x="2" y="5" width="1" height="1" fill="#FF79C6"/><rect x="5" y="5" width="1" height="1" fill="#FF79C6"/><rect x="6" y="5" width="1" height="1" fill="#FF79C6"/><rect x="7" y="5" width="1" height="1" fill="#FF79C6"/><rect x="1" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="6" width="1" height="1" fill="#FF79C6"/><rect x="3" y="6" width="1" height="1" fill="#FF79C6"/><rect x="4" y="6" width="1" height="1" fill="#FF79C6"/><rect x="5" y="6" width="1" height="1" fill="#FF79C6"/><rect x="6" y="6" width="1" height="1" fill="#FF79C6"/><rect x="2" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="7" width="1" height="1" fill="#FF79C6"/><rect x="4" y="7" width="1" height="1" fill="#FF79C6"/><rect x="5" y="7" width="1" height="1" fill="#FF79C6"/><rect x="3" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="4" y="1" width="1" height="1" fill="#FFB8E0"/><rect x="2" y="3" width="1" height="1" fill="#191A21"/><rect x="5" y="3" width="1" height="1" fill="#191A21"/><rect x="2" y="4" width="1" height="1" fill="#191A21"/><rect x="5" y="4" width="1" height="1" fill="#191A21"/><rect x="3" y="5" width="1" height="1" fill="#191A21"/><rect x="4" y="5" width="1" height="1" fill="#191A21"/></g></svg> LOOT ANALYZER</h1>
+<div id="sweep-anchor"></div>
+<section class="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-4 mb-4">
+  <div class="card p-6 sm:p-8 flex flex-col" data-rise style="--d:0">
+    <p class="label mb-3">Loot Analyzer</p>
+    <h1 class="serif text-[34px] sm:text-[42px] leading-[1.05]">Sell each item where it pays <span class="text-amber-400">the most</span>.</h1>
+    <p class="text-stone-400 text-[15px] mt-3">Copy the loot from Tibia's Hunt Analyser and paste it here. Every item is priced at its best NPC buyer and on your world's Market.</p>
+    <ol class="mt-6 space-y-3 text-[13.5px] text-stone-300">
+      <li class="flex gap-3"><span class="num text-stone-500 w-4">1</span> Pick your world</li>
+      <li class="flex gap-3"><span class="num text-stone-500 w-4">2</span> Paste the Hunt Analyser text</li>
+      <li class="flex gap-3"><span class="num text-stone-500 w-4">3</span> Analyze. <span class="kbd ml-1">Ctrl ↵</span></li>
+    </ol>
   </div>
 
-  <!-- Input form -->
-  <div class="bg-stone-900 border border-amber-900/40 rounded-xl p-6 mb-6 shadow-lg">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-      <!-- Server selector -->
+  <div class="card p-6" data-rise style="--d:1">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-amber-400 text-xs font-semibold mb-1 uppercase tracking-wider">Your Server</label>
-        <select id="server-select"
-                class="w-full bg-stone-800 border border-amber-900/50 text-amber-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500">
-          <option value="">— Select server —</option>
+        <label for="server-select" class="label block mb-1.5">Your world</label>
+        <select id="server-select" class="field">
+          <option value="">Select a world</option>
           <% @servers.each do |s| %>
             <option value="<%= s %>"><%= s %></option>
           <% end %>
         </select>
       </div>
-
-      <!-- Tip -->
     </div>
 
-    <!-- Paste area -->
-    <label class="block text-amber-400 text-xs font-semibold mb-1 uppercase tracking-wider">Loot Text</label>
-    <textarea id="loot-input"
-              rows="5"
-              placeholder="Paste Hunt Analyser :)"
-              class="w-full bg-stone-800 border border-amber-900/50 text-amber-100 rounded-lg px-4 py-3 text-sm resize-y
-                     placeholder-stone-500 focus:outline-none focus:border-amber-500 font-mono"></textarea>
+    <label for="loot-input" class="label block mb-1.5">Loot text</label>
+    <textarea id="loot-input" rows="7" placeholder="Paste your Hunt Analyser here…" class="field font-mono text-[13px] resize-y"></textarea>
 
-    <div class="mt-4 flex gap-3">
-      <button id="analyze-btn"
-              class="bg-amber-700 hover:bg-amber-600 text-white font-bold px-6 py-2 rounded-lg transition-colors text-sm shadow">
-        Analyze Loot
-      </button>
-      <button id="clear-btn"
-              class="bg-stone-700 hover:bg-stone-600 text-stone-200 font-semibold px-4 py-2 rounded-lg transition-colors text-sm">
-        Clear
-      </button>
+    <div class="mt-4 flex gap-2">
+      <button id="analyze-btn" class="btn-primary">Analyze loot</button>
+      <button id="clear-btn" class="btn btn-ghost">Clear</button>
     </div>
   </div>
+</section>
 
-  <!-- Status / loading -->
-  <div id="status-bar" class="hidden text-center py-4 text-amber-300 text-sm"></div>
+<div id="status-bar" class="hidden text-center py-4 text-sm"></div>
 
-  <!-- Results summary -->
-  <div id="summary-bar" class="hidden bg-stone-900 border border-amber-900/40 rounded-xl px-6 py-5 mb-4 shadow">
-    <p class="text-stone-500 text-xs uppercase tracking-wider mb-3">
-      <span id="sum-parsed">—</span> items analyzed
-    </p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <div class="bg-stone-800/70 rounded-xl px-5 py-4">
-        <p class="text-stone-400 text-xs uppercase tracking-wider mb-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="16" height="16" style="image-rendering:pixelated;shape-rendering:crispEdges;display:inline;vertical-align:middle;margin-right:4px"><style>@keyframes mgmb{0%{fill:#BD93F9}40%{fill:#F1FA8C}60%{fill:#F1FA8C}100%{fill:#BD93F9}}.mgmb{animation:mgmb 1.2s ease-in-out infinite}</style><rect x="3" y="0" width="1" height="1" fill="#BD93F9"/><rect x="4" y="0" width="1" height="1" fill="#BD93F9"/><rect x="2" y="1" width="1" height="1" fill="#BD93F9"/><rect x="3" y="1" width="1" height="1" fill="#BD93F9"/><rect x="4" y="1" width="1" height="1" fill="#BD93F9"/><rect x="5" y="1" width="1" height="1" fill="#BD93F9"/><rect x="1" y="2" width="1" height="1" fill="#BD93F9"/><rect x="2" y="2" width="1" height="1" fill="#BD93F9"/><rect x="3" y="2" width="1" height="1" fill="#BD93F9"/><rect x="4" y="2" width="1" height="1" fill="#BD93F9"/><rect x="5" y="2" width="1" height="1" fill="#BD93F9"/><rect x="6" y="2" width="1" height="1" fill="#BD93F9"/><rect x="0" y="3" width="1" height="1" fill="#BD93F9"/><rect x="1" y="3" width="1" height="1" fill="#BD93F9"/><rect x="2" y="3" width="1" height="1" fill="#BD93F9"/><rect x="3" y="3" width="1" height="1" fill="#BD93F9"/><rect x="4" y="3" width="1" height="1" fill="#BD93F9"/><rect x="5" y="3" width="1" height="1" fill="#BD93F9"/><rect x="6" y="3" width="1" height="1" fill="#BD93F9"/><rect x="7" y="3" width="1" height="1" fill="#BD93F9"/><rect x="0" y="4" width="1" height="1" fill="#BD93F9"/><rect x="1" y="4" width="1" height="1" fill="#BD93F9"/><rect x="2" y="4" width="1" height="1" fill="#BD93F9"/><rect class="mgmb" x="3" y="4" width="1" height="1" fill="#BD93F9"/><rect class="mgmb" x="4" y="4" width="1" height="1" fill="#BD93F9"/><rect x="5" y="4" width="1" height="1" fill="#BD93F9"/><rect x="6" y="4" width="1" height="1" fill="#BD93F9"/><rect x="7" y="4" width="1" height="1" fill="#BD93F9"/><rect x="0" y="5" width="1" height="1" fill="#BD93F9"/><rect x="1" y="5" width="1" height="1" fill="#BD93F9"/><rect x="2" y="5" width="1" height="1" fill="#BD93F9"/><rect x="3" y="5" width="1" height="1" fill="#BD93F9"/><rect x="4" y="5" width="1" height="1" fill="#BD93F9"/><rect x="5" y="5" width="1" height="1" fill="#BD93F9"/><rect x="6" y="5" width="1" height="1" fill="#BD93F9"/><rect x="7" y="5" width="1" height="1" fill="#BD93F9"/><rect x="1" y="6" width="1" height="1" fill="#BD93F9"/><rect x="2" y="6" width="1" height="1" fill="#BD93F9"/><rect x="3" y="6" width="1" height="1" fill="#BD93F9"/><rect x="4" y="6" width="1" height="1" fill="#BD93F9"/><rect x="5" y="6" width="1" height="1" fill="#BD93F9"/><rect x="6" y="6" width="1" height="1" fill="#BD93F9"/><rect x="2" y="7" width="1" height="1" fill="#BD93F9"/><rect x="3" y="7" width="1" height="1" fill="#BD93F9"/><rect x="4" y="7" width="1" height="1" fill="#BD93F9"/><rect x="5" y="7" width="1" height="1" fill="#BD93F9"/></svg>Sell all to NPC</p>
-        <p id="sum-npc" class="text-green-400 font-bold text-xl font-mono">—</p>
-      </div>
-      <div class="bg-amber-950/50 border border-amber-800/40 rounded-xl px-5 py-4">
-        <p class="text-amber-400/80 text-xs uppercase tracking-wider mb-1">⚡ Best option (Market + NPC)</p>
-        <p id="sum-best" class="text-amber-300 font-bold text-xl font-mono">—</p>
-        <p id="sum-savings" class="text-xs text-stone-400 mt-1"></p>
-      </div>
-    </div>
+<!-- Summary -->
+<section id="summary-bar" class="reveal hidden grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+  <div class="card p-5">
+    <p class="label">Items analyzed</p>
+    <p id="sum-parsed" class="serif text-[40px] leading-none num mt-4">—</p>
   </div>
-
-  <!-- Filter + sort bar (shown after analysis) -->
-  <div id="filter-bar" class="hidden mb-3 flex flex-wrap gap-2 text-xs items-center">
-    <span class="text-stone-500 self-center">Filter:</span>
-    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-amber-700 text-white" data-verdict="all">All</button>
-    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-verdict="market">📈 Market</button>
-    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-verdict="npc">💰 NPC</button>
-    <button class="filter-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700" data-verdict="currency">💰 Currency</button>
-    <span class="text-stone-700 self-center px-1">│</span>
-    <span class="text-stone-500 self-center">Sort:</span>
-    <button id="sort-high" class="sort-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-amber-700 text-white">↓ Highest</button>
-    <button id="sort-low"  class="sort-btn px-3 py-1.5 rounded-lg font-semibold transition-colors bg-stone-800 text-stone-300 hover:bg-stone-700">↑ Lowest</button>
+  <div class="card p-5">
+    <p class="label">Sell everything to NPCs</p>
+    <p class="serif text-[40px] leading-none num mt-4"><span id="sum-npc" class="text-amber-400">—</span></p>
   </div>
-
-  <!-- Results table -->
-  <div id="results-container" class="hidden bg-stone-900 border border-amber-900/40 rounded-xl overflow-hidden shadow-lg">
-    <table class="w-full text-sm">
-      <thead>
-        <tr class="border-b border-amber-900/40 text-amber-400 text-xs uppercase tracking-wider">
-          <th class="px-4 py-3 text-left w-10"></th>
-          <th class="px-4 py-3 text-left">Item</th>
-          <th class="px-4 py-3 text-center">Qty</th>
-          <th class="px-4 py-3 text-right">NPC Price</th>
-          <th class="px-4 py-3 text-right">NPC Total</th>
-          <th class="px-4 py-3 text-right">Market Price</th>
-          <th class="px-4 py-3 text-right">Market Total</th>
-          <th class="px-4 py-3 text-center">Sell To</th>
-        </tr>
-      </thead>
-      <tbody id="results-body" class="divide-y divide-stone-800">
-      </tbody>
-    </table>
+  <div class="card p-5 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(120% 90% at 100% 0%, rgba(95,207,146,.10), transparent 60%)"></div>
+    <p class="label">Best option · Market + NPC</p>
+    <p class="serif text-[40px] leading-none num mt-4"><span id="sum-best" class="text-green-400">—</span></p>
+    <p id="sum-savings" class="text-xs text-stone-400 mt-2"></p>
   </div>
+</section>
 
-  <!-- Unrecognized items -->
-  <div id="unknown-container" class="hidden mt-4 bg-stone-900 border border-red-900/40 rounded-xl p-4 text-sm">
-    <p class="text-red-400 font-semibold mb-2">⚠️ Items not found in database:</p>
-    <p id="unknown-list" class="text-stone-400"></p>
-    <p class="text-stone-500 text-xs mt-2">Run <code class="bg-stone-800 px-1 rounded">rake tibia:import</code> to fetch the full item list from TibiaWiki.</p>
+<!-- Filter + sort -->
+<div id="filter-bar" class="reveal hidden mb-3 flex flex-wrap gap-3 items-center">
+  <div class="seg">
+    <button class="filter-btn bg-amber-700 text-white" data-verdict="all">All</button>
+    <button class="filter-btn bg-stone-800 text-stone-300" data-verdict="market">Market</button>
+    <button class="filter-btn bg-stone-800 text-stone-300" data-verdict="npc">NPC</button>
+    <button class="filter-btn bg-stone-800 text-stone-300" data-verdict="currency">Currency</button>
+  </div>
+  <div class="seg">
+    <button id="sort-high" class="sort-btn bg-amber-700 text-white">Highest</button>
+    <button id="sort-low"  class="sort-btn bg-stone-800 text-stone-300">Lowest</button>
   </div>
 </div>
+
+<!-- Results -->
+<section id="results-container" class="reveal hidden card overflow-x-auto">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="w-12"></th>
+        <th>Item</th>
+        <th class="text-center">Qty</th>
+        <th class="text-right">NPC price</th>
+        <th class="text-right">NPC total</th>
+        <th class="text-right">Market price</th>
+        <th class="text-right">Market total</th>
+        <th class="text-center">Sell to</th>
+      </tr>
+    </thead>
+    <tbody id="results-body" class="stagger"></tbody>
+  </table>
+</section>
+
+<!-- Unrecognized items -->
+<section id="unknown-container" class="reveal hidden card mt-4 p-5 text-sm" style="border-color:rgba(240,82,79,.3)">
+  <p class="font-medium text-[#f0524f] mb-1">Items not found in the database</p>
+  <p id="unknown-list" class="text-stone-400"></p>
+  <p class="text-stone-500 text-xs mt-2">Run <code class="kbd">rake tibia:import</code> to fetch the full item list from TibiaWiki.</p>
+</section>
 
 <script>
 const ANALYZE_URL  = "<%= analyze_loot_path %>";
@@ -120,6 +110,10 @@ const summaryBar  = document.getElementById("summary-bar");
 const resultsContainer = document.getElementById("results-container");
 const resultsBody = document.getElementById("results-body");
 const unknownContainer = document.getElementById("unknown-container");
+
+// the world is shared with the other pages (and shown in the header)
+try { const w = localStorage.getItem("tibia_world"); if (w) serverSel.value = w; } catch (e) {}
+serverSel.addEventListener("change", () => { try { localStorage.setItem("tibia_world", serverSel.value); } catch (e) {} TLFUI.showWorld(); });
 
 // ── Security: HTML-escape values injected into innerHTML ───────────────────
 function escapeHtml(s) {
@@ -152,11 +146,11 @@ function applyFilterAndSort() {
 }
 
 function gp(n) {
-  if (n <= 0) return '<span class="text-stone-500">—</span>';
-  return n.toLocaleString() + ' <span class="text-amber-600 text-xs">gp</span>';
+  if (n <= 0) return '<span class="text-stone-600">—</span>';
+  return '<span class="num">' + Math.round(n).toLocaleString() + '</span> <span class="text-stone-500 text-xs">gp</span>';
 }
 
-function setStatus(msg, cls = "text-amber-300") {
+function setStatus(msg, cls = "text-stone-300") {
   statusBar.className = `text-center py-4 text-sm ${cls}`;
   statusBar.innerHTML = msg;
   statusBar.classList.remove("hidden");
@@ -181,13 +175,13 @@ analyzeBtn.addEventListener("click", async () => {
   const loot   = lootInput.value.trim();
   const server = serverSel.value;
 
-  if (!loot) { setStatus("⚠️ Paste some loot text first.", "text-red-400"); return; }
-  if (!server) { setStatus("⚠️ Select your server first.", "text-red-400"); return; }
-  if (loot.length > 100000) { setStatus("⚠️ Loot text too large (max 100 000 characters).", "text-red-400"); return; }
+  if (!loot) { setStatus("Paste some loot text first.", "text-red-400"); return; }
+  if (!server) { setStatus("Select your server first.", "text-red-400"); return; }
+  if (loot.length > 100000) { setStatus("Loot text too large (max 100 000 characters).", "text-red-400"); return; }
 
   analyzeBtn.disabled = true;
   analyzeBtn.textContent = "Analyzing…";
-  setStatus("🔍 Parsing loot…");
+  setStatus("Parsing loot…");
   summaryBar.classList.add("hidden");
   resultsContainer.classList.add("hidden");
   unknownContainer.classList.add("hidden");
@@ -206,13 +200,13 @@ analyzeBtn.addEventListener("click", async () => {
       body: JSON.stringify({ loot_text: loot, server })
     });
     data = await resp.json();
-    if (!resp.ok) { setStatus(`❌ ${data.error || "Server error"}`, "text-red-400"); return; }
+    if (!resp.ok) { setStatus(`${data.error || "Server error"}`, "text-red-400"); return; }
   } catch(e) {
-    setStatus("❌ Could not reach the server.", "text-red-400");
+    setStatus("Could not reach the server.", "text-red-400");
     return;
   } finally {
     analyzeBtn.disabled = false;
-    analyzeBtn.textContent = "Analyze Loot";
+    analyzeBtn.textContent = "Analyze loot";
   }
 
   const { results, market_ids } = data;
@@ -228,11 +222,11 @@ analyzeBtn.addEventListener("click", async () => {
 
   found.forEach(r => {
     const tr = document.createElement("tr");
-    tr.className = "hover:bg-stone-800/50 transition-colors";
+    tr.className = "";
     const imgSrc  = safeUrl(r.image_url);
     const imgCell = imgSrc
-      ? `<img src="${imgSrc}" alt="${escapeHtml(r.matched_name)}" class="w-8 h-8 object-contain mx-auto" onerror="this.style.display='none'">`
-      : '<span class="text-stone-600 text-lg">?</span>';
+      ? `<div class="w-9 h-9 rounded-lg bg-stone-900 border border-white/5 grid place-items-center mx-auto"><img src="${imgSrc}" alt="" class="w-8 h-8 object-contain sprite" onerror="this.style.display='none'"></div>`
+      : '<span class="text-stone-600">?</span>';
     tr.dataset.bestTotal = r.npc_total || 0;
 
     if (r.is_currency) {
@@ -244,12 +238,12 @@ analyzeBtn.addEventListener("click", async () => {
           <div class="text-xs text-amber-700/70">currency</div>
         </td>
         <td class="px-4 py-3 text-center text-stone-300">${r.quantity}</td>
-        <td class="px-4 py-3 text-right font-mono text-amber-400">${gp(r.npc_buy_price)}<span class="text-xs text-stone-500 ml-1">ea</span></td>
-        <td class="px-4 py-3 text-right font-mono text-amber-300">${gp(r.npc_total)}</td>
+        <td class="px-4 py-3 text-right text-amber-400">${gp(r.npc_buy_price)}<span class="text-xs text-stone-500 ml-1">ea</span></td>
+        <td class="px-4 py-3 text-right text-amber-300">${gp(r.npc_total)}</td>
         <td class="px-4 py-3 text-right text-stone-600 text-xs">—</td>
         <td class="px-4 py-3 text-right text-stone-600 text-xs">—</td>
         <td class="px-4 py-3 text-center">
-          <span class="bg-amber-900/50 text-amber-400 px-2 py-0.5 rounded text-xs font-semibold">💰 Currency</span>
+          <span class="verdict npc">Currency</span>
         </td>
       `;
     } else {
@@ -257,7 +251,7 @@ analyzeBtn.addEventListener("click", async () => {
         ? `https://www.tibiawiki.com.br/wiki/${encodeURIComponent(r.best_npc_buyer.replace(/ /g, '_'))}`
         : '';
       const npcSubtext = r.best_npc_buyer
-        ? `<div class="text-xs text-stone-400"><a href="${npcWikiUrl}" target="_blank" class="hover:underline" style="color:#C4621D">${escapeHtml(r.best_npc_buyer)}</a>${r.npc_location ? ' · ' + escapeHtml(r.npc_location) : ''}</div>`
+        ? `<div class="text-xs text-stone-400"><a href="${npcWikiUrl}" target="_blank" class="hover:text-white text-stone-300">${escapeHtml(r.best_npc_buyer)}</a>${r.npc_location ? ' · ' + escapeHtml(r.npc_location) : ''}</div>`
         : '';
       tr.innerHTML = `
         <td class="px-4 py-3 text-center">${imgCell}</td>
@@ -266,12 +260,12 @@ analyzeBtn.addEventListener("click", async () => {
           ${npcSubtext}
         </td>
         <td class="px-4 py-3 text-center text-stone-300">${r.quantity}</td>
-        <td class="px-4 py-3 text-right font-mono text-green-400">${gp(r.npc_buy_price)}</td>
-        <td class="px-4 py-3 text-right font-mono text-green-300">${gp(r.npc_total)}</td>
-        <td class="px-4 py-3 text-right font-mono market-price" data-id="${r.market_item_id || ''}">
-          <span class="text-stone-500 animate-pulse text-xs">loading…</span>
+        <td class="px-4 py-3 text-right text-amber-400">${gp(r.npc_buy_price)}</td>
+        <td class="px-4 py-3 text-right text-amber-300">${gp(r.npc_total)}</td>
+        <td class="px-4 py-3 text-right market-price" data-id="${r.market_item_id || ''}">
+          <span class="skeleton inline-block w-16 h-4 align-middle">&nbsp;</span>
         </td>
-        <td class="px-4 py-3 text-right font-mono market-total" data-qty="${r.quantity}" data-npc="${r.npc_total}">
+        <td class="px-4 py-3 text-right market-total" data-qty="${r.quantity}" data-npc="${r.npc_total}">
           <span class="text-stone-500">…</span>
         </td>
         <td class="px-4 py-3 text-center sell-verdict">
@@ -294,7 +288,7 @@ analyzeBtn.addEventListener("click", async () => {
 
   // Step 2: Fetch market prices from TibiaMarket API
   if (market_ids.length > 0) {
-    setStatus(`📈 Fetching market prices from TibiaMarket (server: ${server})…`);
+    setStatus(`Fetching ${server} Market prices…`); TLFUI.sweep(true);
     try {
       const url = `${MARKET_API}?server=${encodeURIComponent(server)}&item_ids=${market_ids.join(",")}`;
       const mResp = await fetch(url);
@@ -348,20 +342,20 @@ analyzeBtn.addEventListener("click", async () => {
           totalCell.innerHTML  = `<span class="text-sky-300">${gp(mTotal)}</span>`;
 
           if (mTotal > r.npc_total * 1.1) {
-            verdictCell.innerHTML = '<span class="bg-sky-900/60 text-sky-300 px-2 py-0.5 rounded text-xs font-semibold">📈 Market</span>';
-            tr.classList.add("bg-sky-950/10", "verdict-market");
+            verdictCell.innerHTML = '<span class="verdict market">Market</span>';
+            tr.classList.add("verdict-market");
           } else if (r.npc_total > 0 && r.npc_total >= mTotal) {
-            verdictCell.innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">💰 NPC</span>';
-            tr.classList.add("bg-green-950/10", "verdict-npc");
+            verdictCell.innerHTML = '<span class="verdict npc">NPC</span>';
+            tr.classList.add("verdict-npc");
           } else {
-            verdictCell.innerHTML = '<span class="bg-stone-700/60 text-stone-300 px-2 py-0.5 rounded text-xs font-semibold">≈ Equal</span>';
+            verdictCell.innerHTML = '<span class="verdict equal">≈ Equal</span>';
             tr.classList.add("verdict-equal");
           }
         } else {
           priceCell.innerHTML  = '<span class="text-stone-500 text-xs">No data</span>';
           totalCell.innerHTML  = '<span class="text-stone-500 text-xs">—</span>';
           if (r.npc_total > 0) {
-            verdictCell.innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">💰 NPC</span>';
+            verdictCell.innerHTML = '<span class="verdict npc">NPC</span>';
             tr.classList.add("verdict-npc");
           } else {
             verdictCell.innerHTML = '<span class="text-stone-500 text-xs">—</span>';
@@ -371,31 +365,33 @@ analyzeBtn.addEventListener("click", async () => {
       });
 
       // Summary bar
-      document.getElementById("sum-parsed").textContent = results.length;
-      document.getElementById("sum-npc").innerHTML  = gp(totalNPC);
-      document.getElementById("sum-best").innerHTML = gp(totalBest);
+      const gpFmt = n => Math.round(n).toLocaleString() + '<span class="text-lg text-stone-500 font-sans"> gp</span>';
+      summaryBar.classList.remove("hidden");
+      TLFUI.count(document.getElementById("sum-parsed"), results.length);
+      TLFUI.count(document.getElementById("sum-npc"), totalNPC, gpFmt);
+      TLFUI.count(document.getElementById("sum-best"), totalBest, gpFmt);
 
       const savings = totalBest - totalNPC;
       const savingsEl = document.getElementById("sum-savings");
       if (savings > 100) {
-        savingsEl.innerHTML = `+${gp(savings)} vs NPC only (+${Math.round(savings / Math.max(totalNPC, 1) * 100)}%)`;
+        savingsEl.innerHTML = `<span class="text-green-400">+${gp(savings)}</span> vs selling everything to NPCs (+${Math.round(savings / Math.max(totalNPC, 1) * 100)}%)`;
       } else {
         savingsEl.textContent = "Same as NPC prices";
       }
 
-      summaryBar.classList.remove("hidden");
-      clearStatus();
+      clearStatus(); TLFUI.sweep(false);
       applyFilterAndSort();
 
     } catch(e) {
-      setStatus("⚠️ Could not fetch market prices (API may be down). NPC prices shown.", "text-amber-400");
+      TLFUI.sweep(false);
+      setStatus("Could not fetch Market prices (the API may be down). NPC prices shown.", "text-amber-400");
       found.forEach(r => {
         const tr = rowMap[r.market_item_id];
         if (!tr) return;
-        tr.querySelector(".market-price").innerHTML = '<span class="text-red-500 text-xs">API error</span>';
+        tr.querySelector(".market-price").innerHTML = '<span class="text-[#f0524f] text-xs">API error</span>';
         tr.querySelector(".market-total").innerHTML = '<span class="text-stone-500">—</span>';
         if (r.npc_total > 0) {
-          tr.querySelector(".sell-verdict").innerHTML = '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">💰 NPC</span>';
+          tr.querySelector(".sell-verdict").innerHTML = '<span class="verdict npc">NPC</span>';
         } else {
           tr.querySelector(".sell-verdict").innerHTML = '<span class="text-stone-500">—</span>';
         }
@@ -403,14 +399,14 @@ analyzeBtn.addEventListener("click", async () => {
     }
   } else {
     // No market IDs — no market data available
-    setStatus("⚠️ No market IDs found. Run <code>rake tibia:sync_market_ids</code> to enable market comparison.", "text-amber-400");
+    setStatus("No market IDs found. Run <code>rake tibia:sync_market_ids</code> to enable market comparison.", "text-amber-400");
     found.forEach(r => {
       const tr = rowMap[r.market_item_id];
       if (!tr) return;
       tr.querySelector(".market-price").innerHTML = '<span class="text-stone-500 text-xs">Run sync</span>';
       tr.querySelector(".market-total").innerHTML = '<span class="text-stone-500">—</span>';
       tr.querySelector(".sell-verdict").innerHTML = r.npc_total > 0
-        ? '<span class="bg-green-900/60 text-green-300 px-2 py-0.5 rounded text-xs font-semibold">💰 NPC</span>'
+        ? '<span class="verdict npc">NPC</span>'
         : '<span class="text-stone-500">—</span>';
     });
   }
