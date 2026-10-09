@@ -38,12 +38,18 @@
     const p = (xx, yy) => data[(yy * W + xx) * 4 + ch];
     return (p(x0, y0) * (1 - fx) + p(x1, y0) * fx) * (1 - fy) + (p(x0, y1) * (1 - fx) + p(x1, y1) * fx) * fy;
   }
-  // w x h samples (pixel centres) of the box (x0,y0)-(x1,y1); returns [r,g,b] per sample
+  // w x h samples of the box (x0,y0)-(x1,y1); returns [r,g,b] per sample. When a sample covers
+  // several source pixels (a big, zoomed-in screenshot) it averages ss x ss points over its area.
   function sampleBox(img, x0, y0, x1, y1, w, h) {
-    const out = [];
+    const out = [], cw = (x1 - x0) / w, ch = (y1 - y0) / h;
+    const ss = Math.max(1, Math.min(6, Math.round(Math.max(cw, ch))));
     for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
-      const x = x0 + (i + 0.5) * (x1 - x0) / w, y = y0 + (j + 0.5) * (y1 - y0) / h;
-      out.push([bilinear(img, x, y, 0), bilinear(img, x, y, 1), bilinear(img, x, y, 2)]);
+      const acc = [0, 0, 0];
+      for (let b = 0; b < ss; b++) for (let a = 0; a < ss; a++) {
+        const x = x0 + (i + (a + 0.5) / ss) * cw, y = y0 + (j + (b + 0.5) / ss) * ch;
+        for (let c = 0; c < 3; c++) acc[c] += bilinear(img, x, y, c);
+      }
+      out.push(acc.map(v => v / (ss * ss)));
     }
     return out;
   }
@@ -59,17 +65,34 @@
     }
     return { cols, rows };
   }
-  function pitchOf(v, minLag, maxLag) {
+  // autocorrelation of a mean-removed profile, normalised by the overlap length
+  function autocorr(v, minLag, maxLag) {
     const n = v.length, mean = v.reduce((a, b) => a + b, 0) / n;
-    const z = Array.from(v, x => x - mean);
-    let best = null;
+    const z = Array.from(v, x => x - mean), out = {};
     for (let lag = minLag; lag <= Math.min(maxLag, n - 2); lag++) {
       let s = 0;
       for (let i = 0; i + lag < n; i++) s += z[i] * z[i + lag];
-      s /= (n - lag);
-      if (!best || s > best.s) best = { lag, s };
+      out[lag] = s / (n - lag);
     }
-    return best ? best.lag : null;
+    return out;
+  }
+  // slot pitch from both profiles together. Multiples of the pitch (2x, 3x) are peaks too and can
+  // even be a little higher: take the SMALLEST lag whose local peak reaches 60 % of the best one.
+  function pitchOf(cols, rows, minLag, maxLag) {
+    const a = autocorr(cols, minLag, maxLag), b = autocorr(rows, minLag, maxLag);
+    const lags = Object.keys(a).map(Number).filter(l => l in b);
+    if (!lags.length) return null;
+    const ac = Object.fromEntries(lags.map(l => [l, a[l] + b[l]]));
+    const best = Math.max(...lags.map(l => ac[l]));
+    for (const l of lags) {
+      const isPeak = (ac[l - 1] ?? -Infinity) <= ac[l] && ac[l] >= (ac[l + 1] ?? -Infinity);
+      if (isPeak && ac[l] >= 0.6 * best) {
+        // sub-pixel: parabola through the peak and its neighbours
+        const y0 = ac[l - 1] ?? ac[l], y2 = ac[l + 1] ?? ac[l], d = y0 - 2 * ac[l] + y2;
+        return d ? l + 0.5 * (y0 - y2) / d : l;
+      }
+    }
+    return null;
   }
   // refine a pitch with sub-pixel precision around an integer lag (parabola on the autocorrelation)
   function lattice(v, pitch) {
@@ -109,7 +132,11 @@
       lines = [];
       for (let i = first; i <= last; i++) {
         const x = ph2 + i * p2;
-        if (x >= -2 && x <= n + 1) lines.push(Math.min(n - 1, Math.max(0, snapLine(x))));
+        if (x < -2 || x > n + 1) continue;
+        // a line cut by the selection edge has its brightest pixel on the edge itself: keep the
+        // lattice position there (snapping to the edge shifted the last column's digits by 2-3 px)
+        const sx = snapLine(x);
+        lines.push(Math.min(n - 1, Math.max(0, sx <= 0 || sx >= n - 1 ? Math.round(x) : sx)));
       }
       lines = [...new Set(lines)].sort((a, b) => a - b);
       return { lines, centres: lines.map(centre), pitch: p2 };
@@ -119,10 +146,10 @@
 
   function findGrid(img) {
     const { cols, rows } = profiles(img);
-    const minLag = 18, maxLag = Math.min(90, Math.floor(Math.min(img.width, img.height) / 2));
-    const pc = pitchOf(cols, minLag, maxLag), pr = pitchOf(rows, minLag, maxLag);
-    if (!pc || !pr) return null;
-    const p = (pc + pr) / 2;
+    // slots from ~18 px (small screenshot) to ~250 px (screenshot of a zoomed-in stash)
+    const minLag = 18, maxLag = Math.min(250, Math.floor(Math.min(img.width, img.height) / 2));
+    const p = pitchOf(cols, rows, minLag, maxLag);
+    if (!p) return null;
     const X = lattice(cols, p), Y = lattice(rows, p);
     // xs/ys: brightest pixel of each gap (the count digits are measured from it);
     // cx/cy: centre of each gap (slot boxes, so sprites sit centred)
@@ -159,14 +186,36 @@
     const sd = Math.sqrt(v.reduce((a, b) => a + (b - m) ** 2, 0) / v.length) || 1;
     return v.map(x => (x - m) / sd);
   }
+  // Reads it with the digits ±0.5 px around their expected place; when that is not a clear read
+  // (the slot lines are found to the pixel, a resized screenshot can be 1 px off) the last digit
+  // is searched ±1 px and the others follow its baseline. Wider from the start, grey item art
+  // beside the number was read as extra digits.
   function readCount(img, right, bottom, P, digits) {
-    const step = 7 / 30.75 * P, gw = 5 / 30.75 * P, gh = 7 / 30.75 * P;
-    let out = '', worst = 1;
+    const a = readDigits(img, right, bottom, P, digits, [-0.5, 0, 0.5]);
+    if (a && a.worst >= 0.75) return { value: a.value, sure: true };
+    const b = readDigits(img, right, bottom, P, digits, [-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1]);
+    // the wide search found the same last digits but lost the first ones (908 -> 8): keep the long one
+    const longer = (x, y) => String(x.value).length > String(y.value).length && String(x.value).endsWith(String(y.value));
+    const best = !a ? b : !b ? a : longer(a, b) ? a : longer(b, a) ? b : b.worst > a.worst ? b : a;
+    // sure only when every digit matched clearly (blurry digits and grey item art beside a number
+    // score 0.6-0.75); the page asks the user to check the others
+    return best ? { value: best.value, sure: best.worst >= 0.75 } : null;
+  }
+
+  function readDigits(img, right, bottom, P, digits, first) {
+    const u = P / 30.75, step = 7 * u, gw = 5 * u, gh = 7 * u;
+    // templates sample the box around a digit tw x th times; box = [left, top, right, bottom] in
+    // px of a 1x screenshot, relative to the digit's bottom-right corner
+    const tw = digits.w || 5, th = digits.h || 7, tn = tw * th, box = digits.box || [-5, -7, 0, 0];
+    let out = '', worst = 1, ax = 0, ay = 0;
     for (let k = 0; k < 6; k++) {
       let top = null;
-      for (const dx of [-0.5, 0, 0.5]) for (const dy of [-0.5, 0, 0.5]) {
-        const x1 = right - digits.aR * P + dx - k * step, y1 = bottom - digits.aB * P + dy;
-        const px = sampleBox(img, x1 - gw, y1 - gh, x1, y1, 5, 7), l = px.map(lum);
+      const anchored = k && first.length > 3;
+      const near = v => [v - 0.5, v - 0.25, v, v + 0.25, v + 0.5];
+      const xsI = anchored ? near(ax) : first, ysI = anchored ? near(ay) : first;
+      for (const dx of xsI) for (const dy of ysI) {
+        const x1 = right - digits.aR * P + dx * u - k * step, y1 = bottom - digits.aB * P + dy * u;
+        const px = sampleBox(img, x1 + box[0] * u, y1 + box[1] * u, x1 + box[2] * u, y1 + box[3] * u, tw, th), l = px.map(lum);
         if (Math.max(...l) - Math.min(...l) < 70) continue;
         // digits are neutral grey; colourful bright pixels are item art
         const bright = px.filter(p => (p[0] + p[1] + p[2]) / 3 > 120);
@@ -179,25 +228,50 @@
         }
         const n = norm(l);
         for (const [d, t] of Object.entries(digits.tmpl)) {
-          let s = 0; for (let i = 0; i < 35; i++) s += n[i] * t[i];
-          s /= 35;
-          if (!top || s > top.s) top = { s, d };
+          let s = 0; for (let i = 0; i < tn; i++) s += n[i] * t[i];
+          s /= tn;
+          if (!top || s > top.s) top = { s, d, dx, dy };
         }
       }
       if (!top || top.s < 0.6) break;
       out = top.d + out; worst = Math.min(worst, top.s);
+      if (!k) { ax = top.dx; ay = top.dy; }
     }
-    // sure only when every digit matched clearly (blurry digits and grey item art beside a number
-    // score 0.6-0.75); the page asks the user to check the others
-    return out ? { value: parseInt(out, 10), sure: worst >= 0.75 } : null;
+    return out ? { value: parseInt(out, 10), worst } : null;
   }
 
   // ── main ───────────────────────────────────────────────────────────────────
   // src: canvas with the selected area. data: { atlasImg, atlas, digits, names }.
   // opts.sortedByName: apply the alphabetical constraint. onProgress(fraction, label).
-  async function analyze(src, data, opts = {}, onProgress = () => {}) {
+  // Everything below is tuned at ~31 px per slot (the digit templates, thresholds, shifts). A
+  // zoomed-in screenshot is scaled down to that size first: same result, and much faster than
+  // matching 90 px sprites.
+  const WORK_PITCH = 30.75;
+  function normalise(src) {
+    const img0 = ctx2d(src).getImageData(0, 0, src.width, src.height);
+    const g = findGrid(img0);
+    if (!g || g.pitch <= WORK_PITCH * 1.3) return { src, f: 1 };
+    const f = WORK_PITCH / g.pitch;
+    let cur = src;
+    // halve step by step, then the last step: keeps the downscale smooth (no aliasing)
+    const targetW = src.width * f;
+    while (targetW < cur.width / 2.2) {
+      const half = canvas(cur.width / 2, cur.height / 2), hx = ctx2d(half);
+      hx.imageSmoothingEnabled = true; hx.imageSmoothingQuality = 'high';
+      hx.drawImage(cur, 0, 0, half.width, half.height);
+      cur = half;
+    }
+    const out = canvas(src.width * f, src.height * f), ox = ctx2d(out);
+    ox.imageSmoothingEnabled = true; ox.imageSmoothingQuality = 'high';
+    ox.drawImage(cur, 0, 0, out.width, out.height);
+    return { src: out, f: out.width / src.width };
+  }
+
+  async function analyze(original, data, opts = {}, onProgress = () => {}) {
     const tick = () => new Promise(r => setTimeout(r, 0));
+    const { src, f: scaleF } = normalise(original);
     const img = ctx2d(src).getImageData(0, 0, src.width, src.height);
+    const origImg = scaleF === 1 ? img : ctx2d(original).getImageData(0, 0, original.width, original.height);
     // 16x16 fingerprint of a box of the source, downscaled by the canvas like the atlas is
     const small = canvas(N, N), smallX = ctx2d(small);
     smallX.imageSmoothingEnabled = true; smallX.imageSmoothingQuality = 'high';
@@ -237,7 +311,8 @@
       let diff = 0, n = 0;
       px.forEach((p, i) => { if (mask0(i % N, Math.floor(i / N))) { diff += Math.abs(p[0] - bg[0]) + Math.abs(p[1] - bg[1]) + Math.abs(p[2] - bg[2]); n++; } });
       // a slot with a count is never empty, however small its item
-      k.count = readCount(img, k.right, k.bottom, P, data.digits);
+      // digits are read on the original selection: a zoomed-in screenshot has them big and sharp
+      k.count = readCount(origImg, k.right / scaleF, k.bottom / scaleF, P / scaleF, data.digits);
       k.empty = diff / n < 9 && k.count == null;
       k.coarse = px;
     }
@@ -358,7 +433,7 @@
         const pick = k.pick ?? k.ranked[0][1];
         const ratio = k.ranked[1] ? k.ranked[1][0] / k.ranked[0][0] : 9;
         return {
-          r: k.r, c: k.c, box: [k.x0, k.y0, k.x1, k.y1],
+          r: k.r, c: k.c, box: [k.x0, k.y0, k.x1, k.y1].map(v => v / scaleF),   // in the selection's pixels
           itemId: atlas.ids[pick],
           alternatives: k.ranked.slice(0, 5).map(([, j]) => atlas.ids[j]).filter(id => id !== atlas.ids[pick]).slice(0, 4),
           // sure: a clear winner that the name order did not have to overrule
@@ -370,5 +445,5 @@
     };
   }
 
-  window.StashAnalyzer = { analyze, findGrid, loadImage };
+  window.StashAnalyzer = { analyze, findGrid, loadImage, _debug: { normalise, readCount, ctx2d, sampleBox, lum, norm } /* for the digit template harvester */ };
 })();
