@@ -6,11 +6,13 @@
 //  1. Grid: the slot frames are lighter lines. Brightness profiles of the selected area give the
 //     slot pitch (autocorrelation); a regular lattice is fitted and each line snapped to its local
 //     maximum (screenshots are rescaled, so slots land on rounded pixels: a uniform grid drifts).
-//  2. Items: every sprite of public/stash/atlas.png is composited on the slot background. A coarse
-//     16x16 comparison keeps the 40 closest sprites, a full-resolution comparison (sprite size
-//     calibrated per screenshot, +-2 px shifts) ranks them. The count corner and the tier marker
-//     are left out of the comparison. When the stash is sorted by name, a dynamic programme picks
-//     the candidates whose names come out in alphabetical order (fixes look-alike items).
+//  2. Items: every sprite of public/stash/atlas.png (stackable items have one per stack look) is
+//     composited on the slot background. A coarse 16x16 comparison keeps the 50 closest sprites,
+//     a full-resolution comparison (sprite size calibrated per screenshot, +-2 px shifts, then
+//     +-4 px for the best 8) ranks them; both compare slightly blurred images. The count corner
+//     and the tier marker are left out. When the stash is sorted by name, a dynamic programme
+//     picks the candidates whose names come out in alphabetical order, then every slot that is
+//     not a clear match is compared with all the items whose names fit between its neighbours'.
 //  3. Counts: right-aligned 5x7 digits on a fixed step, read right to left against templates
 //     (public/stash/digits.json). A digit must be neutral grey (item art is colourful) and two
 //     digits are separated by the dark outline.
@@ -18,8 +20,9 @@
   'use strict';
 
   const N = 16;              // coarse fingerprint size
-  const COARSE_KEEP = 40;    // candidates kept for the fine pass
+  const COARSE_KEEP = 50;    // candidates kept for the fine pass (cells: several per stackable item)
   const SHIFT = 2;           // +- px tried in the fine pass
+  const WIDE = 4;            // +- px for the shortlist and the name-window pass
 
   // ── image helpers ──────────────────────────────────────────────────────────
   function canvas(w, h) {
@@ -175,6 +178,23 @@
   }
 
   // ── 2. items ───────────────────────────────────────────────────────────────
+  // (2r+1)x(2r+1) box blur, RGBA layout kept. Compared sharp, a busy sprite (a heap of coal) half
+  // a pixel off scores worse than a near-empty one; blurred, the shape and colours decide.
+  function blur(img, r) {
+    if (!r) return img;
+    const { width: W, height: H, data } = img, tmp = new Float32Array(W * H * 4), out = new Float32Array(W * H * 4);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) for (let c = 0; c < 3; c++) {
+      let s = 0, n = 0;
+      for (let i = Math.max(0, x - r); i <= Math.min(W - 1, x + r); i++) { s += data[(y * W + i) * 4 + c]; n++; }
+      tmp[(y * W + x) * 4 + c] = s / n;
+    }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) for (let c = 0; c < 3; c++) {
+      let s = 0, n = 0;
+      for (let j = Math.max(0, y - r); j <= Math.min(H - 1, y + r); j++) { s += tmp[(j * W + x) * 4 + c]; n++; }
+      out[(y * W + x) * 4 + c] = s / n;
+    }
+    return { width: W, height: H, data: out };
+  }
   function maskFn(s) {
     // skip the count (bottom 30 %, right 75 %) and the tier marker (top-left corner)
     return (x, y) => !((y >= s * 0.7 && x >= s * 0.25) || (y < s * 0.16 && x < s * 0.16));
@@ -220,18 +240,22 @@
         // digits are neutral grey; colourful bright pixels are item art
         const bright = px.filter(p => (p[0] + p[1] + p[2]) / 3 > 120);
         if (!bright.length || bright.reduce((a, p) => a + Math.max(...p) - Math.min(...p), 0) / bright.length >= 28) continue;
-        if (k > 0) {
-          // the 2 px between this digit and the previous one is the dark outline
-          const gx1 = x1 + 2 / 30.75 * P;
-          const gap = sampleBox(img, x1, y1 - gh, gx1, y1, 2, 7).map(lum);
-          if (gap.reduce((a, b) => a + b, 0) / gap.length >= 70) continue;
-        }
         const n = norm(l);
+        let here = null;
         for (const [d, t] of Object.entries(digits.tmpl)) {
           let s = 0; for (let i = 0; i < tn; i++) s += n[i] * t[i];
           s /= tn;
-          if (!top || s > top.s) top = { s, d, dx, dy };
+          if (!here || s > here.s) here = { s, d, dx, dy };
         }
+        if (k > 0) {
+          // the 2 px between this digit and the previous one is the dark outline (a zoomed-in
+          // screenshot blurs it a little: a digit that matches very well may have a lighter one)
+          const gx1 = x1 + 2 / 30.75 * P;
+          const gap = sampleBox(img, x1, y1 - gh, gx1, y1, 2, 7).map(lum);
+          const g = gap.reduce((a, b) => a + b, 0) / gap.length;
+          if (g >= 70 && !(g < 85 && here.s >= 0.85)) continue;
+        }
+        if (!top || here.s > top.s) top = here;
       }
       if (!top || top.s < 0.6) break;
       out = top.d + out; worst = Math.min(worst, top.s);
@@ -297,11 +321,17 @@
     // grid snaps to can be either frame of the gap between two slots, so a single point near a
     // frame sometimes lands on the border instead of the background.
     const ring = [];
-    for (const k of cells) for (const [fx, fy] of [[0.18, 0.18], [0.5, 0.18], [0.82, 0.18], [0.18, 0.5], [0.82, 0.5], [0.5, 0.82]]) {
-      const x = k.x0 + fx * (k.x1 - k.x0), y = k.y0 + fy * (k.y1 - k.y0);
-      ring.push([0, 1, 2].map(ch => bilinear(img, x, y, ch)));
+    for (const k of cells) {
+      k.ring = [[0.18, 0.18], [0.5, 0.18], [0.82, 0.18], [0.18, 0.5], [0.82, 0.5], [0.5, 0.82]].map(([fx, fy]) => {
+        const x = k.x0 + fx * (k.x1 - k.x0), y = k.y0 + fy * (k.y1 - k.y0);
+        return [0, 1, 2].map(ch => bilinear(img, x, y, ch));
+      });
+      ring.push(...k.ring);
     }
     const bg = [0, 1, 2].map(ch => ring.map(p => p[ch]).sort((a, b) => a - b)[Math.floor(ring.length / 2)]);
+    // the window under the last row (the selection often takes some): no slot there, a lighter
+    // floor everywhere the slot background should be
+    const offBg = k => k.ring.filter(p => Math.abs(lum(p) - lum(bg)) > 15 && Math.max(...p) - Math.min(...p) < 20).length >= 5;
 
     // empty slots: interior close to the background everywhere
     const s0 = Math.round(P * 0.845);
@@ -313,7 +343,7 @@
       // a slot with a count is never empty, however small its item
       // digits are read on the original selection: a zoomed-in screenshot has them big and sharp
       k.count = readCount(origImg, k.right / scaleF, k.bottom / scaleF, P / scaleF, data.digits);
-      k.empty = diff / n < 9 && k.count == null;
+      k.empty = (diff / n < 9 || offBg(k)) && k.count == null;
       k.coarse = px;
     }
     const full = cells.filter(k => !k.empty);
@@ -322,7 +352,7 @@
     // coarse fingerprints of every sprite
     const { atlas, atlasImg } = data;
     const nSprites = atlas.ids.length, cols = atlas.cols;
-    const coarseAtlas = compositeAtlas(atlasImg, bg, N);
+    const coarseAtlas = blur(compositeAtlas(atlasImg, bg, N), 1);
     const spriteCoarse = (j, x, y) => {
       const sx = (j % cols) * N + x, sy = Math.floor(j / cols) * N + y, i = (sy * coarseAtlas.width + sx) * 4;
       return [coarseAtlas.data[i], coarseAtlas.data[i + 1], coarseAtlas.data[i + 2]];
@@ -335,8 +365,12 @@
       spriteVecs[o] = p[0]; spriteVecs[o + 1] = p[1]; spriteVecs[o + 2] = p[2];
     });
     function coarseTop(k) {
+      // blurred like the sprites: unblurred, a busy sprite (heap of coal) never made the shortlist
+      const raw = new Float32Array(N * N * 4);
+      k.coarse.forEach((p, i) => { raw[i * 4] = p[0]; raw[i * 4 + 1] = p[1]; raw[i * 4 + 2] = p[2]; });
+      const b = blur({ width: N, height: N, data: raw }, 1).data;
       const v = new Float32Array(coarseUse.length * 3);
-      coarseUse.forEach(([x, y], u) => { const p = k.coarse[y * N + x]; v[u * 3] = p[0]; v[u * 3 + 1] = p[1]; v[u * 3 + 2] = p[2]; });
+      coarseUse.forEach(([x, y], u) => { const i = (y * N + x) * 4; v[u * 3] = b[i]; v[u * 3 + 1] = b[i + 1]; v[u * 3 + 2] = b[i + 2]; });
       const scores = new Array(nSprites);
       const L = v.length;
       for (let j = 0; j < nSprites; j++) {
@@ -350,8 +384,9 @@
 
     // fine pass at a given sprite size
     const fineAtlases = {};
-    const fineAtlas = s => fineAtlases[s] ||= compositeAtlas(atlasImg, bg, s);
-    const W = img.width, D = img.data;
+    const BLUR = opts.blur ?? 1;
+    const fineAtlas = s => fineAtlases[s] ||= blur(compositeAtlas(atlasImg, bg, s), BLUR);
+    const W = img.width, D = blur(img, BLUR).data;
     // ox, oy: where the sprite sits relative to the middle of the cell (calibrated below: the
     // lines the grid snaps to are not always the slot's own frame, so it is not always centred)
     let ox = 0, oy = 0;
@@ -401,7 +436,12 @@
     for (let i = 0; i < full.length; i++) {
       const k = full[i];
       k.cand ||= coarseTop(k);
-      k.ranked = k.cand.map(j => [fineScore(k, j, size), j]).sort((a, b) => a[0] - b[0]).slice(0, 8);
+      // best frame of each item (a stackable item has a cell per stack look)
+      const seen = new Set();
+      k.ranked = k.cand.map(j => [fineScore(k, j, size), j]).sort((a, b) => a[0] - b[0])
+        .filter(([, j]) => !seen.has(atlas.ids[j]) && seen.add(atlas.ids[j])).slice(0, 8);
+      // some wiki sprites sit a few px off the in-game position: the shortlist gets a wider search
+      k.ranked = k.ranked.map(([, j]) => [fineScore(k, j, size, WIDE), j]).sort((a, b) => a[0] - b[0]);
       if (i % 6 === 0) { onProgress(0.1 + 0.85 * i / full.length, `Reconhecendo itens… ${i + 1}/${full.length}`); await tick(); }
     }
 
@@ -426,18 +466,53 @@
       for (let t = full.length - 1; t >= 0; t--) { const c = full[t].dp[pick]; full[t].pick = c.j; pick = c.from; }
     }
 
+    // sure: a clear winner that the name order did not have to overrule
+    for (const k of full) {
+      k.pick ??= k.ranked[0][1];
+      k.sure = k.pick === k.ranked[0][1] && (k.ranked[1] ? k.ranked[1][0] / k.ranked[0][0] : 9) >= 1.35;
+    }
+    // Sorted by name, a slot holds an item whose name falls between its sure neighbours' (one
+    // slot per item). For the others, every sprite in that window is compared: it finds items the
+    // shortlist missed, and a look-alike outside the window (Hydra Egg / Hard-Boiled Hydra Egg)
+    // no longer makes the slot unsure.
+    if (opts.sortedByName) {
+      // a sure pick out of order (Potato between Harpy Feathers and Headpecker Feather) is not
+      // sure: keep the longest run of sure slots in name order, check the rest like the others
+      const sure = full.filter(k => k.sure), len = sure.map(() => 1), from = sure.map(() => -1);
+      for (let i = 0; i < sure.length; i++) for (let j = 0; j < i; j++)
+        if (nameOf(sure[j].pick).localeCompare(nameOf(sure[i].pick), 'en') < 0 && len[j] + 1 > len[i]) { len[i] = len[j] + 1; from[i] = j; }
+      const keep = new Set();
+      for (let i = len.indexOf(Math.max(0, ...len)); i >= 0; i = from[i]) keep.add(sure[i]);
+      sure.forEach(k => { if (!keep.has(k)) k.sure = false; });
+      const byName = atlas.ids.map((_, j) => j).sort((a, b) => nameOf(a).localeCompare(nameOf(b), 'en'));
+      for (let i = 0; i < full.length; i++) {
+        const k = full[i];
+        if (k.sure) continue;
+        const lo = [...full.slice(0, i)].reverse().find(q => q.sure), hi = full.slice(i + 1).find(q => q.sure);
+        const loN = lo ? nameOf(lo.pick) : '', hiN = hi ? nameOf(hi.pick) : null;
+        const win = byName.filter(j => nameOf(j).localeCompare(loN, 'en') > 0 && (hiN == null || nameOf(j).localeCompare(hiN, 'en') < 0));
+        if (!win.length || win.length > 1500) continue;
+        const seen = new Set();
+        const ranked = win.map(j => [fineScore(k, j, size, WIDE), j]).sort((a, b) => a[0] - b[0])
+          .filter(([, j]) => !seen.has(atlas.ids[j]) && seen.add(atlas.ids[j])).slice(0, 8);
+        // the window's best must still look like the slot (the item may be missing from the atlas)
+        if (ranked[0][0] > 1.5 * k.ranked[0][0]) continue;
+        k.pick = ranked[0][1];
+        k.ranked = ranked;
+        k.sure = (ranked[1] ? ranked[1][0] / ranked[0][0] : 9) >= 1.35;
+      }
+    }
+
     onProgress(1, 'Pronto');
     return {
       grid, pitch: P, size, bg,
       slots: full.map(k => {
-        const pick = k.pick ?? k.ranked[0][1];
-        const ratio = k.ranked[1] ? k.ranked[1][0] / k.ranked[0][0] : 9;
+        const pick = k.pick;
         return {
           r: k.r, c: k.c, box: [k.x0, k.y0, k.x1, k.y1].map(v => v / scaleF),   // in the selection's pixels
           itemId: atlas.ids[pick],
           alternatives: k.ranked.slice(0, 5).map(([, j]) => atlas.ids[j]).filter(id => id !== atlas.ids[pick]).slice(0, 4),
-          // sure: a clear winner that the name order did not have to overrule
-          confident: pick === k.ranked[0][1] && ratio >= 1.35,
+          confident: k.sure,
           count: k.count ? k.count.value : null,
           countSure: !!(k.count && k.count.sure),
         };

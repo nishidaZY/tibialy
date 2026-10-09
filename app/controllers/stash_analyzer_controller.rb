@@ -25,6 +25,6 @@ class StashAnalyzerController < ApplicationController
 
   def atlas_ids
     path = Rails.root.join("public/stash/atlas.json")
-    @atlas_ids ||= File.exist?(path) ? JSON.parse(File.read(path))["ids"] : []
+    @atlas_ids ||= File.exist?(path) ? JSON.parse(File.read(path))["ids"].uniq : []
   end
 end

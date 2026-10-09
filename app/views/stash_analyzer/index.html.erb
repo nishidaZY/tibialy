@@ -152,7 +152,7 @@
         StashAnalyzer.loadImage("/stash/atlas.png"),
       ]);
       const names = {}; for (const [id, it] of Object.entries(catalog)) names[id] = it.n;
-      const index = {}; atlas.ids.forEach((id, i) => { index[id] = i; });
+      const index = {}; atlas.ids.forEach((id, i) => { if (!(id in index)) index[id] = i; });   // first cell: the single item
       const byName = {}; for (const [id, it] of Object.entries(catalog)) byName[it.n.toLowerCase()] = +id;
       $("item-names").innerHTML = Object.values(catalog).map(it => `<option value="${esc(it.n)}">`).join("");
       return { atlas, digits, catalog, atlasImg, names, index, byName };
