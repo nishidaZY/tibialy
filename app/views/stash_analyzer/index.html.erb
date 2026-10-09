@@ -1,0 +1,354 @@
+<% content_for :title, "Stash Analyzer – TibiaLootFinder" %>
+
+<div class="max-w-5xl mx-auto px-4 py-8">
+  <div class="mb-6 text-center">
+    <h1 class="text-3xl font-bold tibia-gold mb-2">📦 STASH ANALYZER</h1>
+    <p class="text-stone-400 text-sm">Take a screenshot of your Stash, paste it here and select the items.
+      The image is read <strong>in your browser</strong> — it is never uploaded.</p>
+  </div>
+
+  <div class="bg-stone-900 border border-amber-900/40 rounded-xl p-6 mb-6 shadow-lg">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+      <div>
+        <label for="server-select" class="block text-amber-400 text-xs font-semibold mb-1 uppercase tracking-wider">Your Server</label>
+        <select id="server-select"
+                class="w-full bg-stone-800 border border-amber-900/50 text-amber-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500">
+          <option value="">— Select server —</option>
+          <% @servers.each do |s| %>
+            <option value="<%= s %>"><%= s %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="md:col-span-2 flex items-end">
+        <label class="flex items-center gap-2 text-sm text-stone-300 cursor-pointer select-none">
+          <input id="sorted-by-name" type="checkbox" checked class="accent-amber-600">
+          My stash is sorted by <strong>Name (A-Z)</strong> <span class="text-stone-500 text-xs">(helps tell look-alike items apart)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Drop zone -->
+    <label id="drop-zone" for="file-input"
+           class="block border-2 border-dashed border-amber-900/50 rounded-xl p-6 text-center cursor-pointer hover:border-amber-600 transition-colors">
+      <p class="text-amber-200 text-sm font-semibold">Paste a screenshot (⌘V / Ctrl+V), drop it here or click to choose</p>
+      <p class="text-stone-500 text-xs mt-1">Tip: a PNG at full size (not resized) reads best.</p>
+      <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp" class="hidden">
+    </label>
+
+    <!-- Screenshot + selection -->
+    <div id="stage-wrap" class="hidden mt-4">
+      <p id="stage-hint" class="text-amber-300 text-sm mb-2">Drag a box around the items of your stash (only the item slots).</p>
+      <div class="relative overflow-auto rounded-lg border border-stone-700" style="max-height:70vh">
+        <canvas id="stage" class="block cursor-crosshair" style="touch-action:none"></canvas>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-3 items-center">
+        <button id="analyze-btn" disabled
+                class="bg-amber-700 hover:bg-amber-600 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold px-6 py-2 rounded-lg transition-colors text-sm shadow">
+          Analyze Stash
+        </button>
+        <button id="clear-btn" class="bg-stone-700 hover:bg-stone-600 text-stone-200 font-semibold px-4 py-2 rounded-lg transition-colors text-sm">
+          New screenshot
+        </button>
+        <div id="progress" class="hidden flex-1 min-w-[12rem]">
+          <div class="h-2 bg-stone-800 rounded-full overflow-hidden"><div id="progress-bar" class="h-full bg-amber-500 transition-all" style="width:0"></div></div>
+          <p id="progress-label" class="text-xs text-stone-400 mt-1"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="status-bar" class="hidden text-center py-4 text-amber-300 text-sm"></div>
+
+  <!-- Summary -->
+  <div id="summary-bar" class="hidden bg-stone-900 border border-amber-900/40 rounded-xl px-6 py-5 mb-4 shadow">
+    <p class="text-stone-500 text-xs uppercase tracking-wider mb-3">
+      <span id="sum-items">—</span> items · <span id="sum-unsure">—</span>
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="bg-stone-800/70 rounded-xl px-5 py-4">
+        <p class="text-stone-400 text-xs uppercase tracking-wider mb-1">💰 Sell all to NPC</p>
+        <p id="sum-npc" class="text-green-400 font-bold text-xl font-mono">—</p>
+      </div>
+      <div class="bg-amber-950/50 border border-amber-800/40 rounded-xl px-5 py-4">
+        <p class="text-amber-400/80 text-xs uppercase tracking-wider mb-1">⚡ Best option (Market + NPC)</p>
+        <p id="sum-best" class="text-amber-300 font-bold text-xl font-mono">—</p>
+        <p id="sum-note" class="text-xs text-stone-400 mt-1"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="results-container" class="hidden bg-stone-900 border border-amber-900/40 rounded-xl overflow-x-auto shadow-lg">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-amber-900/40 text-amber-400 text-xs uppercase tracking-wider">
+          <th class="px-3 py-3 text-left w-10"></th>
+          <th class="px-3 py-3 text-left">Item</th>
+          <th class="px-3 py-3 text-center">Qty</th>
+          <th class="px-3 py-3 text-right">NPC Price</th>
+          <th class="px-3 py-3 text-right">NPC Total</th>
+          <th class="px-3 py-3 text-right">Market Price</th>
+          <th class="px-3 py-3 text-right">Market Total</th>
+          <th class="px-3 py-3 text-center">Sell To</th>
+        </tr>
+      </thead>
+      <tbody id="results-body" class="divide-y divide-stone-800"></tbody>
+    </table>
+  </div>
+  <datalist id="item-names"></datalist>
+</div>
+
+<script src="/stash/analyzer.js"></script>
+<script>
+(function () {
+  const MARKET_API = "/items/market_prices";
+  const $ = id => document.getElementById(id);
+  const serverSel = $("server-select"), stage = $("stage"), sx = stage.getContext("2d");
+  const analyzeBtn = $("analyze-btn"), statusBar = $("status-bar");
+
+  // ── helpers ────────────────────────────────────────────────────────────────
+  const esc = s => s == null ? "" : String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  const gp = n => n > 0 ? n.toLocaleString() + ' <span class="text-amber-600 text-xs">gp</span>' : '<span class="text-stone-500">—</span>';
+  function setStatus(msg, cls = "text-amber-300") { statusBar.className = `text-center py-4 text-sm ${cls}`; statusBar.textContent = msg; }
+  function clearStatus() { statusBar.className = "hidden"; }
+
+  // remembered server (shared with the Loot Analyzer)
+  try { const w = localStorage.getItem("tibia_world"); if (w) serverSel.value = w; } catch (e) {}
+  serverSel.addEventListener("change", () => { try { localStorage.setItem("tibia_world", serverSel.value); } catch (e) {} if (results) priceAll(); });
+
+  // ── data (loaded once, cached by the browser) ──────────────────────────────
+  let dataPromise = null;
+  function loadData() {
+    return dataPromise ||= (async () => {
+      const [atlas, digits, catalog, atlasImg] = await Promise.all([
+        fetch("/stash/atlas.json").then(r => r.json()),
+        fetch("/stash/digits.json").then(r => r.json()),
+        fetch("<%= stash_catalog_path %>").then(r => r.json()),
+        StashAnalyzer.loadImage("/stash/atlas.png"),
+      ]);
+      const names = {}; for (const [id, it] of Object.entries(catalog)) names[id] = it.n;
+      const index = {}; atlas.ids.forEach((id, i) => { index[id] = i; });
+      const byName = {}; for (const [id, it] of Object.entries(catalog)) byName[it.n.toLowerCase()] = +id;
+      $("item-names").innerHTML = Object.values(catalog).map(it => `<option value="${esc(it.n)}">`).join("");
+      return { atlas, digits, catalog, atlasImg, names, index, byName };
+    })();
+  }
+
+  // ── screenshot in, selection ──────────────────────────────────────────────
+  let shot = null, scale = 1, sel = null, drag = null, results = null;
+  async function useFile(file) {
+    if (!file || !/^image\//.test(file.type)) return setStatus("⚠️ That is not an image.", "text-red-400");
+    if (file.size > 25 * 1024 * 1024) return setStatus("⚠️ Image too large (max 25 MB).", "text-red-400");
+    const url = URL.createObjectURL(file);
+    try { shot = await StashAnalyzer.loadImage(url); } catch (e) { return setStatus("⚠️ Could not read that image.", "text-red-400"); }
+    finally { URL.revokeObjectURL(url); }
+    sel = null; results = null;
+    $("stage-wrap").classList.remove("hidden");
+    ["summary-bar", "results-container"].forEach(id => $(id).classList.add("hidden"));
+    clearStatus();
+    const maxW = $("stage-wrap").clientWidth || 900;
+    scale = Math.min(1, maxW / shot.width);
+    stage.width = Math.round(shot.width * scale); stage.height = Math.round(shot.height * scale);
+    draw();
+    analyzeBtn.disabled = true;
+    loadData();   // start downloading the sprites while the user selects
+  }
+  $("file-input").addEventListener("change", e => useFile(e.target.files[0]));
+  const dz = $("drop-zone");
+  dz.addEventListener("dragover", e => { e.preventDefault(); dz.classList.add("border-amber-500"); });
+  dz.addEventListener("dragleave", () => dz.classList.remove("border-amber-500"));
+  dz.addEventListener("drop", e => { e.preventDefault(); dz.classList.remove("border-amber-500"); useFile(e.dataTransfer.files[0]); });
+  document.addEventListener("paste", e => {
+    const f = [...(e.clipboardData?.files || [])].find(f => f.type.startsWith("image/"));
+    if (f) { e.preventDefault(); useFile(f); }
+  });
+  $("clear-btn").addEventListener("click", () => {
+    shot = null; sel = null; results = null; $("file-input").value = "";
+    ["stage-wrap", "summary-bar", "results-container"].forEach(id => $(id).classList.add("hidden"));
+    clearStatus();
+  });
+
+  function draw(highlight) {
+    if (!shot) return;
+    sx.imageSmoothingEnabled = true;
+    sx.drawImage(shot, 0, 0, stage.width, stage.height);
+    if (sel) {
+      sx.strokeStyle = "#BD93F9"; sx.lineWidth = 2; sx.setLineDash(results ? [] : [6, 4]);
+      sx.strokeRect(sel.x * scale, sel.y * scale, sel.w * scale, sel.h * scale); sx.setLineDash([]);
+    }
+    if (results) results.slots.forEach((s, i) => {
+      const [x0, y0, x1, y1] = s.box;
+      sx.strokeStyle = i === highlight ? "#ffffff" : (s.edited || s.confident ? "#50FA7B" : "#FFB86C");
+      sx.lineWidth = i === highlight ? 3 : 1.5;
+      sx.strokeRect((sel.x + x0 + 1) * scale, (sel.y + y0 + 1) * scale, (x1 - x0 - 2) * scale, (y1 - y0 - 2) * scale);
+    });
+  }
+  const pos = e => { const r = stage.getBoundingClientRect(); return { x: (e.clientX - r.left) / scale, y: (e.clientY - r.top) / scale }; };
+  stage.addEventListener("pointerdown", e => {
+    if (!shot) return;
+    if (results) {   // click on a slot: jump to its row
+      const p = pos(e), i = results.slots.findIndex(s => p.x >= sel.x + s.box[0] && p.x < sel.x + s.box[2] && p.y >= sel.y + s.box[1] && p.y < sel.y + s.box[3]);
+      if (i >= 0) { focusRow(i); return; }
+    }
+    drag = pos(e); stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener("pointermove", e => {
+    if (!drag) return;
+    const p = pos(e);
+    sel = { x: Math.min(drag.x, p.x), y: Math.min(drag.y, p.y), w: Math.abs(p.x - drag.x), h: Math.abs(p.y - drag.y) };
+    results = null; draw();
+  });
+  stage.addEventListener("pointerup", () => {
+    drag = null;
+    analyzeBtn.disabled = !(sel && sel.w > 40 && sel.h > 25);
+  });
+
+  // ── analysis ───────────────────────────────────────────────────────────────
+  analyzeBtn.addEventListener("click", async () => {
+    if (!sel) return;
+    analyzeBtn.disabled = true; clearStatus();
+    $("progress").classList.remove("hidden");
+    const progress = (f, label) => { $("progress-bar").style.width = Math.round(f * 100) + "%"; $("progress-label").textContent = label; };
+    try {
+      progress(0.02, "Loading item sprites…");
+      const data = await loadData();
+      const area = document.createElement("canvas");
+      area.width = Math.round(sel.w); area.height = Math.round(sel.h);
+      area.getContext("2d", { willReadFrequently: true }).drawImage(shot, sel.x, sel.y, sel.w, sel.h, 0, 0, area.width, area.height);
+      results = await StashAnalyzer.analyze(area, data, { sortedByName: $("sorted-by-name").checked }, progress);
+      results.data = data;
+      if (!results.slots.length) throw new Error("No items found in the selected area.");
+      draw(); renderTable(); priceAll();
+    } catch (e) {
+      setStatus("⚠️ " + e.message, "text-red-400");
+    } finally {
+      analyzeBtn.disabled = false;
+      setTimeout(() => $("progress").classList.add("hidden"), 800);
+    }
+  });
+
+  // ── results table ──────────────────────────────────────────────────────────
+  const market = {};   // market_item_id -> price (what buyers pay)
+  function spriteStyle(id) {
+    const i = results.data.index[id]; if (i == null) return "";
+    const c = results.data.atlas.cols;
+    return `background:url(/stash/atlas.png) -${(i % c) * 32}px -${Math.floor(i / c) * 32}px;width:32px;height:32px;image-rendering:pixelated`;
+  }
+  function rowHtml(s, i) {
+    const it = results.data.catalog[s.itemId] || {};
+    const alts = s.confident || s.edited ? "" :
+      `<div class="mt-1 flex flex-wrap gap-1">${s.alternatives.map(a => `<button type="button" data-alt="${a}" class="text-[11px] px-2 py-0.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300">${esc(results.data.catalog[a]?.n)}</button>`).join("")}</div>`;
+    return `
+      <td class="px-3 py-2"><div style="${spriteStyle(s.itemId)}"></div></td>
+      <td class="px-3 py-2">
+        <div class="flex items-center gap-2">
+          ${s.confident || s.edited ? "" : '<span title="Not sure — check this one" class="text-amber-400">⚠️</span>'}
+          <input data-name list="item-names" value="${esc(it.n)}" class="bg-transparent border-b border-transparent hover:border-stone-600 focus:border-amber-500 focus:outline-none text-amber-100 w-full min-w-[10rem]">
+        </div>${alts}
+      </td>
+      <td class="px-3 py-2 text-center"><input data-qty type="number" min="0" value="${s.count ?? 1}" title="${s.countSure || s.edited ? '' : 'Could not read this number clearly — please check'}" class="w-20 bg-stone-800 border rounded px-2 py-1 text-center text-amber-100 ${s.countSure || s.edited ? 'border-stone-700' : 'border-amber-500'}"></td>
+      <td class="px-3 py-2 text-right font-mono" data-npc></td>
+      <td class="px-3 py-2 text-right font-mono" data-npc-total></td>
+      <td class="px-3 py-2 text-right font-mono" data-mkt></td>
+      <td class="px-3 py-2 text-right font-mono" data-mkt-total></td>
+      <td class="px-3 py-2 text-center text-xs" data-verdict></td>`;
+  }
+  // rows to check (unsure item or hard-to-read quantity) come first, the rest in stash order
+  function renderTable() {
+    const body = $("results-body"); body.innerHTML = "";
+    const check = (s) => !s.edited && (!s.confident || !s.countSure);
+    const order = results.slots.map((s, i) => i).sort((a, b) => check(results.slots[b]) - check(results.slots[a]) || a - b);
+    let header = null;
+    order.forEach(i => {
+      const s = results.slots[i];
+      const kind = check(s) ? "check" : "ok";
+      if (kind !== header) {
+        header = kind;
+        const h = document.createElement("tr");
+        h.innerHTML = `<td colspan="8" class="px-3 py-2 text-xs uppercase tracking-wider ${kind === "check" ? "text-amber-400 bg-amber-950/30" : "text-stone-500 bg-stone-950/40"}">${kind === "check" ? "⚠️ Check these first — fix the item or the quantity if needed" : "✔ Recognised"}</td>`;
+        body.appendChild(h);
+      }
+      const tr = document.createElement("tr");
+      tr.dataset.i = i; tr.className = "hover:bg-stone-800/40";
+      tr.innerHTML = rowHtml(s, i);
+      body.appendChild(tr);
+    });
+    $("results-container").classList.remove("hidden"); $("summary-bar").classList.remove("hidden");
+    recalc();
+  }
+  function rerenderRow(i) {
+    const tr = $("results-body").querySelector(`tr[data-i="${i}"]`);
+    tr.innerHTML = rowHtml(results.slots[i], i); recalc(); draw();
+  }
+  function focusRow(i) {
+    const tr = $("results-body").querySelector(`tr[data-i="${i}"]`);
+    if (!tr) return;
+    tr.scrollIntoView({ behavior: "smooth", block: "center" });
+    tr.classList.add("bg-amber-900/30"); setTimeout(() => tr.classList.remove("bg-amber-900/30"), 1200);
+    draw(i);
+  }
+  $("results-body").addEventListener("click", e => {
+    const b = e.target.closest("[data-alt]"); if (!b) return;
+    const i = +b.closest("tr").dataset.i, s = results.slots[i];
+    s.alternatives = [s.itemId, ...s.alternatives.filter(a => a !== +b.dataset.alt)];
+    s.itemId = +b.dataset.alt; s.edited = true; rerenderRow(i); priceAll();
+  });
+  $("results-body").addEventListener("change", e => {
+    const tr = e.target.closest("tr"); if (!tr) return;
+    const i = +tr.dataset.i, s = results.slots[i];
+    if (e.target.matches("[data-qty]")) { s.count = Math.max(0, parseInt(e.target.value, 10) || 0); s.countSure = true; e.target.classList.replace("border-amber-500", "border-stone-700"); recalc(); }
+    if (e.target.matches("[data-name]")) {
+      const id = results.data.byName[e.target.value.trim().toLowerCase()];
+      if (id) { s.itemId = id; s.edited = true; rerenderRow(i); priceAll(); }
+      else e.target.classList.add("text-red-400");
+    }
+  });
+  $("results-body").addEventListener("mouseover", e => { const tr = e.target.closest("tr"); if (tr) draw(+tr.dataset.i); });
+
+  function recalc() {
+    let npcSum = 0, bestSum = 0, unsure = 0, missing = 0, biggestUnsure = null;
+    results.slots.forEach((s, i) => {
+      const tr = $("results-body").querySelector(`tr[data-i="${i}"]`), it = results.data.catalog[s.itemId] || {};
+      const qty = s.count ?? 1, npc = it.npc || 0, mPrice = market[it.m] ?? null;
+      const npcTotal = npc * qty, mTotal = mPrice > 0 ? mPrice * qty : 0;
+      tr.querySelector("[data-npc]").innerHTML = gp(npc);
+      tr.querySelector("[data-npc-total]").innerHTML = gp(npcTotal);
+      tr.querySelector("[data-mkt]").innerHTML = mPrice == null ? '<span class="text-stone-600 text-xs">…</span>' : gp(mPrice);
+      tr.querySelector("[data-mkt-total]").innerHTML = gp(mTotal);
+      const v = tr.querySelector("[data-verdict]");
+      if (mTotal > npcTotal) v.innerHTML = '<span class="tag" style="background:#3b2f63">📈 Market</span>';
+      else if (npcTotal > 0) v.innerHTML = `<span class="tag" style="background:#1f4d33">💰 NPC</span><div class="text-stone-500 mt-1">${esc(it.by || "")}</div>`;
+      else v.innerHTML = '<span class="text-stone-600">—</span>';
+      npcSum += npcTotal; bestSum += Math.max(npcTotal, mTotal);
+      const best = Math.max(npcTotal, mTotal);
+      if (!s.countSure && (!biggestUnsure || best > biggestUnsure.v)) biggestUnsure = { v: best, name: it.n, qty };
+      if (!s.confident && !s.edited) unsure++;
+      if (!s.countSure) missing++;
+    });
+    $("sum-items").textContent = results.slots.length;
+    $("sum-unsure").textContent = unsure ? `${unsure} to check (⚠️)` : "all items look right";
+    $("sum-npc").innerHTML = gp(npcSum);
+    $("sum-best").innerHTML = gp(bestSum);
+    // one hard-to-read quantity making up a big share of the total is most likely a misread
+    const dominant = biggestUnsure && bestSum > 0 && biggestUnsure.v / bestSum > 0.3
+      ? ` ⚠️ ${biggestUnsure.qty.toLocaleString()}× ${biggestUnsure.name} is ${Math.round(biggestUnsure.v / bestSum * 100)}% of the total — make sure that quantity is right.` : "";
+    $("sum-note").textContent = (!serverSel.value ? "Select your server to include Market prices." :
+      (missing ? `${missing} quantities were hard to read — check the ones outlined in yellow.` : "")) + dominant;
+  }
+
+  async function priceAll() {
+    if (!results || !serverSel.value) { if (results) recalc(); return; }
+    const ids = [...new Set(results.slots.map(s => results.data.catalog[s.itemId]?.m).filter(Boolean))].filter(m => !(m in market));
+    if (ids.length) {
+      try {
+        const r = await fetch(`${MARKET_API}?server=${encodeURIComponent(serverSel.value)}&item_ids=${ids.join(",")}`);
+        const list = await r.json();
+        if (!Array.isArray(list) || !list.length) throw new Error("no data");
+        list.forEach(m => { market[m.id] = m.buy_offer > 0 ? m.buy_offer : (m.month_average_buy || 0); });
+        ids.forEach(m => { if (!(m in market)) market[m] = 0; });
+      } catch (e) { setStatus("⚠️ Market prices are unavailable right now — showing NPC prices. Try again in a minute.", "text-amber-400"); }
+    }
+    recalc();
+  }
+})();
+</script>

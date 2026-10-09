@@ -1,0 +1,18 @@
+# Render Blueprint — free web service. Render → New → Blueprint → pick this repository.
+services:
+  - type: web
+    name: tibia-loot-finder
+    runtime: ruby
+    plan: free
+    buildCommand: ./bin/render-build.sh
+    startCommand: bundle exec puma -C config/puma.rb
+    healthCheckPath: /up
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: SECRET_KEY_BASE
+        generateValue: true
+      - key: RAILS_MAX_THREADS
+        value: "3"
+      - key: WEB_CONCURRENCY
+        value: "0"

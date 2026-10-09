@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  # per IP: market lookups hit an external API
+  rate_limit to: 30, within: 1.minute, only: :market_prices, with: -> { render json: [], status: :too_many_requests }
   PER_PAGE = 30
 
   def index
@@ -39,23 +41,35 @@ class ItemsController < ApplicationController
     render json: items
   end
 
+  # Proxy to api.tibiamarket.top (avoids CORS). Only known servers and at most 300 numeric ids;
+  # answers are cached 10 minutes per server + id set so the public site cannot hammer the API.
   def market_prices
-    require 'net/http'
-    world    = (params[:world] || params[:server]).to_s.strip
-    item_ids = params[:item_ids].to_s.gsub(/[^0-9,]/, '').strip
-    return render json: [] if world.blank? || item_ids.blank?
+    world = (params[:world] || params[:server]).to_s.strip
+    ids   = params[:item_ids].to_s.split(",").filter_map { |i| Integer(i, exception: false) }.uniq.first(300).sort
+    return render json: [] unless LootAnalyzerController::TIBIA_SERVERS.include?(world) && ids.any?
 
-    uri = URI("https://api.tibiamarket.top/market_values?server=#{URI.encode_www_form_component(world)}&item_ids=#{item_ids}")
+    body = Rails.cache.fetch(["market", world, Digest::SHA1.hexdigest(ids.join(","))], expires_in: 10.minutes, skip_nil: true) do
+      fetch_market(world, ids)
+    end
+    render body: body || "[]", content_type: "application/json"
+  end
+
+  private
+
+  def fetch_market(world, ids)
+    require "net/http"
+    uri = URI("https://api.tibiamarket.top/market_values?server=#{URI.encode_www_form_component(world)}&item_ids=#{ids.join(",")}")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.open_timeout = 8
     http.read_timeout = 10
     req = Net::HTTP::Get.new(uri)
-    req['User-Agent'] = 'TibiaLootFinder/1.0'
+    req["User-Agent"] = "TibiaLootFinder/1.0"
     resp = http.request(req)
-    render body: resp.body, content_type: 'application/json'
+    return nil unless resp.is_a?(Net::HTTPSuccess)
+    JSON.parse(resp.body).is_a?(Array) ? resp.body : nil   # only ever pass a list through
   rescue => e
     Rails.logger.warn "market_prices proxy error: #{e}"
-    render json: []
+    nil
   end
 end

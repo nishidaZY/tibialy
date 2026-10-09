@@ -2,8 +2,8 @@ source "https://rubygems.org"
 
 ruby "3.4.1"
 
-gem "rails", "~> 7.2"
-gem "sqlite3", "~> 1.4"
+gem "rails", "~> 7.2.3", ">= 7.2.3.2"
+gem "sqlite3", ">= 2.9.6"
 gem "puma", ">= 5.0"
 gem "importmap-rails"
 gem "turbo-rails"

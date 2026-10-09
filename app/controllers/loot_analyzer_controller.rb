@@ -1,4 +1,5 @@
 class LootAnalyzerController < ApplicationController
+  rate_limit to: 20, within: 1.minute, only: :analyze, with: -> { render json: { error: "Too many requests — wait a minute." }, status: :too_many_requests }
   TIBIA_SERVERS = %w[
     Antica Belobra Bona Calmera Celesta Collabra Descubra Dia Escura Esmera
     Ferobra Firmera Gladera Harmonia Honbra Inabra Jaguna Kalimera Lobera
