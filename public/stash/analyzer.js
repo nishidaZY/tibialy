@@ -13,9 +13,11 @@
 //     and the tier marker are left out. When the stash is sorted by name, a dynamic programme
 //     picks the candidates whose names come out in alphabetical order, then every slot that is
 //     not a clear match is compared with all the items whose names fit between its neighbours'.
-//  3. Counts: right-aligned 5x7 digits on a fixed step, read right to left against templates
-//     (public/stash/digits.json). A digit must be neutral grey (item art is colourful) and two
-//     digits are separated by the dark outline.
+//  3. Counts: right-aligned 5x7 digits, read right to left against templates
+//     (public/stash/digits.json). Each digit is judged on its glyph and dark outline only, so
+//     item art beside it does not matter; the step between digits is measured per number, and
+//     "2,860" style thousands commas are stepped over. A hand-drawn selection that cuts the outer
+//     slots is first moved out to their frames (fitSelection).
 (function () {
   'use strict';
 
@@ -138,8 +140,10 @@
         if (x < -2 || x > n + 1) continue;
         // a line cut by the selection edge has its brightest pixel on the edge itself: keep the
         // lattice position there (snapping to the edge shifted the last column's digits by 2-3 px)
+        // a line right beside other UI (the scrollbar after the last column) can snap to that
+        // UI's bright edge instead: more than 1 px off the lattice, the lattice position is kept
         const sx = snapLine(x);
-        lines.push(Math.min(n - 1, Math.max(0, sx <= 0 || sx >= n - 1 ? Math.round(x) : sx)));
+        lines.push(Math.min(n - 1, Math.max(0, sx <= 0 || sx >= n - 1 || Math.abs(sx - x) > 1.25 ? Math.round(x) : sx)));
       }
       lines = [...new Set(lines)].sort((a, b) => a - b);
       return { lines, centres: lines.map(centre), pitch: p2 };
@@ -201,67 +205,116 @@
   }
 
   // ── 3. counts ──────────────────────────────────────────────────────────────
+  // Every digit is a grey glyph inside a 1 px dark outline. A digit is judged on those pixels
+  // only (its "support"): item art right beside a number — a bone between the 1 and the 8 of
+  // "18", a bright sword next to "870" — is left out instead of rejecting the digit.
+  let glyphCache = null;
+  function glyphs(digits) {
+    if (glyphCache && glyphCache.src === digits) return glyphCache.g;
+    const tw = digits.w || 5, th = digits.h || 7, r = Math.max(1, Math.round(tw / 5.5));
+    const g = {};
+    for (const [d, t] of Object.entries(digits.tmpl)) {
+      const ink = t.map(v => v > 0.6);
+      const near = i => {
+        const x = i % tw, y = (i / tw) | 0;
+        for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) {
+          const xx = x + dx, yy = y + dy;
+          if (xx >= 0 && xx < tw && yy >= 0 && yy < th && ink[yy * tw + xx]) return true;
+        }
+        return false;
+      };
+      const idx = t.map((_, i) => i).filter(near);
+      const tv = norm(idx.map(i => t[i]));
+      g[d] = { idx, tv, ink: idx.filter(i => ink[i]), ring: idx.filter(i => !ink[i]) };
+    }
+    glyphCache = { src: digits, g };
+    return g;
+  }
   function norm(v) {
     const m = v.reduce((a, b) => a + b, 0) / v.length;
     const sd = Math.sqrt(v.reduce((a, b) => a + (b - m) ** 2, 0) / v.length) || 1;
     return v.map(x => (x - m) / sd);
   }
-  // Reads it with the digits ±0.5 px around their expected place; when that is not a clear read
-  // (the slot lines are found to the pixel, a resized screenshot can be 1 px off) the last digit
-  // is searched ±1 px and the others follow its baseline. Wider from the start, grey item art
-  // beside the number was read as extra digits.
-  function readCount(img, right, bottom, P, digits) {
-    const a = readDigits(img, right, bottom, P, digits, [-0.5, 0, 0.5]);
-    if (a && a.worst >= 0.75) return { value: a.value, sure: true };
-    const b = readDigits(img, right, bottom, P, digits, [-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1]);
-    // the wide search found the same last digits but lost the first ones (908 -> 8): keep the long one
-    const longer = (x, y) => String(x.value).length > String(y.value).length && String(x.value).endsWith(String(y.value));
-    const best = !a ? b : !b ? a : longer(a, b) ? a : longer(b, a) ? b : b.worst > a.worst ? b : a;
-    // sure only when every digit matched clearly (blurry digits and grey item art beside a number
-    // score 0.6-0.75); the page asks the user to check the others
-    return best ? { value: best.value, sure: best.worst >= 0.75 } : null;
-  }
-
-  function readDigits(img, right, bottom, P, digits, first) {
-    const u = P / 30.75, step = 7 * u, gw = 5 * u, gh = 7 * u;
-    // templates sample the box around a digit tw x th times; box = [left, top, right, bottom] in
-    // px of a 1x screenshot, relative to the digit's bottom-right corner
-    const tw = digits.w || 5, th = digits.h || 7, tn = tw * th, box = digits.box || [-5, -7, 0, 0];
-    let out = '', worst = 1, ax = 0, ay = 0;
-    for (let k = 0; k < 6; k++) {
-      let top = null;
-      const anchored = k && first.length > 3;
-      const near = v => [v - 0.5, v - 0.25, v, v + 0.25, v + 0.5];
-      const xsI = anchored ? near(ax) : first, ysI = anchored ? near(ay) : first;
-      for (const dx of xsI) for (const dy of ysI) {
-        const x1 = right - digits.aR * P + dx * u - k * step, y1 = bottom - digits.aB * P + dy * u;
-        const px = sampleBox(img, x1 + box[0] * u, y1 + box[1] * u, x1 + box[2] * u, y1 + box[3] * u, tw, th), l = px.map(lum);
-        if (Math.max(...l) - Math.min(...l) < 70) continue;
-        // digits are neutral grey; colourful bright pixels are item art
-        const bright = px.filter(p => (p[0] + p[1] + p[2]) / 3 > 120);
-        if (!bright.length || bright.reduce((a, p) => a + Math.max(...p) - Math.min(...p), 0) / bright.length >= 28) continue;
-        const n = norm(l);
-        let here = null;
-        for (const [d, t] of Object.entries(digits.tmpl)) {
-          let s = 0; for (let i = 0; i < tn; i++) s += n[i] * t[i];
-          s /= tn;
-          if (!here || s > here.s) here = { s, d, dx, dy };
-        }
-        if (k > 0) {
-          // the 2 px between this digit and the previous one is the dark outline (a zoomed-in
-          // screenshot blurs it a little: a digit that matches very well may have a lighter one)
-          const gx1 = x1 + 2 / 30.75 * P;
-          const gap = sampleBox(img, x1, y1 - gh, gx1, y1, 2, 7).map(lum);
-          const g = gap.reduce((a, b) => a + b, 0) / gap.length;
-          if (g >= 70 && !(g < 85 && here.s >= 0.85)) continue;
-        }
-        if (!top || here.s > top.s) top = here;
-      }
-      if (!top || top.s < 0.6) break;
-      out = top.d + out; worst = Math.min(worst, top.s);
-      if (!k) { ax = top.dx; ay = top.dy; }
+  // best digit for the samples of one box, or null when nothing there looks like a digit
+  function bestDigit(px, g, tmpl) {
+    const l = px.map(lum), chr = px.map(p => Math.max(p[0], p[1], p[2]) - Math.min(p[0], p[1], p[2]));
+    if (Math.max(...l) < 120) return null;
+    const med = a => { const b = [...a].sort((x, y) => x - y); return b[b.length >> 1]; };
+    let top = null;
+    for (const [d, G] of Object.entries(g)) {
+      const inkM = med(G.ink.map(i => l[i]));
+      if (inkM < 120) continue;
+      // the glyph is neutral grey (item art is colourful); median: art may cover part of it
+      if (med(G.ink.map(i => chr[i])) >= 40) continue;
+      const v = norm(G.idx.map(i => l[i]));
+      let s = 0; for (let i = 0; i < v.length; i++) s += v[i] * G.tv[i];
+      s /= v.length;
+      // and its outline mostly dark. Item art can cover some of it (the paper over "522"):
+      // fine when the shape itself matches very well
+      const dark = G.ring.filter(i => l[i] < inkM * 0.5).length / G.ring.length;
+      if (dark < (s >= 0.85 ? 0.35 : s >= 0.75 ? 0.45 : 0.6)) continue;
+      if (!top || s > top.s) top = { s, d };
     }
-    return out ? { value: parseInt(out, 10), worst } : null;
+    if (top) return top;
+    // Light, neutral item art right over the digit (the parchment hiding most of the 2 of a
+    // "28") hides its outline too: then the whole box is compared, if nothing in it is colourful
+    const bright = px.filter(p => (p[0] + p[1] + p[2]) / 3 > 120);
+    if (!bright.length || bright.reduce((a, p) => a + Math.max(...p) - Math.min(...p), 0) / bright.length >= 28) return null;
+    if (Math.max(...l) - Math.min(...l) < 70) return null;
+    const n = norm(l);
+    for (const [d, t] of Object.entries(tmpl)) {
+      let s = 0; for (let i = 0; i < n.length; i++) s += n[i] * t[i];
+      s /= n.length;
+      if (s >= 0.6 && (!top || s > top.s)) top = { s, d };
+    }
+    return top;
+  }
+  // Counts are right-aligned on a fixed step, read right to left. The last digit is searched
+  // ±1 font px around its expected place (the slot lines are found to the pixel, a resized
+  // screenshot can be 1 px off); each digit to its left follows on the step, ±0.5 px. After
+  // every 3 digits there may be a thousands comma ("2,860"), a few px wider than the step. The
+  // first digits of a long number stick out of the slot to the left: they are read all the same.
+  function readCount(img, right, bottom, P, digits) {
+    const u = P / 30.75, step = 7 * u;
+    const tw = digits.w || 5, th = digits.h || 7, box = digits.box || [-5, -7, 0, 0];
+    const g = glyphs(digits);
+    const at = (x1, y1) => bestDigit(sampleBox(img, x1 + box[0] * u, y1 + box[1] * u, x1 + box[2] * u, y1 + box[3] * u, tw, th), g, digits.tmpl);
+    const x0 = right - digits.aR * P, y0 = bottom - digits.aB * P;
+    const range = (a, b, s) => { const o = []; for (let v = a; v <= b + 1e-9; v += s) o.push(v); return o; };
+    // every 0.5 px, then 0.25 px around the best place
+    let first = null;
+    const tryAt = (dx, dy) => {
+      const h = at(x0 + dx * u, y0 + dy * u);
+      if (h && (!first || h.s > first.s)) first = { ...h, x: x0 + dx * u, y: y0 + dy * u, dx, dy };
+    };
+    for (const dx of range(-1, 1, 0.5)) for (const dy of range(-1, 1, 0.5)) tryAt(dx, dy);
+    if (first) { const { dx, dy } = first; for (const a of [-0.25, 0, 0.25]) for (const b of [-0.25, 0, 0.25]) if (a || b) tryAt(dx + a, dy + b); }
+    if (!first || first.s < 0.6) return null;
+    let out = first.d, worst = first.s, x = first.x, stp = null;
+    const y = first.y;
+    while (out.length < 9) {
+      // Tibia writes 1000 and up with a comma: a 4th digit only comes after one
+      const extras = out.length % 3 === 0 ? [2, 2.5, 3, 3.5, 4] : [0];
+      // the step is measured on the first clear pair (5.5-7.5 font px: screenshots are rescaled by
+      // the OS and by WhatsApp & co), then kept with ±0.5 px of slack
+      const js = stp == null ? range(-1.5, 1.5, 0.25) : range(-0.5, 0.5, 0.25);
+      const base = stp ?? step;
+      let next = null;
+      for (const e of extras) {
+        for (const j of js) for (const dy of [-0.25, 0, 0.25]) {
+          const nx = x - base - e * u + j * u, h = at(nx, y + dy * u);
+          // after a comma only a clear digit counts (item art could look like one)
+          if (h && h.s >= (e ? 0.8 : 0.6) && (!next || h.s > next.s)) next = { ...h, x: nx, e };
+        }
+        if (next) break;
+      }
+      if (!next) break;
+      // a weak match may sit a little off: the step is taken from a clear pair only
+      if (stp == null && !next.e && next.s >= 0.8) stp = x - next.x;
+      out = next.d + out; worst = Math.min(worst, next.s); x = next.x;
+    }
+    // sure only when every digit matched clearly; the page asks the user to check the others
+    return { value: parseInt(out, 10), sure: worst >= 0.75 };
   }
 
   // ── main ───────────────────────────────────────────────────────────────────
@@ -289,6 +342,65 @@
     ox.imageSmoothingEnabled = true; ox.imageSmoothingQuality = 'high';
     ox.drawImage(cur, 0, 0, out.width, out.height);
     return { src: out, f: out.width / src.width };
+  }
+
+  // A selection drawn by hand often cuts the outer slots (a column 3 px short was dropped and
+  // every count after it moved one slot). A side whose edge falls inside a slot is moved out to
+  // that slot's frame. It is a slot when the frame lines of the grid carry on across the strip
+  // (the scrollbar beside the last column is dark like a slot, but has no frame lines).
+  function fitSelection(image, sel) {
+    const IW = image.naturalWidth || image.width, IH = image.naturalHeight || image.height;
+    const grab = (x, y, w, h) => {
+      const c = canvas(w, h);
+      ctx2d(c).drawImage(image, x, y, w, h, 0, 0, c.width, c.height);
+      return ctx2d(c).getImageData(0, 0, c.width, c.height);
+    };
+    const g = findGrid(grab(sel.x, sel.y, sel.w, sel.h));
+    if (!g || g.xs.length < 2 || g.ys.length < 2) return sel;
+    const P = g.pitch;
+    // the selection and a slot more around it, in screenshot pixels
+    const ex = Math.max(0, Math.floor(sel.x - P)), ey = Math.max(0, Math.floor(sel.y - P));
+    const E = grab(ex, ey, Math.min(IW, Math.ceil(sel.x + sel.w + P)) - ex, Math.min(IH, Math.ceil(sel.y + sel.h + P)) - ey);
+    const L = (x, y) => {
+      x = Math.round(x - ex); y = Math.round(y - ey);
+      if (x < 0 || y < 0 || x >= E.width || y >= E.height) return NaN;
+      const i = (y * E.width + x) * 4; return E.data[i] * 0.299 + E.data[i + 1] * 0.587 + E.data[i + 2] * 0.114;
+    };
+    const mean = a => { const v = a.filter(Number.isFinite); return v.length ? v.reduce((p, q) => p + q, 0) / v.length : NaN; };
+    const xs = g.xs.map(v => v + sel.x), ys = g.ys.map(v => v + sel.y);
+    // for each frame line: how much brighter it is than the slot borders beside it, across the
+    // strip [a, b) of columns (lines = the rows of the grid) or rows (lines = its columns)
+    const contrast = (a, b, lines, vertical) => lines.map(l => {
+      const on = [], off = [];
+      for (let t = a; t < b; t++) {
+        on.push(vertical ? L(l, t) : L(t, l));
+        // just beside the line: the slot's own dark border (items hardly reach it)
+        for (const d of [-0.1 * P, 0.1 * P]) off.push(vertical ? L(l + d, t) : L(t, l + d));
+      }
+      return mean(on) - mean(off);
+    });
+    const m = Math.round(0.15 * P), grow = [0, 0, 0, 0];
+    const sides = [
+      // [space before the first line, strip just outside it, the full slot just inside it]
+      [xs[0] - sel.x, [xs[0] - P + m, xs[0] - m], [xs[0] + m, xs[0] + P - m], ys.slice(0, -1), false],
+      [sel.x + sel.w - 1 - xs[xs.length - 1], [xs[xs.length - 1] + m, xs[xs.length - 1] + P - m], [xs[xs.length - 1] - P + m, xs[xs.length - 1] - m], ys.slice(0, -1), false],
+      [ys[0] - sel.y, [ys[0] - P + m, ys[0] - m], [ys[0] + m, ys[0] + P - m], xs.slice(0, -1), true],
+      [sel.y + sel.h - 1 - ys[ys.length - 1], [ys[ys.length - 1] + m, ys[ys.length - 1] + P - m], [ys[ys.length - 1] - P + m, ys[ys.length - 1] - m], xs.slice(0, -1), true],
+    ];
+    sides.forEach(([gap, strip, ref, lines, vertical], i) => {
+      if (gap <= 0.12 * P || gap >= P - 1) return;
+      const r = contrast(Math.round(ref[0]), Math.round(ref[1]), lines, vertical).filter(Number.isFinite);
+      const rm = r.reduce((p, q) => p + q, 0) / (r.length || 1);
+      const ok = contrast(Math.round(strip[0]), Math.round(strip[1]), lines, vertical).map(v => v > 0.5 * rm);
+      // most frame lines carry on; except under the last row, which is often only partly filled
+      // from the left (no frames after its last item): its first slots are enough
+      let lead = 0; while (lead < ok.length && ok[lead]) lead++;
+      const slot = ok.filter(Boolean).length >= 0.6 * ok.length || (i === 3 && lead >= Math.min(2, ok.length));
+      if (rm > 8 && slot) grow[i] = P - gap + 2;
+    });
+    if (!grow.some(Boolean)) return sel;
+    const x = Math.max(0, sel.x - grow[0]), y = Math.max(0, sel.y - grow[2]);
+    return { x, y, w: Math.min(IW, sel.x + sel.w + grow[1]) - x, h: Math.min(IH, sel.y + sel.h + grow[3]) - y };
   }
 
   async function analyze(original, data, opts = {}, onProgress = () => {}) {
@@ -520,5 +632,5 @@
     };
   }
 
-  window.StashAnalyzer = { analyze, findGrid, loadImage, _debug: { normalise, readCount, ctx2d, sampleBox, lum, norm } /* for the digit template harvester */ };
+  window.StashAnalyzer = { analyze, findGrid, fitSelection, loadImage, _debug: { normalise, readCount, ctx2d, sampleBox, lum, norm } /* for the digit template harvester */ };
 })();

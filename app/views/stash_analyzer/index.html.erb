@@ -235,6 +235,8 @@
     try {
       progress(0.02, "Loading item sprites…");
       const data = await loadData();
+      // a selection that cuts the outer slots is moved out to their frames (and shown so)
+      sel = StashAnalyzer.fitSelection(shot, sel);
       const area = document.createElement("canvas");
       area.width = Math.round(sel.w); area.height = Math.round(sel.h);
       area.getContext("2d", { willReadFrequently: true }).drawImage(shot, sel.x, sel.y, sel.w, sel.h, 0, 0, area.width, area.height);
