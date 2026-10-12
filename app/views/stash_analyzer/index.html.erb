@@ -120,7 +120,9 @@
 </section>
 <datalist id="item-names"></datalist>
 
-<script src="/stash/analyzer.js"></script>
+<%# ?v=mtime: a browser holding an older copy (the native app's WebView did) fetches the new one %>
+<% stash_v = ->(f) { "/stash/#{f}?v=#{File.mtime(Rails.root.join("public/stash", f)).to_i}" } %>
+<script src="<%= stash_v.("analyzer.js") %>"></script>
 <script>
 (function () {
   const MARKET_API = "/items/market_prices";
@@ -144,10 +146,10 @@
   function loadData() {
     return dataPromise ||= (async () => {
       const [atlas, digits, catalog, atlasImg] = await Promise.all([
-        fetch("/stash/atlas.json").then(r => r.json()),
-        fetch("/stash/digits.json").then(r => r.json()),
+        fetch("<%= stash_v.("atlas.json") %>").then(r => r.json()),
+        fetch("<%= stash_v.("digits.json") %>").then(r => r.json()),
         fetch("<%= stash_catalog_path %>").then(r => r.json()),
-        StashAnalyzer.loadImage("/stash/atlas.png"),
+        StashAnalyzer.loadImage("<%= stash_v.("atlas.png") %>"),
       ]);
       const names = {}; for (const [id, it] of Object.entries(catalog)) names[id] = it.n;
       const index = {}; atlas.ids.forEach((id, i) => { if (!(id in index)) index[id] = i; });   // first cell: the single item
@@ -257,7 +259,7 @@
   function spriteStyle(id) {
     const i = results.data.index[id]; if (i == null) return "";
     const c = results.data.atlas.cols;
-    return `background:url(/stash/atlas.png) -${(i % c) * 32}px -${Math.floor(i / c) * 32}px;width:32px;height:32px;image-rendering:pixelated`;
+    return `background:url(<%= stash_v.("atlas.png") %>) -${(i % c) * 32}px -${Math.floor(i / c) * 32}px;width:32px;height:32px;image-rendering:pixelated`;
   }
   function rowHtml(s, i) {
     const it = results.data.catalog[s.itemId] || {};
