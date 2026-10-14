@@ -1,0 +1,204 @@
+{
+  "arrows": [
+    {
+      "id": 1,
+      "name": "Arrow",
+      "attack": 25,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 2,
+      "name": "Burst Arrow",
+      "attack": 27,
+      "hitChance": 100,
+      "aoe": true
+    },
+    {
+      "id": 3,
+      "name": "Crystalline Arrow",
+      "attack": 65,
+      "hitChance": 95,
+      "aoe": false
+    },
+    {
+      "id": 4,
+      "name": "Diamond Arrow",
+      "attack": 37,
+      "hitChance": 100,
+      "aoe": true
+    },
+    {
+      "id": 5,
+      "name": "Earth Arrow",
+      "attack": 28,
+      "attackEarth": 14,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 6,
+      "name": "Envenomed Arrow",
+      "attack": 54,
+      "attackEarth": 27,
+      "hitChance": 92,
+      "aoe": false
+    },
+    {
+      "id": 7,
+      "name": "Flaming Arrow",
+      "attack": 28,
+      "attackFire": 14,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 8,
+      "name": "Flash Arrow",
+      "attack": 28,
+      "attackEnergy": 14,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 9,
+      "name": "Onyx Arrow",
+      "attack": 38,
+      "hitChance": 92,
+      "aoe": false
+    },
+    {
+      "id": 10,
+      "name": "Poison Arrow",
+      "attack": 23,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 11,
+      "name": "Shiver Arrow",
+      "attack": 28,
+      "attackIce": 14,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 12,
+      "name": "Simple Arrow",
+      "attack": 20,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 13,
+      "name": "Sniper Arrow",
+      "attack": 28,
+      "hitChance": 99,
+      "aoe": false
+    },
+    {
+      "id": 14,
+      "name": "Tarsal Arrow",
+      "attack": 33,
+      "hitChance": 94,
+      "aoe": false
+    },
+    {
+      "id": 23,
+      "name": "Shatterstorm Arrow",
+      "attack": 27,
+      "hitChance": 100,
+      "aoe": true
+    },
+    {
+      "id": 24,
+      "name": "Firestorm Arrow",
+      "attack": 21,
+      "attackFire": 21,
+      "hitChance": 100,
+      "aoe": true
+    },
+    {
+      "id": 25,
+      "name": "Terrastorm Arrow",
+      "attack": 21,
+      "attackEarth": 21,
+      "hitChance": 100,
+      "aoe": true
+    },
+    {
+      "id": 26,
+      "name": "Froststorm Arrow",
+      "attack": 21,
+      "attackIce": 21,
+      "hitChance": 100,
+      "aoe": true
+    },
+    {
+      "id": 27,
+      "name": "Thunderstorm Arrow",
+      "attack": 21,
+      "attackEnergy": 21,
+      "hitChance": 100,
+      "aoe": true
+    }
+  ],
+  "bolts": [
+    {
+      "id": 15,
+      "name": "Bolt",
+      "attack": 30,
+      "hitChance": 86,
+      "aoe": false
+    },
+    {
+      "id": 16,
+      "name": "Drill Bolt",
+      "attack": 56,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 17,
+      "name": "Infernal Bolt",
+      "attack": 72,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 18,
+      "name": "Piercing Bolt",
+      "attack": 33,
+      "hitChance": 86,
+      "aoe": false
+    },
+    {
+      "id": 19,
+      "name": "Power Bolt",
+      "attack": 40,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 20,
+      "name": "Prismatic Bolt",
+      "attack": 66,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 21,
+      "name": "Spectral Bolt",
+      "attack": 78,
+      "hitChance": 90,
+      "aoe": false
+    },
+    {
+      "id": 22,
+      "name": "Vortex Bolt",
+      "attack": 36,
+      "hitChance": 90,
+      "aoe": false
+    }
+  ]
+}

@@ -1,0 +1,10468 @@
+[
+  {
+    "id": 1,
+    "name": "Fists",
+    "attack": 7,
+    "skill": "fist",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Amber Axe",
+    "attack": 46,
+    "attackIce": 46,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Amber Greataxe",
+    "attack": 50,
+    "attackEarth": 50,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Angelic Axe",
+    "attack": 44,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Axe",
+    "attack": 12,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Axe of Carving",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Axe of Carving (Charged)",
+    "attack": 50,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Axe of Carving (Heavily Charged)",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Axe of Carving (Overcharged)",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Axe of Destruction",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Axe of Mayhem",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Axe of Mayhem (Charged)",
+    "attack": 50,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Axe of Mayhem (Heavily Charged)",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Axe of Mayhem (Overcharged)",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Axe of Remedy",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Axe of Remedy (Charged)",
+    "attack": 50,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Axe of Remedy (Heavily Charged)",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Axe of Remedy (Overcharged)",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Barbarian Axe",
+    "attack": 28,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Battle Axe",
+    "attack": 25,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Beastslayer Axe",
+    "attack": 35,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Broken Iks Spear",
+    "attack": 1,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Butcher's Axe",
+    "attack": 41,
+    "skill": "axe",
+    "defenseMod": -2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Chopper of Carving",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Chopper of Carving (Charged)",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Chopper of Carving (Heavily Charged)",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Chopper of Carving (Overcharged)",
+    "attack": 53,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Chopper of Destruction",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Chopper of Mayhem",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Chopper of Mayhem (Charged)",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Chopper of Mayhem (Heavily Charged)",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Chopper of Mayhem (Overcharged)",
+    "attack": 53,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Chopper of Remedy",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Chopper of Remedy (Charged)",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Chopper of Remedy (Heavily Charged)",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Chopper of Remedy (Overcharged)",
+    "attack": 53,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Cobra Axe",
+    "attack": 52,
+    "attackIce": 44,
+    "skill": "axe",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Crude Umbral Axe",
+    "attack": 49,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Crude Umbral Chopper",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Crypt Splitter",
+    "attack": 58,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Crystalline Axe",
+    "attack": 51,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Daramian Axe",
+    "attack": 17,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Daramian Waraxe",
+    "attack": 39,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Deepling Axe",
+    "attack": 49,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Demonwing Axe",
+    "attack": 53,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Double Axe",
+    "attack": 35,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Dragon Lance",
+    "attack": 47,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Draining Inferniarch Battleaxe",
+    "attack": 52,
+    "attackFire": 44,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Draining Inferniarch Greataxe",
+    "attack": 56,
+    "attackFire": 48,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Drakinata",
+    "attack": 47,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Dreaded Cleaver",
+    "attack": 40,
+    "skill": "axe",
+    "defenseMod": -3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Dwarven Axe",
+    "attack": 31,
+    "skill": "axe",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Earth Barbarian Axe",
+    "attack": 28,
+    "attackEarth": 5,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Earth Barbaric Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Earth Headchopper",
+    "attack": 42,
+    "attackEarth": 8,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Earth Headchopper Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Earth Heroic Axe",
+    "attack": 44,
+    "attackEarth": 9,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 58,
+    "name": "Earth Heroic Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Earth Knight Axe",
+    "attack": 33,
+    "attackEarth": 6,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Earth Knight Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Earth War Axe",
+    "attack": 48,
+    "attackEarth": 9,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Earth War Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Eldritch Greataxe",
+    "attack": 56,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Energy Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 65,
+    "name": "Energy Barbarian Axe",
+    "attack": 28,
+    "attackEnergy": 5,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Energy Headchopper",
+    "attack": 42,
+    "attackEnergy": 8,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Energy Headchopper Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Energy Heroic Axe",
+    "attack": 44,
+    "attackEnergy": 9,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Energy Heroic Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Energy Knight Axe",
+    "attack": 33,
+    "attackEnergy": 6,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 71,
+    "name": "Energy Knight Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Energy War Axe",
+    "attack": 48,
+    "attackEnergy": 9,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 73,
+    "name": "Energy War Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Execowtioner Axe",
+    "attack": 46,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Executioner",
+    "attack": 51,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 76,
+    "name": "Falcon Battleaxe",
+    "attack": 57,
+    "attackEnergy": 47,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 77,
+    "name": "Farmer's Avenger",
+    "attack": 17,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 78,
+    "name": "Fiery Barbarian Axe",
+    "attack": 28,
+    "attackFire": 5,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 79,
+    "name": "Fiery Barbarian Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Fiery Headchopper",
+    "attack": 42,
+    "attackFire": 8,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 81,
+    "name": "Fiery Headchopper Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 82,
+    "name": "Fiery Heroic Axe",
+    "attack": 44,
+    "attackFire": 9,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Fiery Heroic Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Fiery Knight Axe",
+    "attack": 33,
+    "attackFire": 6,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Fiery Knight Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 86,
+    "name": "Fiery War Axe",
+    "attack": 48,
+    "attackFire": 9,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Fiery War Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Fire Axe",
+    "attack": 38,
+    "attackFire": 11,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Gilded Eldritch Greataxe",
+    "attack": 56,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Glooth Axe",
+    "attack": 65,
+    "attackEarth": 26,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Glorious Axe",
+    "attack": 40,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Golden Axe",
+    "attack": 10,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Golden Sickle",
+    "attack": 13,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Grand Sanguine Battleaxe",
+    "attack": 58,
+    "attackDeath": 50,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Grand Sanguine Hatchet",
+    "attack": 54,
+    "attackFire": 46,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Great Axe",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 97,
+    "name": "Guardian Axe",
+    "attack": 46,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 98,
+    "name": "Guardian Halberd",
+    "attack": 46,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Halberd",
+    "attack": 35,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 100,
+    "name": "Hand Axe",
+    "attack": 10,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 101,
+    "name": "Hatchet",
+    "attack": 15,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Headchopper",
+    "attack": 42,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Heavy Trident",
+    "attack": 35,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Hellforged Axe",
+    "attack": 51,
+    "skill": "axe",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Heroic Axe",
+    "attack": 44,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 106,
+    "name": "Hive Scythe",
+    "attack": 46,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 107,
+    "name": "Ice Hatchet",
+    "attack": 15,
+    "attackIce": 11,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 108,
+    "name": "Icy Barbarian Axe",
+    "attack": 28,
+    "attackIce": 5,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 109,
+    "name": "Icy Barbarian Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 110,
+    "name": "Icy Headchopper",
+    "attack": 42,
+    "attackIce": 8,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 111,
+    "name": "Icy Headchopper Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 112,
+    "name": "Icy Heroic Axe",
+    "attack": 44,
+    "attackIce": 9,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 113,
+    "name": "Icy Heroic Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 114,
+    "name": "Icy Knight Axe",
+    "attack": 33,
+    "attackIce": 6,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 115,
+    "name": "Icy Knight Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 116,
+    "name": "Icy War Axe",
+    "attack": 48,
+    "attackIce": 9,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 117,
+    "name": "Icy War Axe Replica",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 118,
+    "name": "Impaler",
+    "attack": 49,
+    "skill": "axe",
+    "defenseMod": -2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 119,
+    "name": "Inferniarch Battleaxe",
+    "attack": 52,
+    "attackFire": 44,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 120,
+    "name": "Inferniarch Greataxe",
+    "attack": 56,
+    "attackFire": 48,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 121,
+    "name": "Knight Axe",
+    "attack": 33,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 122,
+    "name": "Lion Axe",
+    "attack": 52,
+    "attackEarth": 44,
+    "skill": "axe",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 123,
+    "name": "Mino Lance",
+    "attack": 40,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 839,
+    "name": "Moonsilver Axe",
+    "attack": 56,
+    "attackEarth": 50,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 842,
+    "name": "Moonsilver Chopper",
+    "attack": 60,
+    "attackEnergy": 54,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 124,
+    "name": "Mythril Axe",
+    "attack": 48,
+    "skill": "axe",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 125,
+    "name": "Naga Axe",
+    "attack": 52,
+    "attackEnergy": 44,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 126,
+    "name": "Naginata",
+    "attack": 39,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 127,
+    "name": "Noble Axe",
+    "attack": 39,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 128,
+    "name": "Obsidian Lance",
+    "attack": 34,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 129,
+    "name": "Ogre Choppa",
+    "attack": 39,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 130,
+    "name": "Orcish Axe",
+    "attack": 23,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 131,
+    "name": "Ornamented Axe",
+    "attack": 42,
+    "skill": "axe",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 132,
+    "name": "Ornate Carving Axe",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 133,
+    "name": "Ornate Carving Chopper",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 134,
+    "name": "Ornate Mayhem Axe",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 135,
+    "name": "Ornate Mayhem Chopper",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 136,
+    "name": "Ornate Remedy Axe",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 137,
+    "name": "Ornate Remedy Chopper",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 138,
+    "name": "Phantasmal Axe",
+    "attack": 53,
+    "attackFire": 48,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 139,
+    "name": "Plague Bite",
+    "attack": 52,
+    "attackEarth": 26,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 140,
+    "name": "Plain Carving Axe",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 141,
+    "name": "Plain Carving Chopper",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 142,
+    "name": "Plain Mayhem Axe",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 143,
+    "name": "Plain Mayhem Chopper",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 144,
+    "name": "Plain Remedy Axe",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 145,
+    "name": "Plain Remedy Chopper",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 146,
+    "name": "Ravager's Axe",
+    "attack": 49,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 147,
+    "name": "Ravenwing",
+    "attack": 45,
+    "skill": "axe",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 148,
+    "name": "Reaper's Axe",
+    "attack": 46,
+    "skill": "axe",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 149,
+    "name": "Rending Inferniarch Battleaxe",
+    "attack": 52,
+    "attackFire": 44,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 150,
+    "name": "Rending Inferniarch Greataxe",
+    "attack": 56,
+    "attackFire": 48,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 151,
+    "name": "Rift Lance",
+    "attack": 48,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 152,
+    "name": "Ripper Lance",
+    "attack": 28,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 153,
+    "name": "Royal Axe",
+    "attack": 47,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 154,
+    "name": "Ruthless Axe",
+    "attack": 50,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 155,
+    "name": "Sanguine Battleaxe",
+    "attack": 58,
+    "attackDeath": 50,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 156,
+    "name": "Sanguine Hatchet",
+    "attack": 54,
+    "attackFire": 46,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 157,
+    "name": "Scythe of the Reaper",
+    "attack": 16,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 158,
+    "name": "Sickle",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 159,
+    "name": "Siphoning Inferniarch Battleaxe",
+    "attack": 52,
+    "attackFire": 44,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 160,
+    "name": "Siphoning Inferniarch Greataxe",
+    "attack": 56,
+    "attackFire": 48,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 161,
+    "name": "Solar Axe",
+    "attack": 52,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 162,
+    "name": "Soulbiter",
+    "attack": 52,
+    "attackDeath": 45,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 163,
+    "name": "Souleater",
+    "attack": 57,
+    "attackIce": 47,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 164,
+    "name": "Steel Axe",
+    "attack": 21,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 850,
+    "name": "Stellar Moonsilver Axe",
+    "attack": 56,
+    "attackEarth": 50,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 853,
+    "name": "Stellar Moonsilver Chopper",
+    "attack": 60,
+    "attackEnergy": 54,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 165,
+    "name": "Stonecutter Axe",
+    "attack": 50,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 166,
+    "name": "Throwing Axe",
+    "attack": 51,
+    "skill": "axe",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 167,
+    "name": "Titan Axe",
+    "attack": 43,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 168,
+    "name": "Twin Axe",
+    "attack": 45,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 169,
+    "name": "Umbral Axe",
+    "attack": 51,
+    "skill": "axe",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 170,
+    "name": "Umbral Chopper",
+    "attack": 52,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 171,
+    "name": "Umbral Master Axe",
+    "attack": 53,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 172,
+    "name": "Umbral Master Chopper",
+    "attack": 54,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 173,
+    "name": "Valuable Carving Axe",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 174,
+    "name": "Valuable Carving Chopper",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 175,
+    "name": "Valuable Mayhem Axe",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 176,
+    "name": "Valuable Mayhem Chopper",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 177,
+    "name": "Valuable Remedy Axe",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 178,
+    "name": "Valuable Remedy Chopper",
+    "attack": 5,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 179,
+    "name": "Vile Axe",
+    "attack": 43,
+    "skill": "axe",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 180,
+    "name": "War Axe",
+    "attack": 48,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 181,
+    "name": "Warrior's Axe",
+    "attack": 42,
+    "skill": "axe",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 182,
+    "name": "Zaoan Halberd",
+    "attack": 37,
+    "skill": "axe",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 183,
+    "name": "Amber Bow",
+    "attack": 7,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 184,
+    "name": "Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 185,
+    "name": "Bow of Carving",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 186,
+    "name": "Bow of Carving (Charged)",
+    "attack": 4,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 187,
+    "name": "Bow of Carving (Heavily Charged)",
+    "attack": 5,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 188,
+    "name": "Bow of Carving (Overcharged)",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 189,
+    "name": "Bow of Cataclysm",
+    "attack": 6,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 190,
+    "name": "Bow of Destruction",
+    "attack": 5,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 191,
+    "name": "Bow of Destruction Test",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 192,
+    "name": "Bow of Mayhem",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 193,
+    "name": "Bow of Mayhem (Charged)",
+    "attack": 4,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 194,
+    "name": "Bow of Mayhem (Heavily Charged)",
+    "attack": 5,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 195,
+    "name": "Bow of Mayhem (Overcharged)",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 196,
+    "name": "Bow of Remedy",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 197,
+    "name": "Bow of Remedy (Charged)",
+    "attack": 4,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 198,
+    "name": "Bow of Remedy (Heavily Charged)",
+    "attack": 5,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 199,
+    "name": "Bow of Remedy (Overcharged)",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 200,
+    "name": "Composite Hornbow",
+    "attack": 2,
+    "hitMod": 2,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 201,
+    "name": "Crude Umbral Bow",
+    "attack": 2,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 202,
+    "name": "Crypt Spine",
+    "attack": 8,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 203,
+    "name": "Draining Inferniarch Bow",
+    "attack": 7,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 204,
+    "name": "Eldritch Bow",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 205,
+    "name": "Elethriel's Elemental Bow",
+    "attack": 7,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 206,
+    "name": "Elvish Bow",
+    "attack": 0,
+    "hitMod": 3,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 207,
+    "name": "Falcon Bow",
+    "attack": 6,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 208,
+    "name": "Gilded Eldritch Bow",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 209,
+    "name": "Grand Sanguine Bow",
+    "attack": 9,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 210,
+    "name": "Hive Bow",
+    "attack": 2,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 211,
+    "name": "Icicle Bow",
+    "attack": 1,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 212,
+    "name": "Inferniarch Bow",
+    "attack": 6,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 213,
+    "name": "Jungle Bow",
+    "attack": 6,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 214,
+    "name": "Lion Longbow",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 215,
+    "name": "Living Vine Bow",
+    "attack": 5,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 840,
+    "name": "Moonsilver Bow",
+    "attack": 10,
+    "hitMod": 7,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 216,
+    "name": "Musician's Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 217,
+    "name": "Mycological Bow",
+    "attack": 4,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 218,
+    "name": "Ornate Carving Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 219,
+    "name": "Ornate Mayhem Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 220,
+    "name": "Ornate Remedy Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 221,
+    "name": "Plain Carving Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 222,
+    "name": "Plain Mayhem Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 223,
+    "name": "Plain Remedy Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 224,
+    "name": "Refined Bow",
+    "attack": 0,
+    "hitMod": 1,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 225,
+    "name": "Rending Inferniarch Bow",
+    "attack": 7,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 226,
+    "name": "Rift Bow",
+    "attack": 5,
+    "hitMod": 3,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 227,
+    "name": "Sanguine Bow",
+    "attack": 9,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 228,
+    "name": "Shimmer Bow",
+    "attack": 1,
+    "hitMod": 7,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 229,
+    "name": "Silkweaver Bow",
+    "attack": 0,
+    "hitMod": 3,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 230,
+    "name": "Siphoning Inferniarch Bow",
+    "attack": 7,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 231,
+    "name": "Soulbleeder",
+    "attack": 8,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 851,
+    "name": "Stellar Moonsilver Bow",
+    "attack": 10,
+    "hitMod": 7,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 232,
+    "name": "Umbral Bow",
+    "attack": 4,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 233,
+    "name": "Umbral Master Bow",
+    "attack": 6,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 234,
+    "name": "Umbral Master Bow Test",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 235,
+    "name": "Valuable Carving Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 236,
+    "name": "Valuable Mayhem Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 237,
+    "name": "Valuable Remedy Bow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 238,
+    "name": "Warsinger Bow",
+    "attack": 3,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 239,
+    "name": "Yol's Bow",
+    "attack": 0,
+    "hitMod": 7,
+    "skill": "distance",
+    "ammo": "arrows",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 240,
+    "name": "Abyss Hammer",
+    "attack": 47,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 241,
+    "name": "Amber Bludgeon",
+    "attack": 50,
+    "attackDeath": 50,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 242,
+    "name": "Amber Cudgel",
+    "attack": 46,
+    "attackFire": 46,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 243,
+    "name": "Amber Staff",
+    "attack": 43,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 244,
+    "name": "Arcane Staff",
+    "attack": 50,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 245,
+    "name": "Banana Staff",
+    "attack": 25,
+    "skill": "club",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 246,
+    "name": "Battle Hammer",
+    "attack": 24,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 247,
+    "name": "Blessed Sceptre",
+    "attack": 47,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 248,
+    "name": "Bone Club",
+    "attack": 12,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 249,
+    "name": "Bonebreaker",
+    "attack": 46,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 250,
+    "name": "Brutetamer's Staff",
+    "attack": 35,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 251,
+    "name": "Chaos Mace",
+    "attack": 44,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 252,
+    "name": "Clerical Mace",
+    "attack": 28,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 253,
+    "name": "Club",
+    "attack": 7,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 254,
+    "name": "Club of the Fury",
+    "attack": 16,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 255,
+    "name": "Cobra Club",
+    "attack": 52,
+    "attackFire": 44,
+    "skill": "club",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 256,
+    "name": "Cranial Basher",
+    "attack": 44,
+    "skill": "club",
+    "defenseMod": -2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 257,
+    "name": "Crowbar",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 258,
+    "name": "Crude Umbral Hammer",
+    "attack": 51,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 259,
+    "name": "Crude Umbral Mace",
+    "attack": 48,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 260,
+    "name": "Crypt Breaker",
+    "attack": 58,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 261,
+    "name": "Crystal Mace",
+    "attack": 38,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 262,
+    "name": "Daramian Mace",
+    "attack": 21,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 263,
+    "name": "Dark Trinity Mace",
+    "attack": 51,
+    "skill": "club",
+    "defenseMod": -1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 264,
+    "name": "Deepling Squelcher",
+    "attack": 42,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 265,
+    "name": "Deepling Staff",
+    "attack": 43,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 266,
+    "name": "Demonbone",
+    "attack": 48,
+    "skill": "club",
+    "defenseMod": -2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 267,
+    "name": "Diamond Sceptre",
+    "attack": 34,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 268,
+    "name": "Dragon Hammer",
+    "attack": 32,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 269,
+    "name": "Dragonbone Staff",
+    "attack": 35,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 270,
+    "name": "Draining Inferniarch Flail",
+    "attack": 52,
+    "attackDeath": 44,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 271,
+    "name": "Draining Inferniarch Warhammer",
+    "attack": 56,
+    "attackIce": 48,
+    "skill": "club",
+    "defenseMod": 4,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 272,
+    "name": "Earth Basher Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 273,
+    "name": "Earth Cleric Mace Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 274,
+    "name": "Earth Clerical Mace",
+    "attack": 28,
+    "attackEarth": 5,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 275,
+    "name": "Earth Cranial Basher",
+    "attack": 44,
+    "attackEarth": 8,
+    "skill": "club",
+    "defenseMod": -2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 276,
+    "name": "Earth Crystal Mace",
+    "attack": 38,
+    "attackEarth": 7,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 277,
+    "name": "Earth Crystal Mace Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 278,
+    "name": "Earth Orcish Maul",
+    "attack": 42,
+    "attackEarth": 7,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 279,
+    "name": "Earth Orcish Maul Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 280,
+    "name": "Earth War Hammer",
+    "attack": 45,
+    "attackEarth": 9,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 281,
+    "name": "Earth War Hammer Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 282,
+    "name": "Eldritch Warmace",
+    "attack": 56,
+    "attackFire": 50,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 283,
+    "name": "Enchanted Staff",
+    "attack": 39,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 284,
+    "name": "Energized Demonbone",
+    "attack": 46,
+    "skill": "club",
+    "defenseMod": -1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 285,
+    "name": "Energy Basher Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 286,
+    "name": "Energy Cleric Mace Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 287,
+    "name": "Energy Clerical Mace",
+    "attack": 28,
+    "attackEnergy": 5,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 288,
+    "name": "Energy Cranial Basher",
+    "attack": 44,
+    "attackEnergy": 8,
+    "skill": "club",
+    "defenseMod": -2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 289,
+    "name": "Energy Crystal Mace",
+    "attack": 38,
+    "attackEnergy": 7,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 290,
+    "name": "Energy Mace Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 291,
+    "name": "Energy Orcish Maul",
+    "attack": 42,
+    "attackEnergy": 7,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 292,
+    "name": "Energy Orcish Maul Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 293,
+    "name": "Energy War Hammer",
+    "attack": 45,
+    "attackEnergy": 9,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 294,
+    "name": "Energy War Hammer Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 295,
+    "name": "Falcon Mace",
+    "attack": 52,
+    "attackEnergy": 41,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 296,
+    "name": "Ferumbras' Staff (Blunt)",
+    "attack": 20,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 297,
+    "name": "Fiery Basher Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 298,
+    "name": "Fiery Clerical Mace",
+    "attack": 28,
+    "attackFire": 5,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 299,
+    "name": "Fiery Clerical Mace Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 300,
+    "name": "Fiery Cranial Basher",
+    "attack": 44,
+    "attackFire": 8,
+    "skill": "club",
+    "defenseMod": -2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 301,
+    "name": "Fiery Crystal Mace",
+    "attack": 38,
+    "attackFire": 7,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 302,
+    "name": "Fiery Crystal Mace Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 303,
+    "name": "Fiery Orcish Maul",
+    "attack": 42,
+    "attackFire": 7,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 304,
+    "name": "Fiery Orcish Maul Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 305,
+    "name": "Fiery War Hammer",
+    "attack": 45,
+    "attackFire": 9,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 306,
+    "name": "Fiery War Hammer Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 307,
+    "name": "Furry Club",
+    "attack": 31,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 308,
+    "name": "Giant Smithhammer",
+    "attack": 24,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 309,
+    "name": "Gilded Eldritch Warmace",
+    "attack": 56,
+    "attackFire": 50,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 310,
+    "name": "Glooth Club",
+    "attack": 65,
+    "attackEarth": 26,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 311,
+    "name": "Glooth Whip",
+    "attack": 33,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 312,
+    "name": "Glutton's Mace",
+    "attack": 16,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 313,
+    "name": "Grand Sanguine Bludgeon",
+    "attack": 58,
+    "attackEarth": 50,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 314,
+    "name": "Grand Sanguine Cudgel",
+    "attack": 54,
+    "attackDeath": 46,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 315,
+    "name": "Hammer of Carving",
+    "attack": 53,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 316,
+    "name": "Hammer of Carving (Charged)",
+    "attack": 51,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 317,
+    "name": "Hammer of Carving (Heavily Charged)",
+    "attack": 53,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 318,
+    "name": "Hammer of Carving (Overcharged)",
+    "attack": 54,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 319,
+    "name": "Hammer of Destruction",
+    "attack": 53,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 320,
+    "name": "Hammer of Mayhem",
+    "attack": 53,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 321,
+    "name": "Hammer of Mayhem (Charged)",
+    "attack": 51,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 322,
+    "name": "Hammer of Mayhem (Heavily Charged)",
+    "attack": 53,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 323,
+    "name": "Hammer of Mayhem (Overcharged)",
+    "attack": 54,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 324,
+    "name": "Hammer of Prophecy",
+    "attack": 52,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 325,
+    "name": "Hammer of Remedy",
+    "attack": 53,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 326,
+    "name": "Hammer of Remedy (Charged)",
+    "attack": 51,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 327,
+    "name": "Hammer of Remedy (Heavily Charged)",
+    "attack": 53,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 328,
+    "name": "Hammer of Remedy (Overcharged)",
+    "attack": 54,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 329,
+    "name": "Hammer of Wrath",
+    "attack": 48,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 330,
+    "name": "Heavy Mace",
+    "attack": 49,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 331,
+    "name": "Icy Clerical Mace",
+    "attack": 28,
+    "attackIce": 5,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 332,
+    "name": "Icy Clerical Mace Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 333,
+    "name": "Icy Cranial Basher",
+    "attack": 44,
+    "attackIce": 8,
+    "skill": "club",
+    "defenseMod": -2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 334,
+    "name": "Icy Cranial Basher Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 335,
+    "name": "Icy Crystal Mace",
+    "attack": 38,
+    "attackIce": 7,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 336,
+    "name": "Icy Crystal Mace Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 337,
+    "name": "Icy Orcish Maul",
+    "attack": 42,
+    "attackIce": 7,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 338,
+    "name": "Icy Orcish Maul Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 339,
+    "name": "Icy War Hammer",
+    "attack": 45,
+    "attackIce": 9,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 340,
+    "name": "Icy War Hammer Replica",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 341,
+    "name": "Inferniarch Flail",
+    "attack": 52,
+    "attackDeath": 44,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 342,
+    "name": "Inferniarch Warhammer",
+    "attack": 56,
+    "attackIce": 48,
+    "skill": "club",
+    "defenseMod": 4,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 343,
+    "name": "Iron Hammer",
+    "attack": 18,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 344,
+    "name": "Jade Hammer",
+    "attack": 46,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 345,
+    "name": "Jungle Flail",
+    "attack": 52,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 346,
+    "name": "Lich Staff",
+    "attack": 40,
+    "skill": "club",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 347,
+    "name": "Life Preserver",
+    "attack": 27,
+    "skill": "club",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 348,
+    "name": "Light Mace",
+    "attack": 14,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 349,
+    "name": "Lion Hammer",
+    "attack": 52,
+    "attackEarth": 44,
+    "skill": "club",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 350,
+    "name": "Lunar Staff",
+    "attack": 40,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 351,
+    "name": "Mace",
+    "attack": 16,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 352,
+    "name": "Mace of Carving",
+    "attack": 50,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 353,
+    "name": "Mace of Carving (Charged)",
+    "attack": 49,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 354,
+    "name": "Mace of Carving (Heavily Charged)",
+    "attack": 50,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 355,
+    "name": "Mace of Carving (Overcharged)",
+    "attack": 51,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 356,
+    "name": "Mace of Destruction",
+    "attack": 50,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 357,
+    "name": "Mace of Mayhem",
+    "attack": 50,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 358,
+    "name": "Mace of Mayhem (Charged)",
+    "attack": 49,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 359,
+    "name": "Mace of Mayhem (Heavily Charged)",
+    "attack": 50,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 360,
+    "name": "Mace of Mayhem (Overcharged)",
+    "attack": 51,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 361,
+    "name": "Mace of Remedy",
+    "attack": 50,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 362,
+    "name": "Mace of Remedy (Charged)",
+    "attack": 49,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 363,
+    "name": "Mace of Remedy (Heavily Charged)",
+    "attack": 50,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 364,
+    "name": "Mace of Remedy (Overcharged)",
+    "attack": 51,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 365,
+    "name": "Maimer",
+    "attack": 51,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 366,
+    "name": "Mallet Handle",
+    "attack": 24,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 367,
+    "name": "Mammoth Whopper",
+    "attack": 30,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 368,
+    "name": "Metal Bat",
+    "attack": 44,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 369,
+    "name": "Moohtant Cudgel",
+    "attack": 47,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 845,
+    "name": "Moonsilver Crusher",
+    "attack": 56,
+    "attackEarth": 50,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 848,
+    "name": "Moonsilver Mace",
+    "attack": 60,
+    "attackIce": 54,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 370,
+    "name": "Morning Star",
+    "attack": 25,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 371,
+    "name": "Mortal Mace",
+    "attack": 52,
+    "attackDeath": 44,
+    "skill": "club",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 372,
+    "name": "Mycological Mace",
+    "attack": 50,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 373,
+    "name": "Naga Club",
+    "attack": 52,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 374,
+    "name": "Northern Star",
+    "attack": 42,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 375,
+    "name": "Obsidian Truncheon",
+    "attack": 50,
+    "skill": "club",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 376,
+    "name": "Ogre Klubba",
+    "attack": 45,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 377,
+    "name": "One Hit Wonder",
+    "attack": 49,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 378,
+    "name": "Onyx Flail",
+    "attack": 45,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 379,
+    "name": "Orcish Maul",
+    "attack": 42,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 380,
+    "name": "Ornate Carving Hammer",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 381,
+    "name": "Ornate Carving Mace",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 382,
+    "name": "Ornate Mace",
+    "attack": 49,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 383,
+    "name": "Ornate Mayhem Hammer",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 384,
+    "name": "Ornate Mayhem Mace",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 385,
+    "name": "Ornate Remedy Hammer",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 386,
+    "name": "Ornate Remedy Mace",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 387,
+    "name": "Plain Carving Hammer",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 388,
+    "name": "Plain Carving Mace",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 389,
+    "name": "Plain Mayhem Hammer",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 390,
+    "name": "Plain Mayhem Mace",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 391,
+    "name": "Plain Remedy Hammer",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 392,
+    "name": "Plain Remedy Mace",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 393,
+    "name": "Queen's Sceptre",
+    "attack": 43,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 394,
+    "name": "Rending Inferniarch Flail",
+    "attack": 52,
+    "attackDeath": 44,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 395,
+    "name": "Rending Inferniarch Warhammer",
+    "attack": 56,
+    "attackIce": 48,
+    "skill": "club",
+    "defenseMod": 4,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 396,
+    "name": "Resizer",
+    "attack": 56,
+    "attackIce": 45,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 397,
+    "name": "Rotten Demonbone",
+    "attack": 46,
+    "skill": "club",
+    "defenseMod": -1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 398,
+    "name": "Sanguine Bludgeon",
+    "attack": 58,
+    "attackEarth": 50,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 399,
+    "name": "Sanguine Cudgel",
+    "attack": 54,
+    "attackDeath": 46,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 400,
+    "name": "Sapphire Hammer",
+    "attack": 37,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 401,
+    "name": "Scythe",
+    "attack": 8,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 402,
+    "name": "Shadow Sceptre",
+    "attack": 39,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 403,
+    "name": "Silver Mace",
+    "attack": 41,
+    "skill": "club",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 404,
+    "name": "Siphoning Inferniarch Flail",
+    "attack": 52,
+    "attackDeath": 44,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 405,
+    "name": "Siphoning Inferniarch Warhammer",
+    "attack": 56,
+    "attackIce": 48,
+    "skill": "club",
+    "defenseMod": 4,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 406,
+    "name": "Skull Staff",
+    "attack": 36,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 407,
+    "name": "Skullcrusher",
+    "attack": 51,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 408,
+    "name": "Snake God's Sceptre",
+    "attack": 48,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 409,
+    "name": "Soulcrusher",
+    "attack": 52,
+    "attackIce": 46,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 410,
+    "name": "Soulmaimer",
+    "attack": 57,
+    "attackEnergy": 47,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 411,
+    "name": "Spiked Squelcher",
+    "attack": 41,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 412,
+    "name": "Spiky Club",
+    "attack": 31,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 413,
+    "name": "Stale Bread of Ancientness",
+    "attack": 18,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 856,
+    "name": "Stellar Moonsilver Crusher",
+    "attack": 56,
+    "attackEarth": 50,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 859,
+    "name": "Stellar Moonsilver Mace",
+    "attack": 60,
+    "attackIce": 54,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 414,
+    "name": "Strange Mallet",
+    "attack": 18,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 415,
+    "name": "Studded Club",
+    "attack": 9,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 416,
+    "name": "Sulphurous Demonbone",
+    "attack": 46,
+    "skill": "club",
+    "defenseMod": -1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 417,
+    "name": "Swampling Club",
+    "attack": 17,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 418,
+    "name": "Taurus Mace",
+    "attack": 30,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 419,
+    "name": "The Stomper",
+    "attack": 51,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 420,
+    "name": "Thunder Hammer",
+    "attack": 49,
+    "skill": "club",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 421,
+    "name": "Umbral Hammer",
+    "attack": 53,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 422,
+    "name": "Umbral Mace",
+    "attack": 50,
+    "skill": "club",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 423,
+    "name": "Umbral Master Hammer",
+    "attack": 55,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 424,
+    "name": "Umbral Master Mace",
+    "attack": 52,
+    "skill": "club",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 425,
+    "name": "Unliving Demonbone",
+    "attack": 46,
+    "skill": "club",
+    "defenseMod": -1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 426,
+    "name": "Valuable Carving Hammer",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 427,
+    "name": "Valuable Carving Mace",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 428,
+    "name": "Valuable Mayhem Hammer",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 429,
+    "name": "Valuable Mayhem Mace",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 430,
+    "name": "Valuable Remedy Hammer",
+    "attack": 5,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 431,
+    "name": "Valuable Remedy Mace",
+    "attack": 5,
+    "skill": "club",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 432,
+    "name": "War Hammer",
+    "attack": 45,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 433,
+    "name": "Zathroth' Redeemer",
+    "attack": 0,
+    "skill": "club",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 434,
+    "name": "Amber Crossbow",
+    "attack": 8,
+    "hitMod": 7,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 435,
+    "name": "Arbalest",
+    "attack": 2,
+    "hitMod": 2,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 436,
+    "name": "Chain Bolter",
+    "attack": 4,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 437,
+    "name": "Cobra Crossbow",
+    "attack": 7,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 438,
+    "name": "Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 439,
+    "name": "Crossbow of Carving",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 440,
+    "name": "Crossbow of Carving (Charged)",
+    "attack": 4,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 441,
+    "name": "Crossbow of Carving (Heavily Charged)",
+    "attack": 5,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 442,
+    "name": "Crossbow of Carving (Overcharged)",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 443,
+    "name": "Crossbow of Destruction",
+    "attack": 6,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 444,
+    "name": "Crossbow of Mayhem",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 445,
+    "name": "Crossbow of Mayhem (Charged)",
+    "attack": 4,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 446,
+    "name": "Crossbow of Mayhem (Heavily Charged)",
+    "attack": 5,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 447,
+    "name": "Crossbow of Mayhem (Overcharged)",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 448,
+    "name": "Crossbow of Remedy",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 449,
+    "name": "Crossbow of Remedy (Charged)",
+    "attack": 4,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 450,
+    "name": "Crossbow of Remedy (Heavily Charged)",
+    "attack": 5,
+    "hitMod": 5,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 451,
+    "name": "Crossbow of Remedy (Overcharged)",
+    "attack": 6,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 452,
+    "name": "Crude Umbral Crossbow",
+    "attack": 3,
+    "hitMod": 1,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 453,
+    "name": "Crystal Crossbow",
+    "attack": 4,
+    "hitMod": 3,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 454,
+    "name": "Draining Inferniarch Arbalest",
+    "attack": 8,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 455,
+    "name": "Grand Sanguine Crossbow",
+    "attack": 10,
+    "hitMod": 7,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 456,
+    "name": "Inferniarch Arbalest",
+    "attack": 7,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 457,
+    "name": "Modified Crossbow",
+    "attack": 0,
+    "hitMod": 1,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 844,
+    "name": "Moonsilver Crossbow",
+    "attack": 11,
+    "hitMod": 8,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 458,
+    "name": "Naga Crossbow",
+    "attack": 8,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 459,
+    "name": "Ornate Carving Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 460,
+    "name": "Ornate Crossbow",
+    "attack": 1,
+    "hitMod": 2,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 461,
+    "name": "Ornate Mayhem Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 462,
+    "name": "Ornate Remedy Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 463,
+    "name": "Plain Carving Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 464,
+    "name": "Plain Mayhem Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 465,
+    "name": "Plain Remedy Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 466,
+    "name": "Rending Inferniarch Arbalest",
+    "attack": 8,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 467,
+    "name": "Rift Crossbow",
+    "attack": 5,
+    "hitMod": 3,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 468,
+    "name": "Royal Crossbow",
+    "attack": 5,
+    "hitMod": 3,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 469,
+    "name": "Sanguine Crossbow",
+    "attack": 10,
+    "hitMod": 7,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 470,
+    "name": "Siphoning Inferniarch Arbalest",
+    "attack": 8,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 471,
+    "name": "Soulpiercer",
+    "attack": 9,
+    "hitMod": 6,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 855,
+    "name": "Stellar Moonsilver Crossbow",
+    "attack": 11,
+    "hitMod": 8,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 472,
+    "name": "The Devileye",
+    "attack": 20,
+    "hitMod": -20,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 473,
+    "name": "The Ironworker",
+    "attack": 4,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 474,
+    "name": "Thorn Spitter",
+    "attack": 9,
+    "hitMod": 1,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 475,
+    "name": "Triple Bolt Crossbow",
+    "attack": 3,
+    "hitMod": 2,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 476,
+    "name": "Umbral Crossbow",
+    "attack": 6,
+    "hitMod": 2,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 477,
+    "name": "Umbral Master Crossbow",
+    "attack": 9,
+    "hitMod": 4,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 478,
+    "name": "Valuable Carving Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 479,
+    "name": "Valuable Mayhem Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 480,
+    "name": "Valuable Remedy Crossbow",
+    "attack": 0,
+    "skill": "distance",
+    "ammo": "bolts",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 481,
+    "name": "Amber Kusarigama",
+    "attack": 44,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 482,
+    "name": "Bambus Jo",
+    "attack": 40,
+    "skill": "fist",
+    "bond": "earth",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 483,
+    "name": "Cobra Bo",
+    "attack": 42,
+    "skill": "fist",
+    "bond": "earth",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 484,
+    "name": "Crude Umbral Katar",
+    "attack": 39,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 485,
+    "name": "Crypt Strike",
+    "attack": 45,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 486,
+    "name": "Depth Claws",
+    "attack": 40,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 487,
+    "name": "Drachaku",
+    "attack": 39,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 488,
+    "name": "Draining Inferniarch Claws",
+    "attack": 43,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 489,
+    "name": "Eldritch Crescent Moon Spade",
+    "attack": 42,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 490,
+    "name": "Falcon Sai",
+    "attack": 43,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 491,
+    "name": "Fists of Enlightenment",
+    "attack": 23,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 492,
+    "name": "Gilded Eldritch Crescent Moon Spade",
+    "attack": 42,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 493,
+    "name": "Grand Sanguine Claws",
+    "attack": 45,
+    "skill": "fist",
+    "bond": "earth",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 494,
+    "name": "Inferniarch Claws",
+    "attack": 43,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 495,
+    "name": "Jo Staff",
+    "attack": 17,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 496,
+    "name": "Light Jo Staff",
+    "attack": 10,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 497,
+    "name": "Lion Claws",
+    "attack": 43,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 847,
+    "name": "Moonsilver Katar",
+    "attack": 46,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 498,
+    "name": "Naga Katar",
+    "attack": 43,
+    "skill": "fist",
+    "bond": "earth",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 499,
+    "name": "Nunchaku",
+    "attack": 31,
+    "skill": "fist",
+    "bond": "earth",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 500,
+    "name": "Nunchaku of Destruction",
+    "attack": 40,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 501,
+    "name": "Nunchaku of Enlightenment",
+    "attack": 33,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 502,
+    "name": "Pair of Iron Fists",
+    "attack": 38,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 503,
+    "name": "Pair of Monk Fists",
+    "attack": 21,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 504,
+    "name": "Rending Inferniarch Claws",
+    "attack": 43,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 505,
+    "name": "Sai",
+    "attack": 36,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 506,
+    "name": "Sai of Enlightenment",
+    "attack": 40,
+    "skill": "fist",
+    "bond": "earth",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 507,
+    "name": "Sanguine Claws",
+    "attack": 45,
+    "skill": "fist",
+    "bond": "earth",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 508,
+    "name": "Simple Jo Staff",
+    "attack": 12,
+    "skill": "fist",
+    "bond": "earth",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 509,
+    "name": "Siphoning Inferniarch Claws",
+    "attack": 43,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 510,
+    "name": "Soulkamas",
+    "attack": 44,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 511,
+    "name": "Staff",
+    "attack": 22,
+    "skill": "fist",
+    "bond": "earth",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 858,
+    "name": "Stellar Moonsilver Katar",
+    "attack": 46,
+    "skill": "fist",
+    "bond": "energy",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 512,
+    "name": "Traditional Sai",
+    "attack": 27,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 513,
+    "name": "Umbral Katar",
+    "attack": 40,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 514,
+    "name": "Umbral Master Katar",
+    "attack": 41,
+    "skill": "fist",
+    "bond": "physical",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 515,
+    "name": "Amber Sabre",
+    "attack": 46,
+    "attackEnergy": 46,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 516,
+    "name": "Amber Slayer",
+    "attack": 50,
+    "attackDeath": 50,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 517,
+    "name": "Assassin Dagger",
+    "attack": 40,
+    "skill": "sword",
+    "defenseMod": -2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 518,
+    "name": "Berserker",
+    "attack": 48,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 519,
+    "name": "Blacksteel Sword",
+    "attack": 42,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 520,
+    "name": "Blade of Carving",
+    "attack": 50,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 521,
+    "name": "Blade of Carving (Charged)",
+    "attack": 49,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 522,
+    "name": "Blade of Carving (Heavily Charged)",
+    "attack": 50,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 523,
+    "name": "Blade of Carving (Overcharged)",
+    "attack": 51,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 524,
+    "name": "Blade of Corruption",
+    "attack": 48,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 525,
+    "name": "Blade of Destruction",
+    "attack": 50,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 526,
+    "name": "Blade of Mayhem",
+    "attack": 50,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 527,
+    "name": "Blade of Mayhem (Charged)",
+    "attack": 49,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 528,
+    "name": "Blade of Mayhem (Heavily Charged)",
+    "attack": 50,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 529,
+    "name": "Blade of Mayhem (Overcharged)",
+    "attack": 51,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 530,
+    "name": "Blade of Remedy",
+    "attack": 50,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 531,
+    "name": "Blade of Remedy (Charged)",
+    "attack": 49,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 532,
+    "name": "Blade of Remedy (Heavily Charged)",
+    "attack": 50,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 533,
+    "name": "Blade of Remedy (Overcharged)",
+    "attack": 51,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 534,
+    "name": "Bloody Edge",
+    "attack": 43,
+    "skill": "sword",
+    "defenseMod": -3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 535,
+    "name": "Bone Sword",
+    "attack": 13,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 536,
+    "name": "Bright Sword",
+    "attack": 36,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 537,
+    "name": "Broadsword",
+    "attack": 26,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 538,
+    "name": "Broken Macuahuitl",
+    "attack": 1,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 539,
+    "name": "Carlin Sword",
+    "attack": 15,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 540,
+    "name": "Cobra Sword",
+    "attack": 52,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 541,
+    "name": "Combat Knife",
+    "attack": 8,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 542,
+    "name": "Cowtana",
+    "attack": 34,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 543,
+    "name": "Crimson Sword",
+    "attack": 28,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 544,
+    "name": "Crimson Sword (Uzgod)",
+    "attack": 18,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 545,
+    "name": "Crude Umbral Blade",
+    "attack": 48,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 546,
+    "name": "Crude Umbral Slayer",
+    "attack": 51,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 547,
+    "name": "Crypt Slicer",
+    "attack": 58,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 548,
+    "name": "Crystal Sword",
+    "attack": 35,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 549,
+    "name": "Crystalline Sword",
+    "attack": 47,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 550,
+    "name": "Dagger",
+    "attack": 8,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 551,
+    "name": "Demonrage Sword",
+    "attack": 47,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 552,
+    "name": "Djinn Blade",
+    "attack": 38,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 553,
+    "name": "Dragon Slayer",
+    "attack": 44,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 554,
+    "name": "Draining Inferniarch Blade",
+    "attack": 52,
+    "attackFire": 44,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 555,
+    "name": "Draining Inferniarch Slayer",
+    "attack": 56,
+    "attackEnergy": 48,
+    "skill": "sword",
+    "defenseMod": 4,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 556,
+    "name": "Earth Blacksteel Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 557,
+    "name": "Earth Blacksteel Sword",
+    "attack": 42,
+    "attackEarth": 7,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 558,
+    "name": "Earth Dragon Slayer",
+    "attack": 44,
+    "attackEarth": 9,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 559,
+    "name": "Earth Mystic Blade",
+    "attack": 44,
+    "attackEarth": 8,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 560,
+    "name": "Earth Mystic Blade Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 561,
+    "name": "Earth Relic Sword",
+    "attack": 42,
+    "attackEarth": 8,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 562,
+    "name": "Earth Relic Sword Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 563,
+    "name": "Earth Slayer Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 564,
+    "name": "Earth Spike Sword",
+    "attack": 24,
+    "attackEarth": 4,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 565,
+    "name": "Earth Spike Sword Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 566,
+    "name": "Eldritch Claymore",
+    "attack": 56,
+    "attackFire": 50,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 567,
+    "name": "Emerald Sword",
+    "attack": 49,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 568,
+    "name": "Energy Blacksteel Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 569,
+    "name": "Energy Blacksteel Sword",
+    "attack": 42,
+    "attackEnergy": 7,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 570,
+    "name": "Energy Blade Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 571,
+    "name": "Energy Dragon Slayer",
+    "attack": 44,
+    "attackEnergy": 9,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 572,
+    "name": "Energy Mystic Blade",
+    "attack": 44,
+    "attackEnergy": 8,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 573,
+    "name": "Energy Relic Sword",
+    "attack": 42,
+    "attackEnergy": 8,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 574,
+    "name": "Energy Relic Sword Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 575,
+    "name": "Energy Slayer Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 576,
+    "name": "Energy Spike Sword",
+    "attack": 24,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 577,
+    "name": "Energy Spike Sword Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 578,
+    "name": "Epee",
+    "attack": 37,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 579,
+    "name": "Falcon Longsword",
+    "attack": 56,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 580,
+    "name": "Fiery Blacksteel Sword",
+    "attack": 42,
+    "attackFire": 7,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 581,
+    "name": "Fiery Dragon Slayer",
+    "attack": 44,
+    "attackFire": 9,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 582,
+    "name": "Fiery Dragon Slayer Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 583,
+    "name": "Fiery Mystic Blade",
+    "attack": 44,
+    "attackFire": 8,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 584,
+    "name": "Fiery Mystic Blade Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 585,
+    "name": "Fiery Relic Sword",
+    "attack": 42,
+    "attackFire": 8,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 586,
+    "name": "Fiery Relic Sword Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 587,
+    "name": "Fiery Spike Sword",
+    "attack": 24,
+    "attackFire": 4,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 588,
+    "name": "Fiery Spike Sword Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 589,
+    "name": "Fire Blacksteel Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 590,
+    "name": "Fire Sword",
+    "attack": 35,
+    "attackFire": 11,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 591,
+    "name": "Giant Sword",
+    "attack": 46,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 592,
+    "name": "Gilded Eldritch Claymore",
+    "attack": 56,
+    "attackFire": 50,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 593,
+    "name": "Glooth Blade",
+    "attack": 65,
+    "attackEarth": 26,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 594,
+    "name": "Gnome Sword",
+    "attack": 51,
+    "attackEnergy": 41,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 595,
+    "name": "Golden Magic Longsword",
+    "attack": 0,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 596,
+    "name": "Golden Warlord Sword",
+    "attack": 0,
+    "skill": "sword",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 597,
+    "name": "Grand Sanguine Blade",
+    "attack": 54,
+    "attackFire": 46,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 598,
+    "name": "Grand Sanguine Razor",
+    "attack": 58,
+    "attackEnergy": 50,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 599,
+    "name": "Haunted Blade",
+    "attack": 40,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 600,
+    "name": "Havoc Blade",
+    "attack": 49,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 601,
+    "name": "Heavy Machete",
+    "attack": 16,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 602,
+    "name": "Ice Rapier",
+    "attack": 60,
+    "attackIce": 18,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 603,
+    "name": "Icy Blacksteel Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 604,
+    "name": "Icy Blacksteel Sword",
+    "attack": 42,
+    "attackIce": 7,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 605,
+    "name": "Icy Dragon Slayer",
+    "attack": 44,
+    "attackIce": 9,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 606,
+    "name": "Icy Dragon Slayer Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 607,
+    "name": "Icy Mystic Blade",
+    "attack": 44,
+    "attackIce": 8,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 608,
+    "name": "Icy Mystic Blade Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 609,
+    "name": "Icy Relic Sword",
+    "attack": 42,
+    "attackIce": 8,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 610,
+    "name": "Icy Relic Sword Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 611,
+    "name": "Icy Spike Sword",
+    "attack": 24,
+    "attackIce": 4,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 612,
+    "name": "Icy Spike Sword Replica",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 613,
+    "name": "Impaler of the Igniter",
+    "attack": 51,
+    "attackFire": 26,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 614,
+    "name": "Incredible Mumpiz Slayer",
+    "attack": 17,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 615,
+    "name": "Inferniarch Blade",
+    "attack": 52,
+    "attackFire": 44,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 616,
+    "name": "Inferniarch Slayer",
+    "attack": 56,
+    "attackEnergy": 48,
+    "skill": "sword",
+    "defenseMod": 4,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 617,
+    "name": "Ink Sword",
+    "attack": 14,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 618,
+    "name": "Jagged Sword",
+    "attack": 21,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 619,
+    "name": "Katana",
+    "attack": 16,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 620,
+    "name": "Knife",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 621,
+    "name": "Light Rapier",
+    "attack": 10,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 622,
+    "name": "Lion Longsword",
+    "attack": 52,
+    "attackEarth": 44,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 623,
+    "name": "Longsword",
+    "attack": 17,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 624,
+    "name": "Machete",
+    "attack": 12,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 625,
+    "name": "Magic Longsword",
+    "attack": 55,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 626,
+    "name": "Magic Sword",
+    "attack": 48,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 627,
+    "name": "Mean Knight Sword",
+    "attack": 14,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 628,
+    "name": "Mercenary Sword",
+    "attack": 43,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 843,
+    "name": "Moonsilver Claymore",
+    "attack": 60,
+    "attackFire": 54,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 846,
+    "name": "Moonsilver Epee",
+    "attack": 56,
+    "attackEarth": 50,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 629,
+    "name": "Mystic Blade",
+    "attack": 44,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 630,
+    "name": "Naga Sword",
+    "attack": 52,
+    "attackIce": 44,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 631,
+    "name": "Nightmare Blade",
+    "attack": 46,
+    "skill": "sword",
+    "defenseMod": -3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 632,
+    "name": "Ornate Carving Blade",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 633,
+    "name": "Ornate Carving Slayer",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 634,
+    "name": "Ornate Mayhem Blade",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 635,
+    "name": "Ornate Mayhem Slayer",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 636,
+    "name": "Ornate Remedy Blade",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 637,
+    "name": "Ornate Remedy Slayer",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 638,
+    "name": "Pharaoh Sword",
+    "attack": 41,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 639,
+    "name": "Plain Carving Blade",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 640,
+    "name": "Plain Carving Slayer",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 641,
+    "name": "Plain Mayhem Blade",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 642,
+    "name": "Plain Mayhem Slayer",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 643,
+    "name": "Plain Remedy Blade",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 644,
+    "name": "Plain Remedy Slayer",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 645,
+    "name": "Poet's Fencing Quill",
+    "attack": 10,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 646,
+    "name": "Pointed Rabbitslayer",
+    "attack": 16,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 647,
+    "name": "Poison Dagger",
+    "attack": 18,
+    "attackEarth": 2,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 648,
+    "name": "Rapier",
+    "attack": 10,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 649,
+    "name": "Ratana",
+    "attack": 27,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 650,
+    "name": "Relic Sword",
+    "attack": 42,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 651,
+    "name": "Rending Inferniarch Blade",
+    "attack": 52,
+    "attackFire": 44,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 652,
+    "name": "Rending Inferniarch Slayer",
+    "attack": 56,
+    "attackEnergy": 48,
+    "skill": "sword",
+    "defenseMod": 4,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 653,
+    "name": "Ritual Bone Knife",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 654,
+    "name": "Ron the Ripper's Sabre",
+    "attack": 12,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 655,
+    "name": "Runed Sword",
+    "attack": 45,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 656,
+    "name": "Sabre",
+    "attack": 12,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 657,
+    "name": "Sanguine Blade",
+    "attack": 54,
+    "attackFire": 46,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 658,
+    "name": "Sanguine Razor",
+    "attack": 58,
+    "attackEnergy": 50,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 659,
+    "name": "Scimitar",
+    "attack": 19,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 660,
+    "name": "Serpent Sword",
+    "attack": 26,
+    "attackEarth": 8,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 661,
+    "name": "Shimmer Sword",
+    "attack": 42,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 662,
+    "name": "Shiny Blade",
+    "attack": 49,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 663,
+    "name": "Short Sword",
+    "attack": 11,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 664,
+    "name": "Silver Dagger",
+    "attack": 9,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 665,
+    "name": "Siphoning Inferniarch Blade",
+    "attack": 52,
+    "attackFire": 44,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 666,
+    "name": "Siphoning Inferniarch Slayer",
+    "attack": 56,
+    "attackEnergy": 48,
+    "skill": "sword",
+    "defenseMod": 4,
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 667,
+    "name": "Slayer of Carving",
+    "attack": 52,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 668,
+    "name": "Slayer of Carving (Charged)",
+    "attack": 51,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 669,
+    "name": "Slayer of Carving (Heavily Charged)",
+    "attack": 52,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 670,
+    "name": "Slayer of Carving (Overcharged)",
+    "attack": 53,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 671,
+    "name": "Slayer of Destruction",
+    "attack": 52,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 672,
+    "name": "Slayer of Mayhem",
+    "attack": 52,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 673,
+    "name": "Slayer of Mayhem (Charged)",
+    "attack": 51,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 674,
+    "name": "Slayer of Mayhem (Heavily Charged)",
+    "attack": 52,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 675,
+    "name": "Slayer of Mayhem (Overcharged)",
+    "attack": 53,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 676,
+    "name": "Slayer of Remedy",
+    "attack": 52,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 677,
+    "name": "Slayer of Remedy (Charged)",
+    "attack": 51,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 678,
+    "name": "Slayer of Remedy (Heavily Charged)",
+    "attack": 52,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 679,
+    "name": "Slayer of Remedy (Overcharged)",
+    "attack": 53,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 680,
+    "name": "Soulcutter",
+    "attack": 52,
+    "attackDeath": 45,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 681,
+    "name": "Soulshredder",
+    "attack": 57,
+    "attackIce": 47,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 682,
+    "name": "Spike Sword",
+    "attack": 24,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 854,
+    "name": "Stellar Moonsilver Claymore",
+    "attack": 60,
+    "attackFire": 54,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 857,
+    "name": "Stellar Moonsilver Epee",
+    "attack": 56,
+    "attackEarth": 50,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 683,
+    "name": "Summerblade",
+    "attack": 51,
+    "attackFire": 41,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 684,
+    "name": "Sword",
+    "attack": 14,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 685,
+    "name": "Tagralt Blade",
+    "attack": 56,
+    "attackEarth": 49,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 686,
+    "name": "Templar Scytheblade",
+    "attack": 23,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 687,
+    "name": "Test Weapon for Knights",
+    "attack": 0,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 688,
+    "name": "Thaian Sword",
+    "attack": 45,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 689,
+    "name": "The Avenger",
+    "attack": 50,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 690,
+    "name": "The Calamity",
+    "attack": 51,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 691,
+    "name": "The Epiphany",
+    "attack": 50,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 692,
+    "name": "The Justice Seeker",
+    "attack": 47,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 693,
+    "name": "Twiceslicer",
+    "attack": 47,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 694,
+    "name": "Twin Hooks",
+    "attack": 32,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 695,
+    "name": "Two Handed Sword",
+    "attack": 30,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 696,
+    "name": "Umbral Blade",
+    "attack": 50,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 697,
+    "name": "Umbral Master Slayer",
+    "attack": 54,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 698,
+    "name": "Umbral Masterblade",
+    "attack": 52,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 699,
+    "name": "Umbral Slayer",
+    "attack": 52,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 700,
+    "name": "Valuable Carving Blade",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 701,
+    "name": "Valuable Carving Slayer",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 702,
+    "name": "Valuable Mayhem Blade",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 703,
+    "name": "Valuable Mayhem Slayer",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 704,
+    "name": "Valuable Remedy Blade",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 705,
+    "name": "Valuable Remedy Slayer",
+    "attack": 5,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 706,
+    "name": "Warlord Sword",
+    "attack": 53,
+    "skill": "sword",
+    "hands": "two",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 707,
+    "name": "Winterblade",
+    "attack": 50,
+    "attackIce": 40,
+    "skill": "sword",
+    "defenseMod": 3,
+    "hands": "one",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 708,
+    "name": "Wooden Sword",
+    "attack": 7,
+    "skill": "sword",
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 709,
+    "name": "Wyvern Fang",
+    "attack": 32,
+    "skill": "sword",
+    "defenseMod": 1,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 710,
+    "name": "Zaoan Sword",
+    "attack": 43,
+    "skill": "sword",
+    "defenseMod": 2,
+    "hands": "one",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 711,
+    "name": "Assassin Star",
+    "attack": 65,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 712,
+    "name": "Enchanted Spear",
+    "attack": 38,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 713,
+    "name": "Glooth Spear",
+    "attack": 55,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 714,
+    "name": "Hunting Spear",
+    "attack": 32,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 715,
+    "name": "Leaf Star",
+    "attack": 50,
+    "attackEarth": 2,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 716,
+    "name": "Mean Paladin Spear",
+    "attack": 15,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 717,
+    "name": "Royal Spear",
+    "attack": 35,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 718,
+    "name": "Royal Star",
+    "attack": 66,
+    "attackFire": 2,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 719,
+    "name": "Small Stone",
+    "attack": 5,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 720,
+    "name": "Snowball",
+    "attack": 0,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 721,
+    "name": "Spear",
+    "attack": 25,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 722,
+    "name": "Throwing Cake",
+    "attack": 0,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 723,
+    "name": "Throwing Knife",
+    "attack": 25,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 724,
+    "name": "Throwing Star",
+    "attack": 30,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 725,
+    "name": "Throwing Star of Sula",
+    "attack": 250,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 726,
+    "name": "Viper Star",
+    "attack": 28,
+    "skill": "distance",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 727,
+    "name": "Amber Rod",
+    "damageType": "ice",
+    "damage": 106,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 728,
+    "name": "Amber Wand",
+    "damageType": "energy",
+    "damage": 106,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 729,
+    "name": "Cobra Rod",
+    "damageType": "earth",
+    "damage": 90,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 730,
+    "name": "Cobra Wand",
+    "damageType": "energy",
+    "damage": 97,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 731,
+    "name": "Crypt Bile",
+    "damageType": "physical",
+    "damage": 110,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 732,
+    "name": "Crypt Jaw",
+    "damageType": "physical",
+    "damage": 110,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 733,
+    "name": "Deepling Ceremonial Dagger",
+    "damageType": "ice",
+    "damage": 92,
+    "vocations": [
+      "druid",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 734,
+    "name": "Deepling Fork",
+    "damageType": "ice",
+    "damage": 100,
+    "vocations": [
+      "druid",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 735,
+    "name": "Draining Inferniarch Rod",
+    "damageType": "earth",
+    "damage": 102,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 736,
+    "name": "Draining Inferniarch Wand",
+    "damageType": "death",
+    "damage": 110,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 737,
+    "name": "Dream Blossom Staff",
+    "damageType": "energy",
+    "damage": 70,
+    "vocations": [
+      "druid",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 738,
+    "name": "Eldritch Rod",
+    "damageType": "ice",
+    "damage": 95,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 739,
+    "name": "Eldritch Wand",
+    "damageType": "fire",
+    "damage": 95,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 740,
+    "name": "Energized Limb",
+    "damageType": "fire",
+    "damage": 98,
+    "vocations": [
+      "druid",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 741,
+    "name": "Falcon Rod",
+    "damageType": "earth",
+    "damage": 94,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 742,
+    "name": "Falcon Wand",
+    "damageType": "energy",
+    "damage": 94,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 743,
+    "name": "Ferumbras' Staff (Enchanted)",
+    "damageType": "energy",
+    "damage": 95,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 744,
+    "name": "Ferumbras' Staff (Failed)",
+    "damageType": "energy",
+    "damage": 80,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 745,
+    "name": "Gilded Eldritch Rod",
+    "damageType": "ice",
+    "damage": 95,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 746,
+    "name": "Gilded Eldritch Wand",
+    "damageType": "fire",
+    "damage": 95,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 747,
+    "name": "Glacial Rod",
+    "damageType": "ice",
+    "damage": 85,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 748,
+    "name": "Grand Sanguine Coil",
+    "damageType": "fire",
+    "damage": 114,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 749,
+    "name": "Grand Sanguine Rod",
+    "damageType": "earth",
+    "damage": 112,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 750,
+    "name": "Hailstorm Rod",
+    "damageType": "ice",
+    "damage": 65,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 751,
+    "name": "Inferniarch Rod",
+    "damageType": "earth",
+    "damage": 102,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 752,
+    "name": "Inferniarch Wand",
+    "damageType": "death",
+    "damage": 107,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 753,
+    "name": "Jungle Rod",
+    "damageType": "ice",
+    "damage": 90,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 754,
+    "name": "Jungle Wand",
+    "damageType": "earth",
+    "damage": 90,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 755,
+    "name": "Lion Rod",
+    "damageType": "ice",
+    "damage": 95,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 756,
+    "name": "Lion Wand",
+    "damageType": "ice",
+    "damage": 99,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 757,
+    "name": "Moonlight Rod",
+    "damageType": "ice",
+    "damage": 19,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 841,
+    "name": "Moonsilver Channeler",
+    "damageType": "death",
+    "damage": 118,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 849,
+    "name": "Moonsilver Sceptre",
+    "damageType": "ice",
+    "damage": 115,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 758,
+    "name": "Muck Rod",
+    "damageType": "earth",
+    "damage": 85,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 759,
+    "name": "Naga Rod",
+    "damageType": "ice",
+    "damage": 100,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 760,
+    "name": "Naga Wand",
+    "damageType": "energy",
+    "damage": 105,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 761,
+    "name": "Necrotic Rod",
+    "damageType": "death",
+    "damage": 30,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 762,
+    "name": "Northwind Rod",
+    "damageType": "ice",
+    "damage": 30,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 763,
+    "name": "Ogre Scepta",
+    "damageType": "earth",
+    "damage": 65,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 764,
+    "name": "Ornate Carving Rod",
+    "damageType": "ice",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 765,
+    "name": "Ornate Carving Wand",
+    "damageType": "energy",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 766,
+    "name": "Ornate Mayhem Rod",
+    "damageType": "ice",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 767,
+    "name": "Ornate Mayhem Wand",
+    "damageType": "energy",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 768,
+    "name": "Ornate Remedy Rod",
+    "damageType": "ice",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 769,
+    "name": "Ornate Remedy Wand",
+    "damageType": "energy",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 770,
+    "name": "Plain Carving Rod",
+    "damageType": "ice",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 771,
+    "name": "Plain Carving Wand",
+    "damageType": "energy",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 772,
+    "name": "Plain Mayhem Rod",
+    "damageType": "ice",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 773,
+    "name": "Plain Mayhem Wand",
+    "damageType": "energy",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 774,
+    "name": "Plain Remedy Rod",
+    "damageType": "ice",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 775,
+    "name": "Plain Remedy Wand",
+    "damageType": "energy",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 776,
+    "name": "Rending Inferniarch Rod",
+    "damageType": "earth",
+    "damage": 102,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 777,
+    "name": "Rending Inferniarch Wand",
+    "damageType": "death",
+    "damage": 110,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 778,
+    "name": "Rod of Carving",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 779,
+    "name": "Rod of Carving (Charged)",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 780,
+    "name": "Rod of Carving (Heavily Charged)",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 781,
+    "name": "Rod of Carving (Overcharged)",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 782,
+    "name": "Rod of Destruction",
+    "damageType": "ice",
+    "damage": 95,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 783,
+    "name": "Rod of Mayhem",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 784,
+    "name": "Rod of Mayhem (Charged)",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 785,
+    "name": "Rod of Mayhem (Heavily Charged)",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 786,
+    "name": "Rod of Mayhem (Overcharged)",
+    "damageType": "ice",
+    "damage": 103,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 787,
+    "name": "Rod of Remedy",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 788,
+    "name": "Rod of Remedy (Charged)",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 789,
+    "name": "Rod of Remedy (Heavily Charged)",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 790,
+    "name": "Rod of Remedy (Overcharged)",
+    "damageType": "ice",
+    "damage": 88,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 791,
+    "name": "Sanguine Coil",
+    "damageType": "fire",
+    "damage": 119,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 792,
+    "name": "Sanguine Rod",
+    "damageType": "earth",
+    "damage": 112,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 793,
+    "name": "Shimmer Rod",
+    "damageType": "ice",
+    "damage": 65,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 794,
+    "name": "Shimmer Wand",
+    "damageType": "energy",
+    "damage": 65,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 795,
+    "name": "Siphoning Inferniarch Rod",
+    "damageType": "earth",
+    "damage": 102,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 796,
+    "name": "Siphoning Inferniarch Wand",
+    "damageType": "death",
+    "damage": 110,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 797,
+    "name": "Snakebite Rod",
+    "damageType": "earth",
+    "damage": 13,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 798,
+    "name": "Sorcerer Test Weapon Test",
+    "damage": 0,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 799,
+    "name": "Sorcerer and Druid Staff",
+    "damageType": "energy",
+    "damage": 13,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 800,
+    "name": "Soulhexer",
+    "damageType": "ice",
+    "damage": 108,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 801,
+    "name": "Soultainter",
+    "damageType": "death",
+    "damage": 110,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 802,
+    "name": "Springsprout Rod",
+    "damageType": "earth",
+    "damage": 65,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 852,
+    "name": "Stellar Moonsilver Channeler",
+    "damageType": "death",
+    "damage": 6,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 860,
+    "name": "Stellar Moonsilver Sceptre",
+    "damageType": "ice",
+    "damage": 6,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 803,
+    "name": "Terra Rod",
+    "damageType": "earth",
+    "damage": 45,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 804,
+    "name": "The Chiller",
+    "damageType": "ice",
+    "damage": 8,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 805,
+    "name": "The Scorcher",
+    "damageType": "fire",
+    "damage": 8,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 806,
+    "name": "Underworld Rod",
+    "damageType": "death",
+    "damage": 65,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 807,
+    "name": "Valuable Carving Rod",
+    "damageType": "ice",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 808,
+    "name": "Valuable Carving Wand",
+    "damageType": "energy",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 809,
+    "name": "Valuable Mayhem Rod",
+    "damageType": "ice",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 810,
+    "name": "Valuable Mayhem Wand",
+    "damageType": "energy",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 811,
+    "name": "Valuable Remedy Rod",
+    "damageType": "ice",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 812,
+    "name": "Valuable Remedy Wand",
+    "damageType": "energy",
+    "damage": 5,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 813,
+    "name": "Wand of Carving",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 814,
+    "name": "Wand of Carving (Charged)",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 815,
+    "name": "Wand of Carving (Heavily Charged)",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 816,
+    "name": "Wand of Carving (Overcharged)",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 817,
+    "name": "Wand of Cosmic Energy",
+    "damageType": "energy",
+    "damage": 45,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 818,
+    "name": "Wand of Darkness",
+    "damageType": "death",
+    "damage": 85,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 819,
+    "name": "Wand of Decay",
+    "damageType": "death",
+    "damage": 30,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 820,
+    "name": "Wand of Defiance",
+    "damageType": "energy",
+    "damage": 85,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 821,
+    "name": "Wand of Destruction",
+    "damageType": "energy",
+    "damage": 95,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 822,
+    "name": "Wand of Destruction Test",
+    "damage": 0,
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 823,
+    "name": "Wand of Dimensions",
+    "damageType": "energy",
+    "damage": 53,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 824,
+    "name": "Wand of Draconia",
+    "damageType": "fire",
+    "damage": 30,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 825,
+    "name": "Wand of Dragonbreath",
+    "damageType": "fire",
+    "damage": 19,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 826,
+    "name": "Wand of Everblazing",
+    "damageType": "fire",
+    "damage": 85,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 827,
+    "name": "Wand of Inferno",
+    "damageType": "fire",
+    "damage": 65,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 828,
+    "name": "Wand of Mayhem",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 829,
+    "name": "Wand of Mayhem (Charged)",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 830,
+    "name": "Wand of Mayhem (Heavily Charged)",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 831,
+    "name": "Wand of Mayhem (Overcharged)",
+    "damageType": "energy",
+    "damage": 103,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 832,
+    "name": "Wand of Remedy",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 833,
+    "name": "Wand of Remedy (Charged)",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 834,
+    "name": "Wand of Remedy (Heavily Charged)",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 835,
+    "name": "Wand of Remedy (Overcharged)",
+    "damageType": "energy",
+    "damage": 88,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 836,
+    "name": "Wand of Starstorm",
+    "damageType": "energy",
+    "damage": 65,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 837,
+    "name": "Wand of Voodoo",
+    "damageType": "death",
+    "damage": 65,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 838,
+    "name": "Wand of Vortex",
+    "damageType": "energy",
+    "damage": 13,
+    "vocations": [
+      "sorcerer"
+    ]
+  }
+]

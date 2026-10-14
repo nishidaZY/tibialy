@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "name": "Blood Rage",
+    "visible": false,
+    "effect": "blood-rage",
+    "vocation": "knight"
+  },
+  {
+    "id": 2,
+    "name": "Protector",
+    "visible": false,
+    "effect": "protector",
+    "vocation": "knight"
+  },
+  {
+    "id": 3,
+    "name": "Sharpshooter",
+    "visible": false,
+    "effect": "sharpshooter",
+    "vocation": "paladin"
+  },
+  {
+    "id": 4,
+    "name": "Divine Defiance",
+    "visible": false,
+    "effect": "divine-defiance",
+    "vocation": "paladin"
+  },
+  {
+    "id": 5,
+    "name": "Master of Flames",
+    "visible": true,
+    "effect": "master-of-flames",
+    "vocation": "sorcerer",
+    "group": "elemental"
+  },
+  {
+    "id": 6,
+    "name": "Master of Thunder",
+    "visible": true,
+    "effect": "master-of-thunder",
+    "vocation": "sorcerer",
+    "group": "elemental"
+  },
+  {
+    "id": 7,
+    "name": "Master of Decay",
+    "visible": true,
+    "effect": "master-of-decay",
+    "vocation": "sorcerer",
+    "group": "elemental"
+  },
+  {
+    "id": 8,
+    "name": "Expose Weakness",
+    "visible": true,
+    "effect": "expose-weakness",
+    "vocation": "sorcerer",
+    "group": "curse"
+  },
+  {
+    "id": 9,
+    "name": "Sap Strength",
+    "visible": false,
+    "effect": "sap-strength",
+    "vocation": "sorcerer",
+    "group": "curse"
+  },
+  {
+    "id": 10,
+    "name": "Elemental Synthesis",
+    "visible": false,
+    "effect": "elemental-synthesis",
+    "vocation": "druid"
+  },
+  {
+    "id": 11,
+    "name": "Shared Conservation",
+    "visible": false,
+    "effect": "shared-conservation",
+    "vocation": "druid"
+  },
+  {
+    "id": 12,
+    "name": "Virtue of Justice",
+    "visible": true,
+    "effect": "virtue-of-justice",
+    "vocation": "monk"
+  },
+  {
+    "id": 13,
+    "name": "Virtue of Harmony",
+    "visible": true,
+    "effect": "virtue-of-harmony",
+    "vocation": "monk"
+  },
+  {
+    "id": 14,
+    "name": "Virtue of Sustain",
+    "visible": true,
+    "effect": "virtue-of-sustain",
+    "vocation": "monk"
+  }
+]

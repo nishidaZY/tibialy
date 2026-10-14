@@ -1,0 +1,1931 @@
+[
+  {
+    "id": 1,
+    "scope": "auto-attack",
+    "name": "Auto-attack",
+    "spellType": "auto",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 0,
+    "skillFactor": 0,
+    "buckets": 150,
+    "rounding": "round",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 2,
+    "scope": "fierce-berserk",
+    "name": "Fierce Berserk",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 92,
+    "skillFactor": 1000,
+    "buckets": 50,
+    "rounding": "round",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 3,
+    "scope": "berserk",
+    "name": "Berserk",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 44,
+    "skillFactor": 1000,
+    "buckets": 24,
+    "rounding": "round",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 4,
+    "scope": "groundshaker",
+    "name": "Groundshaker",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 32,
+    "skillFactor": 1000,
+    "buckets": 18,
+    "rounding": "round",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 5,
+    "scope": "front-sweep",
+    "name": "Front Sweep",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 80,
+    "skillFactor": 1000,
+    "buckets": 40,
+    "rounding": "round",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 6,
+    "scope": "exec-throw",
+    "name": "Executioner's Throw (No Bonus)",
+    "displayName": "Executioner's Throw",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 60,
+    "skillFactor": 1000,
+    "buckets": 10,
+    "rounding": "round",
+    "vocations": [
+      "knight"
+    ],
+    "targetsLabel": "No bonus"
+  },
+  {
+    "id": 7,
+    "scope": "exec-throw",
+    "name": "Executioner's Throw (Stage 1)",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 60,
+    "skillFactor": 1000,
+    "buckets": 10,
+    "rounding": "round",
+    "additionalDamageMultiplier": 2,
+    "vocations": [
+      "knight"
+    ],
+    "spells": [
+      7,
+      6
+    ],
+    "stage": 1,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Red HP"
+  },
+  {
+    "id": 8,
+    "scope": "exec-throw",
+    "name": "Executioner's Throw (Stage 2)",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 60,
+    "skillFactor": 1000,
+    "buckets": 10,
+    "rounding": "round",
+    "additionalDamageMultiplier": 2.25,
+    "vocations": [
+      "knight"
+    ],
+    "spells": [
+      8,
+      6
+    ],
+    "stage": 2,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Red HP"
+  },
+  {
+    "id": 9,
+    "scope": "exec-throw",
+    "name": "Executioner's Throw (Stage 3)",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 60,
+    "skillFactor": 1000,
+    "buckets": 10,
+    "rounding": "round",
+    "additionalDamageMultiplier": 2.5,
+    "vocations": [
+      "knight"
+    ],
+    "spells": [
+      9,
+      6
+    ],
+    "stage": 3,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Red HP"
+  },
+  {
+    "id": 10,
+    "scope": "annihilation",
+    "name": "Annihilation",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 125,
+    "skillFactor": 1000,
+    "buckets": 80,
+    "rounding": "round",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 11,
+    "scope": "brutal-strike",
+    "name": "Brutal Strike",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 39,
+    "skillFactor": 1000,
+    "buckets": 20,
+    "rounding": "round",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 12,
+    "scope": "whirlwind-throw",
+    "name": "Whirlwind Throw",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 32,
+    "skillFactor": 1000,
+    "buckets": 18,
+    "rounding": "round",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 13,
+    "scope": "divine-caldera",
+    "name": "Divine Caldera",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "holy",
+    "power": 150,
+    "skillFactor": 25,
+    "buckets": 40,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 14,
+    "scope": "divine-grenade",
+    "name": "Divine Grenade (Stage 1)",
+    "displayName": "Divine Grenade",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "holy",
+    "power": 190,
+    "skillFactor": 25,
+    "buckets": 100,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ],
+    "stage": 1
+  },
+  {
+    "id": 15,
+    "scope": "divine-grenade",
+    "name": "Divine Grenade (Stage 2)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "holy",
+    "power": 220,
+    "skillFactor": 25,
+    "buckets": 100,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ],
+    "stage": 2,
+    "isSelectable": false
+  },
+  {
+    "id": 16,
+    "scope": "divine-grenade",
+    "name": "Divine Grenade (Stage 3)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "holy",
+    "power": 250,
+    "skillFactor": 25,
+    "buckets": 100,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ],
+    "stage": 3,
+    "isSelectable": false
+  },
+  {
+    "id": 17,
+    "scope": "strong-ethereal-spear",
+    "name": "Strong Ethereal Spear",
+    "spellType": "spell",
+    "scalesWith": "distance",
+    "element": "physical",
+    "power": 25,
+    "skillFactor": 19.23077,
+    "buckets": 10,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 18,
+    "scope": "ethereal-spear",
+    "name": "Ethereal Spear",
+    "spellType": "spell",
+    "scalesWith": "distance",
+    "element": "physical",
+    "power": 25,
+    "skillFactor": 30.30303,
+    "buckets": 10,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 19,
+    "scope": "divine-missile",
+    "name": "Divine Missile",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "holy",
+    "power": 60,
+    "skillFactor": 25,
+    "buckets": 30,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 20,
+    "scope": "holy-missile",
+    "name": "Holy Missile Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "holy",
+    "power": 70,
+    "skillFactor": 25,
+    "buckets": 50,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ],
+    "runic": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 21,
+    "scope": "energy-wave",
+    "name": "Energy Wave",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 150,
+    "skillFactor": 25,
+    "buckets": 80,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 22,
+    "scope": "great-fire-wave",
+    "name": "Great Fire Wave",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "fire",
+    "power": 100,
+    "skillFactor": 25,
+    "buckets": 50,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 23,
+    "scope": "hells-core",
+    "name": "Hell's Core",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "fire",
+    "power": 250,
+    "skillFactor": 25,
+    "buckets": 100,
+    "rounding": "floor",
+    "turnCooldown": 2,
+    "isFocus": true,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 24,
+    "scope": "rage-of-the-skies",
+    "name": "Rage of the Skies",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 200,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "turnCooldown": 2,
+    "isFocus": true,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 25,
+    "scope": "great-energy-beam",
+    "name": "Great Energy Beam (Central)",
+    "displayName": "Great Energy Beam",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 155,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ],
+    "stage": 0,
+    "targetsLabel": "Central"
+  },
+  {
+    "id": 26,
+    "scope": "great-death-beam",
+    "name": "Great Death Beam (Central)",
+    "displayName": "Great Death Beam",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "death",
+    "power": 155,
+    "skillFactor": 25,
+    "buckets": 50,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ],
+    "stage": 0,
+    "targetsLabel": "Central"
+  },
+  {
+    "id": 29,
+    "scope": "fire-wave",
+    "name": "Fire Wave",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "fire",
+    "power": 40,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 30,
+    "scope": "strong-flame-strike",
+    "name": "Strong Flame Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "fire",
+    "power": 125,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 31,
+    "scope": "strong-energy-strike",
+    "name": "Strong Energy Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 125,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 32,
+    "scope": "ultimate-flame-strike",
+    "name": "Ultimate Flame Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "fire",
+    "power": 210,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 33,
+    "scope": "ultimate-energy-strike",
+    "name": "Ultimate Energy Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 210,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 34,
+    "scope": "death-strike",
+    "name": "Death Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "death",
+    "power": 45,
+    "skillFactor": 25,
+    "buckets": 20,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 35,
+    "scope": "energy-beam",
+    "name": "Energy Beam (Central)",
+    "displayName": "Energy Beam",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 60,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ],
+    "stage": 0,
+    "targetsLabel": "Central"
+  },
+  {
+    "id": 36,
+    "scope": "lightning",
+    "name": "Lightning",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 110,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 37,
+    "scope": "terra-wave",
+    "name": "Terra Wave",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 120,
+    "skillFactor": 25,
+    "buckets": 80,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 38,
+    "scope": "ice-burst",
+    "name": "Ice Burst (No Bonus)",
+    "displayName": "Ice Burst",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ],
+    "targetsLabel": "No bonus"
+  },
+  {
+    "id": 39,
+    "scope": "ice-burst",
+    "name": "Ice Burst (Stage 1)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 1.2,
+    "vocations": [
+      "druid"
+    ],
+    "spells": [
+      39,
+      38
+    ],
+    "stage": 1,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Green HP"
+  },
+  {
+    "id": 40,
+    "scope": "ice-burst",
+    "name": "Ice Burst (Stage 2)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 1.4,
+    "vocations": [
+      "druid"
+    ],
+    "spells": [
+      40,
+      38
+    ],
+    "stage": 2,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Green HP"
+  },
+  {
+    "id": 41,
+    "scope": "ice-burst",
+    "name": "Ice Burst (Stage 3)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 1.6,
+    "vocations": [
+      "druid"
+    ],
+    "spells": [
+      41,
+      38
+    ],
+    "stage": 3,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Green HP"
+  },
+  {
+    "id": 42,
+    "scope": "terra-burst",
+    "name": "Terra Burst (No Bonus)",
+    "displayName": "Terra Burst",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ],
+    "targetsLabel": "No bonus"
+  },
+  {
+    "id": 43,
+    "scope": "terra-burst",
+    "name": "Terra Burst (Stage 1)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 1.2,
+    "vocations": [
+      "druid"
+    ],
+    "spells": [
+      43,
+      42
+    ],
+    "stage": 1,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Green HP"
+  },
+  {
+    "id": 44,
+    "scope": "terra-burst",
+    "name": "Terra Burst (Stage 2)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 1.4,
+    "vocations": [
+      "druid"
+    ],
+    "spells": [
+      44,
+      42
+    ],
+    "stage": 2,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Green HP"
+  },
+  {
+    "id": 45,
+    "scope": "terra-burst",
+    "name": "Terra Burst (Stage 3)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 1.6,
+    "vocations": [
+      "druid"
+    ],
+    "spells": [
+      45,
+      42
+    ],
+    "stage": 3,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Green HP"
+  },
+  {
+    "id": 46,
+    "scope": "eternal-winter",
+    "name": "Eternal Winter",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 200,
+    "skillFactor": 25,
+    "buckets": 130,
+    "rounding": "floor",
+    "turnCooldown": 2,
+    "isFocus": true,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 47,
+    "scope": "wrath-of-nature",
+    "name": "Wrath of Nature",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 175,
+    "skillFactor": 25,
+    "buckets": 70,
+    "rounding": "floor",
+    "turnCooldown": 2,
+    "isFocus": true,
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 48,
+    "scope": "strong-ice-wave",
+    "name": "Strong Ice Wave",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 140,
+    "skillFactor": 25,
+    "buckets": 80,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 49,
+    "scope": "strong-ice-strike",
+    "name": "Strong Ice Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 50,
+    "scope": "strong-terra-strike",
+    "name": "Strong Terra Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 115,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 51,
+    "scope": "ultimate-ice-strike",
+    "name": "Ultimate Ice Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 195,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 52,
+    "scope": "ultimate-terra-strike",
+    "name": "Ultimate Terra Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 195,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 53,
+    "scope": "physical-strike",
+    "name": "Physical Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 50,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 54,
+    "scope": "ice-wave",
+    "name": "Ice Wave",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 35,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 55,
+    "scope": "chained-penance",
+    "name": "Chained Penance",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 70,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 56,
+    "scope": "greater-flurry-of-blows",
+    "name": "Greater Flurry of Blows",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 86,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 57,
+    "scope": "flurry-of-blows",
+    "name": "Flurry of Blows",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 55,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 58,
+    "scope": "sweeping-takedown",
+    "name": "Sweeping Takedown",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 48,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "isSpender": true,
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 59,
+    "scope": "spiritual-outburst",
+    "name": "Spiritual Outburst (Primary)",
+    "displayName": "Spiritual Outburst",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 42,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "isSpender": true,
+    "vocations": [
+      "monk"
+    ],
+    "targetsLabel": "Primary"
+  },
+  {
+    "id": 60,
+    "scope": "spiritual-outburst",
+    "name": "Spiritual Outburst (Repeat Stage 1)",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 42,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "additionalDamageMultiplier": 0.375,
+    "isSpender": true,
+    "vocations": [
+      "monk"
+    ],
+    "spells": [
+      59,
+      60
+    ],
+    "stage": 1,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Repeat"
+  },
+  {
+    "id": 61,
+    "scope": "spiritual-outburst",
+    "name": "Spiritual Outburst (Repeat Stage 2)",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 42,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "additionalDamageMultiplier": 0.5,
+    "isSpender": true,
+    "vocations": [
+      "monk"
+    ],
+    "spells": [
+      59,
+      61
+    ],
+    "stage": 2,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Repeat"
+  },
+  {
+    "id": 62,
+    "scope": "spiritual-outburst",
+    "name": "Spiritual Outburst (Repeat Stage 3)",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 42,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "additionalDamageMultiplier": 0.625,
+    "isSpender": true,
+    "vocations": [
+      "monk"
+    ],
+    "spells": [
+      59,
+      62
+    ],
+    "stage": 3,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Repeat"
+  },
+  {
+    "id": 63,
+    "scope": "mystic-repulse",
+    "name": "Mystic Repulse",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 85,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 64,
+    "scope": "forceful-uppercut",
+    "name": "Forceful Uppercut",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 130,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 65,
+    "scope": "devastating-knockout",
+    "name": "Devastating Knockout",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 62,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "isSpender": true,
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 66,
+    "scope": "double-jab",
+    "name": "Double Jab",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 40,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 67,
+    "scope": "greater-tiger-clash",
+    "name": "Greater Tiger Clash",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 44,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "isSpender": true,
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 68,
+    "scope": "flame-strike",
+    "name": "Flame Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "fire",
+    "power": 45,
+    "skillFactor": 25,
+    "buckets": 20,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer",
+      "druid"
+    ]
+  },
+  {
+    "id": 69,
+    "scope": "energy-strike",
+    "name": "Energy Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 45,
+    "skillFactor": 25,
+    "buckets": 20,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer",
+      "druid"
+    ]
+  },
+  {
+    "id": 70,
+    "scope": "ice-strike",
+    "name": "Ice Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 45,
+    "skillFactor": 25,
+    "buckets": 20,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer",
+      "druid"
+    ]
+  },
+  {
+    "id": 71,
+    "scope": "terra-strike",
+    "name": "Terra Strike",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 45,
+    "skillFactor": 25,
+    "buckets": 20,
+    "rounding": "floor",
+    "vocations": [
+      "sorcerer",
+      "druid"
+    ]
+  },
+  {
+    "id": 72,
+    "scope": "avalanche",
+    "name": "Avalanche Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 50,
+    "skillFactor": 25,
+    "buckets": 40,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "druid"
+    ]
+  },
+  {
+    "id": 73,
+    "scope": "great-fireball",
+    "name": "Great Fireball Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "fire",
+    "power": 50,
+    "skillFactor": 25,
+    "buckets": 40,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 74,
+    "scope": "thunderstorm",
+    "name": "Thunderstorm Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 50,
+    "skillFactor": 25,
+    "buckets": 40,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 75,
+    "scope": "stone-shower",
+    "name": "Stone Shower Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 50,
+    "skillFactor": 25,
+    "buckets": 40,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "druid"
+    ]
+  },
+  {
+    "id": 76,
+    "scope": "sudden-death",
+    "name": "Sudden Death Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "death",
+    "power": 150,
+    "skillFactor": 25,
+    "buckets": 70,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 77,
+    "scope": "explosion",
+    "name": "Explosion Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "physical",
+    "power": 60,
+    "skillFactor": 25,
+    "buckets": 40,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "sorcerer",
+      "druid"
+    ]
+  },
+  {
+    "id": 78,
+    "scope": "icicle",
+    "name": "Icicle Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 60,
+    "skillFactor": 25,
+    "buckets": 30,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "druid"
+    ]
+  },
+  {
+    "id": 79,
+    "scope": "fireball",
+    "name": "Fireball Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "fire",
+    "power": 60,
+    "skillFactor": 25,
+    "buckets": 30,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 80,
+    "scope": "stalagmite",
+    "name": "Stalagmite Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 30,
+    "skillFactor": 25,
+    "buckets": 20,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "sorcerer",
+      "druid"
+    ]
+  },
+  {
+    "id": 81,
+    "scope": "heavy-magic-missile",
+    "name": "Heavy Magic Missile Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 30,
+    "skillFactor": 25,
+    "buckets": 20,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "sorcerer",
+      "druid"
+    ]
+  },
+  {
+    "id": 82,
+    "scope": "light-magic-missile",
+    "name": "Light Magic Missile Rune",
+    "spellType": "rune",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 15,
+    "skillFactor": 25,
+    "buckets": 10,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "runic": [
+      "sorcerer",
+      "druid"
+    ]
+  },
+  {
+    "id": 83,
+    "scope": "ethereal-barrage",
+    "name": "Ethereal Barrage",
+    "spellType": "spell",
+    "scalesWith": "distance",
+    "element": "physical",
+    "power": 40,
+    "skillFactor": 17.8571,
+    "buckets": 6,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 84,
+    "scope": "divine-barrage",
+    "name": "Divine Barrage",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "holy",
+    "power": 130,
+    "skillFactor": 25,
+    "buckets": 20,
+    "rounding": "floor",
+    "vocations": [
+      "paladin"
+    ]
+  },
+  {
+    "id": 85,
+    "scope": "death-echo",
+    "name": "Death Echo",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "death",
+    "power": 75,
+    "skillFactor": 25,
+    "buckets": 4,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 1.5,
+    "vocations": [
+      "sorcerer"
+    ]
+  },
+  {
+    "id": 86,
+    "scope": "forked-glacier",
+    "name": "Forked Glacier",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "ice",
+    "power": 90,
+    "skillFactor": 25,
+    "buckets": 4,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 87,
+    "scope": "forked-thorns",
+    "name": "Forked Thorns",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "earth",
+    "power": 97,
+    "skillFactor": 25,
+    "buckets": 4,
+    "rounding": "floor",
+    "vocations": [
+      "druid"
+    ]
+  },
+  {
+    "id": 88,
+    "scope": "thousand-fist-blows",
+    "name": "Thousand Fist Blows",
+    "spellType": "spell",
+    "scalesWith": "melee",
+    "element": "weapon",
+    "power": 62,
+    "skillFactor": 1000,
+    "buckets": 0,
+    "rounding": "round",
+    "vocations": [
+      "monk"
+    ]
+  },
+  {
+    "id": 89,
+    "scope": "shield-bash",
+    "name": "Shield Bash",
+    "spellType": "spell",
+    "scalesWith": "shielding",
+    "element": "physical",
+    "power": 55,
+    "skillFactor": 1000,
+    "buckets": 4,
+    "rounding": "floor",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 90,
+    "scope": "shield-slam",
+    "name": "Shield Slam",
+    "spellType": "spell",
+    "scalesWith": "shielding",
+    "element": "physical",
+    "power": 52,
+    "skillFactor": 1000,
+    "buckets": 4,
+    "rounding": "floor",
+    "vocations": [
+      "knight"
+    ]
+  },
+  {
+    "id": 91,
+    "scope": "great-death-beam",
+    "name": "Great Death Beam (Stage 1 Sides)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "death",
+    "power": 155,
+    "skillFactor": 25,
+    "buckets": 50,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 0.25,
+    "vocations": [
+      "sorcerer"
+    ],
+    "spells": [
+      26,
+      91
+    ],
+    "stage": 1,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Sides"
+  },
+  {
+    "id": 92,
+    "scope": "great-death-beam",
+    "name": "Great Death Beam (Stage 2 Sides)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "death",
+    "power": 155,
+    "skillFactor": 25,
+    "buckets": 50,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 0.4,
+    "vocations": [
+      "sorcerer"
+    ],
+    "spells": [
+      26,
+      92
+    ],
+    "stage": 2,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Sides"
+  },
+  {
+    "id": 93,
+    "scope": "great-death-beam",
+    "name": "Great Death Beam (Stage 3 Sides)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "death",
+    "power": 155,
+    "skillFactor": 25,
+    "buckets": 50,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 0.7,
+    "vocations": [
+      "sorcerer"
+    ],
+    "spells": [
+      26,
+      93
+    ],
+    "stage": 3,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Sides"
+  },
+  {
+    "id": 94,
+    "scope": "great-energy-beam",
+    "name": "Great Energy Beam (Stage 1 Sides)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 155,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 0.25,
+    "vocations": [
+      "sorcerer"
+    ],
+    "spells": [
+      25,
+      94
+    ],
+    "stage": 1,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Sides"
+  },
+  {
+    "id": 95,
+    "scope": "great-energy-beam",
+    "name": "Great Energy Beam (Stage 2 Sides)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 155,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 0.4,
+    "vocations": [
+      "sorcerer"
+    ],
+    "spells": [
+      25,
+      95
+    ],
+    "stage": 2,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Sides"
+  },
+  {
+    "id": 96,
+    "scope": "great-energy-beam",
+    "name": "Great Energy Beam (Stage 3 Sides)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 155,
+    "skillFactor": 25,
+    "buckets": 60,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 0.7,
+    "vocations": [
+      "sorcerer"
+    ],
+    "spells": [
+      25,
+      96
+    ],
+    "stage": 3,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Sides"
+  },
+  {
+    "id": 97,
+    "scope": "energy-beam",
+    "name": "Energy Beam (Stage 1 Sides)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 60,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 0.25,
+    "vocations": [
+      "sorcerer"
+    ],
+    "spells": [
+      35,
+      97
+    ],
+    "stage": 1,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Sides"
+  },
+  {
+    "id": 98,
+    "scope": "energy-beam",
+    "name": "Energy Beam (Stage 2 Sides)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 60,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 0.4,
+    "vocations": [
+      "sorcerer"
+    ],
+    "spells": [
+      35,
+      98
+    ],
+    "stage": 2,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Sides"
+  },
+  {
+    "id": 99,
+    "scope": "energy-beam",
+    "name": "Energy Beam (Stage 3 Sides)",
+    "spellType": "spell",
+    "scalesWith": "magic",
+    "element": "energy",
+    "power": 60,
+    "skillFactor": 25,
+    "buckets": 0,
+    "rounding": "floor",
+    "additionalDamageMultiplier": 0.7,
+    "vocations": [
+      "sorcerer"
+    ],
+    "spells": [
+      35,
+      99
+    ],
+    "stage": 3,
+    "isSelectable": false,
+    "isExtra": true,
+    "targetsLabel": "Sides"
+  },
+  {
+    "id": 100,
+    "scope": "homing-missile-death",
+    "name": "Homing missile (death)",
+    "spellType": "homing-missile",
+    "scalesWith": "none",
+    "element": "death",
+    "power": 0,
+    "skillFactor": 0,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "isSelectable": false,
+    "isExtra": true,
+    "visible": false
+  },
+  {
+    "id": 101,
+    "scope": "homing-missile-earth",
+    "name": "Homing missile (earth)",
+    "spellType": "homing-missile",
+    "scalesWith": "none",
+    "element": "earth",
+    "power": 0,
+    "skillFactor": 0,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "isSelectable": false,
+    "isExtra": true,
+    "visible": false
+  },
+  {
+    "id": 102,
+    "scope": "homing-missile-energy",
+    "name": "Homing missile (energy)",
+    "spellType": "homing-missile",
+    "scalesWith": "none",
+    "element": "energy",
+    "power": 0,
+    "skillFactor": 0,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "isSelectable": false,
+    "isExtra": true,
+    "visible": false
+  },
+  {
+    "id": 103,
+    "scope": "homing-missile-fire",
+    "name": "Homing missile (fire)",
+    "spellType": "homing-missile",
+    "scalesWith": "none",
+    "element": "fire",
+    "power": 0,
+    "skillFactor": 0,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "isSelectable": false,
+    "isExtra": true,
+    "visible": false
+  },
+  {
+    "id": 104,
+    "scope": "homing-missile-ice",
+    "name": "Homing missile (ice)",
+    "spellType": "homing-missile",
+    "scalesWith": "none",
+    "element": "ice",
+    "power": 0,
+    "skillFactor": 0,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "isSelectable": false,
+    "isExtra": true,
+    "visible": false
+  },
+  {
+    "id": 105,
+    "scope": "homing-missile-holy",
+    "name": "Homing missile (holy)",
+    "spellType": "homing-missile",
+    "scalesWith": "none",
+    "element": "holy",
+    "power": 0,
+    "skillFactor": 0,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "isSelectable": false,
+    "isExtra": true,
+    "visible": false
+  },
+  {
+    "id": 106,
+    "scope": "homing-missile-physical",
+    "name": "Homing missile (physical)",
+    "spellType": "homing-missile",
+    "scalesWith": "none",
+    "element": "physical",
+    "power": 0,
+    "skillFactor": 0,
+    "buckets": 0,
+    "rounding": "floor",
+    "vocations": [
+      "druid",
+      "knight",
+      "monk",
+      "paladin",
+      "sorcerer"
+    ],
+    "isSelectable": false,
+    "isExtra": true,
+    "visible": false
+  }
+]

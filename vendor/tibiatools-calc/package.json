@@ -1,0 +1,19 @@
+{
+  "name": "tibiatools-calc-bundle",
+  "private": true,
+  "description": "Builds public/damage/ from the TibiaTools damage calculator (EUPL-1.2, see LICENCE and NOTICE.md).",
+  "license": "EUPL-1.2",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "fzf": "0.5.2",
+    "lz-string": "1.5.0",
+    "svelte": "5.38.2"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "esbuild-svelte": "0.9.3"
+  }
+}

@@ -1,0 +1,285 @@
+.build-table {
+  font-size: 0.9rem;
+  --remove-btn-width: 1.5rem;
+}
+
+.build-table select,
+.build-table .tiered-select-warn {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 0.2rem 0.4rem;
+  font: inherit;
+  border: 1px solid var(--input-border);
+  border-radius: 0.25rem;
+  background-color: var(--input-bg);
+  color: inherit;
+}
+
+.build-table select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.build-table select:-ms-expand {
+  display: none;
+}
+
+.build-table select:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.build-table td {
+  padding: 0.35rem 0.4rem;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.build-table .section-header td {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.6rem;
+  padding-bottom: 0.4rem;
+}
+
+.build-table tbody tr:last-child td {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.build-table tr.diff td {
+  background-color: var(--table-body-diff-bg);
+}
+
+.build-table h4 {
+  margin: 0;
+}
+
+.build-table .item-name {
+  font-size: 0.9rem;
+}
+
+.build-table input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.build-table input[type="number"] {
+  padding: 0.25rem 0.4rem;
+  font: inherit;
+  border: 1px solid var(--input-border);
+  border-radius: 0.25rem;
+  background: var(--input-bg);
+  color: inherit;
+  text-align: right;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.build-table input[type="number"]::-webkit-outer-spin-button,
+.build-table input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Input with remove button */
+.build-table .input-with-remove {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.build-table .input-with-remove input[type="number"] {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.build-table .perk-toggle {
+  flex: 0 0 auto;
+  width: 3rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0.25rem 0.4rem;
+  font: inherit;
+  border: 1px solid var(--input-border);
+  border-radius: 0.25rem;
+  background: var(--input-bg);
+  color: inherit;
+  text-align: center;
+  cursor: default;
+}
+
+.build-table input.perk-toggle {
+  pointer-events: none;
+}
+
+.build-table .perk-toggle img {
+  vertical-align: middle;
+}
+
+.build-table .perk-toggle .perk-check {
+  filter: var(--icon-filter);
+}
+
+.build-table .perk-toggle .field-tip {
+  display: block;
+}
+
+.build-table .perk-toggle .tip-trigger {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: var(--negative-color);
+}
+
+.build-table .input-a,
+.build-table input.input-a {
+  border-color: var(--build-a-border);
+}
+
+.build-table .input-b,
+.build-table input.input-b {
+  border-color: var(--build-b-border);
+}
+
+.build-table .input-a:focus {
+  outline: none;
+  box-shadow: var(--build-a-focus-ring);
+}
+
+.build-table .input-b:focus {
+  outline: none;
+  box-shadow: var(--build-b-focus-ring);
+}
+
+.build-table .add-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.build-table .add-btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1;
+  background: transparent;
+  border: 1px dashed var(--input-border);
+  border-radius: 0.25rem;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.build-table .add-btn:hover {
+  opacity: 1;
+  background: var(--btn-hover-bg);
+}
+
+.build-table .add-btn.input-a {
+  border-color: var(--build-a-border);
+}
+
+.build-table .add-btn.input-a:hover {
+  background: var(--add-btn-hover-a);
+}
+
+.build-table .add-btn.input-b {
+  border-color: var(--build-b-border);
+}
+
+.build-table .add-btn.input-b:hover {
+  background: var(--add-btn-hover-b);
+}
+
+.build-table .copy-btn {
+  padding: 0.1rem 0.4rem;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  background: transparent;
+  border: 1px solid var(--input-border);
+  border-radius: 0.25rem;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.build-table .copy-btn:hover,
+.build-table .copy-btn.active {
+  opacity: 1;
+  background: var(--input-bg);
+}
+
+.build-table .section-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  padding: 0;
+  text-align: left;
+}
+
+.build-table .section-toggle:hover {
+  color: var(--section-toggle-hover);
+}
+
+.build-table td .fuzzy-select {
+  width: 100%;
+}
+
+.build-table select {
+  width: 100%;
+}
+
+.build-table .tiered-select-cell {
+  display: flex;
+}
+
+.build-table .tiered-select-cell .tiered-select-type,
+.build-table .tiered-select-cell .tiered-select-type-wrap {
+  flex: 6 1 0;
+}
+
+.build-table .tiered-select-type-wrap {
+  display: flex;
+}
+
+.build-table .tiered-select-type-wrap .tiered-select-type {
+  flex: 1 1 0;
+}
+
+.build-table .tiered-select-tier {
+  text-align: center;
+  flex: 1 1 0;
+}
+
+.build-table .tiered-select-type-wrap.has-warn {
+  min-width: 0;
+}
+
+.build-table .tiered-select-type-wrap.has-warn .tiered-select-type {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.build-table .tiered-select-cell .tiered-select-warn {
+  flex: 0 0 auto;
+}
+
+.build-table .tiered-select-warn .field-tip {
+  display: block;
+}
+
+.build-table .tiered-select-warn .tip-trigger {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: var(--negative-color);
+}

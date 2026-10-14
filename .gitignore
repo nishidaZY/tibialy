@@ -13,3 +13,6 @@
 /native-app/AppIcon.iconset/
 /native-app/TibiaLootFinder
 /TibiaLootFinder.app/
+
+# Build deps of the vendored damage calculator (the bundle in public/damage is committed)
+/vendor/tibiatools-calc/node_modules/

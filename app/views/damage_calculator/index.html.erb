@@ -1,0 +1,41 @@
+<% content_for :title, "Damage Calculator – TibiaLootFinder" %>
+<% damage_v = ->(f) { "/damage/#{f}?v=#{File.mtime(Rails.root.join("public/damage", f)).to_i}" } %>
+<link rel="stylesheet" href="<%= damage_v.("calculator.css") %>">
+
+<section class="card p-6 sm:p-8 mb-4 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center" data-rise style="--d:0">
+  <div>
+    <p class="label mb-3 flex items-center gap-2"><span class="live"></span> Runs in your browser · links from tibiatools.io open here</p>
+    <h1 class="serif text-[34px] sm:text-[42px] leading-[1.05]">How hard does your build <span class="text-amber-400">really hit</span>?</h1>
+    <p class="text-stone-400 text-[15px] mt-3 max-w-[60ch]">
+      Set your vocation, skills, weapon and wheel perks, pick a spell rotation and the creatures you hunt, and see
+      damage per hit and per turn. Compare two builds side by side.
+    </p>
+    <p class="text-stone-500 text-[13px] mt-3">
+      New to it? Read the <a href="https://tibiatools.io/tools/calculator/guide" target="_blank" rel="noopener" class="underline underline-offset-4 decoration-white/30 hover:text-stone-200">calculator guide</a>
+      on TibiaTools.
+    </p>
+  </div>
+  <%# figura de traço fino (hairline): uma antena que mira no ponteiro %>
+  <div id="damage-figure" class="hidden md:block w-[220px]" aria-hidden="true"
+       style="--hairline-plate:#161513;--hairline-hi:#e3b04a;--hairline-edge:#a19d96;--hairline-mid:#57534e;--hairline-lo:#2a2826;--hairline-stroke:0.9"></div>
+</section>
+
+<section class="card p-4 sm:p-6" data-rise style="--d:1">
+  <div id="damage-calc">
+    <p class="text-stone-500 text-sm">Loading the calculator…</p>
+  </div>
+</section>
+
+<p class="text-xs text-stone-500 mt-4 leading-relaxed">
+  Damage calculator by <a href="https://tibiatools.io" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">Kikaro / TibiaTools</a>,
+  used under the <a href="https://github.com/kik-tibia/tibiatools/blob/main/LICENCE" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">EUPL-1.2</a>
+  (source as used here, restyled: <a href="/damage/tibiatools-calc-source.zip" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">vendor/tibiatools-calc</a>).
+  Figure from <a href="https://github.com/lucasmarkes/hairline" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">hairline</a> (MIT).
+</p>
+
+<script type="module" src="<%= damage_v.("calculator.js") %>"></script>
+<script type="module">
+  import { dish } from "<%= damage_v.("hairline.js") %>";
+  const el = document.getElementById("damage-figure");
+  if (el && matchMedia("(min-width: 768px)").matches) dish(el, { play: true, theme: "dark", intensity: 0.6 });
+</script>

@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "name": "Low Blow",
+    "effect": "low-blow"
+  },
+  {
+    "id": 2,
+    "name": "Savage Blow",
+    "effect": "savage-blow"
+  },
+  {
+    "id": 3,
+    "name": "Overpower",
+    "effect": "overpower"
+  },
+  {
+    "id": 4,
+    "name": "Overflux",
+    "effect": "overflux"
+  },
+  {
+    "id": 5,
+    "name": "Curse",
+    "effect": "elemental",
+    "element": "death"
+  },
+  {
+    "id": 6,
+    "name": "Divine Wrath",
+    "effect": "elemental",
+    "element": "holy"
+  },
+  {
+    "id": 7,
+    "name": "Enflame",
+    "effect": "elemental",
+    "element": "fire"
+  },
+  {
+    "id": 8,
+    "name": "Freeze",
+    "effect": "elemental",
+    "element": "ice"
+  },
+  {
+    "id": 9,
+    "name": "Poison",
+    "effect": "elemental",
+    "element": "earth"
+  },
+  {
+    "id": 10,
+    "name": "Wound",
+    "effect": "elemental",
+    "element": "physical"
+  },
+  {
+    "id": 11,
+    "name": "Zap",
+    "effect": "elemental",
+    "element": "energy"
+  }
+]
