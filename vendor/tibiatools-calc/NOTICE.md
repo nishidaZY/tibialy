@@ -6,7 +6,7 @@ The damage calculator at `/damage` is the one from **TibiaTools** by Kikaro:
 - Site: https://tibiatools.io/tools/calculator
 - Licence: **EUPL-1.2** — full text in `LICENCE`. This folder and the bundle it builds
   (`public/damage/calculator.js`, `public/damage/calculator.css`) are distributed under the same licence.
-  The rest of TibiaLootFinder is not part of this Work.
+  The rest of TIBIALY is not part of this Work.
 
 ## What is here
 
@@ -14,16 +14,20 @@ The damage calculator at `/damage` is the one from **TibiaTools** by Kikaro:
   `src/lib/damage-calc/` (without the tests), `src/data/`, the calculator's Svelte components
   (`DamageCalc`, `ResultsTable`, `BuildBadge`, `FuzzySelect`, `RemoveButton`, `Tooltip`, `build-panel/*`)
   and `src/styles/build-table.css`.
-- `entry.ts`, `build.mjs`, `theme.css`, `package.json` — added for TibiaLootFinder.
+- `entry.ts`, `build.mjs`, `theme.css`, `package.json` — added for TIBIALY.
 - `public/damage/{check,copy,paste}.svg` — icons copied unchanged from the original `public/`.
 
 ## Modifications
 
-1. **Theme** (`theme.css`): the original's CSS variables are mapped to TibiaLootFinder's colours and fonts,
+1. **Theme** (`theme.css`): the original's CSS variables are mapped to TIBIALY's colours and fonts,
    and its global table rules are scoped to `#damage-calc`.
 2. **Icon paths** (`build.mjs`): `/check.svg`, `/copy.svg`, `/paste.svg` are rewritten to `/damage/…` at build time.
 3. **Mounting** (`entry.ts`): the calculator is mounted into `#damage-calc` on a Rails page instead of an
    Astro page; the initial state is read from the same `?s=` URL parameter, so TibiaTools links open here.
+4. **Saved state and Reset** (`entry.ts`): the last state is kept in the browser's localStorage and restored
+   when the page opens without `?s=`; a Reset button next to Share clears it.
+5. **Comparison highlight** (`theme.css`): the original's highlight of the higher-damage rows is made visible
+   in this theme (it was hidden by the scoped table background).
 
 The calculation code itself is not modified.
 

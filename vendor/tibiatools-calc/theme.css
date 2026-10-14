@@ -1,5 +1,5 @@
-/* modificação (TibiaLootFinder): o tema do TibiaTools é todo em variáveis CSS; aqui elas apontam
-   para os tokens do TibiaLootFinder (neutros quentes, dourado, linhas finas). As regras de tabela
+/* modificação (TIBIALY): o tema do TibiaTools é todo em variáveis CSS; aqui elas apontam
+   para os tokens do TIBIALY (neutros quentes, dourado, linhas finas). As regras de tabela
    que o original tinha no global.css vêm junto, mas presas a #damage-calc para não vazar no site.
    Build A = azul do Market, Build B = dourado. */
 
@@ -53,7 +53,7 @@
   --tooltip-border: rgba(255, 255, 255, 0.13);
   --tooltip-text: #fafaf9;
 
-  --highlight-bg: rgba(95, 207, 146, 0.1);
+  --highlight-bg: rgba(95, 207, 146, 0.14);
   --positive-color: #5fcf92;
   --negative-color: #f0524f;
   --mobile-border: rgba(255, 255, 255, 0.075);
@@ -130,6 +130,18 @@
 }
 #damage-calc .data-table .num {
   text-align: right;
+}
+/* ao comparar builds, a linha da build que bate mais forte; sem isto o fundo de tbody td acima cobria o .highlight do original */
+#damage-calc tr.highlight td,
+#damage-calc .data-table tbody tr.highlight:hover td {
+  background: var(--highlight-bg);
+}
+#damage-calc tr.highlight td:first-child {
+  box-shadow: inset 3px 0 0 var(--positive-color);
+}
+#damage-calc tr.highlight .summary-value,
+#damage-calc tr.highlight td.num:not(.range) {
+  color: var(--positive-color);
 }
 
 @media (max-width: 749px) {

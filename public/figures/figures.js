@@ -1,11 +1,11 @@
 // Figuras de traço fino, isométricas, que respondem ao ponteiro — no estilo da biblioteca
-// hairline (github.com/lucasmarkes/hairline), mas desenhadas para o TibiaLootFinder:
+// hairline (github.com/lucasmarkes/hairline), mas desenhadas para o TIBIALY:
 //   stash(el)  — um baú: o ponteiro perto abre a tampa e os itens sobem de dentro
 //   lootBag(el) — um saco de loot: inclina para o ponteiro e solta moedas quando ele chega perto
-//   sword(el)  — uma espada cravada na pedra: o ponteiro a puxa para fora e ela inclina para ele
+//   sword(el)  — uma espada cravada na pedra em chamas: o ponteiro a puxa para fora, inclina e aviva o fogo
 // Cada função desenha dentro de `el` (largura do elemento, proporção 5:4) e devolve destroy().
 // Cores pelas mesmas variáveis da hairline: --hairline-plate/-hi/-edge/-mid/-lo/-stroke.
-// Sem ponteiro por perto a figura se anima sozinha; com "reduzir movimento", fica parada.
+// Sem ponteiro por perto (ou parado) a figura se anima sozinha em laço; com "reduzir movimento", fica parada.
 
 const W = 400;
 const H = 320;
@@ -38,7 +38,7 @@ const STYLE = `<style>
 
 /**
  * Motor comum: mede o ponteiro (perto = 1, longe = 0; e de que lado está, -1…1), leva os valores
- * até o alvo com mola e redesenha só enquanto algo se mexe.
+ * até o alvo com mola e redesenha a cada quadro.
  */
 function figure(el, label, draw, { reach = 1.1 } = {}) {
   const svg = document.createElementNS(NS, "svg");
@@ -71,15 +71,15 @@ function figure(el, label, draw, { reach = 1.1 } = {}) {
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
     s.t = now;
-    if (alvo && now - quieto > 2500) alvo = null; // o ponteiro parou longe: volta a se animar sozinho
-    const target = alvo ?? { near: (Math.sin(now / 1700) + 1) / 2, side: Math.sin(now / 2600) * 0.7 };
+    if (alvo && now - quieto > 2500) alvo = null; // o ponteiro parou: volta a se animar sozinho
+    // ponteiro longe (fora do alcance da figura) não segura a figura parada: segue o laço sozinho
+    const target = alvo && alvo.near > 0.15 ? alvo : { near: (Math.sin(now / 1700) + 1) / 2, side: Math.sin(now / 2600) * 0.7 };
     for (const [k, v] of [["near", "vNear"], ["side", "vSide"]]) {
       s[v] += ((target[k] - s[k]) * 60 - s[v] * 12) * dt; // mola amortecida
       s[k] += s[v] * dt;
     }
     render();
-    const parado = Math.abs(s.vNear) + Math.abs(s.vSide) < 0.002 && alvo;
-    raf = parado ? 0 : requestAnimationFrame(tick);
+    raf = requestAnimationFrame(tick); // laço contínuo; o navegador pausa o rAF com a aba escondida
   }
   function wake() {
     if (!raf && !reduce) {
@@ -203,6 +203,33 @@ export function sword(el) {
     out += box(-62, -46, 0, 124, 92, alt, { oy });
     out += line(iso(-62, 46, 28, 200, oy), iso(-20, 46, 18, 200, oy)) + line(iso(-20, 46, 18, 200, oy), iso(-8, 46, 30, 200, oy));
     out += line(iso(62, -30, 34, 200, oy), iso(62, 10, 18, 200, oy)) + line(iso(62, 10, 18, 200, oy), iso(62, 24, 26, 200, oy));
+    // fogo atrás da espada: línguas que sobem do topo da pedra e crescem conforme ela sai, mais brasas
+    const fogo = 0.45 + 0.75 * clamp(near);
+    const chamas = [[-48, -20, 30], [44, -10, 32], [-40, 20, 22], [50, 26, 20]]; // nas laterais, longe da lâmina
+    // labareda grande logo atrás da lâmina (três camadas), o "fundo" da espada
+    {
+      const [fx, fy] = iso(0, -8, alt, 200, oy);
+      const s = Math.sin(t / 300) * 5 + side * 10 * fogo;
+      const h = (70 + 60 * clamp(near)) * (1 + 0.08 * Math.sin(t / 170));
+      const camada = (hh, ww, cls) =>
+        `<path class="${cls}" d="M${(fx - ww).toFixed(1)} ${fy.toFixed(1)} C${(fx - ww * 1.2).toFixed(1)} ${(fy - hh * 0.4).toFixed(1)} ${(fx - ww * 0.5 + s * 0.5).toFixed(1)} ${(fy - hh * 0.55).toFixed(1)} ${(fx - ww * 0.35 + s * 0.6).toFixed(1)} ${(fy - hh * 0.72).toFixed(1)} C${(fx - ww * 0.15 + s).toFixed(1)} ${(fy - hh * 0.85).toFixed(1)} ${(fx + s).toFixed(1)} ${(fy - hh * 0.9).toFixed(1)} ${(fx + s * 1.2).toFixed(1)} ${(fy - hh).toFixed(1)} C${(fx + ww * 0.5 + s).toFixed(1)} ${(fy - hh * 0.75).toFixed(1)} ${(fx + ww * 0.3 + s * 0.4).toFixed(1)} ${(fy - hh * 0.6).toFixed(1)} ${(fx + ww * 0.75).toFixed(1)} ${(fy - hh * 0.45).toFixed(1)} C${(fx + ww * 1.15).toFixed(1)} ${(fy - hh * 0.3).toFixed(1)} ${(fx + ww).toFixed(1)} ${(fy - hh * 0.1).toFixed(1)} ${(fx + ww).toFixed(1)} ${fy.toFixed(1)} Z"/>`;
+      out += camada(h, 54, "f e") + camada(h * 0.72, 36, "f m") + camada(h * 0.5, 22, "f hi");
+    }
+    chamas.forEach(([x, y, h0], i) => {
+      const [fx, fy] = iso(x, y, alt, 200, oy);
+      const h = h0 * fogo * (1 + 0.18 * Math.sin(t / 140 + i * 1.7));
+      const w = 7 + h0 / 6;
+      const s = Math.sin(t / 230 + i * 2.1) * 4 + side * 8 * fogo; // ponta balança e foge do ponteiro
+      const lingua = (hh, ww, cls) =>
+        `<path class="${cls}" d="M${(fx - ww).toFixed(1)} ${fy.toFixed(1)} C${(fx - ww).toFixed(1)} ${(fy - hh * 0.45).toFixed(1)} ${(fx + s - ww * 0.4).toFixed(1)} ${(fy - hh * 0.7).toFixed(1)} ${(fx + s).toFixed(1)} ${(fy - hh).toFixed(1)} C${(fx + s + ww * 0.4).toFixed(1)} ${(fy - hh * 0.7).toFixed(1)} ${(fx + ww).toFixed(1)} ${(fy - hh * 0.45).toFixed(1)} ${(fx + ww).toFixed(1)} ${fy.toFixed(1)} Z"/>`;
+      out += lingua(h, w, "f e") + lingua(h * 0.55, w * 0.5, "f hi");
+    });
+    for (let i = 0; i < 7; i++) {
+      const k = ((t / 2600 + i / 7) % 1); // 0…1 em laço: sobe e apaga
+      const [bx, by] = iso(-40 + i * 13, -20 + ((i * 17) % 30), alt, 200, oy);
+      const ex = bx + Math.sin(t / 500 + i) * 6, ey = by - 10 - k * 90 * fogo;
+      out += `<circle class="hi" cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="1.4" fill="none" opacity="${(1 - k).toFixed(2)}"/>`;
+    }
     // lâmina: cortada na superfície da pedra (o resto está dentro dela)
     out += `<clipPath id="acima"><rect x="0" y="0" width="${W}" height="${sy}"/></clipPath>`;
     out += `<g clip-path="url(#acima)"><g transform="translate(${sx} ${sy - puxa}) rotate(${inclina.toFixed(2)})">`;
@@ -215,15 +242,6 @@ export function sword(el) {
     for (let i = 0; i < 3; i++) out += `<line class="m" x1="-6" y1="${-121 + i * 9}" x2="6" y2="${-117 + i * 9}"/>`;
     out += `<circle class="f ${near > 0.6 ? "hi" : "e"}" cx="0" cy="-133" r="7"/>`;
     out += `</g>`;
-    // brilho quando está quase saindo
-    if (near > 0.75) {
-      const b = (near - 0.75) * 4;
-      for (let i = 0; i < 6; i++) {
-        const a = (i / 6) * Math.PI * 2 + t / 900;
-        const r1 = 34, r2 = 34 + 10 * b;
-        out += `<line class="hi" x1="${(sx + Math.cos(a) * r1).toFixed(1)}" y1="${(sy - puxa - 50 + Math.sin(a) * r1).toFixed(1)}" x2="${(sx + Math.cos(a) * r2).toFixed(1)}" y2="${(sy - puxa - 50 + Math.sin(a) * r2).toFixed(1)}" opacity="${b.toFixed(2)}"/>`;
-      }
-    }
     return out;
   });
 }

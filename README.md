@@ -1,4 +1,4 @@
-# Tibia Loot Analyser 💰
+# TIBIALY 💰
 
 A fan-made web app for [Tibia](https://www.tibia.com/) players to look up item prices and figure out the best way to sell their loot — NPC or Market.
 

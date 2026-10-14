@@ -47,7 +47,7 @@ await esbuild.build({
   mainFields: ["svelte", "browser", "module", "main"],
   plugins: [aliases, sveltePlugin({ preprocess: iconPaths, compilerOptions: { css: "external" } })],
   banner: {
-    js: "/* TibiaTools damage calculator — https://github.com/kik-tibia/tibiatools — Licensed under the EUPL-1.2. Bundled for TibiaLootFinder; source in vendor/tibiatools-calc. */",
+    js: "/* TibiaTools damage calculator — https://github.com/kik-tibia/tibiatools — Licensed under the EUPL-1.2. Bundled for TIBIALY; source in vendor/tibiatools-calc. */",
     css: "/* TibiaTools damage calculator styles — Licensed under the EUPL-1.2. */",
   },
   logLevel: "info",

@@ -1,4 +1,4 @@
-<% content_for :title, "Damage Calculator – TibiaLootFinder" %>
+<% content_for :title, "Damage Calculator – TIBIALY" %>
 <% figures_v = "/figures/figures.js?v=#{File.mtime(Rails.root.join("public/figures/figures.js")).to_i}" %>
 <% damage_v = ->(f) { "/damage/#{f}?v=#{File.mtime(Rails.root.join("public/damage", f)).to_i}" } %>
 <link rel="stylesheet" href="<%= damage_v.("calculator.css") %>">

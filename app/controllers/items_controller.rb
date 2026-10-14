@@ -64,7 +64,7 @@ class ItemsController < ApplicationController
     http.open_timeout = 8
     http.read_timeout = 10
     req = Net::HTTP::Get.new(uri)
-    req["User-Agent"] = "TibiaLootFinder/1.0"
+    req["User-Agent"] = "TIBIALY/1.0"
     resp = http.request(req)
     return nil unless resp.is_a?(Net::HTTPSuccess)
     JSON.parse(resp.body).is_a?(Array) ? resp.body : nil   # only ever pass a list through

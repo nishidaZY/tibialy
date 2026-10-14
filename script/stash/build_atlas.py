@@ -25,7 +25,7 @@ def download(item):
         return True
     try:
         req = urllib.request.Request(urllib.parse.quote(item['url'], safe=':/%'),
-                                     headers={'User-Agent': 'TibiaLootFinder/1.0 (stash atlas)'})
+                                     headers={'User-Agent': 'TIBIALY/1.0 (stash atlas)'})
         with urllib.request.urlopen(req, timeout=20) as r:
             open(path, 'wb').write(r.read())
         return True

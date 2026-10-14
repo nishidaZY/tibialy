@@ -7,7 +7,7 @@ namespace :tibia do
 
   desc "Import all items with NPC prices from TibiaWiki (highest buyer only)"
   task import: :environment do
-    puts "🗡️  TibiaLootFinder Importer"
+    puts "🗡️  TIBIALY Importer"
     puts "Fetching item list from TibiaWiki API..."
 
     titles = fetch_category_members("Categoria:Itens")

@@ -20,7 +20,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
             backing: .buffered,
             defer: false
         )
-        window.title = "TibiaLootFinder"
+        window.title = "TIBIALY"
         window.minSize = NSSize(width: 760, height: 560)
         window.center()
         window.isReleasedWhenClosed = false
@@ -42,7 +42,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
         spinner.startAnimation(nil)
         container.addSubview(spinner)
 
-        statusLabel = NSTextField(labelWithString: "Starting TibiaLootFinder…")
+        statusLabel = NSTextField(labelWithString: "Starting TIBIALY…")
         statusLabel.font = NSFont.systemFont(ofSize: 13)
         statusLabel.textColor = NSColor(calibratedWhite: 0.9, alpha: 1)
         statusLabel.alignment = .center
@@ -123,7 +123,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
         let appMenuItem = NSMenuItem()
         mainMenu.addItem(appMenuItem)
         let appMenu = NSMenu()
-        appMenu.addItem(withTitle: "Quit TibiaLootFinder", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        appMenu.addItem(withTitle: "Quit TIBIALY", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         appMenuItem.submenu = appMenu
 
         let editMenuItem = NSMenuItem()
