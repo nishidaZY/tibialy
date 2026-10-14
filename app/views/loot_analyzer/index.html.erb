@@ -11,6 +11,8 @@
       <li class="flex gap-3"><span class="num text-stone-500 w-4">2</span> Paste the Hunt Analyser text</li>
       <li class="flex gap-3"><span class="num text-stone-500 w-4">3</span> Analyze. <span class="kbd ml-1">Ctrl ↵</span></li>
     </ol>
+    <%# figura de traço fino: um saco de loot que inclina para o ponteiro e solta moedas %>
+    <div id="loot-figure" class="hidden lg:block mt-auto self-end w-[190px] pt-4" aria-hidden="true" style="--hairline-plate:#161513;--hairline-hi:#e3b04a;--hairline-edge:#a19d96;--hairline-mid:#57534e;--hairline-lo:#2a2826;--hairline-stroke:0.9"></div>
   </div>
 
   <div class="card p-6" data-rise style="--d:1">
@@ -459,4 +461,10 @@ analyzeBtn.addEventListener('click', () => {
 lootInput.addEventListener("keydown", e => {
   if (e.ctrlKey && e.key === "Enter") analyzeBtn.click();
 });
+</script>
+
+<script type="module">
+  import { lootBag } from "/figures/figures.js?v=<%= File.mtime(Rails.root.join("public/figures/figures.js")).to_i %>";
+  const el = document.getElementById("loot-figure");
+  if (el && matchMedia("(min-width: 1024px)").matches) lootBag(el);
 </script>

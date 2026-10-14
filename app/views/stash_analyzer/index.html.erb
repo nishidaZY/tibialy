@@ -1,7 +1,7 @@
 <% content_for :title, "Stash Analyzer – TibiaLootFinder" %>
 
 <section class="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-4 mb-4">
-  <div class="card p-6 sm:p-8" data-rise style="--d:0">
+  <div class="card p-6 sm:p-8 flex flex-col" data-rise style="--d:0">
     <p class="label mb-3 flex items-center gap-2"><span class="live"></span> Runs in your browser · nothing is uploaded</p>
     <h1 class="serif text-[34px] sm:text-[42px] leading-[1.05]">Your whole stash, priced from <span class="text-amber-400">one screenshot</span>.</h1>
     <p class="text-stone-400 text-[15px] mt-3">Paste a screenshot of your Stash, drag a box around the item slots and every item and amount is recognised and priced.</p>
@@ -19,6 +19,8 @@
       </ol>
       <p class="text-stone-500 text-xs mt-3">Any zoom works: the slots are found automatically. Amounts outlined in yellow could not be read clearly, so check them.</p>
     </details>
+    <%# figura de traço fino: um baú que abre quando o ponteiro chega perto %>
+    <div id="stash-figure" class="hidden lg:block mt-auto self-end w-[170px] pt-4" aria-hidden="true" style="--hairline-plate:#161513;--hairline-hi:#e3b04a;--hairline-edge:#a19d96;--hairline-mid:#57534e;--hairline-lo:#2a2826;--hairline-stroke:0.9"></div>
   </div>
 
   <div class="card p-6 flex flex-col" data-rise style="--d:1">
@@ -410,4 +412,10 @@
     if (ids.length) applyView();   // new prices: re-sort (fixing a row alone does not move it)
   }
 })();
+</script>
+
+<script type="module">
+  import { stash } from "/figures/figures.js?v=<%= File.mtime(Rails.root.join("public/figures/figures.js")).to_i %>";
+  const el = document.getElementById("stash-figure");
+  if (el && matchMedia("(min-width: 1024px)").matches) stash(el);
 </script>

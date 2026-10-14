@@ -1,4 +1,5 @@
 <% content_for :title, "Damage Calculator – TibiaLootFinder" %>
+<% figures_v = "/figures/figures.js?v=#{File.mtime(Rails.root.join("public/figures/figures.js")).to_i}" %>
 <% damage_v = ->(f) { "/damage/#{f}?v=#{File.mtime(Rails.root.join("public/damage", f)).to_i}" } %>
 <link rel="stylesheet" href="<%= damage_v.("calculator.css") %>">
 
@@ -15,7 +16,7 @@
       on TibiaTools.
     </p>
   </div>
-  <%# figura de traço fino (hairline): uma antena que mira no ponteiro %>
+  <%# figura de traço fino: uma espada na pedra que o ponteiro puxa para fora %>
   <div id="damage-figure" class="hidden md:block w-[220px]" aria-hidden="true"
        style="--hairline-plate:#161513;--hairline-hi:#e3b04a;--hairline-edge:#a19d96;--hairline-mid:#57534e;--hairline-lo:#2a2826;--hairline-stroke:0.9"></div>
 </section>
@@ -30,12 +31,12 @@
   Damage calculator by <a href="https://tibiatools.io" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">Kikaro / TibiaTools</a>,
   used under the <a href="https://github.com/kik-tibia/tibiatools/blob/main/LICENCE" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">EUPL-1.2</a>
   (source as used here, restyled: <a href="/damage/tibiatools-calc-source.zip" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">vendor/tibiatools-calc</a>).
-  Figure from <a href="https://github.com/lucasmarkes/hairline" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">hairline</a> (MIT).
+  Figure drawn in the style of <a href="https://github.com/lucasmarkes/hairline" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">hairline</a>.
 </p>
 
 <script type="module" src="<%= damage_v.("calculator.js") %>"></script>
 <script type="module">
-  import { dish } from "<%= damage_v.("hairline.js") %>";
+  import { sword } from "<%= figures_v %>";
   const el = document.getElementById("damage-figure");
-  if (el && matchMedia("(min-width: 768px)").matches) dish(el, { play: true, theme: "dark", intensity: 0.6 });
+  if (el && matchMedia("(min-width: 768px)").matches) sword(el);
 </script>
