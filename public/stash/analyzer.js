@@ -455,8 +455,9 @@
   // bottom-right corner where the amount is written
   const BLOCKS = [];
   for (let by = 0; by < 8; by++) for (let bx = 0; bx < 8; bx++) {
-    if (bx === 0 && by === 0) continue;
-    if (by >= 6 && bx >= 2) continue;
+    // not the outer ring (a glowing rarity frame colours it) nor the bottom band (the amount; a long
+    // one reaches the left edge)
+    if (bx === 0 || bx === 7 || by === 0 || by >= 6) continue;
     BLOCKS.push([1 + bx * 4, 1 + by * 4]);
   }
   let fpCache = null;
@@ -769,18 +770,20 @@
       s.m ??= markerOf(s);
       const short = coarse(s, 60);
       if (opts.debug && opts.debugItems) { const all = coarse(s, 100000); s.coarseRank = opts.debugItems.map(id => all.findIndex(j => atlas.ids[j] === id)); }
-      // item only (amount and edge left out)
-      let first = short.map(j => ({ j, e: score(s, j, s.m, '', ZONE_ITEM) })).sort((a, b) => a.e - b.e);
+      // item only (amount and edge left out; a long amount reaches the slot's left edge: the whole
+      // bottom band is left out then)
+      const zI = leftText(s) ? { ...ZONE_ITEM, textU: 0 } : ZONE_ITEM;
+      let first = short.map(j => ({ j, e: score(s, j, s.m, '', zI) })).sort((a, b) => a.e - b.e);
       // this slot's own sub-pixel position (the lattice drifts a little across a big selection),
       // fitted to the best of the first three guesses
       {
         let b = { e: first[0].e, ox: 0, oy: 0 };
         for (const x of first.slice(0, 3)) {
-          const al = alignFor(s, x.j, 0, 0);
+          const al = alignFor(s, x.j, 0, 0, zI);
           if (al.e < b.e) b = al;
         }
         s.ox = b.ox; s.oy = b.oy;
-        if (b.ox || b.oy) first = first.slice(0, 24).map(x => ({ j: x.j, e: score(s, x.j, s.m, '', ZONE_ITEM) })).sort((a, b) => a.e - b.e);
+        if (b.ox || b.oy) first = first.slice(0, 24).map(x => ({ j: x.j, e: score(s, x.j, s.m, '', zI) })).sort((a, b) => a.e - b.e);
       }
       if (opts.debug) s.firstTop = first.slice(0, 5).map(x => [meta[atlas.ids[x.j]].n, +x.e.toFixed(0)]);
       // amount, read with the best item's art behind it
