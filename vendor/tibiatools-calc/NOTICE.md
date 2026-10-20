@@ -16,6 +16,8 @@ The damage calculator at `/damage` is the one from **TibiaTools** by Kikaro:
   and `src/styles/build-table.css`.
 - `entry.ts`, `build.mjs`, `theme.css`, `package.json` — added for TIBIALY.
 - `public/damage/{check,copy,paste}.svg` — icons copied unchanged from the original `public/`.
+- `public/damage/tibiatools-calc-source.zip` — this folder as served to the site's users (the page links it);
+  rebuild after changing anything here: `git archive --format=zip -o public/damage/tibiatools-calc-source.zip --prefix=tibiatools-calc/ HEAD:vendor/tibiatools-calc`.
 
 ## Modifications
 
