@@ -1,21 +1,20 @@
 # Stash Analyzer data. The analyzer recognises items in a screenshot of the Tibia stash in the
-# browser, comparing each slot with the item sprites. Those sprites are packed into one image
-# (public/stash/atlas.png + atlas.json) so the page loads them in a single request.
+# browser by drawing every candidate the way the client draws it and comparing. It needs the item
+# sprites exactly as the client has them, packed into one image (public/stash/atlas.png + atlas.json),
+# taken from an installed Tibia client:
 #
-#   bin/rails stash:atlas    # export the item list, download the sprites, build the atlas
+#   bin/rails stash:atlas                       # macOS client in its default place
+#   TIBIA_ASSETS=/path/to/assets bin/rails stash:atlas
 #
-# Building the atlas needs Python 3 with Pillow (dev machine only); the result is committed, so
-# the server never needs either.
+# public/stash/ui.json (the amount digits and rarity edges) comes from the client's UI files and
+# screenshots; see script/stash/bench/README.md. Building needs Python 3 with Pillow (dev machine
+# only); the result is committed, so the server never needs either.
 namespace :stash do
-  desc "Build public/stash/atlas.png + atlas.json from the sprites of all market items"
-  task atlas: :environment do
-    list = Item.where.not(market_item_id: nil).where.not(image_url: nil).order(:id)
-               .map { |i| { id: i.id, url: i.image_url } }
-    dir = Rails.root.join("tmp/stash")
-    FileUtils.mkdir_p(dir)
-    File.write(dir.join("items.json"), JSON.generate(list))
-    puts "#{list.size} items exported"
-    system("python3", Rails.root.join("script/stash/build_atlas.py").to_s, dir.to_s,
+  desc "Build public/stash/atlas.png + atlas.json from the Tibia client's own sprites"
+  task :atlas do
+    assets = ENV.fetch("TIBIA_ASSETS") { File.expand_path("~/Library/Application Support/CipSoft GmbH/Tibia/packages/Tibia.app/Contents/Resources/assets") }
+    abort "Tibia client assets not found at #{assets} (set TIBIA_ASSETS)" unless File.exist?(File.join(assets, "catalog-content.json"))
+    system("python3", Rails.root.join("script/stash/build_client_atlas.py").to_s, assets,
            Rails.root.join("public/stash").to_s, exception: true)
   end
 end
