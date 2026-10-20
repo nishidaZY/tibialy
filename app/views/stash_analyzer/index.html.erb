@@ -97,6 +97,11 @@
     <button class="sort-btn bg-stone-800 text-stone-300" data-sort="high">Highest</button>
     <button class="sort-btn bg-stone-800 text-stone-300" data-sort="low">Lowest</button>
   </div>
+  <div class="ml-auto flex gap-2">
+    <button id="export-copy" type="button" class="btn btn-ghost h-9" title="Copy the list of what sells better on the Market">Copy Market list</button>
+    <button id="export-file" type="button" class="btn btn-ghost h-9" title="Download it as a text file">Download .txt</button>
+  </div>
+  <p id="export-note" class="w-full text-xs text-stone-500 hidden"></p>
 </div>
 
 <!-- Results -->
@@ -462,6 +467,42 @@
   });
   stage.addEventListener("pointerleave", hideZoom);
   addEventListener("scroll", hideZoom, { passive: true });
+
+  // ── export: the items that sell better on the Market, as plain text ─────────
+  function marketText() {
+    const cat = results.data.catalog, list = [];
+    results.slots.forEach(sl => {
+      const it = cat[sl.itemId] || {}, qty = sl.count ?? 1, mp = market[it.m] ?? 0, npc = it.npc || 0;
+      if (mp > 0 && mp * qty > npc * qty) list.push({ n: it.n, qty, mp, total: mp * qty, gain: (mp - npc) * qty });
+    });
+    list.sort((a, b) => b.total - a.total);
+    const f = n => n.toLocaleString("en-US"), sum = list.reduce((a, x) => a + x.total, 0);
+    return [
+      `TIBIALY — sell on the Market (${serverSel.value}, ${new Date().toLocaleDateString()})`,
+      "",
+      ...list.map(x => `${x.n} — ${f(x.qty)} × ${f(x.mp)} gp = ${f(x.total)} gp (+${f(x.gain)} vs NPC)`),
+      "",
+      `${list.length} items · ${f(sum)} gp`,
+    ].join("\n");
+  }
+  function exportReady() {
+    if (!results) return null;
+    if (!serverSel.value) { exportNote("Select your world first: the list needs its Market prices."); return null; }
+    return marketText();
+  }
+  function exportNote(msg) { const n = $("export-note"); n.textContent = msg; n.classList.remove("hidden"); setTimeout(() => n.classList.add("hidden"), 4000); }
+  $("export-copy").addEventListener("click", async () => {
+    const t = exportReady(); if (!t) return;
+    try { await navigator.clipboard.writeText(t); exportNote("Copied. Paste it anywhere (Discord, notes…)."); }
+    catch { exportNote("Could not copy here: use Download .txt."); }
+  });
+  $("export-file").addEventListener("click", () => {
+    const t = exportReady(); if (!t) return;
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([t], { type: "text/plain" }));
+    a.download = `tibialy-market-${serverSel.value || "list"}.txt`;
+    a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
 
   function recalc() {
     let npcSum = 0, bestSum = 0, unsure = 0, missing = 0, biggestUnsure = null;
