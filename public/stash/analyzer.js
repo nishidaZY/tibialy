@@ -922,7 +922,7 @@
     return {
       grid, pitch, geo, bg, order, orderFit, orderCosts, digitMax: cells.map(c => [c.r, c.c, Math.round(c.digitMax)]), rowErr: [...new Set(cells.map(c => c.r))].map(r => { const v = cells.filter(c => c.r === r && c.ranked).map(c => c.ranked[0].e).sort((a, b) => a - b); return v.length ? +v[v.length >> 1].toFixed(0) : null; }), noise,
       slots: full.map(s => ({
-        r: s.r, c: s.c, box: [s.mx - pitch / 2, s.my - pitch / 2, s.mx + pitch / 2, s.my + pitch / 2].map(v => v / scaleF),
+        r: s.r, c: s.c, box: (([X0, Y0]) => [X0, Y0, X0 + SLOT * k, Y0 + SLOT * k])(origin(s)).map(v => v / scaleF),   // the slot as fitted
         itemId: s.pick.id, cell: s.pick.j, score: s.pick.cost,
         alternatives: s.alts,
         confident: s.sure,

@@ -117,6 +117,15 @@
   </table>
 </section>
 <datalist id="item-names"></datalist>
+<%# zoom: the slot from the screenshot, big, next to what was recognised (hover a row or a slot) %>
+<div id="zoom" class="hidden fixed z-50 pointer-events-none card p-3 shadow-2xl" style="background:#161513">
+  <div class="flex gap-3 items-start">
+    <div><p class="label mb-1.5">Your screenshot</p><canvas id="zoom-shot" width="176" height="176" class="block rounded-lg border border-white/10" style="image-rendering:pixelated"></canvas></div>
+    <div><p class="label mb-1.5">Recognised as</p><canvas id="zoom-item" width="176" height="176" class="block rounded-lg border border-white/10" style="image-rendering:pixelated;background:#292928"></canvas></div>
+  </div>
+  <p id="zoom-name" class="text-[14px] font-medium mt-2.5"></p>
+  <p id="zoom-qty" class="text-xs text-stone-400"></p>
+</div>
 
 <%# ?v=mtime: a browser holding an older copy (the native app's WebView did) fetches the new one %>
 <% stash_v = ->(f) { "/stash/#{f}?v=#{File.mtime(Rails.root.join("public/stash", f)).to_i}" } %>
@@ -359,7 +368,43 @@
       else e.target.classList.add("text-[#f0524f]");
     }
   });
-  $("results-body").addEventListener("mouseover", e => { const tr = e.target.closest("tr"); if (tr) draw(+tr.dataset.i); });
+  $("results-body").addEventListener("mouseover", e => {
+    const tr = e.target.closest("tr[data-i]"); if (!tr) return;
+    draw(+tr.dataset.i);
+    const r = tr.getBoundingClientRect();
+    showZoom(+tr.dataset.i, e.clientX + 24, r.top + r.height / 2);
+  });
+  $("results-body").addEventListener("mouseleave", hideZoom);
+
+  // ── zoom: the slot as it is in the screenshot, magnified, beside the item it was read as ──────
+  const zoom = $("zoom"), zShot = $("zoom-shot").getContext("2d"), zItem = $("zoom-item").getContext("2d");
+  function showZoom(i, x, y) {
+    const s = results?.slots[i]; if (!s || !shot) return;
+    const [x0, y0, x1, y1] = s.box, pad = (x1 - x0) * 0.04;
+    zShot.imageSmoothingEnabled = false; zShot.clearRect(0, 0, 176, 176);
+    zShot.drawImage(shot, sel.x + x0 - pad, sel.y + y0 - pad, x1 - x0 + 2 * pad, y1 - y0 + 2 * pad, 0, 0, 176, 176);
+    const d = results.data, cell = s.edited ? d.index[s.itemId] : (s.cell ?? d.index[s.itemId]), c = d.atlas.cols;
+    zItem.imageSmoothingEnabled = false; zItem.clearRect(0, 0, 176, 176);
+    if (cell != null) zItem.drawImage(d.atlasImg, (cell % c) * 32, Math.floor(cell / c) * 32, 32, 32, 8, 8, 160, 160);
+    const it = d.catalog[s.itemId] || {};
+    $("zoom-name").textContent = it.n || "?";
+    $("zoom-name").className = "text-[14px] font-medium mt-2.5 " + (s.confident || s.edited ? "text-stone-100" : "text-amber-300");
+    $("zoom-qty").textContent = `Amount read: ${(s.count ?? 1).toLocaleString()}` + (s.countSure || s.edited ? "" : " — check it");
+    zoom.classList.remove("hidden");
+    const w = zoom.offsetWidth, h = zoom.offsetHeight;
+    const left = x + 16 + w > innerWidth ? x - w - 16 : x + 16;
+    zoom.style.left = Math.max(8, left) + "px";
+    zoom.style.top = Math.min(innerHeight - h - 8, Math.max(8, y - h / 2)) + "px";
+  }
+  function hideZoom() { zoom.classList.add("hidden"); }
+  // hovering a slot on the screenshot shows the same zoom
+  stage.addEventListener("pointermove", e => {
+    if (drag || !results) return;
+    const p = pos(e), i = results.slots.findIndex(s => p.x >= sel.x + s.box[0] && p.x < sel.x + s.box[2] && p.y >= sel.y + s.box[1] && p.y < sel.y + s.box[3]);
+    if (i >= 0) { showZoom(i, e.clientX, e.clientY); draw(i); } else hideZoom();
+  });
+  stage.addEventListener("pointerleave", hideZoom);
+  addEventListener("scroll", hideZoom, { passive: true });
 
   function recalc() {
     let npcSum = 0, bestSum = 0, unsure = 0, missing = 0, biggestUnsure = null;
