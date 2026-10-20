@@ -274,15 +274,20 @@
   }
   function rowHtml(s, i) {
     const it = results.data.catalog[s.itemId] || {};
+    // other likely items, each with its picture: one click picks it
     const alts = s.confident || s.edited ? "" :
-      `<div class="mt-1 flex flex-wrap gap-1">${s.alternatives.map(a => `<button type="button" data-alt="${a}" class="text-[11px] h-6 px-2 rounded-md border border-white/10 text-stone-300 hover:text-white hover:border-white/25 transition-colors">${esc(results.data.catalog[a]?.n)}</button>`).join("")}</div>`;
+      `<div class="mt-1.5 flex flex-wrap gap-1.5">${s.alternatives.map(a => `<button type="button" data-alt="${a}" title="Pick ${esc(results.data.catalog[a]?.n)}" class="h-9 pl-0.5 pr-2.5 inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-stone-900/60 text-[12px] text-stone-300 hover:text-white hover:border-amber-400/60 transition-colors"><span style="${spriteStyle(a)}" class="shrink-0"></span>${esc(results.data.catalog[a]?.n)}</button>`).join("")}</div>`;
+    // the slot is right as read: one click confirms item and amount
+    const confirm = s.edited || (s.confident && s.countSure) ? "" :
+      `<button type="button" data-ok title="The item and the amount are right" class="h-8 px-3 rounded-lg border border-green-500/40 text-green-400 text-[12.5px] font-medium hover:bg-green-500/10 transition-colors whitespace-nowrap">✓ Right</button>`;
     return `
       <td class="num text-stone-500 text-[13px]">${i + 1}</td>
       <td><div class="w-9 h-9 rounded-lg bg-stone-900 border border-white/5 grid place-items-center"><div style="${spriteStyle(s.itemId, s.edited ? null : s.cell)}"></div></div></td>
       <td>
         <div class="flex items-center gap-2">
-          ${s.confident || s.edited ? "" : '<span title="Not sure — check this one" class="text-amber-400 text-[13px]">⚠️</span>'}
+          ${s.edited ? '<span title="Checked by you" class="text-green-400 text-[14px]">✓</span>' : s.confident ? "" : '<span title="Not sure — check this one" class="text-amber-400 text-[13px]">⚠️</span>'}
           <input data-name list="item-names" value="${esc(it.n)}" class="bg-transparent border-b border-transparent hover:border-white/20 focus:border-amber-400 focus:outline-none text-stone-100 font-medium w-full min-w-[10rem] py-0.5 transition-colors">
+          ${confirm}
         </div>${it.also && !s.edited ? `<p class="text-[11px] text-stone-500 mt-0.5">Looks the same as ${esc(it.also.slice(0, 3).join(", "))}</p>` : ""}${alts}
       </td>
       <td class="text-center"><input data-qty type="number" min="0" value="${s.count ?? 1}" title="${s.countSure || s.edited ? '' : 'Could not read this number clearly — please check'}" class="num w-20 h-8 bg-stone-950 border rounded-lg px-2 text-center text-stone-100 focus:outline-none focus:!border-amber-400 ${s.countSure || s.edited ? '!border-white/10' : '!border-amber-400'}"></td>
@@ -360,6 +365,8 @@
     draw(i);
   }
   $("results-body").addEventListener("click", e => {
+    const ok = e.target.closest("[data-ok]");
+    if (ok) { const i = +ok.closest("tr").dataset.i, s = results.slots[i]; s.edited = true; s.countSure = true; rerenderRow(i); return; }
     const b = e.target.closest("[data-alt]"); if (!b) return;
     const i = +b.closest("tr").dataset.i, s = results.slots[i];
     s.alternatives = [s.itemId, ...s.alternatives.filter(a => a !== +b.dataset.alt)];
