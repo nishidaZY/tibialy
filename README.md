@@ -7,14 +7,42 @@ loot (NPC or Market), your whole stash priced from one screenshot, and a damage 
 
 ## Download
 
-| | |
+| Your computer | Download |
 |---|---|
-| **Windows** | [TIBIALY-windows-setup.exe](https://github.com/nishidaZY/tibialy/releases/latest/download/TIBIALY-windows-setup.exe) |
-| **Mac** | [TIBIALY-mac.dmg](https://github.com/nishidaZY/tibialy/releases/latest/download/TIBIALY-mac.dmg) |
+| **Windows** 10 / 11 | [**TIBIALY-windows-setup.exe**](https://github.com/nishidaZY/tibialy/releases/latest/download/TIBIALY-windows-setup.exe) |
+| **Mac** (Apple Silicon and Intel) | [**TIBIALY-mac.dmg**](https://github.com/nishidaZY/tibialy/releases/latest/download/TIBIALY-mac.dmg) |
+| **Android** | no download: install it from Chrome (below) |
 
-Open the file and follow the steps on the [release page](https://github.com/nishidaZY/tibialy/releases/latest)
-(Windows may say "Windows protected your PC": More info → Run anyway; on Mac, right-click → Open the
-first time). Android: open the site in Chrome → ⋮ → Install app.
+### Windows
+
+1. Click **TIBIALY-windows-setup.exe** above. Your browser downloads it.
+2. Open the downloaded file (it is in your **Downloads** folder).
+3. If a blue window says **"Windows protected your PC"**, click **More info**, then **Run anyway**.
+   It appears only because the app is new and not from the Microsoft Store.
+4. TIBIALY installs by itself in a few seconds and opens.
+   Next time, open it from the **TIBIALY** icon on your desktop or in the Start menu.
+
+To remove it: **Settings → Apps → TIBIALY → Uninstall**.
+
+### Mac
+
+1. Click **TIBIALY-mac.dmg** above. Your browser downloads it.
+2. Open the downloaded file (it is in your **Downloads** folder). A window opens.
+3. Drag the **TIBIALY** icon onto the **Applications** folder in that window.
+4. The first time only: open your **Applications** folder, **right-click TIBIALY → Open**, then click **Open**.
+   If the Mac still refuses: **System Settings → Privacy & Security**, scroll down, click **Open Anyway**.
+5. From then on, open it from **Launchpad** or the **Dock** like any other app.
+
+To remove it: drag **TIBIALY** from Applications to the Trash.
+
+### Android
+
+1. Open the TIBIALY site in **Chrome**.
+2. Tap the menu **⋮** at the top right.
+3. Tap **Install app** (on some phones: **Add to Home screen → Install**).
+
+The apps open the TIBIALY site in their own window, so they are always up to date: nothing to
+download again.
 
 ## Pages
 
