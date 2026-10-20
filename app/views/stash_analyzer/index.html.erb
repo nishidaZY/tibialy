@@ -106,8 +106,8 @@
       <tr>
         <th class="w-10 text-stone-500">#</th>
         <th class="w-12"></th>
-        <th>Item</th>
         <th class="text-center">Qty</th>
+        <th>Item</th>
         <th class="text-right">NPC price</th>
         <th class="text-right">NPC total</th>
         <th class="text-right">Market price</th>
@@ -284,6 +284,7 @@
     return `
       <td class="num text-stone-500 text-[13px]">${i + 1}</td>
       <td><div class="w-9 h-9 rounded-lg bg-stone-900 border border-white/5 grid place-items-center"><div style="${spriteStyle(s.itemId, s.edited ? null : s.cell)}"></div></div></td>
+      <td class="text-center"><input data-qty type="number" min="0" value="${s.count ?? 1}" title="${s.countSure || s.edited ? '' : 'Could not read this number clearly — please check'}" class="num w-20 h-8 bg-stone-950 border rounded-lg px-2 text-center text-stone-100 focus:outline-none focus:!border-amber-400 ${s.countSure || s.edited ? '!border-white/10' : '!border-amber-400'}"></td>
       <td>
         <div class="flex items-center gap-2">
           ${s.edited ? '<span title="Checked by you" class="text-green-400 text-[14px]">✓</span>' : s.confident && s.countSure ? "" : `<span title="${s.confident ? "The amount was hard to read — check it" : "Not sure of the item — check it"}" class="text-amber-400 text-[13px]">⚠️</span>`}
@@ -291,7 +292,7 @@
           ${confirm}
         </div>${it.also && !s.edited ? `<p class="text-[11px] text-stone-500 mt-0.5">Looks the same as ${esc(it.also.slice(0, 3).join(", "))}</p>` : ""}${alts}
       </td>
-      <td class="text-center"><input data-qty type="number" min="0" value="${s.count ?? 1}" title="${s.countSure || s.edited ? '' : 'Could not read this number clearly — please check'}" class="num w-20 h-8 bg-stone-950 border rounded-lg px-2 text-center text-stone-100 focus:outline-none focus:!border-amber-400 ${s.countSure || s.edited ? '!border-white/10' : '!border-amber-400'}"></td>
+
       <td class="text-right" data-npc></td>
       <td class="text-right" data-npc-total></td>
       <td class="text-right text-sky-400" data-mkt></td>
@@ -423,7 +424,8 @@
     const tr = e.target.closest("tr[data-i]"); if (!tr) return;
     draw(+tr.dataset.i); overStage = false;
     const r = tr.getBoundingClientRect();
-    showZoom(+tr.dataset.i, e.clientX + 24, r.top + r.height / 2);
+    // to the right of the name, so the amount, the name and its buttons stay visible
+    showZoom(+tr.dataset.i, tr.querySelector("[data-npc]").getBoundingClientRect().left, r.top + r.height / 2);
   });
   $("results-body").addEventListener("mouseleave", hideZoom);
 
