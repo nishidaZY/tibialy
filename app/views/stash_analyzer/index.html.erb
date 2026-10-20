@@ -103,6 +103,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th class="w-10 text-stone-500">#</th>
         <th class="w-12"></th>
         <th>Item</th>
         <th class="text-center">Qty</th>
@@ -119,6 +120,7 @@
 <datalist id="item-names"></datalist>
 <%# zoom: the slot from the screenshot, big, next to what was recognised (hover a row or a slot) %>
 <div id="zoom" class="hidden fixed z-50 pointer-events-none card p-3 shadow-2xl" style="background:#161513">
+  <p class="mb-2 flex items-baseline gap-2"><span id="zoom-num" class="serif text-[26px] leading-none text-amber-400"></span><span id="zoom-where" class="text-xs text-stone-400"></span></p>
   <div class="flex gap-3 items-start">
     <div><p class="label mb-1.5">Your screenshot</p><canvas id="zoom-shot" width="176" height="176" class="block rounded-lg border border-white/10" style="image-rendering:pixelated"></canvas></div>
     <div><p class="label mb-1.5">Recognised as</p><canvas id="zoom-item" width="176" height="176" class="block rounded-lg border border-white/10" style="image-rendering:pixelated;background:#292928"></canvas></div>
@@ -275,6 +277,7 @@
     const alts = s.confident || s.edited ? "" :
       `<div class="mt-1 flex flex-wrap gap-1">${s.alternatives.map(a => `<button type="button" data-alt="${a}" class="text-[11px] h-6 px-2 rounded-md border border-white/10 text-stone-300 hover:text-white hover:border-white/25 transition-colors">${esc(results.data.catalog[a]?.n)}</button>`).join("")}</div>`;
     return `
+      <td class="num text-stone-500 text-[13px]">${i + 1}</td>
       <td><div class="w-9 h-9 rounded-lg bg-stone-900 border border-white/5 grid place-items-center"><div style="${spriteStyle(s.itemId, s.edited ? null : s.cell)}"></div></div></td>
       <td>
         <div class="flex items-center gap-2">
@@ -317,14 +320,14 @@
       if (currentSort === "check" && kind !== header) {
         header = kind;
         const h = document.createElement("tr");
-        h.innerHTML = `<td colspan="8" class="!py-2.5 text-xs font-medium ${kind === "check" ? "text-amber-300 bg-amber-400/[.06]" : "text-stone-500 bg-white/[.02]"}">${kind === "check" ? "Check these first: fix the item or the quantity if needed" : "Recognised"}</td>`;
+        h.innerHTML = `<td colspan="9" class="!py-2.5 text-xs font-medium ${kind === "check" ? "text-amber-300 bg-amber-400/[.06]" : "text-stone-500 bg-white/[.02]"}">${kind === "check" ? "Check these first: fix the item or the quantity if needed" : "Recognised"}</td>`;
         out.push(h);
       }
       out.push(rows[i]);
     });
     if (!order.length) {
       const h = document.createElement("tr");
-      h.innerHTML = '<td colspan="8" class="!py-8 text-center text-stone-500">No items here.</td>';
+      h.innerHTML = '<td colspan="9" class="!py-8 text-center text-stone-500">No items here.</td>';
       out.push(h);
     }
     body.replaceChildren(...out);
@@ -345,11 +348,15 @@
   function rerenderRow(i) {
     rows[i].innerHTML = rowHtml(results.slots[i], i); recalc(); draw();
   }
+  // a click on a slot: its row, highlighted, with the name ready to be corrected
   function focusRow(i) {
     const tr = rows[i];
-    if (!tr || !tr.isConnected) return;
+    if (!tr) return;
+    if (!tr.isConnected) document.querySelector('.filter-btn[data-verdict="all"]').click();   // filtered out: show all
+    hideZoom();
     tr.scrollIntoView({ behavior: "smooth", block: "center" });
-    tr.classList.add("bg-amber-400/10"); setTimeout(() => tr.classList.remove("bg-amber-400/10"), 1200);
+    tr.classList.add("bg-amber-400/10"); setTimeout(() => tr.classList.remove("bg-amber-400/10"), 2500);
+    setTimeout(() => { const n = tr.querySelector("[data-name]"); n.focus({ preventScroll: true }); n.select(); }, 450);
     draw(i);
   }
   $("results-body").addEventListener("click", e => {
@@ -370,7 +377,7 @@
   });
   $("results-body").addEventListener("mouseover", e => {
     const tr = e.target.closest("tr[data-i]"); if (!tr) return;
-    draw(+tr.dataset.i);
+    draw(+tr.dataset.i); overStage = false;
     const r = tr.getBoundingClientRect();
     showZoom(+tr.dataset.i, e.clientX + 24, r.top + r.height / 2);
   });
@@ -378,6 +385,7 @@
 
   // ── zoom: the slot as it is in the screenshot, magnified, beside the item it was read as ──────
   const zoom = $("zoom"), zShot = $("zoom-shot").getContext("2d"), zItem = $("zoom-item").getContext("2d");
+  let overStage = false;
   function showZoom(i, x, y) {
     const s = results?.slots[i]; if (!s || !shot) return;
     const [x0, y0, x1, y1] = s.box, pad = (x1 - x0) * 0.04;
@@ -387,6 +395,8 @@
     zItem.imageSmoothingEnabled = false; zItem.clearRect(0, 0, 176, 176);
     if (cell != null) zItem.drawImage(d.atlasImg, (cell % c) * 32, Math.floor(cell / c) * 32, 32, 32, 8, 8, 160, 160);
     const it = d.catalog[s.itemId] || {};
+    $("zoom-num").textContent = "#" + (i + 1);
+    $("zoom-where").textContent = `row ${s.r + 1}, column ${s.c + 1} · # in the table` + (overStage ? " · click to edit it" : "");
     $("zoom-name").textContent = it.n || "?";
     $("zoom-name").className = "text-[14px] font-medium mt-2.5 " + (s.confident || s.edited ? "text-stone-100" : "text-amber-300");
     $("zoom-qty").textContent = `Amount read: ${(s.count ?? 1).toLocaleString()}` + (s.countSure || s.edited ? "" : " — check it");
@@ -401,6 +411,7 @@
   stage.addEventListener("pointermove", e => {
     if (drag || !results) return;
     const p = pos(e), i = results.slots.findIndex(s => p.x >= sel.x + s.box[0] && p.x < sel.x + s.box[2] && p.y >= sel.y + s.box[1] && p.y < sel.y + s.box[3]);
+    overStage = true;
     if (i >= 0) { showZoom(i, e.clientX, e.clientY); draw(i); } else hideZoom();
   });
   stage.addEventListener("pointerleave", hideZoom);
