@@ -256,6 +256,16 @@
   // 1x picture of a slot: background, sprite of atlas cell j (-1: none), rarity edge m (-1: none), amount text
   function synth(T, A, cols, j, bg, m, text, ui, layout) {
     for (let i = 0; i < SLOT * SLOT; i++) { T[i * 3] = bg[0]; T[i * 3 + 1] = bg[1]; T[i * 3 + 2] = bg[2]; }
+    // rarity shown as a glowing frame (client option): under the item, 32x32 at (1,1); m = 5..9
+    if (m >= 5 && ui.glows) {
+      const g = ui.glows[m - 5];
+      for (let y = 0; y < 32; y++) for (let x = 0; x < 32; x++) {
+        const p = g[y * 32 + x], a = p[3] / 255;
+        if (!a) continue;
+        const t = ((y + 1) * SLOT + x + 1) * 3;
+        T[t] += (p[0] - T[t]) * a; T[t + 1] += (p[1] - T[t + 1]) * a; T[t + 2] += (p[2] - T[t + 2]) * a;
+      }
+    }
     if (j >= 0) {
       const ax = (j % cols) * 32, ay = Math.floor(j / cols) * 32, d = A.data, W = A.W;
       for (let y = 0; y < 32; y++) for (let x = 0; x < 32; x++) {
@@ -265,7 +275,7 @@
         T[t] += (d[s] - T[t]) * a; T[t + 1] += (d[s + 1] - T[t + 1]) * a; T[t + 2] += (d[s + 2] - T[t + 2]) * a;
       }
     }
-    if (m >= 0) {
+    if (m >= 0 && m < 5) {
       const e = ui.edges[m];
       for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) {
         const p = e[y * 8 + x], a = p[3] / 255;
@@ -495,7 +505,7 @@
     }
     // slot background: median of the inner ring of every slot
     const ring = [];
-    for (const s of cells) for (const [fx, fy] of [[-0.32, -0.32], [0, -0.32], [0.32, -0.32], [-0.32, 0], [0.32, 0], [0, 0.32]])
+    for (const s of cells) for (const [fx, fy] of [[-0.24, -0.24], [0, -0.24], [0.24, -0.24], [-0.24, 0], [0.24, 0], [0, 0.24]])
       ring.push([0, 1, 2].map(c => boxMean(J, s.mx + fx * pitch - 0.5, s.my + fy * pitch - 0.5, s.mx + fx * pitch + 0.5, s.my + fy * pitch + 0.5, c)));
     const bg = [0, 1, 2].map(c => ring.map(p => p[c]).sort((a, b) => a - b)[ring.length >> 1]);
 
@@ -574,12 +584,16 @@
     const ZONE_ALL = { u0: Z0, u1: Z1, v0: Z0, v1: Z1 };
     const ZONE_TEXT = { u0: Z0, u1: Z1, v0: TEXT_V - 1, v1: Z1 };
 
-    // rarity edge: the coloured triangle in the top-left corner, or none
+    // rarity: a coloured triangle in the top-left corner (0-4), a glowing frame (5-9, a client
+    // option), or none (-1); judged on the top-left corner and the top and left edges
     const ZONE_MARK = { u0: Z0, u1: 6, v0: Z0, v1: 6 };
+    const ZONE_TOP = { u0: Z0, u1: Z1, v0: Z0, v1: 4 }, ZONE_LEFT = { u0: Z0, u1: 4, v0: Z0, v1: 20 };
     const markerOf = s => {
-      let best = { e: Infinity, m: -1 };
-      for (let m = 0; m < ui.edges.length; m++) { const e = score(s, -1, m, '', ZONE_MARK); if (e < best.e) best = { e, m }; }
-      return best.e < 900 ? best.m : -1;
+      const cost = m => score(s, -1, m, '', ZONE_MARK) + score(s, -1, m, '', ZONE_TOP) + score(s, -1, m, '', ZONE_LEFT);
+      let best = { e: cost(-1), m: -1 };
+      const n = 5 + (ui.glows ? 5 : 0);
+      for (let m = 0; m < n; m++) { const e = cost(m); if (e < best.e) best = { e, m }; }
+      return best.m;
     };
 
     // empty slots: the background alone explains them
@@ -623,7 +637,8 @@
       };
       geo.dx = 2 * k; geo.dy = 1.75 * k;
       probe.forEach(s => { s.cand = coarse(s, 6); });
-      search(geo.dx, geo.dy, 1.2 * k, 0.3 * k);
+      search(geo.dx, geo.dy, 5 * k, 1 * k);   // wide: coloured frames can pull the gap lines a few px off
+      search(geo.dx, geo.dy, 1 * k, 0.25 * k);
       search(geo.dx, geo.dy, 0.3 * k, 0.1 * k);
       let bs = { e: Infinity };
       for (const kernel of ['box', 'tri', 'cubic', 'lanczos']) for (const sigma of [0, 0.3, 0.5, 0.7, 0.9, 1.2]) {
