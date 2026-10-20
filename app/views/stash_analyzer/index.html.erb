@@ -88,6 +88,7 @@
 <div id="filter-bar" class="reveal hidden mb-3 flex flex-wrap gap-3 items-center">
   <div class="seg">
     <button class="filter-btn bg-amber-700 text-white" data-verdict="all">All</button>
+    <button class="filter-btn bg-stone-800 text-stone-300" data-verdict="check">To check <span id="check-count" class="num"></span></button>
     <button class="filter-btn bg-stone-800 text-stone-300" data-verdict="market">Market</button>
     <button class="filter-btn bg-stone-800 text-stone-300" data-verdict="npc">NPC</button>
   </div>
@@ -117,7 +118,8 @@
     <tbody id="results-body" class="stagger"></tbody>
   </table>
 </section>
-<datalist id="item-names"></datalist>
+<%# item search while typing a name: picture + name %>
+<div id="name-pick" class="hidden fixed z-50 card p-1.5 shadow-2xl max-h-[340px] overflow-y-auto" style="background:#161513;min-width:280px"></div>
 <%# zoom: the slot from the screenshot, big, next to what was recognised (hover a row or a slot) %>
 <div id="zoom" class="hidden fixed z-50 pointer-events-none card p-3 shadow-2xl" style="background:#161513">
   <p class="mb-2 flex items-baseline gap-2"><span id="zoom-num" class="serif text-[26px] leading-none text-amber-400"></span><span id="zoom-where" class="text-xs text-stone-400"></span></p>
@@ -163,7 +165,6 @@
       const names = {}; for (const [id, it] of Object.entries(catalog)) names[id] = it.n;
       const index = {}; atlas.ids.forEach((id, i) => { if (!(id in index)) index[id] = i; });   // first cell: the single item
       const byName = {}; for (const [id, it] of Object.entries(catalog)) byName[it.n.toLowerCase()] = +id;
-      $("item-names").innerHTML = Object.values(catalog).map(it => `<option value="${esc(it.n)}">`).join("");
       return { atlas, ui, catalog, atlasImg, names, index, byName };
     })();
   }
@@ -286,7 +287,7 @@
       <td>
         <div class="flex items-center gap-2">
           ${s.edited ? '<span title="Checked by you" class="text-green-400 text-[14px]">✓</span>' : s.confident ? "" : '<span title="Not sure — check this one" class="text-amber-400 text-[13px]">⚠️</span>'}
-          <input data-name list="item-names" value="${esc(it.n)}" class="bg-transparent border-b border-transparent hover:border-white/20 focus:border-amber-400 focus:outline-none text-stone-100 font-medium w-full min-w-[10rem] py-0.5 transition-colors">
+          <input data-name autocomplete="off" spellcheck="false" placeholder="Type a name…" value="${esc(it.n)}" class="bg-transparent border-b border-transparent hover:border-white/20 focus:border-amber-400 focus:outline-none text-stone-100 font-medium w-full min-w-[10rem] py-0.5 transition-colors">
           ${confirm}
         </div>${it.also && !s.edited ? `<p class="text-[11px] text-stone-500 mt-0.5">Looks the same as ${esc(it.also.slice(0, 3).join(", "))}</p>` : ""}${alts}
       </td>
@@ -315,7 +316,8 @@
   function applyView() {
     const body = $("results-body"), check = s => !s.edited && (!s.confident || !s.countSure);
     const best = i => parseFloat(rows[i].dataset.best) || 0;
-    const order = rows.map((_, i) => i).filter(i => currentVerdict === "all" || rows[i].dataset.verdict === currentVerdict);
+    const order = rows.map((_, i) => i).filter(i => currentVerdict === "all" || (currentVerdict === "check" ? check(results.slots[i]) : rows[i].dataset.verdict === currentVerdict));
+    $("check-count").textContent = results.slots.filter(check).length || "";
     if (currentSort === "check") order.sort((a, b) => check(results.slots[b]) - check(results.slots[a]) || a - b);
     else order.sort((a, b) => (currentSort === "high" ? best(b) - best(a) : best(a) - best(b)) || a - b);
     const out = [];
@@ -366,7 +368,7 @@
   }
   $("results-body").addEventListener("click", e => {
     const ok = e.target.closest("[data-ok]");
-    if (ok) { const i = +ok.closest("tr").dataset.i, s = results.slots[i]; s.edited = true; s.countSure = true; rerenderRow(i); return; }
+    if (ok) { const i = +ok.closest("tr").dataset.i, s = results.slots[i]; s.edited = true; s.countSure = true; rerenderRow(i); applyView(); return; }
     const b = e.target.closest("[data-alt]"); if (!b) return;
     const i = +b.closest("tr").dataset.i, s = results.slots[i];
     s.alternatives = [s.itemId, ...s.alternatives.filter(a => a !== +b.dataset.alt)];
@@ -382,6 +384,41 @@
       else e.target.classList.add("text-[#f0524f]");
     }
   });
+  // ── typing a name: matching items with their pictures ─────────────────────
+  const pickBox = $("name-pick");
+  let pickFor = null, pickList = [], pickSel = 0;
+  function choose(input, id) {
+    const i = +input.closest("tr").dataset.i, s = results.slots[i];
+    s.itemId = id; s.edited = true; pickBox.classList.add("hidden");
+    rerenderRow(i); applyView(); priceAll();
+  }
+  function showPicks(input) {
+    const q = input.value.trim().toLowerCase(), cat = results.data.catalog;
+    if (q.length < 2) { pickBox.classList.add("hidden"); return; }
+    const all = Object.entries(cat).filter(([, it]) => it.n.toLowerCase().includes(q));
+    all.sort((a, b) => (b[1].n.toLowerCase().startsWith(q) - a[1].n.toLowerCase().startsWith(q)) || a[1].n.length - b[1].n.length);
+    pickList = all.slice(0, 12).map(([id]) => +id); pickSel = 0; pickFor = input;
+    pickBox.innerHTML = pickList.length ? pickList.map((id, k) => `<button type="button" data-pick="${id}" class="w-full flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-left text-[13.5px] ${k === 0 ? "bg-white/[.06]" : ""} hover:bg-white/[.08]"><span style="${spriteStyle(id)}" class="shrink-0"></span><span class="text-stone-100">${esc(cat[id].n)}</span>${cat[id].npc ? `<span class="ml-auto text-xs text-stone-500 num">${cat[id].npc.toLocaleString()} gp</span>` : ""}</button>`).join("")
+      : '<p class="px-2 py-2 text-sm text-stone-500">No item with that name</p>';
+    const r = input.getBoundingClientRect();
+    pickBox.style.left = r.left + "px"; pickBox.style.top = (r.bottom + 4) + "px";
+    pickBox.classList.remove("hidden");
+  }
+  $("results-body").addEventListener("input", e => { if (e.target.matches("[data-name]")) showPicks(e.target); });
+  $("results-body").addEventListener("keydown", e => {
+    if (!e.target.matches("[data-name]") || pickBox.classList.contains("hidden")) return;
+    const btns = pickBox.querySelectorAll("[data-pick]");
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault(); btns[pickSel]?.classList.remove("bg-white/[.06]");
+      pickSel = (pickSel + (e.key === "ArrowDown" ? 1 : btns.length - 1)) % btns.length;
+      btns[pickSel]?.classList.add("bg-white/[.06]"); btns[pickSel]?.scrollIntoView({ block: "nearest" });
+    } else if (e.key === "Enter" && pickList[pickSel]) { e.preventDefault(); choose(e.target, pickList[pickSel]); }
+    else if (e.key === "Escape") pickBox.classList.add("hidden");
+  });
+  pickBox.addEventListener("mousedown", e => { const b = e.target.closest("[data-pick]"); if (b && pickFor) { e.preventDefault(); choose(pickFor, +b.dataset.pick); } });
+  $("results-body").addEventListener("focusout", e => { if (e.target.matches("[data-name]")) setTimeout(() => pickBox.classList.add("hidden"), 150); });
+  addEventListener("scroll", () => pickBox.classList.add("hidden"), { passive: true });
+
   $("results-body").addEventListener("mouseover", e => {
     const tr = e.target.closest("tr[data-i]"); if (!tr) return;
     draw(+tr.dataset.i); overStage = false;
@@ -443,7 +480,7 @@
       tr.dataset.best = best;
       tr.dataset.verdict = mTotal > npcTotal ? "market" : npcTotal > 0 ? "npc" : "none";
       if (!s.countSure && (!biggestUnsure || best > biggestUnsure.v)) biggestUnsure = { v: best, name: it.n, qty };
-      if (!s.confident && !s.edited) unsure++;
+      if (!s.edited && (!s.confident || !s.countSure)) unsure++;   // same rule as the "To check" filter
       if (!s.countSure) missing++;
     });
     TLFUI.count($("sum-items"), results.slots.length);
