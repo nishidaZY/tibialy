@@ -14,6 +14,18 @@ loot (NPC or Market), your whole stash priced from one screenshot, and a damage 
 | **Stash Analyzer** (`/stash`) | Paste a screenshot of your Supply Stash, drag a box around the slots: every item and amount is recognised and priced. Runs in the browser; the screenshot is never uploaded |
 | **Damage Calculator** (`/damage`) | The TibiaTools damage calculator (EUPL-1.2), restyled for the site |
 
+## Install as an app (Android, Mac)
+
+The site is a Progressive Web App (`public/manifest.webmanifest`, `public/sw.js`): browsers install
+it like an app, with no store and no download. Players follow the steps on `/install`:
+
+- **Android (Chrome):** open the site, tap menu ⋮ → **Install app**.
+- **Mac (Safari, macOS Sonoma or later):** open the site, **File → Add to Dock… → Add**.
+- **Mac (Chrome):** open the site, click the install icon in the address bar → **Install**.
+
+Installing needs the site online over HTTPS (see Deploy). Chrome also shows a one-click
+**Install TIBIALY** button on `/install`.
+
 ## Stash Analyzer
 
 `public/stash/analyzer.js` draws each candidate slot the way the Tibia client does: the item's
@@ -68,6 +80,7 @@ Data tasks: `tibia:import` (items and NPC prices), `tibia:sync_market_ids`,
 | `GET /loot` · `POST /loot/analyze` | Loot Analyzer |
 | `GET /stash` · `GET /stash/catalog` | Stash Analyzer and its item catalog |
 | `GET /damage` | Damage Calculator |
+| `GET /install` | How to install the app |
 | `GET /up` | Health check |
 
 ## Deploy (Render, free)

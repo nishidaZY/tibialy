@@ -1,0 +1,55 @@
+<% content_for :title, "Install – TIBIALY" %>
+
+<section class="card p-6 sm:p-8 mb-4" data-rise style="--d:0">
+  <p class="label mb-3">Free · no store · no download</p>
+  <h1 class="serif text-[34px] sm:text-[42px] leading-[1.05]">Put <span class="text-amber-400">TIBIALY</span> on your phone or Mac</h1>
+  <p class="text-stone-400 text-[15px] mt-3 max-w-[62ch]">It installs from the browser in a few taps and then opens like any other app, with its own icon and window.
+    Updates arrive by themselves.</p>
+  <button id="install-btn" class="btn-primary mt-5 hidden">Install TIBIALY</button>
+  <p id="installed-note" class="hidden text-green-400 text-sm mt-4">You are already using the installed app.</p>
+</section>
+
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+  <div class="card p-6" data-rise style="--d:1">
+    <h2 class="serif text-[26px] mb-1">Android</h2>
+    <p class="text-stone-500 text-sm mb-4">With Google Chrome</p>
+    <ol class="space-y-3 text-[14.5px] text-stone-300">
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">1</span><span>Open <strong class="text-stone-100"><%= request.host %></strong> in Chrome.</span></li>
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">2</span><span>Tap the menu <span class="kbd">⋮</span> at the top right.</span></li>
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">3</span><span>Tap <strong class="text-stone-100">Install app</strong> (on some phones: <strong class="text-stone-100">Add to Home screen</strong> → <strong class="text-stone-100">Install</strong>).</span></li>
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">4</span><span>TIBIALY is now on your home screen and in your app list.</span></li>
+    </ol>
+    <p class="text-stone-500 text-xs mt-4">Stash Analyzer on the phone: send the stash screenshot to yourself (WhatsApp works), open it in the app with <strong class="text-stone-300">choose a file</strong> and drag a box around the slots with your finger.</p>
+  </div>
+
+  <div class="card p-6" data-rise style="--d:2">
+    <h2 class="serif text-[26px] mb-1">Mac</h2>
+    <p class="text-stone-500 text-sm mb-4">With Safari (macOS Sonoma or later) or Chrome</p>
+    <p class="text-stone-200 text-sm font-medium mb-2">Safari</p>
+    <ol class="space-y-3 text-[14.5px] text-stone-300 mb-5">
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">1</span><span>Open <strong class="text-stone-100"><%= request.host %></strong> in Safari.</span></li>
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">2</span><span>In the menu bar: <strong class="text-stone-100">File → Add to Dock…</strong></span></li>
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">3</span><span>Click <strong class="text-stone-100">Add</strong>. TIBIALY is in your Dock and in Launchpad.</span></li>
+    </ol>
+    <p class="text-stone-200 text-sm font-medium mb-2">Chrome</p>
+    <ol class="space-y-3 text-[14.5px] text-stone-300">
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">1</span><span>Open <strong class="text-stone-100"><%= request.host %></strong> in Chrome.</span></li>
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">2</span><span>Click the install icon at the right end of the address bar (a screen with an arrow), or menu <span class="kbd">⋮</span> → <strong class="text-stone-100">Cast, save and share → Install page as app</strong>.</span></li>
+      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">3</span><span>Click <strong class="text-stone-100">Install</strong>. It opens in its own window and stays in Launchpad.</span></li>
+    </ol>
+  </div>
+</section>
+
+<p class="text-stone-500 text-xs">To remove it: Android, press and hold the icon → Uninstall. Mac, drag it out of the Dock and delete it from your Applications folder (Safari), or open it and use the menu ⋮ → Uninstall (Chrome).</p>
+
+<script>
+  // Chrome (Android, Mac, Windows) offers its own install prompt: a one-click button when it does
+  (function () {
+    const btn = document.getElementById("install-btn");
+    if (matchMedia("(display-mode: standalone)").matches) document.getElementById("installed-note").classList.remove("hidden");
+    let prompt = null;
+    addEventListener("beforeinstallprompt", e => { e.preventDefault(); prompt = e; btn.classList.remove("hidden"); });
+    btn.addEventListener("click", async () => { if (!prompt) return; prompt.prompt(); await prompt.userChoice; prompt = null; btn.classList.add("hidden"); });
+    addEventListener("appinstalled", () => btn.classList.add("hidden"));
+  })();
+</script>

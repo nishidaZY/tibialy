@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta charset="utf-8">
     <meta name="theme-color" content="#0f0e0d">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="/icon.svg">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="TIBIALY">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -241,8 +245,9 @@
 
     <footer class="max-w-[1400px] mx-auto px-4 sm:px-6 mt-10 py-8 divider flex flex-col sm:flex-row gap-2 justify-between text-xs text-stone-500">
       <span>Data from <a href="https://www.tibiawiki.com.br" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">TibiaWiki.com.br</a> · Market prices from TibiaData</span>
-      <span>Unofficial fan site · Tibia is a registered trademark of CipSoft GmbH</span>
+      <span><a href="/install" class="text-stone-300 hover:text-white">Install the app</a> · Unofficial fan site · Tibia is a registered trademark of CipSoft GmbH</span>
     </footer>
+    <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");</script>
 
   <script>
   // ── Site-wide UI: nav indicator, world pill, ⌘K, count-up, staggered rows ────
