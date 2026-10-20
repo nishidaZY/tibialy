@@ -20,7 +20,7 @@
         <option value="value"  <%= "selected" if @sort == "value"  %>>NPC price</option>
         <option value="name"   <%= "selected" if @sort == "name"   %>>Name A–Z</option>
       </select>
-      <select id="world-sel" class="field h-[44px] sm:w-40"><option value="">World</option><option value="Antica">Antica</option><option value="Bona">Bona</option><option value="Calmera">Calmera</option><option value="Celesta">Celesta</option><option value="Chrona">Chrona</option><option value="Damora">Damora</option><option value="Descubra">Descubra</option><option value="Dibra">Dibra</option><option value="Duna">Duna</option><option value="Eldera">Eldera</option><option value="Epoca">Epoca</option><option value="Fera">Fera</option><option value="Firmera">Firmera</option><option value="Gladera">Gladera</option><option value="Harmonia">Harmonia</option><option value="Helera">Helera</option><option value="Honbra">Honbra</option><option value="Igobra">Igobra</option><option value="Inabra">Inabra</option><option value="Javibra">Javibra</option><option value="Kalibra">Kalibra</option><option value="Kenora">Kenora</option><option value="Laudera">Laudera</option><option value="Lobera">Lobera</option><option value="Luminera">Luminera</option><option value="Lutabra">Lutabra</option><option value="Mabera">Mabera</option><option value="Marcia">Marcia</option><option value="Menera">Menera</option><option value="Mercera">Mercera</option><option value="Mitigera">Mitigera</option><option value="Monza">Monza</option><option value="Morta">Morta</option><option value="Mundra">Mundra</option><option value="Mythera">Mythera</option><option value="Nadora">Nadora</option><option value="Nefera">Nefera</option><option value="Nobra">Nobra</option><option value="Nossobra">Nossobra</option><option value="Odera">Odera</option><option value="Ombra">Ombra</option><option value="Optionis">Optionis</option><option value="Pacembra">Pacembra</option><option value="Peloria">Peloria</option><option value="Premia">Premia</option><option value="Pythera">Pythera</option><option value="Quelibra">Quelibra</option><option value="Refugia">Refugia</option><option value="Relania">Relania</option><option value="Ribera">Ribera</option><option value="Runera">Runera</option><option value="Sabura">Sabura</option><option value="Secura">Secura</option><option value="Serdebra">Serdebra</option><option value="Silvera">Silvera</option><option value="Solidera">Solidera</option><option value="Talera">Talera</option><option value="Thyria">Thyria</option><option value="Torpera">Torpera</option><option value="Trimera">Trimera</option><option value="Umbra">Umbra</option><option value="Unebra">Unebra</option><option value="Utobra">Utobra</option><option value="Venebra">Venebra</option><option value="Victoris">Victoris</option><option value="Vunira">Vunira</option><option value="Wadalbra">Wadalbra</option><option value="Wintera">Wintera</option><option value="Wizera">Wizera</option><option value="Xandebra">Xandebra</option><option value="Yonabra">Yonabra</option><option value="Zanera">Zanera</option><option value="Zunera">Zunera</option></select>
+      <select id="world-sel" class="field h-[44px] sm:w-40"><option value="">World</option><% TibiaMarket.worlds.each do |w| %><option value="<%= w %>"><%= w %></option><% end %></select>
       <button type="submit" class="btn-primary h-[44px] px-5">Search</button>
     </form>
   </div>
@@ -80,7 +80,7 @@
           <th class="w-12">#</th>
           <th>Item</th>
           <th class="text-right hidden sm:table-cell">NPC price</th>
-          <th class="text-right">Market</th>
+          <th class="text-right" title="Live price for your world; without a world, the typical price (median of the worlds scanned in the last 60 days)">Market</th>
           <th class="text-center hidden md:table-cell">vs NPC</th>
           <th class="hidden lg:table-cell">Best buyer</th>
         </tr>
@@ -180,6 +180,7 @@
 // ── TIBIALY globals ──────────────────────────────────────────────────
 window.TLF = (function(){
   var activeFetchId = 0; // incremented on every fetchLivePrices call; stale responses check this
+  var lastData = [];
 
   function restoreDbPrices(){
     activeFetchId++; // cancel any in-flight fetch
@@ -205,7 +206,7 @@ window.TLF = (function(){
     var statusTxt = document.getElementById('price-loading-text');
     TLFUI.sweep(true);
     if (statusEl)  statusEl.classList.remove('hidden');
-    if (statusTxt) statusTxt.textContent  = 'Loading live ' + world + ' prices…';
+    if (statusTxt) { statusTxt.textContent = 'Loading live ' + world + ' prices…'; statusTxt.className = ''; }
 
     // Set all market-avg cells to spinner
     rows.forEach(function(row){
@@ -220,6 +221,7 @@ window.TLF = (function(){
       .then(function(r){ return r.json(); })
       .then(function(data){
         if (fetchId !== activeFetchId) return; // stale — a newer fetch already took over
+        lastData = Array.isArray(data) ? data : [];
         // Build id→price map; prefer buy_offer (current highest offer), fall back to month_average_buy
         var priceMap = {};
         (Array.isArray(data) ? data : Object.values(data)).forEach(function(m){
@@ -249,7 +251,10 @@ window.TLF = (function(){
       .finally(function(){
         if (fetchId === activeFetchId) {
           TLFUI.sweep(false);
-          if (statusEl) statusEl.classList.add('hidden');
+          // keep a line saying how old the world's Market data is
+          var age = TLFUI.marketAge(lastData, world);
+          if (statusEl && age.text) { statusTxt.textContent = age.text; statusTxt.className = age.stale ? 'text-amber-400' : 'text-stone-500'; }
+          else if (statusEl) statusEl.classList.add('hidden');
         }
       });
   }
@@ -356,8 +361,9 @@ window.TLF = (function(){
   ws.value = saved;
 
   // Auto-fetch on every page load (including pagination) if a world is stored
+  // (after the layout's scripts: TLFUI is defined at the end of the page)
   if (saved && window.TLF) {
-    window.TLF.fetchLivePrices(saved);
+    document.addEventListener('DOMContentLoaded', function(){ window.TLF.fetchLivePrices(saved); });
   }
 
   ws.addEventListener('change', function(){

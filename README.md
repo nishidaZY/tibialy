@@ -14,17 +14,31 @@ loot (NPC or Market), your whole stash priced from one screenshot, and a damage 
 | **Stash Analyzer** (`/stash`) | Paste a screenshot of your Supply Stash, drag a box around the slots: every item and amount is recognised and priced. Runs in the browser; the screenshot is never uploaded |
 | **Damage Calculator** (`/damage`) | The TibiaTools damage calculator (EUPL-1.2), restyled for the site |
 
-## Install as an app (Android, Mac)
+## Apps: Windows, Mac, Android
 
-The site is a Progressive Web App (`public/manifest.webmanifest`, `public/sw.js`): browsers install
-it like an app, with no store and no download. Players follow the steps on `/install`:
+Players get it from `/install` (the **Download** tab):
 
-- **Android (Chrome):** open the site, tap menu ⋮ → **Install app**.
-- **Mac (Safari, macOS Sonoma or later):** open the site, **File → Add to Dock… → Add**.
-- **Mac (Chrome):** open the site, click the install icon in the address bar → **Install**.
+- **Windows and Mac:** installers made from `desktop/` (Electron). The app opens the site in its own
+  window, so it is always current.
+  - Build: `cd desktop && npm install && npm run dist:win && npm run dist:mac` → `desktop/dist/TIBIALY-windows-setup.exe`
+    and `TIBIALY-mac.dmg`. The site address is in `desktop/config.json`.
+  - Publish: attach both files to a GitHub release and set `DOWNLOADS_URL` on the server to the
+    release's `…/releases/latest/download`. `/download/windows` and `/download/mac` redirect there,
+    and the download buttons appear.
+  - They are not code-signed, so the first launch shows "Windows protected your PC" (More info → Run
+    anyway) or a macOS warning (right-click → Open); `/install` explains both.
+- **Android, and Windows/Mac without a download:** the site is a Progressive Web App
+  (`public/manifest.webmanifest`, `public/sw.js`): Chrome → ⋮ → **Install app**, Safari → **File → Add to Dock**.
 
-Installing needs the site online over HTTPS (see Deploy). Chrome also shows a one-click
-**Install TIBIALY** button on `/install`.
+## Market prices
+
+Prices come from [tibiamarket.top](https://tibiamarket.top), which only knows what players last
+uploaded for each world; a world can be weeks old. Pages use the current highest buy offer for your
+world and say how old that world's data is. `app/models/tibia_market.rb` spaces calls 5 s apart (the
+API's limit), asks for up to 1,000 rows (the API's default is only 100) and serves the last good
+answer when a call fails. Without a world, the Items page shows the typical price:
+`bin/rails tibia:sync_all_market_prices` (daily, about 30 min) stores the median over the worlds
+scanned in the last 60 days.
 
 ## Stash Analyzer
 
@@ -54,6 +68,7 @@ Data files (committed):
 | Pages | ERB, Tailwind (CDN), Faustina + Geist fonts, line-art figures (`public/figures`) |
 | In the browser | Stash Analyzer (plain JavaScript, canvas), Fuse.js search, the calculator (Svelte bundle) |
 | Data | TibiaWiki (Nokogiri + HTTParty), Market prices from tibiamarket.top |
+| Desktop | Electron (`desktop/`), installers for Windows (NSIS) and Mac (dmg) |
 
 ## Getting started
 
@@ -80,7 +95,7 @@ Data tasks: `tibia:import` (items and NPC prices), `tibia:sync_market_ids`,
 | `GET /loot` · `POST /loot/analyze` | Loot Analyzer |
 | `GET /stash` · `GET /stash/catalog` | Stash Analyzer and its item catalog |
 | `GET /damage` | Damage Calculator |
-| `GET /install` | How to install the app |
+| `GET /install` · `GET /download/:os` | Downloads (Windows, Mac) and how to install |
 | `GET /up` | Health check |
 
 ## Deploy (Render, free)

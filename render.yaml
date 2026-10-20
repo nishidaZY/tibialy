@@ -1,7 +1,7 @@
 # Render Blueprint — free web service. Render → New → Blueprint → pick this repository.
 services:
   - type: web
-    name: tibia-loot-finder
+    name: tibialy
     runtime: ruby
     plan: free
     buildCommand: ./bin/render-build.sh

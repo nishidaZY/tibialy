@@ -1,49 +1,62 @@
-<% content_for :title, "Install – TIBIALY" %>
+<% content_for :title, "Download – TIBIALY" %>
+<% step = ->(n, html) { %(<li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">#{n}</span><span>#{html}</span></li>).html_safe } %>
 
 <section class="card p-6 sm:p-8 mb-4" data-rise style="--d:0">
-  <p class="label mb-3">Free · no store · no download</p>
-  <h1 class="serif text-[34px] sm:text-[42px] leading-[1.05]">Put <span class="text-amber-400">TIBIALY</span> on your phone or Mac</h1>
-  <p class="text-stone-400 text-[15px] mt-3 max-w-[62ch]">It installs from the browser in a few taps and then opens like any other app, with its own icon and window.
-    Updates arrive by themselves.</p>
-  <button id="install-btn" class="btn-primary mt-5 hidden">Install TIBIALY</button>
-  <p id="installed-note" class="hidden text-green-400 text-sm mt-4">You are already using the installed app.</p>
+  <p class="label mb-3">Free · Windows and Mac</p>
+  <h1 class="serif text-[34px] sm:text-[44px] leading-[1.05]">Get the <span class="text-amber-400">TIBIALY</span> app</h1>
+  <p class="text-stone-400 text-[15px] mt-3 max-w-[64ch]">Prices, Loot Analyzer, Stash Analyzer and Damage Calculator in their own window. Download, install, open: it keeps itself up to date.</p>
+  <div class="mt-6 flex flex-wrap gap-3">
+    <% if @downloads %>
+      <a href="<%= download_path("windows") %>" class="btn-primary h-12 px-6 inline-flex items-center gap-2.5">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zm8.5-1.2L21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zm8.5 0H21V21l-9.5-1.3z"/></svg>
+        Download for Windows</a>
+      <a href="<%= download_path("mac") %>" class="btn-primary h-12 px-6 inline-flex items-center gap-2.5">
+        <svg width="17" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.6 1.3-.1 1.7-.8 3.3-.8 1.5 0 1.9.8 3.3.8s2.2-1.3 3-2.5c.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.6-4.2zM13.9 4.9c.7-.9 1.2-2 1-3.2-1 .1-2.2.7-2.9 1.6-.6.7-1.2 1.9-1 3.1 1.1 0 2.2-.6 2.9-1.5z"/></svg>
+        Download for Mac</a>
+    <% else %>
+      <p class="text-stone-500 text-sm">The download links are being prepared. Meanwhile, install it from your browser (below).</p>
+    <% end %>
+  </div>
+  <p class="text-stone-500 text-xs mt-3">Windows 10/11 · macOS 11 or later, Apple Silicon and Intel · about 80 MB (Windows), 180 MB (Mac)</p>
 </section>
 
 <section class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
   <div class="card p-6" data-rise style="--d:1">
-    <h2 class="serif text-[26px] mb-1">Android</h2>
-    <p class="text-stone-500 text-sm mb-4">With Google Chrome</p>
+    <h2 class="serif text-[26px] mb-4">Windows</h2>
     <ol class="space-y-3 text-[14.5px] text-stone-300">
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">1</span><span>Open <strong class="text-stone-100"><%= request.host %></strong> in Chrome.</span></li>
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">2</span><span>Tap the menu <span class="kbd">⋮</span> at the top right.</span></li>
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">3</span><span>Tap <strong class="text-stone-100">Install app</strong> (on some phones: <strong class="text-stone-100">Add to Home screen</strong> → <strong class="text-stone-100">Install</strong>).</span></li>
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">4</span><span>TIBIALY is now on your home screen and in your app list.</span></li>
+      <%= step.(1, "Click <strong class='text-stone-100'>Download for Windows</strong> and open <strong class='text-stone-100'>TIBIALY-windows-setup.exe</strong>.") %>
+      <%= step.(2, "If Windows says <em>“Windows protected your PC”</em>: click <strong class='text-stone-100'>More info</strong> → <strong class='text-stone-100'>Run anyway</strong>. (It appears because the app is new and not from the Microsoft Store.)") %>
+      <%= step.(3, "It installs by itself in a few seconds and opens. Next time, find <strong class='text-stone-100'>TIBIALY</strong> on your desktop or in the Start menu.") %>
     </ol>
-    <p class="text-stone-500 text-xs mt-4">Stash Analyzer on the phone: send the stash screenshot to yourself (WhatsApp works), open it in the app with <strong class="text-stone-300">choose a file</strong> and drag a box around the slots with your finger.</p>
+    <p class="text-stone-500 text-xs mt-4">To remove: Settings → Apps → TIBIALY → Uninstall.</p>
   </div>
 
   <div class="card p-6" data-rise style="--d:2">
-    <h2 class="serif text-[26px] mb-1">Mac</h2>
-    <p class="text-stone-500 text-sm mb-4">With Safari (macOS Sonoma or later) or Chrome</p>
-    <p class="text-stone-200 text-sm font-medium mb-2">Safari</p>
-    <ol class="space-y-3 text-[14.5px] text-stone-300 mb-5">
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">1</span><span>Open <strong class="text-stone-100"><%= request.host %></strong> in Safari.</span></li>
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">2</span><span>In the menu bar: <strong class="text-stone-100">File → Add to Dock…</strong></span></li>
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">3</span><span>Click <strong class="text-stone-100">Add</strong>. TIBIALY is in your Dock and in Launchpad.</span></li>
-    </ol>
-    <p class="text-stone-200 text-sm font-medium mb-2">Chrome</p>
+    <h2 class="serif text-[26px] mb-4">Mac</h2>
     <ol class="space-y-3 text-[14.5px] text-stone-300">
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">1</span><span>Open <strong class="text-stone-100"><%= request.host %></strong> in Chrome.</span></li>
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">2</span><span>Click the install icon at the right end of the address bar (a screen with an arrow), or menu <span class="kbd">⋮</span> → <strong class="text-stone-100">Cast, save and share → Install page as app</strong>.</span></li>
-      <li class="flex gap-3"><span class="num text-amber-400 w-5 shrink-0">3</span><span>Click <strong class="text-stone-100">Install</strong>. It opens in its own window and stays in Launchpad.</span></li>
+      <%= step.(1, "Click <strong class='text-stone-100'>Download for Mac</strong> and open <strong class='text-stone-100'>TIBIALY-mac.dmg</strong>.") %>
+      <%= step.(2, "Drag <strong class='text-stone-100'>TIBIALY</strong> onto the <strong class='text-stone-100'>Applications</strong> folder.") %>
+      <%= step.(3, "The first time only: open Applications, <strong class='text-stone-100'>right-click TIBIALY → Open</strong>, then <strong class='text-stone-100'>Open</strong>. (If the Mac still refuses: System Settings → Privacy &amp; Security → <strong class='text-stone-100'>Open Anyway</strong>.)") %>
+      <%= step.(4, "From then on it opens like any app, from Launchpad or the Dock.") %>
     </ol>
+    <p class="text-stone-500 text-xs mt-4">To remove: drag TIBIALY from Applications to the Trash.</p>
   </div>
 </section>
 
-<p class="text-stone-500 text-xs">To remove it: Android, press and hold the icon → Uninstall. Mac, drag it out of the Dock and delete it from your Applications folder (Safari), or open it and use the menu ⋮ → Uninstall (Chrome).</p>
+<section class="card p-6 mb-4" data-rise style="--d:3">
+  <h2 class="serif text-[22px] mb-1">No download? Install it from the browser</h2>
+  <p class="text-stone-500 text-sm mb-4">Same app, installed by the browser itself. Also the way to get it on Android.</p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-[14px] text-stone-300">
+    <div><p class="text-stone-100 font-medium mb-1">Android (Chrome)</p>Open <strong class="text-stone-100"><%= request.host %></strong> → menu <span class="kbd">⋮</span> → <strong class="text-stone-100">Install app</strong>.</div>
+    <div><p class="text-stone-100 font-medium mb-1">Windows / Mac (Chrome or Edge)</p>Open the site → install icon at the end of the address bar → <strong class="text-stone-100">Install</strong>.</div>
+    <div><p class="text-stone-100 font-medium mb-1">Mac (Safari)</p>Open the site → <strong class="text-stone-100">File → Add to Dock… → Add</strong>.</div>
+  </div>
+  <button id="install-btn" class="btn btn-ghost mt-5 hidden">Install from this browser</button>
+  <p id="installed-note" class="hidden text-green-400 text-sm mt-4">You are already using the installed app.</p>
+</section>
 
 <script>
-  // Chrome (Android, Mac, Windows) offers its own install prompt: a one-click button when it does
+  // Chrome and Edge offer their own install prompt: a one-click button when they do
   (function () {
     const btn = document.getElementById("install-btn");
     if (matchMedia("(display-mode: standalone)").matches) document.getElementById("installed-note").classList.remove("hidden");

@@ -15,3 +15,7 @@
 
 # Build deps of the vendored damage calculator (the bundle in public/damage is committed)
 /vendor/tibiatools-calc/node_modules/
+
+# Desktop app (Electron): installers are attached to GitHub releases, not committed
+/desktop/node_modules/
+/desktop/dist/

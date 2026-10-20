@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get  "/stash/catalog", to: "stash_analyzer#catalog", as: :stash_catalog, defaults: { format: :json }
   get  "/damage",        to: "damage_calculator#index", as: :damage_calculator
   get  "/install",       to: "install#index",           as: :install
+  get  "/download/:os",   to: "install#download",        as: :download, constraints: { os: /windows|mac/ }
   post "/loot/analyze", to: "loot_analyzer#analyze",  as: :analyze_loot
 
   get "up" => "rails/health#show", as: :rails_health_check

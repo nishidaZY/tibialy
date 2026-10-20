@@ -36,7 +36,7 @@
         <div class="flex justify-between"><dt class="text-stone-500">Weight</dt><dd class="num"><%= @item.weight %> oz</dd></div>
       <% end %>
       <% if @item.avg_market_price.to_i > 0 %>
-        <div class="flex justify-between"><dt class="text-stone-500">Market average</dt><dd class="num text-sky-400"><%= number_with_delimiter(@item.avg_market_price) %> gp</dd></div>
+        <div class="flex justify-between"><dt class="text-stone-500" title="Median of the worlds scanned in the last 60 days">Typical Market price</dt><dd class="num text-sky-400"><%= number_with_delimiter(@item.avg_market_price) %> gp</dd></div>
       <% end %>
       <div class="flex justify-between"><dt class="text-stone-500">NPCs buying</dt><dd class="num"><%= @buy_prices.size %></dd></div>
     </dl>

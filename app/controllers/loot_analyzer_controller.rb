@@ -1,13 +1,5 @@
 class LootAnalyzerController < ApplicationController
   rate_limit to: 20, within: 1.minute, only: :analyze, with: -> { render json: { error: "Too many requests — wait a minute." }, status: :too_many_requests }
-  TIBIA_SERVERS = %w[
-    Antica Belobra Bona Calmera Celesta Collabra Descubra Dia Escura Esmera
-    Ferobra Firmera Gladera Harmonia Honbra Inabra Jaguna Kalimera Lobera
-    Luminera Maligna Monza Mystera Nefera Nevia Oceanis Pacera Peloria
-    Premia Quelibra Refugia Runera Secura Serdebra Solidera Talera Thyria
-    Ustebra Venebra Victoris Vunira Wildera Wintera Xyla Yara Yonabra
-    Zuna Zunera
-  ].sort.freeze
 
   CURRENCY_VALUES = {
     "gold coin"     => 1,
@@ -16,7 +8,7 @@ class LootAnalyzerController < ApplicationController
   }.freeze
 
   def index
-    @servers = TIBIA_SERVERS
+    @servers = TibiaMarket.worlds
   end
 
   def analyze
@@ -33,7 +25,7 @@ class LootAnalyzerController < ApplicationController
       return
     end
 
-    unless TIBIA_SERVERS.include?(server)
+    unless TibiaMarket.worlds.include?(server)
       render json: { error: "Unknown server." }, status: :unprocessable_entity
       return
     end

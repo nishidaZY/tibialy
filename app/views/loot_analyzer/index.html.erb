@@ -381,7 +381,9 @@ analyzeBtn.addEventListener("click", async () => {
         savingsEl.textContent = "Same as NPC prices";
       }
 
-      clearStatus(); TLFUI.sweep(false);
+      const age = TLFUI.marketAge(mData, server);
+      age.text ? setStatus(age.text, age.stale ? "text-amber-400" : "text-stone-500") : clearStatus();
+      TLFUI.sweep(false);
       applyFilterAndSort();
 
     } catch(e) {

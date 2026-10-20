@@ -403,6 +403,8 @@
         const list = await r.json();
         if (!Array.isArray(list) || !list.length) throw new Error("no data");
         list.forEach(m => { market[m.id] = m.buy_offer > 0 ? m.buy_offer : (m.month_average_buy || 0); });
+        const age = TLFUI.marketAge(list, serverSel.value);
+        if (age.stale) setStatus(age.text, "text-amber-400");
         ids.forEach(m => { if (!(m in market)) market[m] = 0; });
       } catch (e) { setStatus("Market prices are unavailable right now, so NPC prices are shown. Try again in a minute.", "text-amber-400"); }
     }

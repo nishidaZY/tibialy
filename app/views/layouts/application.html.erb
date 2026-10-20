@@ -223,6 +223,7 @@
           <a href="/loot"  data-match="^/loot">Loot Analyzer</a>
           <a href="/stash" data-match="^/stash">Stash Analyzer</a>
           <a href="/damage" data-match="^/damage">Damage Calc</a>
+          <a href="/install" data-match="^/install">Download</a>
         </nav>
 
         <button id="search-btn" type="button" class="hidden sm:inline-flex btn btn-ghost h-[40px] rounded-xl gap-3 text-stone-400">
@@ -244,8 +245,8 @@
     </main>
 
     <footer class="max-w-[1400px] mx-auto px-4 sm:px-6 mt-10 py-8 divider flex flex-col sm:flex-row gap-2 justify-between text-xs text-stone-500">
-      <span>Data from <a href="https://www.tibiawiki.com.br" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">TibiaWiki.com.br</a> · Market prices from TibiaData</span>
-      <span><a href="/install" class="text-stone-300 hover:text-white">Install the app</a> · Unofficial fan site · Tibia is a registered trademark of CipSoft GmbH</span>
+      <span>Data from <a href="https://www.tibiawiki.com.br" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">TibiaWiki.com.br</a> · Market prices from <a href="https://tibiamarket.top" target="_blank" rel="noopener" class="text-stone-300 hover:text-white">tibiamarket.top</a></span>
+      <span><a href="/install" class="text-stone-300 hover:text-white">Download the app</a> · Unofficial fan site · Tibia is a registered trademark of CipSoft GmbH</span>
     </footer>
     <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");</script>
 
@@ -311,7 +312,18 @@
     document.querySelectorAll('.stagger').forEach(l => { index(l); mo.observe(l, { childList: true }); });
 
     const sweep = on => { document.getElementById('sweep').style.display = on ? 'block' : 'none'; };
-    return { count, showWorld, sweep };
+    // how old a world's Market data is: tibiamarket.top only has what players last uploaded,
+    // `time` (unix s) on every row
+    function marketAge(rows, world) {
+      const t = Math.max(0, ...(rows || []).map(r => +r.time || 0));
+      if (!t) return { text: "", stale: false };
+      const days = Math.floor((Date.now() / 1000 - t) / 86400), when = new Date(t * 1000).toLocaleDateString();
+      const ago = days <= 0 ? "today" : days === 1 ? "yesterday" : `${days} days ago`;
+      return days > 3
+        ? { stale: true, text: `${world} Market prices were last uploaded ${ago} (${when}) to tibiamarket.top: in-game prices may have changed.` }
+        : { stale: false, text: `${world} Market prices from ${ago}.` };
+    }
+    return { count, showWorld, sweep, marketAge };
   })();
   </script>
   </body>

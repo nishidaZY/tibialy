@@ -5,7 +5,7 @@ class StashAnalyzerController < ApplicationController
   SMALL_WORDS = %w[of the a an and in on to with for from].freeze
 
   def index
-    @servers = LootAnalyzerController::TIBIA_SERVERS
+    @servers = TibiaMarket.worlds
   end
 
   # Every item of the sprite atlas, keyed by its client id (= Market id): name, NPC price, best NPC

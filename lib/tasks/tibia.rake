@@ -73,8 +73,8 @@ namespace :tibia do
 
   CURL_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-  def curl_get(url)
-    result = `curl -sL --max-time 20 -H "Accept: text/html,application/xhtml+xml,*/*;q=0.8" -H "Accept-Language: pt-BR,pt;q=0.9" -A "#{CURL_UA}" "#{url}" 2>/dev/null`
+  def curl_get(url, timeout = 20)
+    result = `curl -sL --max-time #{timeout} -H "Accept: text/html,application/xhtml+xml,*/*;q=0.8" -H "Accept-Language: pt-BR,pt;q=0.9" -A "#{CURL_UA}" "#{url}" 2>/dev/null`
     result.empty? ? nil : result
   end
 
@@ -314,76 +314,36 @@ namespace :tibia do
     end
     puts "\n✅ Done! Set image URLs for #{count} items (#{errors} errors)."
   end
-  TIBIA_SERVERS = %w[
-    Antica Belobra Bona Calmera Celesta Collabra Descubra Dia Escura Esmera
-    Ferobra Firmera Gladera Harmonia Honbra Inabra Jaguna Kalimera Lobera
-    Luminera Maligna Monza Mystera Nefera Nevia Oceanis Pacera Peloria
-    Premia Quelibra Refugia Runera Secura Serdebra Solidera Talera Thyria
-    Ustebra Venebra Victoris Vunira Wildera Wintera Xyla Yara Yonabra
-    Zuna Zunera
-  ].freeze
-
-  desc "Fetch market prices across ALL servers and store average — run daily"
+  desc "Store each item's typical Market price: the median over the worlds scanned in the last 60 days — run daily (~30 min)"
   task sync_all_market_prices: :environment do
-    puts "🌍 Syncing market prices across #{TIBIA_SERVERS.size} servers..."
+    # The API answers one call per 5 s and only 100 rows unless asked for more (limit). Worlds are
+    # scanned when a player uploads their Market, so some are weeks old: only recent ones count.
+    worlds = JSON.parse(curl_get("https://api.tibiamarket.top/world_data") || "[]")
+    recent = worlds.select { |w| Time.parse(w["last_update"] + "Z") > 60.days.ago rescue false }
+                   .map { |w| w["name"] }
+    puts "🌍 #{recent.size} of #{worlds.size} worlds scanned in the last 60 days"
 
-    # All items that have a market ID
-    items      = Item.where.not(market_item_id: nil).to_a
-    id_to_item = items.each_with_object({}) { |i, h| h[i.market_item_id] = i }
-    all_ids    = items.map(&:market_item_id).join(",")
-    puts "  #{items.size} items with market IDs."
-
-    # Accumulate prices: market_item_id -> [price, price, ...]
-    prices_by_id = Hash.new { |h, k| h[k] = [] }
+    by_market = Item.where.not(market_item_id: nil).index_by(&:market_item_id)
+    prices = Hash.new { |h, k| h[k] = [] }
     errors = 0
-
-    TIBIA_SERVERS.each_with_index do |server, idx|
-      print "\r  [#{idx + 1}/#{TIBIA_SERVERS.size}] #{server.ljust(14)}"
-
-      # Try fetching all items for the server in one shot
-      url = "https://api.tibiamarket.top/market_values?server=#{URI.encode_www_form_component(server)}&item_ids=#{all_ids}"
-      raw = curl_get(url)
-
-      if raw.nil? || raw.strip.empty?
-        errors += 1
-        next
+    recent.each_with_index do |server, idx|
+      sleep 10   # leaves every other 5 s slot of the API to the site
+      print "\r  [#{idx + 1}/#{recent.size}] #{server.ljust(14)}"
+      data = JSON.parse(curl_get("https://api.tibiamarket.top/market_values?server=#{URI.encode_www_form_component(server)}&limit=10000", 90) || "null") rescue nil
+      next errors += 1 unless data.is_a?(Array)
+      data.each do |m|
+        price = m["buy_offer"].to_i.positive? ? m["buy_offer"].to_i : m["month_average_buy"].to_i
+        prices[m["id"].to_i] << price if price.positive? && by_market.key?(m["id"].to_i)
       end
-
-      begin
-        data = JSON.parse(raw)
-        # API may return Array of objects OR Hash keyed by item_id
-        entries = case data
-                  when Hash  then data.map { |k, v| v.is_a?(Hash) ? v.merge("id" => k.to_i) : nil }.compact
-                  when Array then data
-                  else []
-                  end
-        entries.each do |m|
-          id    = m["id"].to_i
-          price = m["buy_offer"].to_i > 0 ? m["buy_offer"].to_i : m["month_average_buy"].to_i
-          prices_by_id[id] << price if price > 0
-        end
-      rescue JSON::ParserError
-        errors += 1
-      end
-
-      sleep 0.4
     end
 
-    puts "\n\n  Computing averages and saving..."
-    updated = 0
-    now     = Time.current
-
-    prices_by_id.each do |market_id, prices|
-      item = id_to_item[market_id]
-      next unless item && prices.any?
-
-      avg = (prices.sum.to_f / prices.size).round
-      item.update_columns(avg_market_price: avg, market_price_updated_at: now)
-      updated += 1
+    now = Time.current
+    prices.each do |id, list|
+      list.sort!
+      median = list.size.odd? ? list[list.size / 2] : (list[list.size / 2 - 1] + list[list.size / 2]) / 2
+      by_market[id].update_columns(avg_market_price: median, market_price_updated_at: now)
     end
-
-    puts "✅ Done! #{updated} items got avg market prices. #{errors} server errors."
-    puts "   #{Item.where("avg_market_price > highest_npc_buy_price").count} items have market price > NPC price."
+    puts "\n✅ #{prices.size} items priced from #{recent.size - errors} worlds (#{errors} failed)."
   end
 
 end

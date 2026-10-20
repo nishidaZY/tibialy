@@ -41,35 +41,37 @@ class ItemsController < ApplicationController
     render json: items
   end
 
-  # Proxy to api.tibiamarket.top (avoids CORS). Only known servers and at most 300 numeric ids;
-  # answers are cached 10 minutes per server + id set so the public site cannot hammer the API.
+  # Proxy to api.tibiamarket.top (avoids CORS). Only known servers and at most 300 numeric ids.
+  # The API allows one call per 5 s per address, so answers are cached 10 minutes per world + id
+  # set, calls are spaced 5 s apart, and when a call fails the last good answer (up to 7 days old)
+  # is served instead of nothing. Each row keeps the API's `time`: when that world's Market was last
+  # scanned (the data is uploaded by players, so a world can be weeks old); the pages show it.
   def market_prices
     world = (params[:world] || params[:server]).to_s.strip
     ids   = params[:item_ids].to_s.split(",").filter_map { |i| Integer(i, exception: false) }.uniq.first(300).sort
-    return render json: [] unless LootAnalyzerController::TIBIA_SERVERS.include?(world) && ids.any?
+    return render json: [] unless TibiaMarket.worlds.include?(world) && ids.any?
 
-    body = Rails.cache.fetch(["market", world, Digest::SHA1.hexdigest(ids.join(","))], expires_in: 10.minutes, skip_nil: true) do
-      fetch_market(world, ids)
+    key  = ["market", world, Digest::SHA1.hexdigest(ids.join(","))]
+    body = Rails.cache.read(key) || MARKET_LAST[key.join(":")]&.then { |b, at| b if at > 7.days.ago }
+    unless Rails.cache.exist?(key)
+      fresh = fetch_market(world, ids)
+      if fresh
+        Rails.cache.write(key, fresh, expires_in: 10.minutes)
+        MARKET_LAST[key.join(":")] = [fresh, Time.current]
+        MARKET_LAST.shift while MARKET_LAST.size > 500
+        body = fresh
+      end
     end
     render body: body || "[]", content_type: "application/json"
   end
 
   private
 
+  MARKET_LAST = {}            # last good answer per world + ids (served when the API fails)
+
+  # limit: the API returns only 100 rows unless asked for more
   def fetch_market(world, ids)
-    require "net/http"
-    uri = URI("https://api.tibiamarket.top/market_values?server=#{URI.encode_www_form_component(world)}&item_ids=#{ids.join(",")}")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.open_timeout = 8
-    http.read_timeout = 10
-    req = Net::HTTP::Get.new(uri)
-    req["User-Agent"] = "TIBIALY/1.0"
-    resp = http.request(req)
-    return nil unless resp.is_a?(Net::HTTPSuccess)
-    JSON.parse(resp.body).is_a?(Array) ? resp.body : nil   # only ever pass a list through
-  rescue => e
-    Rails.logger.warn "market_prices proxy error: #{e}"
-    nil
+    data = TibiaMarket.get("market_values?server=#{URI.encode_www_form_component(world)}&limit=1000&item_ids=#{ids.join(",")}")
+    data.is_a?(Array) ? data.to_json : nil   # only ever pass a list through (not a rate-limit error)
   end
 end
