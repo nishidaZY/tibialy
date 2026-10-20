@@ -25,6 +25,12 @@ class Item < ApplicationRecord
     pct > 0 ? pct : nil
   end
 
+  # the client's own sprite (public/icons/items, built with the stash atlas), else TibiaWiki's
+  ICONS = Dir[Rails.root.join("public/icons/items/*.png")].to_set { |f| File.basename(f, ".png").to_i }.freeze
+  def icon_url
+    ICONS.include?(market_item_id) ? "/icons/items/#{market_item_id}.png" : image_url
+  end
+
   def best_buyer
     buy_prices.first
   end

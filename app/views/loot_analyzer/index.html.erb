@@ -126,7 +126,7 @@ function escapeHtml(s) {
 // Allow only http/https image URLs (blocks javascript: data: etc.)
 function safeUrl(u) {
   if (!u) return '';
-  return /^https?:\/\//i.test(u) ? String(u) : '';
+  return /^(https?:\/\/|\/icons\/items\/\d+\.png$)/i.test(u) ? String(u) : "";
 }
 
 // ── Filter / sort state ────────────────────────────────────────────────────

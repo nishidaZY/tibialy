@@ -1,6 +1,8 @@
 class LootAnalyzerController < ApplicationController
   rate_limit to: 20, within: 1.minute, only: :analyze, with: -> { render json: { error: "Too many requests — wait a minute." }, status: :too_many_requests }
 
+  CURRENCY_ICONS = { "Gold Coin" => "/icons/items/3031.png", "Platinum Coin" => "/icons/items/3035.png", "Crystal Coin" => "/icons/items/3043.png" }.freeze
+
   CURRENCY_VALUES = {
     "gold coin"     => 1,
     "platinum coin" => 100,
@@ -43,7 +45,7 @@ class LootAnalyzerController < ApplicationController
           original_name:  entry[:name],
           matched_name:   display_name,
           quantity:       entry[:quantity],
-          image_url:      "https://www.tibiawiki.com.br/wiki/Special:FilePath/#{name_slug}.gif",
+          image_url:      CURRENCY_ICONS[display_name] || "https://www.tibiawiki.com.br/wiki/Special:FilePath/#{name_slug}.gif",
           npc_buy_price:  currency_gp,
           best_npc_buyer: nil,
           npc_location:   nil,
@@ -60,7 +62,7 @@ class LootAnalyzerController < ApplicationController
             original_name:    entry[:name],
             matched_name:     item.name,
             quantity:         entry[:quantity],
-            image_url:        item.image_url,
+            image_url:        item.icon_url,
             npc_buy_price:    item.highest_npc_buy_price || 0,
             best_npc_buyer:   best_buyer&.npc_name,
             npc_location:     best_buyer&.npc_location,

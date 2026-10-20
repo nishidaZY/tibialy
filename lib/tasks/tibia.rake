@@ -325,17 +325,27 @@ namespace :tibia do
 
     by_market = Item.where.not(market_item_id: nil).index_by(&:market_item_id)
     prices = Hash.new { |h, k| h[k] = [] }
-    errors = 0
-    recent.each_with_index do |server, idx|
+    # each world's answer is folded into `prices` right away (one world's JSON is ~3 MB)
+    take = lambda do |server|
       sleep 10   # leaves every other 5 s slot of the API to the site
-      print "\r  [#{idx + 1}/#{recent.size}] #{server.ljust(14)}"
       data = JSON.parse(curl_get("https://api.tibiamarket.top/market_values?server=#{URI.encode_www_form_component(server)}&limit=10000", 90) || "null") rescue nil
-      next errors += 1 unless data.is_a?(Array)
+      return false unless data.is_a?(Array)
       data.each do |m|
         price = m["buy_offer"].to_i.positive? ? m["buy_offer"].to_i : m["month_average_buy"].to_i
         prices[m["id"].to_i] << price if price.positive? && by_market.key?(m["id"].to_i)
       end
+      true
     end
+    failed = recent.each_with_index.reject do |server, idx|
+      print "\r  [#{idx + 1}/#{recent.size}] #{server.ljust(14)}"
+      take.(server)
+    end.map(&:first)
+    # a world that failed (rate limit, timeout) gets a second try at the end, after a pause
+    unless failed.empty?
+      sleep 30
+      failed = failed.reject { |server| take.(server) }
+    end
+    errors = failed.size
 
     now = Time.current
     prices.each do |id, list|

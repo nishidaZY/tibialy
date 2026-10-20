@@ -189,4 +189,26 @@ for v in items.values():
         del v['also']
 json.dump({'cell': 32, 'cols': COLS, 'ids': [c[0] for c in cells], 'pat': [c[1] for c in cells], 'items': items},
           open(os.path.join(out, 'atlas.json'), 'w'), separators=(',', ':'))
-print(f'{len(items)} items, {len(cells)} cells -> {out}/atlas.png {atlas.size}')
+# one 32x32 icon per item for the item lists (public/icons/items/<id>.png; the site no longer hotlinks TibiaWiki)
+icons = os.path.join(out, '..', 'icons', 'items')
+os.makedirs(icons, exist_ok=True)
+seen = set()
+for iid, _, im in cells:
+    if iid not in seen:
+        seen.add(iid)
+        im.save(os.path.join(icons, f'{iid}.png'), optimize=True)
+for it in cands:   # look-alikes ("also") share the icon of the one kept
+    if it['id'] not in seen and it['spr']:
+        sprite_im = to32(sprite(it['spr'][0]))[0]
+        sprite_im.save(os.path.join(icons, f"{it['id']}.png"), optimize=True)
+# coins (not traded, so not candidates): their 100-coin look, for the Loot Analyzer
+for f, o in fields(open(os.path.join(assets, appearances), 'rb').read()):
+    if f != 1:
+        continue
+    m = msg(o)
+    if m[1][0] in (3031, 3035, 3043):
+        si = msg(msg(m[2][0])[3][0])
+        spr = si.get(5, [])
+        to32(sprite(spr[min(7, len(spr) - 1)]))[0].save(os.path.join(icons, f"{m[1][0]}.png"), optimize=True)
+print(f'{len(items)} items, {len(cells)} cells -> {out}/atlas.png {atlas.size}; icons in public/icons/items')
+
