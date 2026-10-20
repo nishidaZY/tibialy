@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 100 824 824">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d1b19"/><stop offset="1" stop-color="#0f0e0d"/></linearGradient>
+  <radialGradient id="glow" cx="0.5" cy="0.45" r="0.5"><stop offset="0" stop-color="#e3b04a" stop-opacity="0.10"/><stop offset="1" stop-color="#e3b04a" stop-opacity="0"/></radialGradient>
+  <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#2a2826" stroke-width="1.5"/></pattern>
+</defs>
+<style>
+  .f{fill:#161513} .e{stroke:#a19d96} .m{stroke:#57534e} .hi{stroke:#e3b04a} .o{fill:none}
+  path,ellipse,line,circle{stroke-width:3.6;stroke-linejoin:round;stroke-linecap:round}
+  .thin{stroke-width:2.4}
+</style>
+<rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)"/>
+<rect x="100" y="100" width="824" height="824" rx="185" fill="url(#grid)" opacity="0.45"/>
+<rect x="100" y="100" width="824" height="824" rx="185" fill="url(#glow)"/>
+<rect x="112" y="112" width="800" height="800" rx="174" fill="none" stroke="#3a3733" stroke-width="3"/>
+<!-- ground shadow -->
+<ellipse cx="560" cy="800" rx="190" ry="26" class="o m thin" stroke-dasharray="2 12"/>
+<g transform="translate(196 176) scale(1.32)">
+  <!-- legs -->
+  <path class="f e" d="M278 316 C290 346 292 370 286 394 L352 398 C360 372 358 346 350 320 Z"/>
+  <path class="o m thin" d="M298 344 C304 360 304 374 300 388"/>
+  <path class="f e" d="M346 310 C376 332 390 360 390 392 L454 392 C458 356 444 324 414 296 Z"/>
+  <path class="o m thin" d="M374 326 C390 344 400 366 402 386"/>
+  <!-- boots -->
+  <path class="f e" d="M278 392 C268 418 286 444 318 446 C350 448 366 428 356 400 C342 390 298 384 278 392 Z"/>
+  <path class="o e thin" d="M292 408 C306 402 324 402 340 406"/>
+  <path class="f e" d="M386 390 C376 418 394 446 428 446 C462 446 474 422 462 394 C446 384 406 382 386 390 Z"/>
+  <path class="o e thin" d="M400 406 C416 400 436 400 452 404"/>
+  <!-- torso -->
+  <path class="f e" d="M120 200 C170 175 290 170 360 195 C410 215 432 258 422 306 C382 342 300 350 240 334 C180 318 135 285 112 245 Z"/>
+  <path class="o m thin" d="M150 286 L168 272 M166 298 L186 282 M184 308 L206 292 M204 318 L226 302"/>
+  <path class="o hi" d="M146 258 C210 276 292 268 360 236"/>
+  <path class="o hi" d="M198 316 C268 332 350 322 414 288"/>
+  <path class="o hi thin" d="M206 328 C276 343 352 334 418 300"/>
+  <!-- arms + fists -->
+  <path class="f e" d="M360 210 C395 220 412 245 410 270 L385 278 C380 255 368 240 345 232 Z"/>
+  <path class="f e" d="M382 262 C376 280 384 296 402 298 C420 300 428 284 422 268 C414 256 392 254 382 262 Z"/>
+  <path class="o m thin" d="M392 276 C398 272 406 272 412 276"/>
+  <path class="f e" d="M82 220 C70 245 76 265 92 272 L118 262 C108 250 108 236 116 222 Z"/>
+  <path class="f e" d="M88 258 C80 274 88 292 106 292 C124 292 132 276 124 262 C116 250 96 248 88 258 Z"/>
+  <path class="o m thin" d="M96 272 C102 268 110 268 116 272"/>
+  <!-- pauldrons -->
+  <path class="f e" d="M20 182 C18 140 60 112 102 120 C140 128 150 168 138 198 C124 230 70 236 40 222 C28 214 21 200 20 182 Z"/>
+  <path class="o e thin" d="M36 174 C44 148 72 134 100 138"/>
+  <path class="o m thin" d="M40 196 C50 170 76 156 104 160 M50 214 C62 196 84 186 108 188"/>
+  <path class="f e" d="M232 150 C246 112 300 100 338 118 C372 134 382 176 362 205 C340 236 280 240 250 222 C230 208 224 178 232 150 Z"/>
+  <path class="o e thin" d="M250 148 C264 124 298 116 326 126"/>
+  <path class="o m thin" d="M254 174 C270 148 304 140 334 150 M262 200 C280 178 312 170 344 178"/>
+  <!-- head -->
+  <path class="f e" d="M110 146 C106 186 118 224 150 238 C182 252 216 238 226 208 C234 180 230 152 216 132 Z"/>
+  <path class="o m thin" d="M150 198 C158 194 168 194 174 198 M192 198 C198 195 206 195 212 200 M168 222 C176 218 186 218 192 222"/>
+  <!-- hair -->
+  <path class="f hi" d="M98 176 C84 140 94 100 125 78 L130 50 L150 70 L166 42 L178 66 C216 62 250 86 248 120 C248 138 240 152 228 162 C222 142 210 130 196 126 C188 142 170 152 150 154 C140 166 120 174 98 176 Z"/>
+  <path class="o hi thin" d="M178 66 C190 88 196 106 196 126 M150 70 C158 96 156 128 150 154 M128 84 C120 112 112 140 100 170 M210 80 C226 96 234 120 230 150"/>
+</g>
+</svg>

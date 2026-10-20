@@ -1,8 +1,8 @@
 #!/bin/bash
-# Stops the TibiaLootFinder Rails server started by ensure_server.sh,
+# Stops the TIBIALY Rails server started by ensure_server.sh,
 # so the hosted session doesn't outlive the app window.
 
-APP_DIR="$HOME/Documents/tibialootfinder"
+APP_DIR="${TIBIALY_DIR:-$HOME/Documents/tibialy}"   # where the project lives (TIBIALY_DIR overrides)
 LOG_FILE="$APP_DIR/log/launcher.log"
 PID_FILE="$APP_DIR/tmp/pids/native_app_server.pid"
 

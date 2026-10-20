@@ -1,11 +1,11 @@
 #!/bin/bash
-# Ensures the TibiaLootFinder Rails server is up on port 3000, taking over
+# Ensures the TIBIALY Rails server is up on port 3000, taking over
 # the port from any other app that might be using it. Does NOT open a
 # browser — the native app wrapper loads the URL itself in a WKWebView.
 
 export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
-APP_DIR="$HOME/Documents/tibialootfinder"
+APP_DIR="${TIBIALY_DIR:-$HOME/Documents/tibialy}"   # where the project lives (TIBIALY_DIR overrides)
 LOG_DIR="$APP_DIR/log"
 LOG_FILE="$LOG_DIR/launcher.log"
 PID_DIR="$APP_DIR/tmp/pids"
@@ -23,7 +23,7 @@ is_healthy() {
 EXISTING_PID="$(lsof -ti tcp:$PORT -sTCP:LISTEN 2>/dev/null | head -n1)"
 if [ -n "$EXISTING_PID" ]; then
   if lsof -p "$EXISTING_PID" 2>/dev/null | grep -q "$APP_DIR"; then
-    echo "already running as TibiaLootFinder (pid $EXISTING_PID)" >> "$LOG_FILE"
+    echo "already running as TIBIALY (pid $EXISTING_PID)" >> "$LOG_FILE"
     echo "$EXISTING_PID" > "$PID_FILE"
     exit 0
   else
