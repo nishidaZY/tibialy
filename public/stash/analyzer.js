@@ -511,18 +511,26 @@
       const off = d > 0 ? Math.max(-0.5, Math.min(0.5, 0.5 * (l - r) / d)) : 0;
       return (m + 0.5 + off) / bins * pitch;
     };
+    // only inside the grid's extent (the selection may take in the window's frame, the header, a
+    // half-hidden row): those have dark lines of their own
+    const gx0 = Math.max(0, Math.floor(grid.xs[0])), gx1 = Math.min(P.W, Math.ceil(grid.xs[grid.xs.length - 1]) + 1);
+    const gy0 = Math.max(0, Math.floor(grid.ys[0])), gy1 = Math.min(P.H, Math.ceil(grid.ys[grid.ys.length - 1]) + 1);
     const colMean = new Float64Array(P.W), rowMean = new Float64Array(P.H);
-    for (let y = 0; y < P.H; y++) for (let x = 0; x < P.W; x++) {
+    for (let y = gy0; y < gy1; y++) for (let x = gx0; x < gx1; x++) {
       const i = y * P.W + x, l = P.R[i] * 0.299 + P.G[i] * 0.587 + P.B[i] * 0.114;
-      colMean[x] += l / P.H; rowMean[y] += l / P.W;
+      colMean[x] += l; rowMean[y] += l;
     }
-    const px = phaseOf(P.W, x => colMean[x]), py = phaseOf(P.H, y => rowMean[y]);
+    const px = gx0 + phaseOf(gx1 - gx0, t => colMean[gx0 + t]), py = gy0 + phaseOf(gy1 - gy0, t => rowMean[gy0 + t]);
     // slots: every place a whole slot fits on that lattice (a slot starts 0.5 px before the line's centre)
     const cells = [], x00 = px - 0.5 * k, y00 = py - 0.5 * k;
     const firstX = Math.ceil((-0.06 * pitch - x00) / pitch), firstY = Math.ceil((-0.06 * pitch - y00) / pitch);
     for (let r = 0; y00 + (firstY + r) * pitch + SLOT * k <= P.H + 0.2 * pitch; r++)   // a last row the selection cuts a little is still read
-      for (let c = 0; x00 + (firstX + c) * pitch + SLOT * k <= P.W + 0.06 * pitch; c++)
-        cells.push({ r, c, mx: x00 + (firstX + c) * pitch + 17 * k, my: y00 + (firstY + r) * pitch + 17 * k });
+      for (let c = 0; x00 + (firstX + c) * pitch + SLOT * k <= P.W + 0.06 * pitch; c++) {
+        const mx = x00 + (firstX + c) * pitch + 17 * k, my = y00 + (firstY + r) * pitch + 17 * k;
+        // within the grid's extent (half a slot of slack): not on the window's frame or header
+        if (mx < gx0 - 0.6 * pitch || mx > gx1 + 0.6 * pitch || my < gy0 - 0.6 * pitch || my > gy1 + 0.6 * pitch) continue;
+        cells.push({ r, c, mx, my });
+      }
     // slot background: median of the inner ring of every slot
     const ring = [];
     for (const s of cells) for (const [fx, fy] of [[-0.24, -0.24], [0, -0.24], [0.24, -0.24], [-0.24, 0], [0.24, 0], [0, 0.24]])
@@ -645,6 +653,8 @@
     const mostly = (list, key) => list.filter(s => isCut(s)[key] > 20).length > 0.5 * list.length;
     const cutRow = mostly(cells.filter(s => s.r === lastR), 'down'), cutCol = mostly(cells.filter(s => s.c === lastC), 'right');
     for (let i = cells.length - 1; i >= 0; i--) if ((cutRow && cells[i].r === lastR) || (cutCol && cells[i].c === lastC)) cells.splice(i, 1);
+    // renumber from 0 after dropping edges
+    { const r0 = Math.min(...cells.map(s => s.r)), c0 = Math.min(...cells.map(s => s.c)); cells.forEach(s => { s.r -= r0; s.c -= c0; }); }
     cells.forEach(s => { s.digitMax = digitMax(s); });
     const dm = cells.map(s => s.digitMax).sort((a, b) => a - b), digitThr = Math.min(140, Math.max(90, 0.55 * dm[Math.floor(dm.length * 0.75)]));
     for (const s of cells) s.empty = s.digitMax < digitThr || score(s, -1, -1, '', ZONE_ALL) < 40;
