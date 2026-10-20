@@ -314,7 +314,7 @@ namespace :tibia do
     end
     puts "\n✅ Done! Set image URLs for #{count} items (#{errors} errors)."
   end
-  desc "Store each item's typical Market price: the median over the worlds scanned in the last 60 days — run daily (~30 min)"
+  desc "Store each item's typical Market price: the median over the worlds scanned in the last 60 days — monthly via GitHub Actions (~30 min)"
   task sync_all_market_prices: :environment do
     # The API answers one call per 5 s and only 100 rows unless asked for more (limit). Worlds are
     # scanned when a player uploads their Market, so some are weeks old: only recent ones count.

@@ -1,0 +1,31 @@
+# Once a month: refresh each item's typical Market price (median over the worlds scanned in the last
+# 60 days) and commit the item data the site seeds from (db/seed/items.json.gz); the push redeploys
+# the site. Live prices for a chosen world don't need this: the pages fetch them on demand.
+name: Monthly Market prices
+on:
+  schedule:
+    - cron: "0 6 1 * *"   # the 1st of every month, 06:00 UTC
+  workflow_dispatch:       # or run it by hand from the Actions tab
+permissions:
+  contents: write
+jobs:
+  prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Load the current item data
+        run: bin/rails db:prepare db:seed
+      - name: Fetch prices (about 30 min: the API allows one call per 5 s)
+        run: bin/rails tibia:sync_all_market_prices
+      - name: Save the item data
+        run: bin/rails tibia:export_seed
+      - name: Commit when prices changed
+        run: |
+          git config user.name "TIBIALY"
+          git config user.email "noreply@tibialy.invalid"
+          git add db/seed/items.json.gz
+          git diff --cached --quiet || (git commit -m "Monthly Market prices" && git push)

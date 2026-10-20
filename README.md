@@ -37,8 +37,9 @@ uploaded for each world; a world can be weeks old. Pages use the current highest
 world and say how old that world's data is. `app/models/tibia_market.rb` spaces calls 5 s apart (the
 API's limit), asks for up to 1,000 rows (the API's default is only 100) and serves the last good
 answer when a call fails. Without a world, the Items page shows the typical price:
-`bin/rails tibia:sync_all_market_prices` (daily, about 30 min) stores the median over the worlds
-scanned in the last 60 days.
+`bin/rails tibia:sync_all_market_prices` (about 30 min) stores the median over the worlds
+scanned in the last 60 days. A GitHub Action (`.github/workflows/market-prices.yml`) runs it on the
+1st of every month and commits the updated `db/seed/items.json.gz`, which redeploys the site.
 
 ## Stash Analyzer
 
