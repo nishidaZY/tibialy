@@ -19,7 +19,7 @@ jobs:
           bundler-cache: true
       - name: Load the current item data
         run: bin/rails db:prepare db:seed
-      - name: Fetch prices (about 30 min: the API allows one call per 5 s)
+      - name: Fetch prices (about 30 min, the API allows one call per 5 s)
         run: bin/rails tibia:sync_all_market_prices
       - name: Save the item data
         run: bin/rails tibia:export_seed
