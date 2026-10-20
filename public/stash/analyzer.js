@@ -496,13 +496,33 @@
     const pitch = grid.pitch, k = pitch / NP;
     const A = atlasPixels(atlasImg);
 
-    // slots between two gap lines one pitch apart
-    const cells = [];
-    for (let r = 0; r + 1 < grid.cy.length; r++) for (let c = 0; c + 1 < grid.cx.length; c++) {
-      const w = grid.cx[c + 1] - grid.cx[c], h = grid.cy[r + 1] - grid.cy[r];
-      if (w < 0.85 * pitch || w > 1.15 * pitch || h < 0.85 * pitch || h > 1.15 * pitch) continue;
-      cells.push({ r, c, mx: (grid.cx[c] + grid.cx[c + 1]) / 2, my: (grid.cy[r] + grid.cy[r + 1]) / 2 });
+    // Where slots start: every slot's first column (and row) is a 1 px near-black line just after the
+    // light gap between slots. Folding the brightness profile by the pitch finds it, whatever
+    // the gap lines did (coloured frames, resized screenshots shift them by several px).
+    const phaseOf = (len, at) => {
+      // 1 px bins over one pitch (fewer bins than pixels per pitch: none stays empty), then a
+      // parabola through the darkest bin and its neighbours for the sub-pixel phase
+      const bins = Math.floor(pitch), sum = new Float64Array(bins), cnt = new Float64Array(bins);
+      for (let t = 0; t < len; t++) { const b = Math.min(bins - 1, Math.floor(((t + 0.5) % pitch) / pitch * bins)); sum[b] += at(t); cnt[b]++; }
+      const v = [...sum].map((x, i) => x / (cnt[i] || 1));
+      // the dark line comes right after the light gap between slots: darkest relative to the 2 px before it
+      const at2 = i => v[(i + bins) % bins], score = v.map((x, i) => (at2(i - 1) + at2(i - 2)) / 2 - x);
+      const m = score.indexOf(Math.max(...score)), l = at2(m - 1), r = at2(m + 1), d = l - 2 * v[m] + r;
+      const off = d > 0 ? Math.max(-0.5, Math.min(0.5, 0.5 * (l - r) / d)) : 0;
+      return (m + 0.5 + off) / bins * pitch;
+    };
+    const colMean = new Float64Array(P.W), rowMean = new Float64Array(P.H);
+    for (let y = 0; y < P.H; y++) for (let x = 0; x < P.W; x++) {
+      const i = y * P.W + x, l = P.R[i] * 0.299 + P.G[i] * 0.587 + P.B[i] * 0.114;
+      colMean[x] += l / P.H; rowMean[y] += l / P.W;
     }
+    const px = phaseOf(P.W, x => colMean[x]), py = phaseOf(P.H, y => rowMean[y]);
+    // slots: every place a whole slot fits on that lattice (a slot starts 0.5 px before the line's centre)
+    const cells = [], x00 = px - 0.5 * k, y00 = py - 0.5 * k;
+    const firstX = Math.ceil((-0.06 * pitch - x00) / pitch), firstY = Math.ceil((-0.06 * pitch - y00) / pitch);
+    for (let r = 0; y00 + (firstY + r) * pitch + SLOT * k <= P.H + 0.2 * pitch; r++)   // a last row the selection cuts a little is still read
+      for (let c = 0; x00 + (firstX + c) * pitch + SLOT * k <= P.W + 0.06 * pitch; c++)
+        cells.push({ r, c, mx: x00 + (firstX + c) * pitch + 17 * k, my: y00 + (firstY + r) * pitch + 17 * k });
     // slot background: median of the inner ring of every slot
     const ring = [];
     for (const s of cells) for (const [fx, fy] of [[-0.24, -0.24], [0, -0.24], [0.24, -0.24], [-0.24, 0], [0.24, 0], [0, 0.24]])
@@ -601,7 +621,7 @@
     // every stash slot shows its amount: no bright digit pixel at the bottom right = no slot there
     // (a row cut by the window's edge, the window's frame, an empty slot)
     const digitMax = s => {
-      const [X0, Y0] = [s.mx - 17 * k + 2 * k, s.my - 17 * k + 1.75 * k];
+      const [X0, Y0] = [s.mx - 17 * k, s.my - 17 * k];
       let m = 0;
       for (let y = Math.floor(Y0 + 22 * k); y < Math.ceil(Y0 + 33 * k); y++) for (let x = Math.floor(X0 + 16 * k); x < Math.ceil(X0 + 34 * k); x++) {
         if (x < 0 || y < 0 || x >= P.W || y >= P.H) continue;
@@ -610,6 +630,21 @@
       }
       return m;
     };
+    // a slot cut by the edge of the stash window (a last row half hidden): its dark first column (or
+    // first row) stops being dark partway, where the window's frame starts
+    const lumAt = (x, y) => { x = Math.min(P.W - 1, Math.max(0, Math.round(x))); y = Math.min(P.H - 1, Math.max(0, Math.round(y))); const i = y * P.W + x; return P.R[i] * 0.299 + P.G[i] * 0.587 + P.B[i] * 0.114; };
+    const lineMean = (f, a, b) => { let s = 0, n = 0; for (let t = a; t < b; t += 0.5) { s += f(t); n++; } return s / n; };   // beyond the selection: its last pixel
+    const isCut = s => {
+      const X0 = s.mx - 17 * k, Y0 = s.my - 17 * k, L = X0 + 0.5 * k, T = Y0 + 0.5 * k;
+      const down = lineMean(v => lumAt(L, Y0 + v * k), 24, 32) - lineMean(v => lumAt(L, Y0 + v * k), 3, 11);
+      const right = lineMean(u => lumAt(X0 + u * k, T), 24, 32) - lineMean(u => lumAt(X0 + u * k, T), 3, 11);
+      return { down, right };
+    };
+    // only the last row / column can be cut; it is when most of its slots say so
+    const lastR = Math.max(...cells.map(s => s.r)), lastC = Math.max(...cells.map(s => s.c));
+    const mostly = (list, key) => list.filter(s => isCut(s)[key] > 20).length > 0.5 * list.length;
+    const cutRow = mostly(cells.filter(s => s.r === lastR), 'down'), cutCol = mostly(cells.filter(s => s.c === lastC), 'right');
+    for (let i = cells.length - 1; i >= 0; i--) if ((cutRow && cells[i].r === lastR) || (cutCol && cells[i].c === lastC)) cells.splice(i, 1);
     cells.forEach(s => { s.digitMax = digitMax(s); });
     const dm = cells.map(s => s.digitMax).sort((a, b) => a - b), digitThr = Math.min(140, Math.max(90, 0.55 * dm[Math.floor(dm.length * 0.75)]));
     for (const s of cells) s.empty = s.digitMax < digitThr || score(s, -1, -1, '', ZONE_ALL) < 40;
@@ -635,10 +670,10 @@
         geo = { ...geo, dx: best.dx, dy: best.dy };
         probe.forEach(s => { s.cand = coarse(s, 6); });
       };
-      geo.dx = 2 * k; geo.dy = 1.75 * k;
+      geo.dx = 0; geo.dy = 0;
       probe.forEach(s => { s.cand = coarse(s, 6); });
-      search(geo.dx, geo.dy, 5 * k, 1 * k);   // wide: coloured frames can pull the gap lines a few px off
-      search(geo.dx, geo.dy, 1 * k, 0.25 * k);
+      search(geo.dx, geo.dy, 2 * k, 0.5 * k);
+      search(geo.dx, geo.dy, 0.6 * k, 0.2 * k);
       search(geo.dx, geo.dy, 0.3 * k, 0.1 * k);
       let bs = { e: Infinity };
       for (const kernel of ['box', 'tri', 'cubic', 'lanczos']) for (const sigma of [0, 0.3, 0.5, 0.7, 0.9, 1.2]) {
