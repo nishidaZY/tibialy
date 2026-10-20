@@ -1,106 +1,90 @@
-# TIBIALY 💰
+# TIBIALY
 
-A fan-made web app for [Tibia](https://www.tibia.com/) players to look up item prices and figure out the best way to sell their loot — NPC or Market.
+A fan-made web app for [Tibia](https://www.tibia.com/) players: item prices, where to sell your
+loot (NPC or Market), your whole stash priced from one screenshot, and a damage calculator.
 
-> Built with Ruby on Rails 7.2. Not affiliated with CipSoft.
+> Ruby on Rails 7.2. Unofficial; not affiliated with CipSoft.
 
----
+## Pages
 
-## Features
-
-- **Item database** — browse all tradeable items with NPC buy prices and Market averages
-- **Fuzzy search** — typo-tolerant live search powered by Fuse.js (try `gren adargoin lether` → Green Dragon Leather)
-- **Loot Analyser** — paste your hunt loot text and instantly see what to sell to NPCs vs. the Market
-- **Market premium badges** — highlights items where the Market pays significantly more than NPCs
-- **Stash Analyzer** — paste a screenshot of your Stash: every slot is recognised (item + count) and
-  priced (NPC vs. Market). Runs entirely in the browser — the screenshot is never uploaded.
-- **Dracula theme** — dark UI with animated pixel art
-
----
-
-## Tech Stack
-
-| Layer | Tech |
-|-------|------|
-| Framework | Ruby on Rails 7.2 |
-| Database | SQLite3 |
-| Styling | Tailwind CSS (CDN) |
-| Search | Fuse.js 6.6 (client-side fuzzy) |
-| Scraping | Nokogiri + HTTParty |
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Ruby 3.4.1
-- Bundler
-
-### Setup
-
-```bash
-git clone <repo-url>
-cd tibialootfinder
-bundle install
-rails db:create db:migrate
-rake tibia:import      # imports item data from TibiaWiki
-rails server
-```
-
-Then open [http://localhost:3000](http://localhost:3000).
-
----
-
-## Routes
-
-| Path | Description |
-|------|-------------|
-| `GET /` | Item list with search & sort |
-| `GET /items/:id` | Item detail page |
-| `GET /items/names` | JSON array of all item names (used by fuzzy search) |
-| `GET /loot` | Loot Analyser |
-| `POST /loot/analyze` | Analyse pasted loot |
-| `GET /stash` | Stash Analyzer (screenshot → items, counts, prices) |
-| `GET /stash/catalog` | JSON catalog used by the Stash Analyzer |
-
----
+| Page | What it does |
+|---|---|
+| **Items** (`/`) | Every tradeable item with its best NPC buyer and Market average; typo-tolerant search (Fuse.js), sort by value, Market premium badges |
+| **Loot Analyzer** (`/loot`) | Paste the loot text of a hunt: each item goes to the NPC or to the Market, whichever pays more, with live Market prices for your world |
+| **Stash Analyzer** (`/stash`) | Paste a screenshot of your Supply Stash, drag a box around the slots: every item and amount is recognised and priced. Runs in the browser; the screenshot is never uploaded |
+| **Damage Calculator** (`/damage`) | The TibiaTools damage calculator (EUPL-1.2), restyled for the site |
 
 ## Stash Analyzer
 
-`public/stash/analyzer.js` finds the slot grid in the selected area (brightness profiles →
-pitch by autocorrelation → lattice snapped to the slot frames), compares each slot with every
-market item sprite (coarse 16×16 pass, then full resolution with the sprite size and offset
-calibrated per screenshot), optionally keeps the names in alphabetical order (stash sorted by
-name), and reads the count digits (`public/stash/digits.json`). Unsure items and counts are
-flagged in the table for a one-click fix.
+`public/stash/analyzer.js` draws each candidate slot the way the Tibia client does: the item's
+own sprite, the rarity edge and the amount in the client's outlined digits. It shrinks that
+picture to the screenshot's size with the same kind of resizing the screenshot went through,
+then compares it pixel by pixel with the slot. It also detects how the stash is sorted (name,
+total NPC value or amount) and uses that order to check every item and amount. Slots it cannot
+confirm are flagged so you can fix them with one click.
+
+It works from full-size screenshots down to small or WhatsApp-compressed ones. Accuracy on
+hand-checked screenshots is in [`script/stash/bench/README.md`](script/stash/bench/README.md).
 
 Data files (committed):
 
 | File | Made by |
-|------|---------|
-| `public/stash/atlas.png` + `atlas.json` | `bin/rails stash:atlas` (needs Python 3 + Pillow) |
-| `public/stash/digits.json` | count digit templates (from real stash screenshots) |
-| `db/seed/items.json.gz` | `bin/rails tibia:export_seed` — loaded by `db/seeds.rb` on deploy |
+|---|---|
+| `public/stash/atlas.png` + `atlas.json` | `bin/rails stash:atlas`: sprites, names and NPC prices read from an installed Tibia client (Python 3 + Pillow) |
+| `public/stash/ui.json` | the amount digits and rarity edges (`script/stash/bench/build_ui.py`) |
+| `db/seed/items.json.gz` | `bin/rails tibia:export_seed`, loaded by `db/seeds.rb` on deploy |
 
----
+## Tech stack
+
+| Layer | Tech |
+|---|---|
+| Server | Ruby 3.4, Rails 7.2, SQLite |
+| Pages | ERB, Tailwind (CDN), Faustina + Geist fonts, line-art figures (`public/figures`) |
+| In the browser | Stash Analyzer (plain JavaScript, canvas), Fuse.js search, the calculator (Svelte bundle) |
+| Data | TibiaWiki (Nokogiri + HTTParty), Market prices from tibiamarket.top |
+
+## Getting started
+
+```bash
+git clone <repo-url>
+cd tibialy
+bundle install
+bin/rails db:create db:migrate db:seed   # or: bin/rails tibia:import (fresh data from TibiaWiki)
+bin/rails server
+```
+
+Then open http://localhost:3000.
+
+Data tasks: `tibia:import` (items and NPC prices), `tibia:sync_market_ids`,
+`tibia:sync_all_market_prices`, `tibia:export_seed`, `stash:atlas`.
+
+## Routes
+
+| Path | |
+|---|---|
+| `GET /` · `GET /items/:id` | Item list and item page |
+| `GET /items/names` | Item names (fuzzy search) |
+| `GET /items/market_prices` | Market prices proxy (known worlds only, cached) |
+| `GET /loot` · `POST /loot/analyze` | Loot Analyzer |
+| `GET /stash` · `GET /stash/catalog` | Stash Analyzer and its item catalog |
+| `GET /damage` | Damage Calculator |
+| `GET /up` | Health check |
 
 ## Deploy (Render, free)
 
-1. Push this repository to GitHub.
-2. On [render.com](https://render.com): **New → Blueprint**, pick the repository. `render.yaml`
-   creates a free web service; `bin/render-build.sh` installs gems, compiles assets and creates
-   + seeds the SQLite database on every deploy.
-3. Done — `https://<name>.onrender.com`. Free instances sleep after 15 idle minutes (the first
-   visit after that takes ~30 s).
+1. On [render.com](https://render.com): **New → Blueprint**, pick the repository. `render.yaml`
+   creates a free web service. `bin/render-build.sh` installs gems, compiles assets, then
+   creates and seeds the SQLite database on every deploy.
+2. The site runs at `https://<name>.onrender.com`. Free instances sleep after 15 idle minutes,
+   so the first visit after that takes about 30 s.
 
 Security: HTTPS enforced (HSTS), host allow-list, Content-Security-Policy, Permissions-Policy,
-CSRF protection, per-IP rate limits on the API endpoints (`rate_limit`), market proxy only for
-known servers and cached, only the Rails frameworks in use are loaded, no secrets in the repo
-(`SECRET_KEY_BASE` is generated by Render). Check gems with `bundle-audit check --update`.
+CSRF protection, per-IP rate limits on the API endpoints, a Market proxy limited to known worlds
+and cached, no secrets in the repo (Render generates `SECRET_KEY_BASE`). Check gems with
+`bundle-audit check --update`.
 
----
+## Licences
 
-## Disclaimer
-
-This is an unofficial fan project. Tibia is a registered trademark of CipSoft GmbH. All item data belongs to CipSoft.
+- The damage calculator (`vendor/tibiatools-calc`, `public/damage`) is TibiaTools by Kikaro,
+  EUPL-1.2. See `vendor/tibiatools-calc/NOTICE.md`; the site links its source as a zip.
+- Tibia is a registered trademark of CipSoft GmbH. Item data, names and sprites belong to CipSoft.
