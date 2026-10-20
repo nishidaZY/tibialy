@@ -5,6 +5,17 @@ loot (NPC or Market), your whole stash priced from one screenshot, and a damage 
 
 > Ruby on Rails 7.2. Unofficial; not affiliated with CipSoft.
 
+## Download
+
+| | |
+|---|---|
+| **Windows** | [TIBIALY-windows-setup.exe](https://github.com/nishidaZY/tibialy/releases/latest/download/TIBIALY-windows-setup.exe) |
+| **Mac** | [TIBIALY-mac.dmg](https://github.com/nishidaZY/tibialy/releases/latest/download/TIBIALY-mac.dmg) |
+
+Open the file and follow the steps on the [release page](https://github.com/nishidaZY/tibialy/releases/latest)
+(Windows may say "Windows protected your PC": More info → Run anyway; on Mac, right-click → Open the
+first time). Android: open the site in Chrome → ⋮ → Install app.
+
 ## Pages
 
 | Page | What it does |

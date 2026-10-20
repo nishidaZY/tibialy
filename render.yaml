@@ -14,5 +14,7 @@ services:
         generateValue: true
       - key: RAILS_MAX_THREADS
         value: "3"
+      - key: DOWNLOADS_URL
+        value: https://github.com/nishidaZY/tibialy/releases/latest/download
       - key: WEB_CONCURRENCY
         value: "0"
