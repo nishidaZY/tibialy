@@ -70,6 +70,11 @@
     <button id="sort-high" class="sort-btn bg-amber-700 text-white">Highest</button>
     <button id="sort-low"  class="sort-btn bg-stone-800 text-stone-300">Lowest</button>
   </div>
+  <div class="ml-auto flex gap-2">
+    <button id="export-copy" type="button" class="btn btn-ghost h-9" title="Copy the list of what sells better on the Market">Copy Market list</button>
+    <button id="export-file" type="button" class="btn btn-ghost h-9" title="Download it as a text file">Download .txt</button>
+  </div>
+  <p id="export-note" class="w-full text-xs text-stone-500 hidden"></p>
 </div>
 
 <!-- Results -->
@@ -124,6 +129,33 @@ function escapeHtml(s) {
                   .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 // Allow only http/https image URLs (blocks javascript: data: etc.)
+// ── export: the items that sell better on the Market, as plain text ──────────
+let marketList = [], marketWorld = "";
+function marketText() {
+  const f = n => n.toLocaleString("en-US"), list = [...marketList].sort((a, b) => b.total - a.total);
+  const sum = list.reduce((a, x) => a + x.total, 0);
+  return [`TIBIALY — sell on the Market (${marketWorld}, ${new Date().toLocaleDateString()})`, "",
+    ...list.map(x => `${x.n} — ${f(x.qty)} × ${f(x.mp)} gp = ${f(x.total)} gp (+${f(x.gain)} vs NPC)`),
+    "", `${list.length} items · ${f(sum)} gp`].join("\n");
+}
+function exportNote(msg) { const n = document.getElementById("export-note"); n.textContent = msg; n.classList.remove("hidden"); setTimeout(() => n.classList.add("hidden"), 4000); }
+function exportReady() {
+  if (!marketList.length) { exportNote("Nothing sells better on the Market here (or its prices have not loaded)."); return null; }
+  return marketText();
+}
+document.getElementById("export-copy").addEventListener("click", async () => {
+  const t = exportReady(); if (!t) return;
+  try { await navigator.clipboard.writeText(t); exportNote("Copied. Paste it anywhere (Discord, notes…)."); }
+  catch { exportNote("Could not copy here: use Download .txt."); }
+});
+document.getElementById("export-file").addEventListener("click", () => {
+  const t = exportReady(); if (!t) return;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([t], { type: "text/plain" }));
+  a.download = `tibialy-market-${marketWorld || "list"}.txt`;
+  a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+});
+
 function safeUrl(u) {
   if (!u) return '';
   return /^(https?:\/\/|\/icons\/items\/\d+\.png$)/i.test(u) ? String(u) : "";
@@ -301,6 +333,7 @@ analyzeBtn.addEventListener("click", async () => {
       (mData || []).forEach(m => { marketMap[m.id] = m; });
 
       let totalNPC = 0, totalBest = 0;
+      marketList = []; marketWorld = server;
 
       // Update each row
       found.forEach(r => {
@@ -330,6 +363,7 @@ analyzeBtn.addEventListener("click", async () => {
         const mRow   = r.market_item_id ? marketMap[r.market_item_id] : null;
         const mPrice = mRow ? (mRow.buy_offer > 0 ? mRow.buy_offer : mRow.month_average_buy) : -1;
         const mTotal = mPrice > 0 ? mPrice * r.quantity : -1;
+        if (mTotal > r.npc_total) marketList.push({ n: r.matched_name, qty: r.quantity, mp: mPrice, total: mTotal, gain: mTotal - r.npc_total });
 
         // Best per item = whichever pays more
         totalBest += mTotal > r.npc_total ? mTotal : r.npc_total;
