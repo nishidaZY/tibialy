@@ -125,6 +125,28 @@ Then open http://localhost:3000.
 Data tasks: `tibia:import` (items and NPC prices), `tibia:sync_market_ids`,
 `tibia:sync_all_market_prices`, `tibia:export_seed`, `stash:atlas`.
 
+### Run your local copy as a Windows app
+
+This adds a **TIBIALY** icon to your Desktop. It starts your local server if needed and opens it in
+its own Edge window, so it needs no terminal and no installer.
+
+You need WSL (Ubuntu works) with Ruby 3.4.1, and the project cloned inside WSL, not under `/mnt/c`.
+In a WSL terminal, from the project folder:
+
+```bash
+native-app/windows/install.sh
+```
+
+The script installs the gems and prepares the database if needed. The server keeps running after you
+close the window, so opening it again is instant. To stop it:
+
+```bash
+kill $(cat tmp/pids/server.pid)
+```
+
+To remove it, delete the Desktop icon and the `TIBIALY` folder in your Windows user folder. The Mac
+equivalent is in `native-app/`.
+
 ## Routes
 
 | Path | |
