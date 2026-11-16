@@ -5,7 +5,9 @@
 //   sword(el)  — uma espada cravada na pedra em chamas: o ponteiro a puxa para fora, inclina e aviva o fogo
 // Cada função desenha dentro de `el` (largura do elemento, proporção 5:4) e devolve destroy().
 // Cores pelas mesmas variáveis da hairline: --hairline-plate/-hi/-edge/-mid/-lo/-stroke.
-// Sem ponteiro por perto (ou parado) a figura se anima sozinha em laço; com "reduzir movimento", fica parada.
+// Sem ponteiro por perto (ou parado) a figura se anima sozinha em laço.
+// Não obedece a prefers-reduced-motion: no Windows o Edge o liga quando os "efeitos de animação"
+// do sistema estão desligados (padrão em muitas máquinas), e as figuras ficavam paradas.
 
 const W = 400;
 const H = 320;
@@ -48,7 +50,6 @@ function figure(el, label, draw, { reach = 1.1 } = {}) {
   svg.style.cssText = "display:block;width:100%;height:auto;overflow:visible";
   el.replaceChildren(svg);
 
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const s = { near: 0, side: 0, vNear: 0, vSide: 0, t: 0 };
   let alvo = null; // { near, side } do ponteiro; null = ninguém por perto → anima sozinho
   let quieto = 0;
@@ -82,19 +83,14 @@ function figure(el, label, draw, { reach = 1.1 } = {}) {
     raf = requestAnimationFrame(tick); // laço contínuo; o navegador pausa o rAF com a aba escondida
   }
   function wake() {
-    if (!raf && !reduce) {
+    if (!raf) {
       last = performance.now();
       raf = requestAnimationFrame(tick);
     }
   }
 
-  if (reduce) {
-    s.near = 0.6;
-    render();
-  } else {
-    addEventListener("pointermove", onMove, { passive: true });
-    wake();
-  }
+  addEventListener("pointermove", onMove, { passive: true });
+  wake();
   return {
     destroy() {
       cancelAnimationFrame(raf);
